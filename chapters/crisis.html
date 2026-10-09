@@ -403,7 +403,7 @@
       var P = EB.palette();
       var L = gL(), loss = gX(), E = 100 / L, E1 = E - loss, A1 = 100 - loss, D = 100 - E;
       var top = 52, bot = h - 30, unit = (bot - top) / 100;
-      var colW = Math.min(120, w * 0.24), x1 = w * 0.27 - colW / 2, x2 = w * 0.67 - colW / 2;
+      var colW = Math.min(120, w * 0.24), x1 = w * 0.22 - colW / 2, x2 = w * 0.56 - colW / 2;
       box = { x: x1, w: colW, top: top, unit: unit };
       ctx.font = EB.font(12, false, 700); ctx.fillStyle = P.text; ctx.textAlign = "center";
       ctx.fillText("자산", x1 + colW / 2, 42); ctx.fillText("부채 + 자본", x2 + colW / 2, 42);

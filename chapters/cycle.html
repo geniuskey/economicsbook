@@ -627,7 +627,7 @@
         series: [{ data: Y.map(function (y, i) { return [i, y]; }), color: exploded ? Pl.bad : Pl.accent, width: 2.4 }],
         hlines: [{ y: p.Y1, color: Pl.ok, label: "새 균형" }, { y: p.Y0, color: Pl.faint, label: "처음 균형" }],
       });
-      ctx.fillStyle = Pl.dim; ctx.font = EB.font(11); ctx.textAlign = "left"; ctx.fillText("소득 Y(정부 지출 1 → 1.1)", lbox.x + 6, lbox.y + 12);
+      ctx.fillStyle = Pl.dim; ctx.font = EB.font(11); ctx.textAlign = "left"; ctx.fillText("소득 Y(정부 지출 1 → 1.1)", lbox.x + 6, lbox.y + lbox.h - 8);
       // 매개변수 평면
       var V1 = 4, X = function (vv) { return pbox.x + pbox.w * vv / V1; }, Yp = function (cc) { return pbox.y + pbox.h * (1 - cc); };
       // 영역 칠하기(격자)
