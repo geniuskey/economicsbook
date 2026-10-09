@@ -1,0 +1,688 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and EconomicsBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "금리는 돈을 지금 쓰는 값이다. 명목과 실질 금리, 채권 가격과 금리의 시소, 만기별 금리가 그리는 수익률 곡선, 신용 스프레드, 기준금리에서 지표금리·가산금리·우대금리를 거쳐 내 대출금리가 정해지는 구조를 시뮬레이터로 쌓아 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>금리: 돈의 가격 · EconomicsBook</title>
+<meta name="description" content="금리는 돈을 지금 쓰는 값이다. 명목과 실질 금리, 채권 가격과 금리의 시소, 만기별 금리가 그리는 수익률 곡선, 신용 스프레드, 기준금리에서 지표금리·가산금리·우대금리를 거쳐 내 대출금리가 정해지는 구조를 시뮬레이터로 쌓아 본다.">
+<link rel="canonical" href="https://economicsbook.euiyun.com/chapters/rates.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#4338ca">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="EconomicsBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="금리: 돈의 가격 · EconomicsBook">
+<meta property="og:description" content="금리는 돈을 지금 쓰는 값이다. 명목과 실질 금리, 채권 가격과 금리의 시소, 만기별 금리가 그리는 수익률 곡선, 신용 스프레드, 기준금리에서 지표금리·가산금리·우대금리를 거쳐 내 대출금리가 정해지는 구조를 시뮬레이터로 쌓아 본다.">
+<meta property="og:url" content="https://economicsbook.euiyun.com/chapters/rates.html">
+<meta property="og:image" content="https://economicsbook.euiyun.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://economicsbook.euiyun.com/chapters/rates.html#chapter","name":"금리: 돈의 가격","headline":"금리: 돈의 가격 · EconomicsBook","description":"금리는 돈을 지금 쓰는 값이다. 명목과 실질 금리, 채권 가격과 금리의 시소, 만기별 금리가 그리는 수익률 곡선, 신용 스프레드, 기준금리에서 지표금리·가산금리·우대금리를 거쳐 내 대출금리가 정해지는 구조를 시뮬레이터로 쌓아 본다.","url":"https://economicsbook.euiyun.com/chapters/rates.html","position":7,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://economicsbook.euiyun.com/og.png","dateModified":"2026-10-09","isPartOf":{"@type":"Book","@id":"https://economicsbook.euiyun.com/#book","name":"EconomicsBook · 경제 뉴스 읽는 교과서","url":"https://economicsbook.euiyun.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"EconomicsBook","item":"https://economicsbook.euiyun.com/"},{"@type":"ListItem","position":2,"name":"7. 금리: 돈의 가격","item":"https://economicsbook.euiyun.com/chapters/rates.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/econ.js"></script>
+<!--head:end-->
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"3d6151a0abc94ede89285d462527fa80"}'></script>
+<!-- End Cloudflare Web Analytics -->
+</head>
+<body data-chapter="rates">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 07</div>
+    <h1>금리: 돈의 가격</h1>
+    <p class="lead">"주택담보대출 금리 4.36%"라는 한 줄에는 여러 개의 금리가 계단처럼 쌓여 있다. 한국은행의 기준금리, 만기가 길수록 붙는 기간 프리미엄, 빌리는 쪽의 위험을 값으로 매긴 신용 스프레드, 은행의 비용과 이익, 그리고 급여 이체로 깎아 주는 우대금리. 이 장은 그 계단을 하나씩 쌓아 보며 금리라는 가격이 어떻게 만들어지는지 본다.</p>
+    <ul class="objectives">
+      <li>금리를 이루는 세 조각(시간의 값, 기대 인플레이션, 위험)을 구분하고 명목금리에서 실질금리를 계산할 수 있다.</li>
+      <li>금리가 오르면 채권 가격이 왜 내리는지, 만기가 길수록 왜 더 크게 흔들리는지 설명할 수 있다.</li>
+      <li>수익률 곡선과 신용 스프레드를 보고 시장이 앞날의 금리와 위험을 어떻게 보는지 읽을 수 있다.</li>
+      <li>내 대출금리를 기준금리·지표금리·가산금리·우대금리로 분해하고 고정·변동·주기형의 차이를 계산할 수 있다.</li>
+    </ul>
+  </header>
+
+  <div class="headline" id="hl-top">주택담보대출 금리 연 4.36%, 두 달째 올랐다<small>지우의 헤드라인 노트 · 2026년 7월 · 근거: 한국은행 「2026년 6월 금융기관 가중평균금리」(2026-07-28). 예금은행 신규취급액 기준</small></div>
+
+  <section id="price">
+    <h2>돈에도 가격이 있다</h2>
+    <p>빵에는 값이 있고 집을 빌려 쓰면 월세를 낸다. 돈도 마찬가지다. 남의 돈을 지금 쓰려면 값을 치러야 하는데, 그 값을 빌린 돈에 대한 비율로 나타낸 것이 <span class="term">금리</span><span class="en">(Interest rate)</span>다. 1년 동안 100만원을 빌리고 104만원을 갚기로 했다면 이 돈의 가격은 연 4%다. 예금을 하는 사람에게는 같은 숫자가 반대로, 지금 쓰지 않고 참은 대가로 받는 값이 된다.</p>
+    <p>왜 돈을 빌려주는 사람은 대가를 요구하는가. 이유는 세 가지로 나눌 수 있다. 첫째, 사람은 같은 물건이라면 나중보다 지금 갖기를 원한다. 지금 쓸 수 있는 돈을 1년 동안 남에게 넘기면 그만큼 기다려야 하니 보상이 필요하다. 이것을 <span class="term">시간 선호</span><span class="en">(Time preference)</span>라고 하고, 경제 전체로 보면 돈을 빌려 투자했을 때 얻는 수익과도 맞물린다. 둘째, 1년 뒤 104만원으로 살 수 있는 물건이 지금보다 적을 수 있다. 물가가 오르는 만큼 돈의 구매력이 줄어드니 그 몫을 미리 금리에 얹는다. 셋째, 빌려 간 사람이 돈을 못 갚을 수 있다. 위험이 큰 상대일수록 더 높은 값을 받는다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 300" role="img" aria-label="국고채, 우량 회사채, 신용대출의 금리를 시간의 값, 기대 인플레이션, 위험 프리미엄의 세 조각으로 나눈 그림">
+        <line x1="60" y1="250" x2="440" y2="250" class="s-axis"/>
+        <!-- 국고채 -->
+        <rect x="80" y="196" width="80" height="54" class="f-acc-soft"/>
+        <rect x="80" y="150" width="80" height="46" class="f-acc2-soft"/>
+        <rect x="80" y="140" width="80" height="10" class="f-bad-soft"/>
+        <text x="120" y="272" text-anchor="middle" class="lbl">국고채</text>
+        <!-- 회사채 -->
+        <rect x="200" y="196" width="80" height="54" class="f-acc-soft"/>
+        <rect x="200" y="150" width="80" height="46" class="f-acc2-soft"/>
+        <rect x="200" y="122" width="80" height="28" class="f-bad-soft"/>
+        <text x="240" y="272" text-anchor="middle" class="lbl">우량 회사채</text>
+        <!-- 신용대출 -->
+        <rect x="320" y="196" width="80" height="54" class="f-acc-soft"/>
+        <rect x="320" y="150" width="80" height="46" class="f-acc2-soft"/>
+        <rect x="320" y="40" width="80" height="110" class="f-bad-soft"/>
+        <text x="360" y="272" text-anchor="middle" class="lbl">신용대출</text>
+        <text x="360" y="100" text-anchor="middle" class="lbl-dim">위험·비용</text>
+        <text x="360" y="117" text-anchor="middle" class="lbl-dim">·은행 마진</text>
+        <!-- 범례 -->
+        <rect x="20" y="20" width="14" height="14" class="f-acc-soft"/><text x="40" y="32" class="lbl-dim">시간의 값(실질)</text>
+        <rect x="20" y="42" width="14" height="14" class="f-acc2-soft"/><text x="40" y="54" class="lbl-dim">기대 인플레이션</text>
+        <rect x="20" y="64" width="14" height="14" class="f-bad-soft"/><text x="40" y="76" class="lbl-dim">위험 프리미엄</text>
+        <text x="40" y="232" text-anchor="end" class="lbl-dim">0%</text>
+      </svg>
+      <figcaption><b>그림 1. 금리를 이루는 세 조각.</b> 같은 기간의 금리라도 누가 빌리느냐에 따라 맨 위 조각(위험 프리미엄)의 높이가 다르다. 정부가 빌리는 국고채는 이 조각이 가장 얇다. 높이는 개념을 보이기 위한 교육용 그림이며 실제 비율이 아니다.</figcaption>
+    </figure>
+
+    <p>뉴스에 나오는 금리들은 이 세 조각을 서로 다르게 섞은 것이다. 2026년 10월 초의 숫자를 늘어놓으면 이렇다. 한국은행의 <span class="term">기준금리</span><span class="en">(Base rate)</span>는 연 3.00%<span class="src">(한국은행, 2026-08-27 결정)</span>, 정부가 3년 동안 빌리는 국고채 3년물 금리는 연 3.961%, 10년물은 연 4.376%<span class="src">(금융투자협회 최종호가, 2026-10-07)</span>, 은행의 새 주택담보대출 평균 금리는 연 4.66%다<span class="src">(한국은행, 2026년 8월 신규취급액)</span>. 정부보다 은행이, 짧게보다 길게 빌릴 때 금리가 높다. 이 장의 나머지는 그 차이가 어디서 오는지를 하나씩 따라간다.</p>
+
+    <div class="table-wrap"><table>
+      <thead><tr><th>금리</th><th class="num">수준</th><th>무엇의 값인가</th><th>기준 시점</th></tr></thead>
+      <tbody>
+        <tr><td>기준금리</td><td class="num" id="tb-base">3.00%</td><td>한국은행과 은행이 7일 동안 돈을 주고받는 기준</td><td>2026-08-27 결정</td></tr>
+        <tr><td>국고채 3년</td><td class="num" id="tb-b3">3.961%</td><td>정부가 3년 빌리는 값</td><td>2026-10-07</td></tr>
+        <tr><td>국고채 10년</td><td class="num" id="tb-b10">4.376%</td><td>정부가 10년 빌리는 값</td><td>2026-10-07</td></tr>
+        <tr><td>신규취급액 코픽스</td><td class="num">3.18%</td><td>은행들이 그달 새로 모은 돈의 평균 비용</td><td>2026년 8월분(9-15 공시)</td></tr>
+        <tr><td>예금은행 저축성수신금리</td><td class="num">3.08%</td><td>은행이 새 예금에 준 평균 금리</td><td>2026년 6월 신규취급액</td></tr>
+        <tr><td>주택담보대출 금리</td><td class="num" id="tb-mort">4.66%</td><td>은행이 새로 내준 주담대의 평균 금리</td><td>2026년 8월 신규취급액</td></tr>
+      </tbody>
+    </table></div>
+    <p class="src">(기준금리: 한국은행 「통화정책방향」. 국고채: 서울 채권시장 금융투자협회 최종호가 보도. 코픽스: 은행연합회 공시 보도. 수신·주담대 금리: 한국은행 「금융기관 가중평균금리」 2026년 6월·8월분)</p>
+
+    <div class="callout link"><strong>MoneyBook에서 이어 읽기</strong>단리와 복리, 연 이자율과 월 이자율의 환산, 72의 법칙처럼 금리를 내 예금과 대출에 적용하는 계산은 MoneyBook <a href="https://moneybook.euiyun.com/chapters/interest.html">금리와 복리</a>에서 시뮬레이터로 다룬다. 이 장은 그 금리가 경제 전체에서 어떻게 정해지는지를 본다.</div>
+  </section>
+
+  <section id="real">
+    <h2>명목금리와 실질금리</h2>
+    <p>은행 창구에 붙은 "연 3%"는 <span class="term">명목금리</span><span class="en">(Nominal interest rate)</span>다. 돈의 액수가 얼마나 불어나는지를 말한다. 그런데 우리가 실제로 신경 쓰는 것은 그 돈으로 살 수 있는 물건의 양이다. 물가가 3% 오르는 해에 예금 이자가 3%라면 통장의 숫자는 늘었지만 살 수 있는 물건은 그대로다. 물가 상승을 빼고 남은 금리를 <span class="term">실질금리</span><span class="en">(Real interest rate)</span>라고 한다.</p>
+    <div class="formula">$$1 + r = \frac{1 + i}{1 + \pi} \quad\Rightarrow\quad r \approx i - \pi$$<div class="where">\(i\): 명목금리, \(\pi\): (기대) 물가상승률, \(r\): 실질금리. 이 관계를 경제학자 어빙 피셔의 이름을 따 <b>피셔 방정식</b>이라 부른다. 물가상승률이 낮을 때는 단순히 빼도 거의 같다.</div></div>
+    <p>여기서 \(\pi\)는 엄밀히 말하면 앞으로 1년 동안의 <strong>기대</strong> 물가상승률이다. 돈을 빌려줄 때는 아직 앞으로의 물가를 모르기 때문이다. 기사는 편의상 지난 1년의 소비자물가 상승률을 빼서 실질금리를 계산하는 일이 많다. 아래 시뮬레이터의 기본값은 2026년 6월 예금은행의 새 예금 평균 금리 3.08%와 2026년 9월 소비자물가 상승률 2.9%다<span class="src">(한국은행 「금융기관 가중평균금리」 2026년 6월분, 국가데이터처 「2026년 9월 소비자물가동향」)</span>.</p>
+
+    <div class="sim" id="sim-fisher">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>통장의 숫자와 장바구니: 실질금리 계산기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="fi-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>명목 예금금리 <output id="fi-i-out"></output></span><input type="range" id="fi-i" min="0" max="8" step="0.01" value="3.08"></label>
+          <label class="ctrl"><span>물가상승률 <output id="fi-p-out"></output></span><input type="range" id="fi-p" min="0" max="8" step="0.1" value="2.9"></label>
+          <label class="check"><input type="checkbox" id="fi-tax" checked> 이자소득세 15.4% 떼고 보기</label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">실질금리(세전)</span><span class="v" id="fi-o-r">—</span></div>
+        <div class="stat"><span class="k">실질금리(세후)</span><span class="v" id="fi-o-t">—</span></div>
+        <div class="stat"><span class="k">1,000만원의 1년 뒤 구매력</span><span class="v" id="fi-o-w">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 기본값에서 세전 실질금리는 0.2%에 못 미치고, 세금을 떼면 마이너스다. 통장 숫자는 늘었는데 살 수 있는 물건은 조금 줄었다. ② 물가상승률을 6.3%(2022년 7월의 정점)로 올린다. 예금금리를 그대로 두면 실질금리는 −3%에 가깝다. 그해 예금자는 구매력을 잃었고, 고정금리로 돈을 빌린 사람은 실질 부담이 줄었다. ③ 물가를 0%로 내리고 예금금리를 1%로 낮춘다. 명목금리가 낮아도 실질금리는 지금보다 높을 수 있다. (계산: 피셔 방정식, 1년 만기 단리. 세후 금리 = 명목금리 × (1 − 0.154). 기대 물가 대신 지난 물가를 넣은 단순화다.)</div>
+    </div>
+
+    <p>그래프의 점선 아래(실질금리가 마이너스인 구역)에 점이 들어가면, 돈을 빌린 쪽이 이득을 보고 빌려준 쪽이 손해를 본다. 그래서 중앙은행이 금리 수준을 판단할 때도 명목금리보다 실질금리를 본다. 기준금리 3.00%는 2026년 9월 물가 2.9%를 빼면 실질로 0.1%쯤에 불과하다. 반대로 2022년 7월 기준금리는 2.25%였는데 물가는 6.3% 올랐으니 실질 기준금리는 −4%에 가까웠다<span class="src">(한국은행 기준금리 추이, 통계청 「2022년 7월 소비자물가동향」)</span>. 명목으로는 금리를 빠르게 올리던 시기였지만 실질로는 아직 돈이 아주 싼 시기였다. 이 이야기는 <a href="bok.html">8장</a>의 테일러 준칙으로 이어진다.</p>
+
+    <div class="callout news"><strong>"실질금리 마이너스"를 읽을 때</strong>백정호는 이 말이 나오면 두 가지를 묻는다. 무엇에서 무엇을 뺐나, 그리고 언제의 물가인가. 기사마다 기준금리에서 빼기도 하고 예금금리나 국고채 금리에서 빼기도 한다. 빼는 물가도 지난달의 전년동월비, 근원물가, 앞으로의 기대 인플레이션으로 다르다. 지난 물가로 계산한 실질금리는 이미 지나간 1년의 이야기이고, 금리를 정하는 사람이 보는 것은 앞으로의 물가다. 같은 날 같은 금리를 두고 "실질금리 0.1%"와 "실질금리 1% 안팎"이 함께 나올 수 있는 이유다.</div>
+  </section>
+
+  <section id="bond">
+    <h2>채권 가격과 금리의 시소</h2>
+    <p>정부와 기업은 은행에서 빌리기도 하지만, <span class="term">채권</span><span class="en">(Bond)</span>을 팔아 돈을 빌리기도 한다. 채권은 "몇 년 동안 해마다 얼마의 이자를 주고 만기에 원금을 돌려준다"는 약속을 적은 증서다. 액면 100만원, 표면금리 연 3%, 만기 10년짜리 국고채를 샀다면 10년 동안 해마다 3만원을 받고 마지막에 100만원을 돌려받는다. 이 약속은 한번 정해지면 바뀌지 않는다.</p>
+    <p>그런데 채권을 산 다음 날 시장금리가 4%로 오르면 어떻게 될까. 새로 나오는 채권은 해마다 4만원을 준다. 3만원짜리 약속을 누가 같은 값에 사겠는가. 이 채권을 팔려면 값을 낮춰야 한다. 얼마나 낮춰야 하느냐 하면, 이 채권을 산 사람이 만기까지 들고 있을 때 얻는 수익률이 새 시장금리 4%와 같아질 때까지다. 그래서 <strong>금리가 오르면 이미 발행된 채권의 가격이 내리고, 금리가 내리면 가격이 오른다.</strong> 시소의 양 끝이다.</p>
+    <div class="formula">$$P = \sum_{t=1}^{n} \frac{C}{(1+y)^t} + \frac{F}{(1+y)^n}$$<div class="where">\(P\): 채권 가격, \(C\): 해마다 받는 이자, \(F\): 만기에 돌려받는 원금(액면), \(y\): 시장금리(만기수익률), \(n\): 남은 만기(년). 시장금리 \(y\)가 분모에 있으므로 \(y\)가 오르면 \(P\)가 내린다.</div></div>
+    <p>만기가 길수록 시소는 더 크게 흔들린다. 30년짜리 채권은 앞으로 30년 동안 받을 돈을 할인하므로 할인율이 1%p만 바뀌어도 먼 미래의 돈의 현재 가치가 크게 달라진다. 이 민감도를 재는 숫자가 <span class="term">듀레이션</span><span class="en">(Duration)</span>이다. 수정 듀레이션이 8.6이라면 금리가 1%p 오를 때 가격이 대략 8.6% 내린다는 뜻이다. 아래에서 시장금리를 끌어 세 채권의 가격을 함께 본다.</p>
+
+    <div class="sim" id="sim-seesaw">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>금리를 끌면 채권 가격이 움직인다: 만기 3년·10년·30년</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="bs-cv"></canvas><span class="hint">세로선을 좌우로 끌어 시장금리를 바꾼다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>표면금리(쿠폰) <output id="bs-c-out"></output></span><input type="range" id="bs-c" min="0" max="8" step="0.25" value="3"></label>
+          <div class="btn-row"><button class="btn" id="bs-up">금리 +1%p</button><button class="btn" id="bs-dn">금리 −1%p</button><button class="btn" id="bs-re">쿠폰과 같게</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">시장금리</span><span class="v" id="bs-o-y">—</span></div>
+        <div class="stat"><span class="k">3년 채권 가격</span><span class="v" id="bs-o-3">—</span></div>
+        <div class="stat"><span class="k">10년 채권 가격</span><span class="v" id="bs-o-10">—</span></div>
+        <div class="stat"><span class="k">30년 채권 가격</span><span class="v" id="bs-o-30">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 시장금리를 표면금리(3%)에 맞춘다. 세 채권 모두 액면 100에 거래된다. ② 시장금리를 4%로 끈다. 3년 채권은 약 97, 10년은 약 92, 30년은 약 83으로 내린다. 같은 1%p인데 30년 채권의 손실이 3년 채권의 여섯 배쯤이다. ③ 시장금리를 10% 가까이 끌어 본다. 30년 채권은 액면의 3분의 1 남짓으로 무너진다. 금리가 빠르게 오른 2022년, 장기채를 많이 들고 있던 금융회사들이 큰 평가 손실을 본 원리다. (계산: <code>EC.bond</code>, 액면 100, 이자 연 2회, 부도 위험 없음. 괄호 안은 수정 듀레이션.)</div>
+    </div>
+
+    <p>이 시소는 두 방향으로 읽힌다. 금리가 내릴 것이라고 보는 투자자는 장기채를 사서 가격 상승을 노리고, 금리가 오를 것이라고 보는 투자자는 장기채를 판다. 그래서 채권 가격은 "앞으로 금리가 어떻게 될 것인가"에 대한 시장의 판단을 매일 반영한다. 기사에서 "국고채 금리 급등"은 곧 "국고채 가격 급락"이다. 같은 사건을 금리 쪽에서 쓰느냐 가격 쪽에서 쓰느냐의 차이다.</p>
+
+    <div class="callout link"><strong>채권 투자를 더 깊게</strong>채권형 펀드와 ETF의 수익률이 금리에 따라 어떻게 바뀌는지, 만기까지 들고 있을 때와 중간에 팔 때의 차이, 듀레이션으로 금리 위험을 재는 법은 MoneyBook <a href="https://moneybook.euiyun.com/chapters/bond.html">채권</a>에서 이어진다.</div>
+  </section>
+
+  <section id="curve">
+    <h2>만기별 금리: 수익률 곡선</h2>
+    <p>같은 정부가 빌리는데도 3년 금리(3.961%)와 10년 금리(4.376%)가 다르다<span class="src">(2026-10-07 장 마감)</span>. 만기별 금리를 한 줄로 이은 선을 <span class="term">수익률 곡선</span><span class="en">(Yield curve)</span>이라고 한다. 이 선의 모양에는 두 가지가 담긴다.</p>
+    <p>하나는 <strong>앞으로의 단기금리에 대한 예상</strong>이다. 10년 동안 돈을 빌려주는 방법은 두 가지다. 10년짜리 채권을 한 번 사거나, 1년짜리를 사고 만기마다 그때의 금리로 다시 사는 것이다. 두 방법의 기대 수익이 비슷해야 하므로, 사람들이 앞으로 단기금리가 오를 것으로 보면 장기금리가 지금의 단기금리보다 높아진다. 다른 하나는 <span class="term">기간 프리미엄</span><span class="en">(Term premium)</span>이다. 돈을 오래 묶어 두면 그사이 물가나 금리가 어떻게 될지 모르는 위험을 더 지니므로, 그 대가로 조금 더 받으려 한다. 그래서 평소에는 장기금리가 단기금리보다 높고 곡선이 오른쪽으로 올라간다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 190" role="img" aria-label="정상적인 우상향 곡선, 평탄한 곡선, 역전된 곡선 세 가지 모양">
+        <g transform="translate(15,20)">
+          <line x1="0" y1="120" x2="130" y2="120" class="s-axis"/><line x1="0" y1="10" x2="0" y2="120" class="s-axis"/>
+          <path d="M5 100 C 40 70, 80 50, 125 42" class="s-acc"/>
+          <text x="65" y="145" text-anchor="middle" class="lbl">우상향(정상)</text>
+          <text x="65" y="162" text-anchor="middle" class="lbl-dim">단기 &lt; 장기</text>
+        </g>
+        <g transform="translate(165,20)">
+          <line x1="0" y1="120" x2="130" y2="120" class="s-axis"/><line x1="0" y1="10" x2="0" y2="120" class="s-axis"/>
+          <path d="M5 66 C 40 62, 80 62, 125 64" class="s-acc2"/>
+          <text x="65" y="145" text-anchor="middle" class="lbl">평탄</text>
+          <text x="65" y="162" text-anchor="middle" class="lbl-dim">단기 ≈ 장기</text>
+        </g>
+        <g transform="translate(315,20)">
+          <line x1="0" y1="120" x2="130" y2="120" class="s-axis"/><line x1="0" y1="10" x2="0" y2="120" class="s-axis"/>
+          <path d="M5 40 C 40 55, 80 75, 125 84" class="s-bad"/>
+          <text x="65" y="145" text-anchor="middle" class="lbl">역전</text>
+          <text x="65" y="162" text-anchor="middle" class="lbl-dim">단기 &gt; 장기</text>
+        </g>
+      </svg>
+      <figcaption><b>그림 2. 수익률 곡선의 세 모양.</b> 가로축은 만기, 세로축은 그 만기의 금리다. 시장이 앞으로 금리 인하를 예상할수록 오른쪽 끝이 내려앉고, 그 예상이 기간 프리미엄보다 크면 곡선이 거꾸로 선다.</figcaption>
+    </figure>
+
+    <p>아래 시뮬레이터는 2026년 10월 7일의 곡선에서 출발한다. 기준금리(3.00%), 국고채 3년(3.961%), 10년(4.376%)은 실제 값이고 꽉 찬 점으로 그렸다. 나머지 만기는 이 책이 이어 그린 교육용 값이며 빈 점으로 표시했다. 점을 위아래로 끌어 곡선을 바꿔 본다.</p>
+
+    <div class="sim" id="sim-curve">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>수익률 곡선 그리기: 점을 끌어 시장의 예상을 바꾼다</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="yc-cv"></canvas><span class="hint">점을 위아래로 끈다</span></div>
+      </div>
+      <div class="sim-controls" style="padding:0 16px 12px">
+        <div class="seg" id="yc-pre"><button data-value="now" class="on">2026-10-07</button><button data-value="steep">가파름</button><button data-value="flat">평탄</button><button data-value="inv">역전</button></div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">장단기 금리차(10년 − 3년)</span><span class="v" id="yc-o-s">—</span></div>
+        <div class="stat"><span class="k">3년 금리 − 기준금리</span><span class="v" id="yc-o-b">—</span></div>
+        <div class="stat"><span class="k">3년 뒤부터 7년간의 내재 금리</span><span class="v" id="yc-o-f">—</span></div>
+        <div class="stat"><span class="k">곡선이 말하는 것</span><span class="v" id="yc-o-m" style="font-size:14px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 처음 곡선에서 3년 금리가 기준금리보다 약 0.96%p 높다. 시장이 앞으로 기준금리가 더 오를 가능성을 값에 넣고 있다는 뜻으로 읽을 수 있다(기간 프리미엄도 섞여 있다). ② '역전'을 누른다. 단기금리가 장기금리보다 높다. 시장은 지금 금리가 높지만 머지않아 경기가 식어 금리가 내려갈 것으로 본다. ③ 10년 점을 끝까지 올렸다 내렸다 한다. 3년 뒤부터 7년간의 내재 금리(선도금리)가 크게 출렁인다. 장기금리의 작은 변화가 먼 미래 금리에 대한 큰 판단 변화를 담고 있다. (내재 금리 = ((1+y10)^10 ÷ (1+y3)^3)^(1/7) − 1, 기간 프리미엄은 0으로 가정. 빈 점은 교육용 값이다.)</div>
+    </div>
+
+    <p>곡선이 거꾸로 서는 <span class="term">장단기 금리 역전</span><span class="en">(Yield curve inversion)</span>은 기사에서 경기 침체의 신호로 자주 불린다. 시장이 앞으로 금리 인하를 예상한다는 것은 대개 경기가 나빠질 것으로 본다는 뜻이기 때문이다. 미국에서는 과거 여러 차례 역전 뒤에 침체가 왔다. 그러나 신호가 늘 맞지는 않는다. 미국은 2022년부터 2024년까지 2년 넘게 장단기 금리가 역전되었지만 그 기간에 경기 침체로 판정되지 않았다. 기간 프리미엄이 낮거나 중앙은행이 단기금리를 빠르게 올린 시기에는 침체 없이도 곡선이 뒤집힐 수 있다. 수익률 곡선은 예언이 아니라 시장 참가자들의 평균적인 판단이다.</p>
+  </section>
+
+  <section id="credit">
+    <h2>누가 빌리느냐: 신용 스프레드</h2>
+    <p>같은 3년이라도 정부가 빌리는 것과 기업이 빌리는 것은 다르다. 정부는 세금을 걷고 돈을 찍는 중앙은행을 둔 나라의 이름으로 빌리므로 원화 빚을 갚지 못할 가능성이 매우 낮다. 기업은 망할 수 있다. 그래서 회사채 금리는 같은 만기의 국고채 금리에 위험의 값을 더해 정해진다. 이 차이를 <span class="term">신용 스프레드</span><span class="en">(Credit spread)</span>라고 한다.</p>
+    <p>신용 스프레드는 두 부분으로 생각할 수 있다. 하나는 <strong>예상 손실</strong>이다. 해마다 1%의 확률로 부도가 나고, 부도가 나면 원금의 40%만 돌려받는다면, 평균적으로 해마다 0.6%를 잃는다. 이만큼은 더 받아야 본전이다. 다른 하나는 <strong>위험 프리미엄</strong>이다. 사람들은 평균이 같아도 결과가 들쭉날쭉한 것을 싫어하고, 회사채는 국고채보다 팔기도 어렵다. 이 몫은 세상이 불안할수록 커진다.</p>
+
+    <div class="sim" id="sim-spread">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>위험의 값: 부도 확률이 회사채 금리를 끌어올린다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="cs-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>연간 부도 확률 <output id="cs-p-out"></output></span><input type="range" id="cs-p" min="0" max="20" step="0.1" value="0.3"></label>
+          <label class="ctrl"><span>부도 때 회수율 <output id="cs-r-out"></output></span><input type="range" id="cs-r" min="0" max="80" step="5" value="40"></label>
+          <label class="ctrl"><span>위험 회피(프리미엄) <output id="cs-m-out"></output></span><input type="range" id="cs-m" min="0" max="3" step="0.05" value="0.35"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">국고채 3년(출발점)</span><span class="v" id="cs-o-g">—</span></div>
+        <div class="stat"><span class="k">신용 스프레드</span><span class="v" id="cs-o-s">—</span></div>
+        <div class="stat"><span class="k">회사채 3년 금리</span><span class="v" id="cs-o-y">—</span></div>
+        <div class="stat"><span class="k">100억 빌릴 때 연 이자</span><span class="v" id="cs-o-c">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 기본값(부도 확률 0.3%, 회수율 40%)은 신용도가 높은 회사를 흉내 낸 것이다. 스프레드는 0.5%p 남짓이다. ② 부도 확률은 그대로 두고 위험 회피를 2%p로 올린다. 회사는 하나도 바뀌지 않았는데 이자가 크게 는다. 금융시장이 불안해지면 멀쩡한 기업의 자금 조달까지 어려워지는 이유다. ③ 부도 확률을 15% 이상으로 올린다. 금리가 20%를 넘어 빨간 구역에 들어간다. 이 정도 금리라면 빌린 돈으로 이자를 감당할 사업이 거의 없어, 사실상 시장에서 돈을 빌릴 수 없다. (스프레드 = 부도 확률 × (1 − 회수율) ÷ (1 − 부도 확률) + 위험 프리미엄. 출발점은 2026-10-07 국고채 3년 3.961%. 부도 확률과 프리미엄 값은 교육용이며 특정 신용등급의 실제 값이 아니다.)</div>
+    </div>
+
+    <p>위험 회피가 한꺼번에 커지는 일은 실제로 일어난다. 2022년 10월 강원도 레고랜드 개발 사업의 채무 보증 문제가 불거지자 채권시장이 얼어붙었고, 신용등급 AA−인 3년 만기 회사채 금리가 연 5.5%를 넘었다. 국고채와의 차이도 1%p를 넘어 2009년 이후 가장 크게 벌어졌다는 보도가 나왔다<span class="src">(금융투자협회 최종호가·한국은행 자료 인용 보도, 2022년 10월)</span>. 정부와 한국은행이 회사채 매입 프로그램을 내놓은 뒤에야 시장이 진정되었다. 이 이야기는 <a href="crisis.html">13장</a>에서 다시 나온다.</p>
+    <p>신용 스프레드는 내 대출금리에도 들어 있다. 은행도 돈을 빌려 대출을 내주는데, 은행이 발행하는 <span class="term">은행채</span><span class="en">(금융채)</span>는 국고채보다 금리가 조금 높다. 2026년 6월 고정형 주택담보대출 금리가 오른 것은 그 기준이 되는 은행채 5년물 금리가 4.17%에서 4.32%로 0.15%p 올랐기 때문이라고 한국은행은 설명했다<span class="src">(한국은행 「2026년 6월 금융기관 가중평균금리」 보도)</span>.</p>
+  </section>
+
+  <section id="loan">
+    <h2>내 대출금리가 정해지는 구조</h2>
+    <p>이제 은행 창구로 가 보자. 은행이 대출금리를 정하는 방식은 대체로 같다. 은행이 돈을 구해 오는 값을 나타내는 <span class="term">지표금리</span><span class="en">(Reference rate)</span>에 은행이 덧붙이는 <span class="term">가산금리</span><span class="en">(Spread, margin)</span>를 더하고, 고객이 조건을 채우면 깎아 주는 <span class="term">우대금리</span><span class="en">(Preferential discount)</span>를 뺀다.</p>
+    <div class="formula">$$\text{대출금리} = \text{지표금리} + \text{가산금리} - \text{우대금리}$$<div class="where">지표금리: 변동금리 대출은 주로 코픽스(COFIX), 고정·주기형 대출은 주로 금융채(은행채) 5년물. 가산금리: 업무 원가, 신용 위험, 법적 비용, 목표 이익 등. 우대금리: 급여 이체, 카드 사용, 자동이체 등을 조건으로 깎아 주는 몫.</div></div>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 330" role="img" aria-label="기준금리에서 시장금리, 은행 조달금리와 지표금리를 거쳐 가산금리를 더하고 우대금리를 빼서 내 대출금리가 되는 흐름">
+        <defs><marker id="rt-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="160" y="10" width="140" height="36" rx="8" class="f-acc-soft"/><text x="230" y="33" text-anchor="middle" class="lbl-b">기준금리</text>
+        <rect x="30" y="72" width="180" height="36" rx="8" class="f-surface"/><text x="120" y="95" text-anchor="middle" class="lbl">단기 시장금리(CD·예금)</text>
+        <rect x="250" y="72" width="180" height="36" rx="8" class="f-surface"/><text x="340" y="95" text-anchor="middle" class="lbl">장기 시장금리(은행채 5년)</text>
+        <rect x="30" y="134" width="180" height="36" rx="8" class="f-elev"/><text x="120" y="157" text-anchor="middle" class="lbl">코픽스(변동형 지표)</text>
+        <rect x="250" y="134" width="180" height="36" rx="8" class="f-elev"/><text x="340" y="157" text-anchor="middle" class="lbl">금융채 5년(주기형 지표)</text>
+        <rect x="100" y="196" width="260" height="36" rx="8" class="f-acc2-soft"/><text x="230" y="219" text-anchor="middle" class="lbl">+ 가산금리(원가·위험·이익)</text>
+        <rect x="100" y="244" width="260" height="30" rx="8" class="f-ok-soft"/><text x="230" y="264" text-anchor="middle" class="lbl">− 우대금리(급여 이체 등)</text>
+        <rect x="140" y="288" width="180" height="36" rx="8" class="f-acc-soft"/><text x="230" y="311" text-anchor="middle" class="lbl-b">내 대출금리</text>
+        <g class="s-line" marker-end="url(#rt-ar)">
+          <path d="M200 46L130 72"/><path d="M260 46L330 72"/>
+          <path d="M120 108V134"/><path d="M340 108V134"/>
+          <path d="M120 170L190 196"/><path d="M340 170L270 196"/>
+        </g>
+        <text x="440" y="34" text-anchor="end" class="lbl-dim">한국은행</text>
+        <text x="440" y="190" text-anchor="end" class="lbl-dim">은행</text>
+      </svg>
+      <figcaption><b>그림 3. 기준금리에서 내 대출금리까지.</b> 기준금리는 맨 아래 받침돌이다. 변동형은 단기 조달금리를 모은 코픽스를, 고정·주기형은 은행채 5년물 금리를 따른다. 은행이 정하는 가산금리와 우대금리는 대출 상품과 고객마다 다르다.</figcaption>
+    </figure>
+
+    <p><span class="term">코픽스</span><span class="en">(COFIX, Cost of Funds Index, 자금조달비용지수)</span>는 은행연합회가 주요 은행들이 예금·은행채 등으로 모은 돈의 평균 금리를 모아 매달 15일 무렵 공시한다. 그달 새로 모은 돈만 평균한 신규취급액 기준, 잔액 전체를 평균한 잔액 기준 등이 있다. 신규취급액 기준 코픽스는 2026년 3월 2.81%에서 4월 2.89%, 5월 2.90%, 6월 3.05%, 7월 3.18%로 넉 달 연속 오른 뒤 8월에 3.18%로 멈췄다<span class="src">(은행연합회 공시 보도, 2026년 4~9월)</span>. 기준금리가 7월에 처음 오르기 전부터 코픽스가 오르기 시작했다는 점이 눈에 띈다. 시장이 인상을 미리 값에 넣으면서 은행이 예금과 은행채로 돈을 구하는 값이 먼저 올랐기 때문이다.</p>
+
+    <p>대출의 금리 방식은 크게 셋이다. <strong>변동금리</strong>는 3개월·6개월·1년마다 그때의 지표금리로 다시 정한다. <strong>고정금리</strong>는 만기까지 한 금리를 유지한다. 한국에서 흔한 <strong>주기형</strong>(또는 혼합형)은 5년 같은 일정 기간 금리를 고정한 뒤 그 주기마다 다시 정한다. 2026년 6월 새로 나간 주택담보대출 가운데 고정형의 평균 금리는 연 4.53%, 변동형은 4.27%였고, 고정금리 비중은 37.7%로 2014년 2월 이후 가장 낮았다<span class="src">(한국은행 「2026년 6월 금융기관 가중평균금리」 보도, 2026-07-28)</span>. 고정형이 0.26%p 비싸니 변동형을 고르는 사람이 늘어난 것이다. 그 선택이 옳았는지는 앞으로 지표금리가 어떻게 가느냐에 달려 있다. 아래에서 그 길을 직접 그려 본다.</p>
+
+    <div class="sim" id="sim-fixvar">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>고정형이냐 변동형이냐: 5년 동안의 지표금리 길을 그려 본다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="fv-cv"></canvas><span class="hint">6개월마다의 점을 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>대출 원금 <output id="fv-a-out"></output></span><input type="range" id="fv-a" min="1" max="6" step="0.5" value="3"></label>
+          <div class="seg" id="fv-pre"><button data-value="flat" class="on">그대로</button><button data-value="up">완만히 오름</button><button data-value="down">내림</button><button data-value="spike">급등</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">5년 이자: 변동형</span><span class="v" id="fv-o-v">—</span></div>
+        <div class="stat"><span class="k">5년 이자: 5년 주기형</span><span class="v" id="fv-o-f">—</span></div>
+        <div class="stat"><span class="k">차이(변동 − 주기형)</span><span class="v" id="fv-o-d">—</span></div>
+        <div class="stat"><span class="k">변동형 최고 월 상환액</span><span class="v" id="fv-o-m">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① '그대로'에서는 변동형이 5년 동안 이자를 덜 낸다. 출발 금리가 0.26%p 낮기 때문이다. ② 점을 끌어 지표금리가 평균 0.3%p쯤 오르게 만든다. 두 방식의 5년 이자가 비슷해지는 지점이 있다. 고정형의 웃돈은 "금리가 이 정도 오르는 위험"을 미리 사는 보험료다. ③ '급등'을 누른다. 변동형의 월 상환액이 2년 안에 크게 뛴다. 총이자보다 더 아픈 것은 한 달 한 달의 현금 흐름이다. (출발 금리: 2026년 6월 신규 주담대 변동형 평균 4.27%, 고정형 평균 4.53%를 5년 주기형으로 가정. 30년 원리금균등, 6개월마다 재산정, 가산금리와 우대금리는 변하지 않는다고 가정. 교육용이며 전망이 아니다.)</div>
+    </div>
+
+    <div class="callout link"><strong>대출 상환과 주택담보대출을 더 깊게</strong>원리금균등과 원금균등 상환의 차이, 중도상환수수료, 갈아타기 계산은 MoneyBook <a href="https://moneybook.euiyun.com/chapters/loan.html">대출 상환의 구조</a>에서, LTV·DSR과 스트레스 DSR로 대출 한도가 정해지는 원리와 고정·변동 선택은 EstateBook <a href="https://estatebook.euiyun.com/chapters/mortgage.html">주택담보대출</a>에서 시뮬레이터로 이어진다.</div>
+  </section>
+
+  <section id="margin">
+    <h2>은행은 어디서 버나: 예대금리차</h2>
+    <p>은행의 가장 큰 수입은 예금으로 모은 돈을 대출로 내주며 얻는 금리 차이다. 대출금리에서 예금금리를 뺀 값을 <span class="term">예대금리차</span><span class="en">(Loan-deposit rate spread)</span>라고 한다. 2026년 6월 예금은행이 새로 내준 대출의 평균 금리는 연 4.31%, 새로 받은 저축성 예금의 평균 금리는 연 3.08%로, 둘의 차이는 1.23%p였다. 전달보다 0.03%p 줄었다. 예금금리(+0.15%p)가 대출금리(+0.12%p)보다 더 많이 올랐기 때문이다<span class="src">(한국은행 「2026년 6월 금융기관 가중평균금리」, KDI 경제정보센터 게재)</span>.</p>
+    <p>예대금리차는 늘 논쟁거리다. 금리가 오를 때 대출금리는 빨리 올리고 예금금리는 천천히 올린다는 "이자 장사" 비판이 나오고, 금융당국은 2022년부터 은행별 예대금리차를 은행연합회 누리집에 매달 공시하게 했다. 반대쪽 근거도 있다. 이 차이에서 은행의 인건비와 전산 비용, 대출이 부실해질 때의 손실, 위기에 대비해 쌓아야 하는 자본의 비용을 치러야 한다. 차이가 너무 얇으면 은행은 위험한 대출을 줄이고, 경기가 나쁠 때 손실을 견딜 힘이 약해진다. 얼마가 적정한지는 은행끼리의 경쟁이 충분한지, 예금자가 다른 은행이나 상품으로 쉽게 옮길 수 있는지와 함께 판단할 문제다.</p>
+
+    <div class="callout stat"><strong>「금융기관 가중평균금리」 읽는 법</strong>한국은행이 매달 말 무렵 전달 수치를 발표한다. 6월분은 2026년 7월 28일에 나왔다. 예금은행과 비은행 금융기관의 예금·대출 금리를 금액으로 가중평균한 값이며, 신규취급액 기준(그달 새로 맺은 계약)과 잔액 기준(남아 있는 모든 계약)으로 나뉜다. 대출은 기업·가계, 가계는 주택담보·일반신용 등으로 나눠 볼 수 있고, 주택담보대출은 고정형·변동형 비중도 나온다. 원자료는 ECOS(한국은행 경제통계시스템)의 '금리' 항목에 있다. "주담대 금리 4.36%"는 6월 한 달 동안 새로 나간 대출의 평균이지, 내 대출의 금리도 지금 창구의 금리도 아니다.</div>
+
+    <div class="callout news"><strong>"○년 ○개월 만에 최고"의 비교 대상</strong>6월 주담대 금리 4.36%를 두고 "2023년 11월 이후 가장 높다"는 보도가 나왔다. 백정호는 이런 문장에 "그래서 그때는 얼마였나"를 붙여 보라고 했다. 최고라는 말은 방향을 알려 줄 뿐 크기를 알려 주지 않는다. 6월은 전달보다 0.04%p 올랐다. 숫자로 보면 1억원을 30년 원리금균등으로 빌릴 때 월 상환액이 2천원 남짓 늘어나는 변화다. 같은 보고서의 고정금리 비중(37.7%, 2014년 2월 이후 최저)이 오히려 더 큰 변화를 말하고 있었다. 사람들이 금리가 더 오를 것을 걱정하면서도 당장 싼 변동금리를 택하고 있다는 신호다.</div>
+  </section>
+
+  <section id="stairs">
+    <h2>금리 계단: 기준금리에서 내 대출금리까지 쌓아 보기</h2>
+    <p>이제 이 장에서 본 조각들을 한 번에 쌓는다. 맨 아래 기준금리, 그 위에 만기에 따른 기간 프리미엄(수익률 곡선), 은행이 국가보다 위험한 만큼의 신용 스프레드, 이 셋을 더한 것이 은행의 조달금리이자 지표금리다. 그 위에 가산금리를 얹고 우대금리를 빼면 내 대출금리가 나온다. 오른쪽(좁은 화면에서는 아래쪽) 그림은 같은 조각들을 수익률 곡선 위에 놓은 것이다. 변동형은 곡선의 짧은 쪽에서, 주기형은 5년 지점에서 지표금리를 가져온다.</p>
+
+    <div class="sim" id="sim-stairs">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>금리 계단: 다섯 조각을 쌓아 1억원 대출의 월 상환액을 본다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="st-cv"></canvas></div>
+        <div class="sim-controls">
+          <div class="seg" id="st-type"><button data-value="var" class="on">변동형(코픽스)</button><button data-value="fix">5년 주기형(금융채)</button></div>
+          <label class="ctrl"><span>기준금리 <output id="st-b-out"></output></span><input type="range" id="st-b" min="0" max="7" step="0.25" value="3"></label>
+          <label class="ctrl"><span>기간 프리미엄 <output id="st-t-out"></output></span><input type="range" id="st-t" min="-1.5" max="2.5" step="0.05" value="0.05"></label>
+          <label class="ctrl"><span>은행 신용 스프레드 <output id="st-c-out"></output></span><input type="range" id="st-c" min="0" max="2" step="0.01" value="0.13"></label>
+          <label class="ctrl"><span>가산금리 <output id="st-m-out"></output></span><input type="range" id="st-m" min="0" max="4" step="0.05" value="1.6"></label>
+          <label class="ctrl"><span>우대금리 <output id="st-d-out"></output></span><input type="range" id="st-d" min="0" max="2" step="0.05" value="0.5"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">지표금리</span><span class="v" id="st-o-x">—</span></div>
+        <div class="stat"><span class="k">최종 대출금리</span><span class="v" id="st-o-r">—</span></div>
+        <div class="stat"><span class="k">1억원·30년 원리금균등 월 상환</span><span class="v" id="st-o-p">—</span></div>
+        <div class="stat"><span class="k">이자만 낼 때(전세대출식) 월 이자</span><span class="v" id="st-o-i">—</span></div>
+        <div class="stat"><span class="k">월 실수령 320만원 대비</span><span class="v" id="st-o-s">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 변동형 기본값은 기준금리 3.00%에 기간 프리미엄 0.05%p와 은행 신용 스프레드 0.13%p를 더해 지표금리 3.18%(2026년 8월 신규 코픽스와 같은 값)를 만들고, 가산 1.6%p, 우대 0.5%p로 4.28%가 된다. 6월 변동형 평균(4.27%) 근처다. ② '5년 주기형'을 누른다. 기간 프리미엄과 은행 스프레드가 커지고 가산금리가 줄어든다. 수익률 곡선이 우상향이면 고정 기간이 길수록 지표금리가 높다. ③ 기준금리를 7%까지 올린다. 모든 계단이 함께 올라가 1억원의 월 상환액이 70만원을 넘는다. 기간 프리미엄을 −1.5%p로 내리면(역전) 주기형이 변동형보다 싸질 수도 있다. 반대로 우대금리를 아무리 늘려도 계단의 맨 아래 받침돌(기준금리)은 은행이 깎아 줄 수 없다. (조각의 기본값은 2026년 8~9월 공시 수준을 맞추도록 이 책이 나눈 교육용 분해다. 실제 은행의 가산금리 구성은 은행과 상품마다 다르다.)</div>
+    </div>
+
+    <p>계단을 몇 번 쌓아 보면 기사를 읽는 눈이 달라진다. "기준금리 동결에도 대출금리 상승"이라는 제목은 맨 아래 계단은 그대로인데 위쪽 계단(기간 프리미엄, 은행채 스프레드, 가산금리)이 올라간 경우다. 2026년 4~6월이 그랬다. 기준금리는 2.50%로 묶여 있었지만 코픽스와 은행채 금리가 먼저 올랐다. 반대로 "기준금리 인하에도 대출금리 그대로"는 금융당국이 가계대출을 조이라고 주문해 은행이 가산금리를 올렸거나 우대금리를 줄였을 때 나온다. 기준금리가 대출금리로 번지는 길과 시차는 <a href="transmission.html">9장</a>에서 연결판으로 다시 본다.</p>
+
+    <div class="callout warn"><strong>숫자는 기준 시점의 값이고 시뮬레이터는 전망이 아니다</strong>이 장의 금리들은 2026년 10월 9일까지 공표된 값이다. 시장금리는 매일, 코픽스와 가중평균금리는 매달 바뀌며 가중평균금리는 나중에 수정될 수도 있다. 시뮬레이터의 계단 나누기, 부도 확률, 지표금리 경로는 원리를 보여 주기 위한 교육용 값이며 앞으로의 금리를 예측하지 않는다. 실제 대출금리는 은행 누리집이나 은행연합회 소비자포털의 금리 비교 공시에서 확인한다.</div>
+  </section>
+
+  <div class="casefile">
+    <div class="tag"><b>CASE 지우</b><span>헤드라인 노트 · 2026년 7월</span></div>
+    <div class="headline">주택담보대출 금리 연 4.36%, 두 달째 올랐다<small>근거: 한국은행 「2026년 6월 금융기관 가중평균금리」(2026-07-28). 예금은행 신규취급액 기준, 전월 4.32%</small></div>
+    <h4>"4.36%는 내 금리가 아니다. 그럼 내 금리는 어떻게 정해지나"</h4>
+    <p>7월은 바쁜 달이었다. 16일에 한국은행이 기준금리를 2.50%에서 2.75%로 올렸고, 28일에 이 헤드라인이 나왔다. 지우는 처음에 이 4.36%가 자기 전세대출에도 적용되는 줄 알았다. 삼촌 백정호는 노트에 세 줄을 적어 주었다. 언제 기준인가(6월 한 달 동안 새로 나간 대출), 무엇과 비교했나(5월의 4.32%, +0.04%p), 누가 쟀나(한국은행이 예금은행 전체를 금액으로 가중평균). 그러니까 이 숫자는 지우가 은행에 가면 받을 금리도, 지우가 지금 내는 금리도 아니다. 지우는 자기 대출을 계단으로 분해해 보기로 했다.</p>
+    <p id="case-calc">—</p>
+    <p>삼촌은 마지막으로 한 가지를 덧붙였다. "6월의 주담대 고정형은 4.53%, 변동형은 4.27%였다. 3년 안에 집을 사겠다면 그때 어떤 금리 방식을 고를지가 같은 원금에서 월 몇만원을 가른다. 오늘 정할 문제는 아니지만, 계단 그림을 노트에 붙여 두어라."</p>
+    <div class="clue">
+      <div><b>헤드라인이 말한 것</b>6월 새 주택담보대출 평균 금리 4.36%, 전월보다 0.04%p 올라 두 달째 상승.</div>
+      <div><b>숫자를 다시 보니</b>신규취급액 평균이다. 기준금리는 6월까지 2.50%로 묶여 있었지만, 지표금리(코픽스·은행채)가 먼저 올라 계단 위쪽이 높아졌다. 고정형 비중은 37.7%로 낮아졌다.</div>
+      <div><b>내 생활에는</b><span id="case-life">—</span></div>
+    </div>
+  </div>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>금리는 돈을 지금 쓰는 가격이다. 시간의 값, 기대 인플레이션, 위험 프리미엄의 세 조각으로 이루어지며, 누가 얼마 동안 빌리느냐에 따라 조각의 크기가 다르다.</li>
+      <li>실질금리는 명목금리에서 물가상승률을 뺀 값이다(피셔 방정식). 물가가 금리보다 빨리 오르면 예금자는 구매력을 잃고 빌린 사람은 실질 부담이 준다.</li>
+      <li>금리가 오르면 이미 발행된 채권의 가격이 내린다. 만기가 길수록(듀레이션이 클수록) 같은 금리 변화에 가격이 더 크게 움직인다.</li>
+      <li>수익률 곡선은 앞으로의 단기금리에 대한 시장의 예상과 기간 프리미엄을 담는다. 역전은 금리 인하 예상의 신호이지만 침체를 반드시 예고하지는 않는다. 신용 스프레드는 예상 손실과 위험 회피의 값이다.</li>
+      <li>내 대출금리 = 지표금리(코픽스·금융채) + 가산금리 − 우대금리다. 기준금리는 맨 아래 받침돌이고, 위쪽 계단이 따로 움직여 "동결에도 대출금리 상승" 같은 일이 생긴다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q"><p>1. 1년 만기 예금 금리가 연 3%이고 그해 물가가 5% 올랐다. 이 예금의 실질금리에 대한 설명으로 옳은 것은?</p>
+        <div class="opts"><button class="opt">명목금리가 양수이므로 구매력이 늘었다</button><button class="opt" data-correct>실질금리는 약 −2%로, 예금자는 구매력을 잃었다</button><button class="opt">실질금리는 약 8%다</button><button class="opt">물가와 금리는 서로 관계가 없다</button></div>
+        <div class="quiz-exp">피셔 방정식에 따르면 실질금리 ≈ 명목금리 − 물가상승률 = 3% − 5% = −2%다. 통장의 숫자는 3% 늘었지만 살 수 있는 물건은 약 2% 줄었다. 정확히는 1.03 ÷ 1.05 − 1 ≈ −1.9%다.</div></div>
+      <div class="quiz-q"><p>2. 시장금리가 1%p 올랐다. 다른 조건이 같다면 가격이 가장 크게 떨어지는 채권은?</p>
+        <div class="opts"><button class="opt">만기 1년 국고채</button><button class="opt">만기 3년 국고채</button><button class="opt">만기 5년 국고채</button><button class="opt" data-correct>만기 30년 국고채</button></div>
+        <div class="quiz-exp">채권 가격은 앞으로 받을 돈을 시장금리로 할인한 값이다. 만기가 길수록 먼 미래의 돈이 많아 할인율 변화에 민감하다(듀레이션이 크다). 표면금리 3% 채권이라면 1%p 상승에 3년물은 약 3%, 30년물은 약 17% 떨어진다.</div></div>
+      <div class="quiz-q"><p>3. 기준금리는 그대로인데 은행의 주택담보대출 금리가 올랐다. 이 현상의 설명으로 가장 거리가 먼 것은?</p>
+        <div class="opts"><button class="opt">시장이 앞으로의 인상을 예상해 은행채 금리가 올랐다</button><button class="opt">코픽스가 올라 변동형 지표금리가 높아졌다</button><button class="opt" data-correct>기준금리가 바뀌지 않았으므로 이런 일은 일어날 수 없다</button><button class="opt">은행이 가산금리를 올리거나 우대금리를 줄였다</button></div>
+        <div class="quiz-exp">기준금리는 대출금리 계단의 맨 아래 받침돌일 뿐이다. 기간 프리미엄, 은행채 스프레드, 가산금리, 우대금리가 따로 움직이므로 기준금리 동결 중에도 대출금리가 오를 수 있다. 2026년 4~6월이 그 예다.</div></div>
+      <div class="quiz-q"><p>4. 국고채 3년 금리가 4.0%, 10년 금리가 3.5%라면 수익률 곡선과 그 해석으로 가장 알맞은 것은?</p>
+        <div class="opts"><button class="opt" data-correct>역전된 곡선으로, 시장이 앞으로 단기금리가 내려갈 것으로 본다는 뜻으로 흔히 읽는다</button><button class="opt">우상향 곡선으로, 앞으로 금리 인상을 예상한다는 뜻이다</button><button class="opt">곡선 모양은 시장의 예상과 관계가 없다</button><button class="opt">역전된 곡선이므로 반드시 1년 안에 경기 침체가 온다</button></div>
+        <div class="quiz-exp">단기금리가 장기금리보다 높으면 곡선이 거꾸로 선 것이다. 장기금리는 앞으로의 단기금리 예상을 담으므로, 역전은 시장이 금리 인하를 예상한다는 신호로 읽힌다. 침체의 신호로 자주 불리지만 반드시 맞지는 않는다(미국 2022~2024년).</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var K = EC.KR, C = EC.CASE;
+  var pc = function (x, d) { return (x * 100).toFixed(d == null ? 2 : d) + "%"; };
+  var pp = function (x, d) { return (x >= 0 ? "+" : "−") + Math.abs(x).toFixed(d == null ? 2 : d) + "%p"; };
+  var GOV3 = K.bond3y, GOV10 = K.bond10y, BASE = K.baseRate;
+
+  /* 표 숫자를 엔진 값으로 */
+  EB.stat("tb-base", pc(BASE)); EB.stat("tb-b3", pc(GOV3, 3)); EB.stat("tb-b10", pc(GOV10, 3)); EB.stat("tb-mort", pc(K.mortgageRate));
+
+  /* ---------------- sim-fisher ---------------- */
+  (function () {
+    var gI = EB.range("fi-i", function (v) { return v.toFixed(2) + "%"; }, draw);
+    var gP = EB.range("fi-p", function (v) { return v.toFixed(1) + "%"; }, draw);
+    var tax = document.getElementById("fi-tax");
+    tax.addEventListener("change", draw);
+    var cv = EB.canvas("#fi-cv", function (ctx, w, h) {
+      var P = EB.palette(), i = gI() / 100, p = gP() / 100, ti = i * (1 - 0.154);
+      var pre = [], post = [];
+      for (var x = 0; x <= 8.001; x += 0.1) { pre.push([x, EC.fisher(i, x / 100) * 100]); post.push([x, EC.fisher(ti, x / 100) * 100]); }
+      var c = EB.chart(ctx, { x: 52, y: 14, w: w - 66, h: h - 52 }, {
+        x: [0, 8], y: [-8, 8], xLabel: "물가상승률(%)", yFmt: function (v) { return v + "%"; }, xFmt: function (v) { return v + "%"; },
+        series: [
+          { data: pre, color: P.accent, width: 2.4 },
+          { data: tax.checked ? post : [], color: P.accent2, width: 2, dash: [5, 4] },
+        ],
+        hlines: [{ y: 0, color: P.dim, label: "실질 0%" }],
+      });
+      ctx.save(); ctx.fillStyle = EB.color("bad-soft"); ctx.fillRect(c.box.x, c.Y(0), c.box.w, c.box.y + c.box.h - c.Y(0)); ctx.restore();
+      ctx.fillStyle = P.bad; ctx.font = EB.font(11.5); ctx.textAlign = "left"; ctx.fillText("실질금리 마이너스: 빌린 쪽이 이득", c.box.x + 8, c.box.y + c.box.h - 10);
+      // 역사 점
+      var hist = [[6.3, EC.fisher(0.0225, 0.063) * 100, "2022.7 기준금리"], [2.9, EC.fisher(K.baseRate, K.cpi) * 100, "2026.9 기준금리"]];
+      hist.forEach(function (q) { ctx.fillStyle = P.dim; ctx.beginPath(); ctx.arc(c.X(q[0]), c.Y(q[1]), 4, 0, 7); ctx.fill(); ctx.font = EB.font(11); ctx.textAlign = q[0] > 5 ? "right" : "left"; ctx.fillText(q[2], c.X(q[0]) + (q[0] > 5 ? -7 : 7), c.Y(q[1]) + (q[0] > 5 ? -6 : 22)); });
+      var r = EC.fisher(i, p) * 100, rt = EC.fisher(ti, p) * 100;
+      ctx.fillStyle = P.accent; ctx.beginPath(); ctx.arc(c.X(gP()), c.Y(r), 6, 0, 7); ctx.fill();
+      if (tax.checked) { ctx.fillStyle = P.accent2; ctx.beginPath(); ctx.arc(c.X(gP()), c.Y(rt), 5, 0, 7); ctx.fill(); }
+      ctx.font = EB.font(11); ctx.textAlign = "left";
+      ctx.fillStyle = P.accent; ctx.fillRect(c.box.x + 8, c.box.y + 6, 12, 3); ctx.fillStyle = P.dim; ctx.fillText("실질금리(세전)", c.box.x + 26, c.box.y + 11);
+      if (tax.checked) { ctx.fillStyle = P.accent2; ctx.fillRect(c.box.x + 8, c.box.y + 22, 12, 3); ctx.fillStyle = P.dim; ctx.fillText("실질금리(세후)", c.box.x + 26, c.box.y + 27); }
+      EB.stat("fi-o-r", '<span class="' + (r < 0 ? "bad-t" : "ok-t") + '">' + r.toFixed(2) + "%</span>");
+      EB.stat("fi-o-t", '<span class="' + (rt < 0 ? "bad-t" : "ok-t") + '">' + rt.toFixed(2) + "%</span>");
+      var real = 1e7 * (1 + (tax.checked ? rt : r) / 100);
+      EB.stat("fi-o-w", EB.won(real) + " (" + (real >= 1e7 ? "+" : "−") + EB.won(Math.abs(real - 1e7)) + ")");
+    }, { aspect: 0.6, minHeight: 250, maxHeight: 380 });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-seesaw ---------------- */
+  (function () {
+    var yld = 3, box = null, TEN = [3, 10, 30];
+    var gC = EB.range("bs-c", function (v) { return v.toFixed(2) + "%"; }, draw);
+    var bp = function (T, y) { return EC.bond({ face: 100, coupon: gC() / 100, yld: Math.max(0.0001, y / 100), years: T, freq: 2 }); };
+    var cv = EB.canvas("#bs-cv", function (ctx, w, h) {
+      var P = EB.palette(), cols = [P.ok, P.accent, P.bad];
+      var ser = TEN.map(function (T, k) { var d = []; for (var y = 0.25; y <= 10.001; y += 0.125) d.push([y, bp(T, y).price]); return { data: d, color: cols[k], width: 2.2 }; });
+      var c = EB.chart(ctx, { x: 52, y: 14, w: w - 66, h: h - 52 }, {
+        x: [0.25, 10], y: [20, 200], xLabel: "시장금리(만기수익률, %)", xFmt: function (v) { return v + "%"; }, xTicks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        series: ser, hlines: [{ y: 100, color: P.faint, label: "액면 100" }],
+      });
+      box = c;
+      var x = c.X(yld);
+      ctx.save(); ctx.strokeStyle = P.text; ctx.globalAlpha = 0.55; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(x, c.box.y); ctx.lineTo(x, c.box.y + c.box.h); ctx.stroke(); ctx.restore();
+      ctx.beginPath(); ctx.arc(x, c.box.y + c.box.h, 7, 0, 7); ctx.fillStyle = P.text; ctx.fill();
+      TEN.forEach(function (T, k) {
+        var pr = bp(T, yld).price; ctx.fillStyle = cols[k]; ctx.beginPath(); ctx.arc(x, c.Y(Math.min(200, Math.max(20, pr))), 5, 0, 7); ctx.fill();
+      });
+      ctx.font = EB.font(11); ctx.textAlign = "left";
+      var lx = c.box.x + 8, ly = c.box.y + c.box.h - 52;
+      ["만기 3년", "만기 10년", "만기 30년"].forEach(function (s, k) { ctx.fillStyle = cols[k]; ctx.fillRect(lx, ly + k * 15, 12, 3); ctx.fillStyle = P.dim; ctx.fillText(s, lx + 18, ly + 5 + k * 15); });
+      EB.stat("bs-o-y", yld.toFixed(2) + "%");
+      TEN.forEach(function (T) { var b = bp(T, yld); EB.stat("bs-o-" + T, b.price.toFixed(1) + ' <small style="color:var(--text-faint)">(' + b.modified.toFixed(1) + ")</small>"); });
+    }, { aspect: 0.6, minHeight: 260, maxHeight: 400 });
+    function draw() { cv.redraw(); }
+    function setY(v) { yld = EB.clamp(Math.round(v * 20) / 20, 0.25, 10); draw(); }
+    EB.drag(cv.canvas, { move: function (x) { if (!box) return; setY(EB.map(x, box.box.x, box.box.x + box.box.w, 0.25, 10)); } });
+    document.getElementById("bs-up").addEventListener("click", function () { setY(yld + 1); });
+    document.getElementById("bs-dn").addEventListener("click", function () { setY(yld - 1); });
+    document.getElementById("bs-re").addEventListener("click", function () { setY(gC() || 0.25); });
+  })();
+
+  /* ---------------- sim-curve ---------------- */
+  (function () {
+    var T = [0, 0.25, 1, 3, 5, 10, 20, 30], LAB = ["기준", "3개월", "1년", "3년", "5년", "10년", "20년", "30년"];
+    var REAL = [true, false, false, true, false, true, false, false];
+    var PRE = {
+      now: [BASE * 100, 3.08, 3.45, GOV3 * 100, 4.15, GOV10 * 100, 4.40, 4.33],
+      steep: [1.0, 1.1, 1.4, 2.0, 2.4, 3.0, 3.3, 3.4],
+      flat: [3.5, 3.5, 3.52, 3.5, 3.5, 3.52, 3.5, 3.48],
+      inv: [4.0, 4.0, 3.85, 3.45, 3.3, 3.2, 3.15, 3.1],
+    };
+    var Y = PRE.now.slice(), box = null, drag = -1, preset = "now";
+    var gPre = EB.seg("yc-pre", function (v) { preset = v; Y = PRE[v].slice(); cv.redraw(); });
+    var sx = function (t) { return Math.sqrt(t); };
+    var cv = EB.canvas("#yc-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      var c = EB.chart(ctx, { x: 46, y: 16, w: w - 62, h: h - 58 }, {
+        x: [0, sx(30)], y: [0, 7], xTicks: [], yFmt: function (v) { return v + "%"; },
+        series: [{ data: T.map(function (t, k) { return [sx(t), Y[k]]; }), color: P.accent, width: 2.4 }],
+        hlines: [{ y: Y[0], color: P.faint, label: "기준금리 " + Y[0].toFixed(2) + "%" }],
+      });
+      box = c;
+      ctx.font = EB.font(w < 420 ? 10 : 11); ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillStyle = P.dim;
+      T.forEach(function (t, k) {
+        var px = c.X(sx(t)), py = c.Y(Y[k]);
+        if (!(w < 420 && (k === 1 || k === 6))) ctx.fillText(LAB[k], px, c.box.y + c.box.h + 6);
+        ctx.beginPath(); ctx.arc(px, py, k === drag ? 8 : 6.5, 0, 7);
+        var real = preset === "now" && REAL[k] && Math.abs(Y[k] - PRE.now[k]) < 1e-9;
+        if (real) { ctx.fillStyle = P.accent; ctx.fill(); }
+        else { ctx.fillStyle = EB.color("canvas-bg"); ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = P.accent; ctx.stroke(); }
+      });
+      ctx.textBaseline = "alphabetic"; ctx.textAlign = "left"; ctx.font = EB.font(11); ctx.fillStyle = P.dim;
+      ctx.fillText("● 실제 값(2026-10-07)  ○ 교육용·조작한 값", c.box.x + 6, c.Y(0.45));
+      ctx.textAlign = "center"; ctx.fillText("만기(간격은 제곱근 눈금)", c.box.x + c.box.w / 2, c.box.y + c.box.h + 34);
+      var s = Y[5] - Y[3], b = Y[3] - Y[0];
+      var f = Math.pow(Math.pow(1 + Y[5] / 100, 10) / Math.pow(1 + Y[3] / 100, 3), 1 / 7) - 1;
+      EB.stat("yc-o-s", '<span class="' + (s < 0 ? "bad-t" : "") + '">' + pp(s) + "</span>");
+      EB.stat("yc-o-b", pp(b));
+      EB.stat("yc-o-f", pc(f));
+      var msg = s < -0.05 ? "역전: 앞으로 금리 인하를 예상" : s < 0.2 ? "평탄: 방향을 두고 엇갈림" : "우상향: 인상 예상 또는 기간 프리미엄";
+      if (b > 0.5 && s >= -0.05) msg += ", 단기 인상 기대";
+      EB.stat("yc-o-m", msg);
+    }, { aspect: 0.5, minHeight: 260, maxHeight: 380 });
+    function pick(x, y) {
+      if (!box) return -1; var best = -1, bd = 1e9;
+      T.forEach(function (t, k) { var d = Math.hypot(box.X(sx(t)) - x, box.Y(Y[k]) - y); if (d < bd) { bd = d; best = k; } });
+      return bd < 40 ? best : -1;
+    }
+    EB.drag(cv.canvas, {
+      start: function (x, y) { drag = pick(x, y); },
+      move: function (x, y) { if (drag < 0 || !box) return; Y[drag] = EB.clamp(Math.round((7 - (y - box.box.y) / box.box.h * 7) * 100) / 100, 0, 7); cv.redraw(); },
+      end: function () { drag = -1; cv.redraw(); },
+    });
+  })();
+
+  /* ---------------- sim-spread ---------------- */
+  (function () {
+    var gP = EB.range("cs-p", function (v) { return v.toFixed(1) + "%"; }, draw);
+    var gR = EB.range("cs-r", function (v) { return v + "%"; }, draw);
+    var gM = EB.range("cs-m", function (v) { return v.toFixed(2) + "%p"; }, draw);
+    function spread(pd, rec, m) { return pd * (1 - rec) / (1 - pd) + m; }
+    var cv = EB.canvas("#cs-cv", function (ctx, w, h) {
+      var P = EB.palette(), rec = gR() / 100, m = gM() / 100, g = GOV3 * 100;
+      var el = [], tot = [];
+      for (var x = 0; x <= 20.001; x += 0.25) { el.push([x, g + spread(x / 100, rec, 0) * 100]); tot.push([x, g + spread(x / 100, rec, m) * 100]); }
+      var c = EB.chart(ctx, { x: 52, y: 14, w: w - 66, h: h - 52 }, {
+        x: [0, 20], y: [0, 30], xLabel: "연간 부도 확률(%)", xFmt: function (v) { return v + "%"; }, yFmt: function (v) { return v + "%"; },
+        series: [
+          { data: tot, color: P.bad, width: 2.4 },
+          { data: el, color: P.accent2, width: 1.8, dash: [5, 4] },
+        ],
+        hlines: [{ y: g, color: P.accent, label: "국고채 3년 " + g.toFixed(2) + "%" }],
+        bands: [],
+      });
+      ctx.save(); ctx.fillStyle = EB.color("bad-soft"); ctx.fillRect(c.box.x, c.box.y, c.box.w, c.Y(20) - c.box.y); ctx.restore();
+      ctx.fillStyle = P.bad; ctx.font = EB.font(11.5); ctx.textAlign = "left"; ctx.fillText("20% 이상: 빌리기 어려운 구역(교육용)", c.box.x + 6, c.box.y + 14);
+      var pd = gP() / 100, s = spread(pd, rec, m), y = g + s * 100;
+      ctx.fillStyle = P.bad; ctx.beginPath(); ctx.arc(c.X(gP()), c.Y(Math.min(30, y)), 6, 0, 7); ctx.fill();
+      ctx.font = EB.font(11); ctx.fillStyle = P.dim; ctx.textAlign = "left";
+      var lx = c.box.x + 8, ly = c.Y(18);
+      ctx.fillStyle = P.bad; ctx.fillRect(lx, ly, 12, 3); ctx.fillStyle = P.dim; ctx.fillText("요구 금리(손실 + 프리미엄)", lx + 18, ly + 5);
+      ctx.fillStyle = P.accent2; ctx.fillRect(lx, ly + 15, 12, 3); ctx.fillStyle = P.dim; ctx.fillText("예상 손실만 메운 금리", lx + 18, ly + 20);
+      EB.stat("cs-o-g", pc(GOV3, 3));
+      EB.stat("cs-o-s", pp(s * 100));
+      EB.stat("cs-o-y", '<span class="' + (y >= 20 ? "bad-t" : "") + '">' + y.toFixed(2) + "%</span>");
+      EB.stat("cs-o-c", EB.won(1e10 * y / 100));
+    }, { aspect: 0.6, minHeight: 250, maxHeight: 380 });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-fixvar ---------------- */
+  (function () {
+    var V0 = 0.0427, F0 = 0.0453, N = 10;            // 2026년 6월 신규 주담대 변동형·고정형 평균
+    var PRE = {
+      flat: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      up: [0, 0.15, 0.3, 0.4, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
+      down: [0, -0.1, -0.25, -0.4, -0.5, -0.6, -0.6, -0.6, -0.6, -0.6],
+      spike: [0, 0.75, 1.5, 2.25, 2.5, 2.5, 2.25, 2.0, 2.0, 2.0],
+    };
+    var D = PRE.flat.slice(), box = null, drag = -1;
+    var gA = EB.range("fv-a", function (v) { return v.toFixed(1) + "억원"; }, draw);
+    var gPre = EB.seg("fv-pre", function (v) { D = PRE[v].slice(); draw(); });
+    function sim() {
+      var A = gA() * 1e8, n = 360, bal = A, iv = 0, maxPay = 0, k, m;
+      var payF = EC.payment(A, F0, 30).level, balF = A, ifx = 0;
+      var pay = 0;
+      for (m = 0; m < 60; m++) {
+        if (m % 6 === 0) { k = m / 6; var r = Math.max(0.005, V0 + D[k] / 100); var rm = r / 12, left = n - m; pay = bal * rm / (1 - Math.pow(1 + rm, -left)); maxPay = Math.max(maxPay, pay); var curR = rm; }
+        var it = bal * curR; iv += it; bal -= (pay - it);
+        var itf = balF * F0 / 12; ifx += itf; balF -= (payF - itf);
+      }
+      return { iv: iv, ifx: ifx, maxPay: maxPay, payF: payF };
+    }
+    var cv = EB.canvas("#fv-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      var vs = [], i;
+      for (i = 0; i < N; i++) { var r = Math.max(0.5, (V0 * 100 + D[i])); vs.push([i * 6, r]); vs.push([(i + 1) * 6, r]); }
+      var c = EB.chart(ctx, { x: 52, y: 14, w: w - 66, h: h - 52 }, {
+        x: [0, 60], y: [2, 8], xTicks: [0, 12, 24, 36, 48, 60], xFmt: function (v) { return v + "개월"; }, yFmt: function (v) { return v + "%"; },
+        series: [
+          { data: [[0, F0 * 100], [60, F0 * 100]], color: P.accent2, width: 2.4 },
+          { data: vs, color: P.accent, width: 2.4 },
+        ],
+      });
+      box = c;
+      for (i = 1; i < N; i++) { var px = c.X(i * 6 + 3), py = c.Y(Math.max(0.5, V0 * 100 + D[i])); ctx.beginPath(); ctx.arc(px, py, i === drag ? 8 : 6, 0, 7); ctx.fillStyle = EB.color("canvas-bg"); ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = P.accent; ctx.stroke(); }
+      ctx.font = EB.font(11); ctx.textAlign = "left";
+      var lx = c.box.x + 8, ly = c.Y(2.9);
+      ctx.fillStyle = P.accent; ctx.fillRect(lx, ly, 12, 3); ctx.fillStyle = P.dim; ctx.fillText("변동형 금리(6개월 재산정)", lx + 18, ly + 5);
+      ctx.fillStyle = P.accent2; ctx.fillRect(lx, ly + 15, 12, 3); ctx.fillStyle = P.dim; ctx.fillText("5년 주기형 금리(고정)", lx + 18, ly + 20);
+      var s = sim(), d = s.iv - s.ifx;
+      EB.stat("fv-o-v", EB.won(s.iv));
+      EB.stat("fv-o-f", EB.won(s.ifx));
+      EB.stat("fv-o-d", '<span class="' + (d > 0 ? "bad-t" : "ok-t") + '">' + (d >= 0 ? "+" : "−") + EB.won(Math.abs(d)) + "</span>");
+      EB.stat("fv-o-m", EB.won(s.maxPay) + " (주기형 " + EB.won(s.payF) + ")");
+    }, { aspect: 0.6, minHeight: 260, maxHeight: 400 });
+    function draw() { cv.redraw(); }
+    EB.drag(cv.canvas, {
+      start: function (x, y) { if (!box) return; var bd = 1e9; drag = -1; for (var i = 1; i < N; i++) { var dd = Math.hypot(box.X(i * 6 + 3) - x, box.Y(Math.max(0.5, V0 * 100 + D[i])) - y); if (dd < bd) { bd = dd; drag = i; } } if (bd > 44) drag = -1; },
+      move: function (x, y) { if (drag < 0 || !box) return; var r = 8 - (y - box.box.y) / box.box.h * 6; D[drag] = EB.clamp(Math.round((r - V0 * 100) * 20) / 20, -2.2, 3.7); draw(); },
+      end: function () { drag = -1; draw(); },
+    });
+  })();
+
+  /* ---------------- sim-stairs ---------------- */
+  (function () {
+    var DEF = { "var": { t: 0.05, c: 0.13, m: 1.6, d: 0.5, T: 0.5 }, fix: { t: 0.85, c: 0.3, m: 0.9, d: 0.5, T: 5 } };
+    var type = "var";
+    var gB = EB.range("st-b", function (v) { return v.toFixed(2) + "%"; }, draw);
+    var gT = EB.range("st-t", function (v) { return (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(2) + "%p"; }, draw);
+    var gC = EB.range("st-c", function (v) { return "+" + v.toFixed(2) + "%p"; }, draw);
+    var gM = EB.range("st-m", function (v) { return "+" + v.toFixed(2) + "%p"; }, draw);
+    var gD = EB.range("st-d", function (v) { return "−" + v.toFixed(2) + "%p"; }, draw);
+    var gType = EB.seg("st-type", function (v) { type = v; var d = DEF[v]; gT.set(d.t); gC.set(d.c); gM.set(d.m); gD.set(d.d); draw(); });
+    function parts() {
+      var b = gB(), t = gT(), c = gC(), m = gM(), d = gD();
+      var x = b + t + c, r = Math.max(0, x + m - d);
+      return { b: b, t: t, c: c, m: m, d: d, x: x, r: r };
+    }
+    var cv = EB.canvas("#st-cv", function (ctx, w, h) {
+      var P = EB.palette(), q = parts(), wide = w >= 560;
+      var A = wide ? { x: 46, y: 16, w: w * 0.56 - 56, h: h - 48 } : { x: 46, y: 14, w: w - 60, h: h * 0.56 - 30 };
+      var B = wide ? { x: w * 0.56 + 40, y: 16, w: w * 0.44 - 56, h: h - 64 } : { x: 46, y: h * 0.56 + 16, w: w - 60, h: h * 0.44 - 50 };
+      var top = Math.max(8, Math.ceil(q.b + Math.max(0, q.t) + q.c + q.m + 0.5));
+      var c1 = EB.chart(ctx, A, { x: [0, 6], y: [Math.min(0, Math.floor(q.b + Math.min(0, q.t))), top], xTicks: [], yFmt: function (v) { return v + "%"; } });
+      // 계단: 기준 → 기간 → 신용 → 가산 → 우대(빼기)
+      var steps = [
+        ["기준금리", 0, q.b, P.accent],
+        ["기간 프리미엄", q.b, q.b + q.t, P.warn],
+        ["신용 스프레드", q.b + q.t, q.x, P.accent2],
+        ["가산금리", q.x, q.x + q.m, P.bad],
+        ["우대금리", q.x + q.m, q.r, P.ok],
+      ];
+      var sw = c1.box.w / 6;
+      steps.forEach(function (s, k) {
+        var x0 = c1.box.x + sw * (k + 0.15), y0 = c1.Y(Math.max(s[1], s[2])), y1 = c1.Y(Math.min(s[1], s[2]));
+        ctx.fillStyle = s[3]; ctx.globalAlpha = k === 4 ? 0.45 : 0.85; ctx.fillRect(x0, y0, sw * 0.7, Math.max(2, y1 - y0)); ctx.globalAlpha = 1;
+        if (k < 4) { ctx.strokeStyle = P.faint; ctx.setLineDash([2, 3]); ctx.beginPath(); ctx.moveTo(x0 + sw * 0.7, c1.Y(s[2])); ctx.lineTo(x0 + sw * 1.15, c1.Y(s[2])); ctx.stroke(); ctx.setLineDash([]); }
+        ctx.save(); ctx.fillStyle = P.dim; ctx.font = EB.font(w < 420 ? 9.5 : 10.5); ctx.textAlign = "center";
+        var lab = s[0].split(" "); lab.forEach(function (l, j) { ctx.fillText(l, x0 + sw * 0.35, c1.box.y + c1.box.h + 13 + j * 12); });
+        ctx.restore();
+        var v = s[2] - s[1];
+        ctx.fillStyle = P.text; ctx.font = EB.font(10.5, true); ctx.textAlign = "center";
+        ctx.fillText((k === 0 ? "" : v >= 0 ? "+" : "−") + Math.abs(v).toFixed(2), x0 + sw * 0.35, y0 - 4);
+      });
+      // 최종
+      var xf = c1.box.x + sw * 5.15;
+      ctx.fillStyle = P.text; ctx.globalAlpha = 0.85; ctx.fillRect(xf, c1.Y(q.r), sw * 0.7, c1.Y(0) - c1.Y(q.r)); ctx.globalAlpha = 1;
+      ctx.fillStyle = P.text; ctx.font = EB.font(11, true, 700); ctx.textAlign = "center"; ctx.fillText(q.r.toFixed(2) + "%", xf + sw * 0.35, c1.Y(q.r) - 5);
+      ctx.fillStyle = P.dim; ctx.font = EB.font(w < 420 ? 9.5 : 10.5); ctx.fillText("내 금리", xf + sw * 0.35, c1.box.y + c1.box.h + 13);
+      // 수익률 곡선 보기
+      var Tx = DEF[type].T, k3 = 1 - Math.exp(-Tx / 3), slope = q.t / k3;
+      var gov = function (T) { return q.b + slope * (1 - Math.exp(-T / 3)); };
+      var gd = [], bd = [];
+      for (var T = 0; T <= 10.001; T += 0.25) { gd.push([T, gov(T)]); bd.push([T, gov(T) + q.c]); }
+      var lo = Math.min(q.b, gov(10)) - 0.6, hi = Math.max(q.b, gov(10) + q.c) + 0.8;
+      var c2 = EB.chart(ctx, B, { x: [0, 10], y: [Math.max(-1, Math.floor(lo * 2) / 2), Math.ceil(hi * 2) / 2], xTicks: [0, 2, 4, 6, 8, 10], xFmt: function (v) { return v + "년"; }, yFmt: function (v) { return v + "%"; },
+        series: [{ data: gd, color: P.warn, width: 2 }, { data: bd, color: P.accent2, width: 2, dash: [5, 3] }],
+        hlines: [{ y: q.b, color: P.accent, label: "" }] });
+      ctx.fillStyle = P.accent2; ctx.beginPath(); ctx.arc(c2.X(Tx), c2.Y(q.x), 6, 0, 7); ctx.fill();
+      ctx.font = EB.font(10.5); ctx.textAlign = Tx > 3 ? "right" : "left"; ctx.fillStyle = P.text;
+      ctx.fillText("지표금리 " + q.x.toFixed(2) + "%", c2.X(Tx) + (Tx > 3 ? -8 : 8), c2.Y(q.x) - 8);
+      ctx.textAlign = "left"; ctx.fillStyle = P.dim;
+      ctx.fillStyle = P.warn; ctx.fillRect(c2.box.x + 6, c2.box.y + 6, 10, 3); ctx.fillStyle = P.dim; ctx.fillText("국채 곡선", c2.box.x + 20, c2.box.y + 11);
+      ctx.fillStyle = P.accent2; ctx.fillRect(c2.box.x + 6, c2.box.y + 20, 10, 3); ctx.fillStyle = P.dim; ctx.fillText("은행채 곡선", c2.box.x + 20, c2.box.y + 25);
+      var pay = EC.payment(1e8, q.r / 100, 30), share = pay.level / C.jiwoo.monthlyNet;
+      EB.stat("st-o-x", q.x.toFixed(2) + "%");
+      EB.stat("st-o-r", '<span class="' + (q.r >= 8 ? "bad-t" : "") + '">' + q.r.toFixed(2) + "%</span>");
+      EB.stat("st-o-p", EB.won(pay.level));
+      EB.stat("st-o-i", EB.won(pay.interestOnly));
+      EB.stat("st-o-s", '<span class="' + (share > 0.2 ? "bad-t" : "") + '">' + (share * 100).toFixed(1) + "%</span>");
+    }, { aspect: 0.6, minHeight: 400, maxHeight: 460 });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- 케이스 ---------------- */
+  (function () {
+    var r0 = C.home.loanRate, cofixMar = 0.0281, cofixJun = 0.0305, add = r0 - cofixMar;
+    var r1 = cofixJun + add, L = C.home.loan;
+    var i0 = L * r0 / 12, i1 = L * r1 / 12;
+    var buy = EC.payment(1e8, K.mortgageRateJun, 30).level;
+    document.getElementById("case-calc").innerHTML = "지우의 전세대출 1억 4,000만원은 신규 코픽스에 연동된 6개월 변동금리라고 가정한다. 4월 재산정 때 적용된 금리는 연 " + pc(r0) + "였다. 그때 쓰인 지표는 3월분 신규 코픽스 2.81%였으니, 은행이 붙인 가산금리에서 우대금리를 뺀 몫은 약 " + (add * 100).toFixed(2) + "%p다. 7월 15일 공시된 6월분 코픽스는 3.05%였다. 오늘 재산정한다면 금리는 약 " + pc(r1) + ", 월 이자는 " + EB.won(i0) + "에서 " + EB.won(i1) + "로 <b>" + EB.won(i1 - i0) + "</b>쯤 늘어나는 셈이다. 실제로 바뀌는 날은 다음 재산정일인 10월이고, 그때 적용될 코픽스는 아직 모른다. 지우는 헤드라인의 4.36%로도 계산해 보았다. 1억원을 30년 원리금균등으로 빌리면 월 " + EB.won(buy) + "이다. 3년 안에 집을 산다면 이 숫자가 지우의 월 저축 여력 " + EB.won(C.monthlySaving) + "과 마주 서게 된다.";
+    document.getElementById("case-life").textContent = "지금 내는 금리는 4월에 정해진 " + pc(r0) + ". 6월 코픽스로 다시 정한다면 월 이자가 약 " + EB.won(i1 - i0) + " 늘어난다(이 책의 가정으로 계산). 변하는 날은 10월 재산정일이다.";
+  })();
+})();
+</script>
+</body>
+</html>

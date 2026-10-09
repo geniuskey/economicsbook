@@ -1,0 +1,740 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and EconomicsBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "취업자·실업자·비경제활동인구로 나눈 인구에서 실업률과 고용률이 어떻게 나오는지, 구직을 포기하면 왜 실업률이 내려가는지, 취업자 증감의 기저효과와 확장실업률, 고령층과 청년의 엇갈림, 오쿤의 법칙과 실업의 흐름을 시뮬레이터로 다시 계산한다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>고용 · EconomicsBook</title>
+<meta name="description" content="취업자·실업자·비경제활동인구로 나눈 인구에서 실업률과 고용률이 어떻게 나오는지, 구직을 포기하면 왜 실업률이 내려가는지, 취업자 증감의 기저효과와 확장실업률, 고령층과 청년의 엇갈림, 오쿤의 법칙과 실업의 흐름을 시뮬레이터로 다시 계산한다.">
+<link rel="canonical" href="https://economicsbook.euiyun.com/chapters/jobs.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#4338ca">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="EconomicsBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="고용 · EconomicsBook">
+<meta property="og:description" content="취업자·실업자·비경제활동인구로 나눈 인구에서 실업률과 고용률이 어떻게 나오는지, 구직을 포기하면 왜 실업률이 내려가는지, 취업자 증감의 기저효과와 확장실업률, 고령층과 청년의 엇갈림, 오쿤의 법칙과 실업의 흐름을 시뮬레이터로 다시 계산한다.">
+<meta property="og:url" content="https://economicsbook.euiyun.com/chapters/jobs.html">
+<meta property="og:image" content="https://economicsbook.euiyun.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://economicsbook.euiyun.com/chapters/jobs.html#chapter","name":"고용","headline":"고용 · EconomicsBook","description":"취업자·실업자·비경제활동인구로 나눈 인구에서 실업률과 고용률이 어떻게 나오는지, 구직을 포기하면 왜 실업률이 내려가는지, 취업자 증감의 기저효과와 확장실업률, 고령층과 청년의 엇갈림, 오쿤의 법칙과 실업의 흐름을 시뮬레이터로 다시 계산한다.","url":"https://economicsbook.euiyun.com/chapters/jobs.html","position":5,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://economicsbook.euiyun.com/og.png","dateModified":"2026-10-09","isPartOf":{"@type":"Book","@id":"https://economicsbook.euiyun.com/#book","name":"EconomicsBook · 경제 뉴스 읽는 교과서","url":"https://economicsbook.euiyun.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"EconomicsBook","item":"https://economicsbook.euiyun.com/"},{"@type":"ListItem","position":2,"name":"5. 고용","item":"https://economicsbook.euiyun.com/chapters/jobs.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/econ.js"></script>
+<!--head:end-->
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"3d6151a0abc94ede89285d462527fa80"}'></script>
+<!-- End Cloudflare Web Analytics -->
+<style>
+  .hl-cards { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); padding: 12px 14px; border-top: 1px solid var(--border); }
+  .hl-cards > div { background: var(--bg-elev); border: 1px solid var(--border); border-left: 4px solid var(--text-faint); border-radius: 8px; padding: 8px 10px; font-size: 14px; line-height: 1.45; min-width: 0; }
+  .hl-cards > div.good { border-left-color: var(--ok); }
+  .hl-cards > div.bad { border-left-color: var(--bad); }
+  .hl-cards small { display: block; color: var(--text-faint); font-size: 12px; margin-top: 3px; }
+</style>
+</head>
+<body data-chapter="jobs">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 05</div>
+    <h1>고용</h1>
+    <p class="lead">같은 달의 고용 통계를 보고 어떤 기사는 "고용률 역대 최고"를, 다른 기사는 "청년 고용 한파"를 제목으로 뽑는다. 둘 다 틀리지 않았다. 이 장은 고용 동향 한 장에 들어 있는 숫자들이 어떻게 계산되는지 따라가고, 사람을 이 칸에서 저 칸으로 옮겨 보며 헤드라인이 어떻게 갈라지는지 직접 다시 계산한다.</p>
+    <ul class="objectives">
+      <li>15세 이상 인구를 취업자·실업자·비경제활동인구로 나누고 실업률·고용률·경제활동참가율을 계산할 수 있다.</li>
+      <li>구직을 포기한 사람이 늘면 실업률이 내려가는 이유와, 그래서 고용률과 확장실업률을 함께 봐야 하는 이유를 설명할 수 있다.</li>
+      <li>취업자 증감이 전년 동월과 비교한 숫자라는 것과 기저효과가 증가폭을 어떻게 키우고 줄이는지 읽을 수 있다.</li>
+      <li>성장률과 실업률을 잇는 오쿤의 법칙, 일자리를 얻고 잃는 흐름이 실업률을 정한다는 생각을 시뮬레이터로 확인할 수 있다.</li>
+    </ul>
+  </header>
+
+  <div class="headline" id="hl-top">2025년 취업자 19.3만명 늘고 실업률 2.8%… 고용률은 62.9%로 역대 최고<small>지우의 헤드라인 노트 · 2026년 1월 · 근거: 국가데이터처 「2025년 12월 및 연간 고용동향」(2026-01-14)</small></div>
+
+  <section id="split">
+    <h2>나라 안의 사람을 세 칸으로 나누기</h2>
+    <p>지우가 1월 노트에 옮겨 적은 숫자는 세 개다. 취업자 19.3만명 증가, 실업률 2.8%, 고용률 62.9%. 삼촌 백정호는 숫자를 보자마자 되물었다. "세 숫자의 분모가 다 다른 건 알고 있니?" 고용 통계를 읽는 첫걸음은 이 분모를 구분하는 것이다.</p>
+    <p>고용 통계는 국가데이터처(옛 통계청)가 매달 약 3만 6천 가구를 찾아가 묻는 <span class="term">경제활동인구조사</span><span class="en">(Economically Active Population Survey)</span>에서 나온다. 조사는 매달 15일이 들어 있는 한 주(조사대상주간)에 각 사람이 무엇을 했는지 묻고, 15세 이상 인구를 세 칸으로 나눈다.</p>
+    <ul>
+      <li><strong>취업자</strong>: 조사대상주간에 돈을 벌 목적으로 <strong>1시간 이상</strong> 일한 사람. 가족이 운영하는 가게에서 돈을 받지 않고 주 18시간 이상 일한 사람(무급가족종사자), 일자리는 있지만 아파서·휴가로 잠시 쉰 사람(일시휴직자)도 취업자다.</li>
+      <li><strong>실업자</strong>: 조사대상주간에 일하지 않았고, <strong>지난 4주 동안 적극적으로 일자리를 찾았으며</strong>, 일자리가 주어지면 바로 일할 수 있었던 사람. 세 조건을 모두 채워야 한다.</li>
+      <li><strong>비경제활동인구</strong>: 둘 다 아닌 사람. 학생, 집안일을 하는 사람, 은퇴한 사람, 취업 준비를 하지만 지난 4주 동안 원서를 내지 않은 사람, 그리고 특별한 이유 없이 "그냥 쉬었다"고 답한 사람이 여기에 들어간다.</li>
+    </ul>
+    <p>취업자와 실업자를 합한 것이 <span class="term">경제활동인구</span><span class="en">(Labor force)</span>다. 일하고 있거나 일하려고 나선 사람들이다. 2025년 연간 숫자로 칸을 채우면 그림 1이 된다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 290" role="img" aria-label="15세 이상 인구 4,576만명이 경제활동인구 2,960만명(취업자 2,877만명, 실업자 83만명)과 비경제활동인구 1,616만명으로 나뉘는 나무 그림">
+        <defs><marker id="jb-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="140" y="10" width="180" height="46" rx="8" class="f-acc-soft"/>
+        <text x="230" y="30" text-anchor="middle" class="lbl-b">15세 이상 인구</text>
+        <text x="230" y="48" text-anchor="middle" class="t-mono lbl-dim">4,576.2만</text>
+        <rect x="20" y="96" width="190" height="46" rx="8" class="f-surface"/>
+        <text x="115" y="116" text-anchor="middle" class="lbl-b">경제활동인구</text>
+        <text x="115" y="134" text-anchor="middle" class="t-mono lbl-dim">2,959.9만</text>
+        <rect x="250" y="96" width="190" height="46" rx="8" class="f-elev"/>
+        <text x="345" y="116" text-anchor="middle" class="lbl-b">비경제활동인구</text>
+        <text x="345" y="134" text-anchor="middle" class="t-mono lbl-dim">1,616.3만</text>
+        <rect x="10" y="182" width="110" height="46" rx="8" class="f-ok-soft"/>
+        <text x="65" y="202" text-anchor="middle" class="lbl-b">취업자</text>
+        <text x="65" y="220" text-anchor="middle" class="t-mono lbl-dim">2,876.9만</text>
+        <rect x="130" y="182" width="100" height="46" rx="8" class="f-bad-soft"/>
+        <text x="180" y="202" text-anchor="middle" class="lbl-b">실업자</text>
+        <text x="180" y="220" text-anchor="middle" class="t-mono lbl-dim">83.0만</text>
+        <rect x="250" y="182" width="190" height="46" rx="8" class="f-warn-soft"/>
+        <text x="345" y="202" text-anchor="middle" class="lbl">그중 '쉬었음'</text>
+        <text x="345" y="220" text-anchor="middle" class="t-mono lbl-dim">255.5만</text>
+        <g class="s-line" marker-end="url(#jb-ar)">
+          <path d="M200 56L130 96"/><path d="M260 56L330 96"/>
+          <path d="M90 142L70 182"/><path d="M140 142L175 182"/><path d="M345 142V182"/>
+        </g>
+        <text x="20" y="262" class="lbl-dim">실업률 = 83.0 ÷ 2,959.9 = 2.8%</text>
+        <text x="20" y="282" class="lbl-dim">고용률 = 2,876.9 ÷ 4,576.2 = 62.9%</text>
+        <text x="440" y="262" text-anchor="end" class="lbl-dim">참가율 = 2,959.9 ÷ 4,576.2</text>
+        <text x="440" y="282" text-anchor="end" class="lbl-dim">= 64.7%</text>
+      </svg>
+      <figcaption><b>그림 1. 2025년 연간 고용 통계의 세 칸.</b> 실업률의 분모는 경제활동인구, 고용률의 분모는 15세 이상 인구 전체다. 실업자 83.0만명은 경제활동인구에서 취업자를 뺀 값이다. <span class="src">(국가데이터처, 「2025년 12월 및 연간 고용동향」 2026-01-14. 인구·경제활동인구는 발표를 인용한 보도에서, '쉬었음'은 같은 발표 인용 보도에서 확인)</span></figcaption>
+    </figure>
+
+    <div class="formula">$$\text{실업률}=\frac{\text{실업자}}{\text{경제활동인구}},\qquad \text{고용률}=\frac{\text{취업자}}{\text{15세 이상 인구}},\qquad \text{경제활동참가율}=\frac{\text{경제활동인구}}{\text{15세 이상 인구}}$$<div class="where">분모가 다르다는 것이 이 장의 거의 모든 이야기의 출발점이다. 실업률은 "일하려고 나선 사람 가운데 일자리를 못 구한 사람의 비율", 고용률은 "일할 나이의 사람 가운데 실제로 일하는 사람의 비율"이다.</div></div>
+
+    <p>이제 사람을 칸 사이로 옮겨 본다. 아래 띠는 2025년 연간 숫자에서 실업자 주변만 크게 확대한 것이다. 한 칸이 1만명이다. 경계선 두 개를 끌어 사람을 옮기면 세 지표가 다시 계산된다.</p>
+
+    <div class="sim" id="sim-pop">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>사람을 옮기면 실업률과 고용률은 어떻게 움직이나</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="pop-cv"></canvas><span class="hint">경계선 손잡이를 끈다</span></div>
+        <div class="sim-controls">
+          <div class="btn-row"><button class="btn" id="pop-quit">구직 포기 20만명</button><button class="btn" id="pop-lose">실직 20만명</button></div>
+          <div class="btn-row"><button class="btn" id="pop-join">새로 구직 20만명</button><button class="btn primary" id="pop-re">처음으로</button></div>
+          <p class="small" style="font-size:13.5px;color:var(--text-dim);margin:6px 0 0">왼쪽 손잡이: 취업자 ↔ 실업자. 오른쪽 손잡이: 실업자 ↔ 비경제활동인구.</p>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">실업자</span><span class="v" id="pop-o-u">—</span></div>
+        <div class="stat"><span class="k">실업률</span><span class="v" id="pop-o-ur">—</span></div>
+        <div class="stat"><span class="k">고용률</span><span class="v" id="pop-o-er">—</span></div>
+        <div class="stat"><span class="k">경제활동참가율</span><span class="v" id="pop-o-pr">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① '구직 포기 20만명'을 누른다. 아무도 일자리를 얻지 않았는데 실업률이 2.8%에서 2.1%대로 내려간다. 고용률은 그대로다. ② 오른쪽 손잡이를 왼쪽 끝까지 끌어 실업자를 모두 비경제활동인구로 보낸다. 실업률은 0%가 되지만 일하는 사람은 한 명도 늘지 않았다. 실업률만 보면 무너지는 지점이다. ③ '새로 구직 20만명'을 누른다. 쉬던 사람이 일자리를 찾아 나서면 실업률은 오히려 오른다. 경기가 좋아질 때 실업률이 잠시 오르기도 하는 이유다. (2025년 연간 값에서 출발. 15세 이상 인구는 고정. 칸 사이의 이동만 보는 교육용 계산이다.)</div>
+    </div>
+
+    <p>실업률과 고용률은 같은 방향으로 움직일 것 같지만, 사람이 어느 칸에서 어느 칸으로 옮기느냐에 따라 따로 움직인다. 실업자가 취업자가 되면 실업률은 내리고 고용률은 오른다. 좋은 소식이다. 실업자가 구직을 그만두고 비경제활동인구가 되면 실업률은 내리지만 고용률은 그대로다. 좋은 소식이 아니다. 쉬던 사람이 구직에 나서면 실업률은 오르지만 고용률은 그대로다. 나쁜 소식이라고 단정하기 어렵다. 그래서 고용 기사를 읽을 때는 실업률 하나가 아니라 <strong>고용률과 함께</strong> 본다.</p>
+  </section>
+
+  <section id="paradox">
+    <h2>실업률이 내렸는데 좋은 소식이 아닐 때</h2>
+    <p>경제학은 일자리를 원하지만 "찾아봐야 없다"며 구직을 그만둔 사람을 <span class="term">실망 실업자</span><span class="en">(Discouraged workers)</span>라고 부른다. 한국 통계에서는 이런 사람들이 '구직단념자'나 '쉬었음'으로 비경제활동인구에 잡힌다. 실업자 칸에서 빠져나갔으니 실업률은 내려간다. 경기가 나빠 구직을 포기하는 사람이 늘수록 실업률이 낮아 보이는 역설이 생긴다.</p>
+    <p>2025년 비경제활동인구 가운데 특별한 이유 없이 '쉬었음'이라고 답한 사람은 <strong>255.5만명</strong>으로 2003년 통계 작성 이후 가장 많았다. 비경제활동인구의 15.8%다 <span class="src">(국가데이터처, 「2025년 12월 및 연간 고용동향」 인용 보도)</span>. 이들 가운데에는 은퇴 뒤 쉬는 고령층도 많지만, 일자리를 찾다 멈춘 청년도 들어 있다. 같은 해 20대 '쉬었음'은 40만명을 넘었다고 보도되었다. 이들이 다시 구직에 나서면 실업률은 올라간다. 실업률 2.8%라는 숫자는 그만큼 이 사람들의 선택에 기대어 있다.</p>
+    <p>계절도 실업률을 흔든다. 원계열(계절 조정을 하지 않은 숫자) 실업률은 졸업과 공공 일자리 모집이 몰리는 겨울과 초봄에 높고, 농사일과 건설이 많은 계절에 낮다. 2025년 12월 원계열 실업률은 4.1%로 1년 전보다 0.3%p 올라 12월 기준으로 5년 만에 가장 높았다 <span class="src">(국가데이터처, 2025년 12월 고용동향 인용 보도)</span>. 같은 해 연간 평균은 2.8%다. 12월 숫자와 연간 숫자, 원계열과 계절조정 숫자를 섞어 비교하면 없는 추세가 보인다.</p>
+
+    <div class="callout news"><strong>"실업률 하락"이라는 제목을 받았을 때</strong>백정호가 경제부 막내에게 늘 시킨 일이 있다. 실업률이 내렸다는 숫자를 받으면 같은 표에서 고용률과 비경제활동인구 줄을 먼저 찾아보라는 것이다. 고용률이 같이 올랐다면 사람들이 일자리를 얻은 것이고, 고용률이 그대로인데 비경제활동인구만 늘었다면 사람들이 찾기를 그만둔 것이다. 그는 "실업률은 분모가 움직이는 숫자"라고 했다. 분자인 실업자가 줄었는지, 분모인 경제활동인구가 줄었는지를 구분하지 않은 제목이 가장 흔한 오독을 낳는다.</div>
+  </section>
+
+  <section id="change">
+    <h2>취업자 증감: 왜 1년 전과 비교하나</h2>
+    <p>고용 기사의 첫 숫자는 거의 언제나 "취업자 ○만명 증가"다. 이것은 지난달과 비교한 숫자가 아니라 <strong>1년 전 같은 달</strong>과 비교한 <span class="term">전년 동월 대비</span><span class="en">(Year-on-year)</span> 증감이다. 이유는 계절이다. 취업자 수는 매년 겨울에 줄고 봄·여름에 늘어난다. 농사와 건설, 졸업과 입학이 같은 달력을 따르기 때문이다. 지난달과 비교하면 계절이 만든 오르내림이 경기의 변화를 덮어 버린다. 1년 전 같은 달과 비교하면 계절은 서로 지워진다.</p>
+    <p>대신 대가가 있다. 비교 대상인 1년 전 숫자가 유난히 높거나 낮았다면, 올해의 숫자가 아무리 평범해도 증감은 작거나 크게 나온다. 이것이 <span class="term">기저효과</span><span class="en">(Base effect)</span>다. 2026년 8월 고용동향 때 정부는 "9월에는 작년 9월 취업자가 31.2만명 늘었던 데 따른 기저효과로 증가폭이 다시 줄어들 것"이라고 설명했다 <span class="src">(국가데이터처·재정경제부, 2026년 8월 고용동향 발표 2026-09-09 인용 보도)</span>. 올해 9월에 무슨 일이 생겨서가 아니라, 작년 9월이 높았기 때문이다.</p>
+
+    <p>아래 그래프의 점선이 작년, 실선이 올해의 월별 취업자 수다. 작년의 점을 위아래로 끌어 보자. 올해의 숫자는 하나도 바꾸지 않았는데 아래 막대(전년 동월 대비 증감)가 움직인다.</p>
+
+    <div class="sim" id="sim-base">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>기저효과: 작년 숫자를 끌면 올해의 헤드라인이 바뀐다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="base-cv"></canvas><span class="hint">작년(점선)의 점을 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="base-mode"><button data-value="yoy" class="on">전년 동월비</button><button data-value="mom">전월비</button></div>
+          <label class="ctrl"><span>올해의 실제 추세(1년 증가) <output id="base-t-out"></output></span><input type="range" id="base-t" min="-20" max="40" step="1" value="18"></label>
+          <div class="btn-row"><button class="btn" id="base-re">작년 되돌리기</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 달</span><span class="v" id="base-o-m">—</span></div>
+        <div class="stat"><span class="k">올해 취업자</span><span class="v" id="base-o-l">—</span></div>
+        <div class="stat"><span class="k">전년 동월 대비</span><span class="v" id="base-o-y">—</span></div>
+        <div class="stat"><span class="k">전월 대비</span><span class="v" id="base-o-d">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 작년 9월 점이 이미 위로 솟아 있다. 올해 9월의 증가폭이 다른 달보다 작게 나온다. 작년 9월 점을 끌어 다른 달 높이로 내리면 올해 9월 막대가 다시 커진다. ② '전월 대비(원계열)'로 바꾼다. 막대가 1월에 크게 빠지고 봄에 크게 오른다. 경기와 무관한 계절의 오르내림이다. ③ 추세를 0으로 내린다. 작년 어느 달을 끌어내리면 올해 그달만 "취업자 증가"가 된다. (교육용 가상 데이터. 계절 모양과 크기는 이 책이 정했다. 단위 만명.)</div>
+    </div>
+
+    <p>기저효과를 걸러 내는 방법은 두 가지다. 하나는 계절조정 계열로 지난달과 비교하는 것이다. 국가데이터처는 계절조정 취업자와 실업률도 함께 내지만 기사 제목에는 잘 오르지 않는다. 다른 하나는 2년 전과 비교하거나 몇 달의 평균을 보는 것이다. 한 달의 증가폭이 갑자기 크거나 작다면 1년 전 같은 달에 무슨 일이 있었는지부터 찾는다. 2026년 8월 숙박·음식점업 취업자가 6.1만명 줄어든 것을 국가데이터처가 "작년 민생회복 소비쿠폰에 따른 기저효과"라고 설명한 것도 같은 읽기다 <span class="src">(국가데이터처, 2026년 8월 고용동향 인용 보도)</span>.</p>
+
+    <div class="callout stat"><strong>고용동향은 언제, 어디서 나오나</strong>국가데이터처는 매달 중순 전달의 「고용동향」을 보도자료로 낸다. 1월에는 전년 12월분과 연간 결과가 함께 나온다. 원표는 KOSIS 국가통계포털의 '경제활동인구조사'에 있다. 보도자료 앞쪽의 요약표에는 취업자·고용률·실업률이 원계열(전년 동월 대비)로, 뒤쪽 부록에 계절조정 계열과 고용보조지표가 있다. 연령별·산업별·종사상지위별 표는 KOSIS에서 월별로 내려받을 수 있다. 기사의 숫자가 원계열인지 계절조정인지, 15세 이상인지 15~64세인지부터 확인한다.</div>
+  </section>
+
+  <section id="wide">
+    <h2>확장실업률: 실업률 바깥의 사람들</h2>
+    <p>실업자의 정의는 좁다. 일주일에 1시간만 일해도 취업자이고, 지난 4주 동안 원서를 내지 않았으면 실업자가 아니다. 그래서 국가데이터처는 실업률 옆에 <span class="term">고용보조지표</span><span class="en">(Labor underutilization indicators)</span> 세 개를 함께 낸다. 일하고 싶은 만큼 일하지 못하는 사람을 넓게 세는 지표다. 기사에서 '확장실업률', '체감실업률'이라고 부르는 것은 그중 가장 넓은 <strong>고용보조지표 3</strong>이다.</p>
+    <ul>
+      <li><strong>시간관련 추가취업가능자</strong>: 주 36시간 미만 일하면서 더 일하기를 원하고 더 일할 수 있는 취업자. 통계상 취업자이지만 일이 모자란 사람이다.</li>
+      <li><strong>잠재경제활동인구</strong>: 비경제활동인구 가운데 일하고 싶은 사람. 지난 4주 동안 구직활동을 했지만 당장 일할 수 없었던 '잠재취업가능자'와, 일할 수 있지만 구직활동을 하지 않은 '잠재구직자'로 나뉜다.</li>
+    </ul>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 250" role="img" aria-label="실업률, 고용보조지표 1, 2, 3이 실업자에 시간관련 추가취업가능자와 잠재경제활동인구를 차례로 더해 넓어지는 그림">
+        <rect x="10" y="20" width="345" height="150" rx="10" class="f-surface"/>
+        <text x="20" y="40" class="lbl-dim">경제활동인구</text>
+        <rect x="20" y="52" width="245" height="104" rx="8" class="f-ok-soft"/>
+        <text x="142" y="80" text-anchor="middle" class="lbl">취업자</text>
+        <rect x="145" y="98" width="112" height="48" rx="6" class="f-warn-soft"/>
+        <text x="201" y="118" text-anchor="middle" class="lbl">시간관련</text>
+        <text x="201" y="137" text-anchor="middle" class="lbl">추가취업가능자</text>
+        <rect x="275" y="52" width="70" height="104" rx="8" class="f-bad-soft"/>
+        <text x="310" y="109" text-anchor="middle" class="lbl-b">실업자</text>
+        <rect x="365" y="20" width="88" height="150" rx="10" class="f-elev"/>
+        <text x="409" y="40" text-anchor="middle" class="lbl-dim">비경활 중</text>
+        <rect x="372" y="52" width="74" height="104" rx="8" class="f-acc2-soft"/>
+        <text x="409" y="100" text-anchor="middle" class="lbl">잠재경제</text>
+        <text x="409" y="119" text-anchor="middle" class="lbl">활동인구</text>
+        <text x="20" y="212" class="lbl-b">실업률</text><text x="110" y="212" class="lbl-dim">= 실업자 ÷ 경제활동인구</text>
+        <text x="20" y="236" class="lbl-b">지표 3</text><text x="110" y="236" class="lbl-dim">= (실업자 + 추가취업가능자 + 잠재) ÷ (경활 + 잠재)</text>
+      </svg>
+      <figcaption><b>그림 2. 실업률에서 확장실업률(고용보조지표 3)로.</b> 지표 1은 실업자에 시간관련 추가취업가능자를, 지표 2는 잠재경제활동인구를 더한다. 지표 3은 둘을 모두 더한다. 잠재경제활동인구를 더할 때는 분모에도 더한다.</figcaption>
+    </figure>
+
+    <p>2026년 8월 실업률은 원계열 2.0%였고 확장실업률은 <strong>7.6%</strong>였다. 청년(15~29세)은 실업률 5.4%, 확장실업률 15.4%였다 <span class="src">(국가데이터처, 「2026년 8월 고용동향」 2026-09-09 인용 보도)</span>. 같은 달의 같은 사람들을 다른 그물로 건지면 숫자가 서너 배가 된다. 아래 시뮬레이터에서 그물에 걸리는 사람 수를 바꿔 본다.</p>
+
+    <div class="sim" id="sim-wide">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>같은 달, 네 개의 실업률</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="wide-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>실업자 <output id="wide-u-out"></output></span><input type="range" id="wide-u" min="20" max="200" step="1" value="60"></label>
+          <label class="ctrl"><span>시간관련 추가취업가능자 <output id="wide-t-out"></output></span><input type="range" id="wide-t" min="0" max="200" step="1" value="70"></label>
+          <label class="ctrl"><span>잠재경제활동인구 <output id="wide-p-out"></output></span><input type="range" id="wide-p" min="0" max="300" step="1" value="104"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">실업률</span><span class="v" id="wide-o-0">—</span></div>
+        <div class="stat"><span class="k">고용보조지표 1</span><span class="v" id="wide-o-1">—</span></div>
+        <div class="stat"><span class="k">고용보조지표 2</span><span class="v" id="wide-o-2">—</span></div>
+        <div class="stat"><span class="k">확장실업률(지표 3)</span><span class="v" id="wide-o-3">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 처음 값에서 실업률은 2.0%, 지표 3은 7.6% 근처다. ② 잠재경제활동인구를 200만명으로 올린다. 실업률은 꿈쩍하지 않는데 지표 3만 오른다. 구직을 포기한 사람이 늘 때 생기는 일이다. ③ 추가취업가능자를 올린다. 일자리를 쪼개 단시간 일자리가 늘면 취업자 수와 실업률은 좋아 보여도 지표 1과 3이 나빠진다. (경제활동인구 약 2,975만명은 2026년 8월 발표의 취업자 2,915.1만명과 실업률 2.0%로 거꾸로 계산했다. 추가취업가능자와 잠재경제활동인구의 처음 값은 지표 3이 7.6%가 되도록 이 책이 나눈 교육용 가정이다.)</div>
+    </div>
+
+    <p>확장실업률이 실업률보다 몇 배 높다고 해서 실업률이 "가짜"라는 뜻은 아니다. 둘은 다른 질문에 답한다. 실업률은 국제노동기구(ILO)의 기준에 맞춰 나라끼리 비교할 수 있게 만든 좁은 정의이고, 고용보조지표는 그 정의가 놓치는 사람을 따로 세려고 2014년 11월부터 함께 발표하기 시작한 지표다. 두 숫자의 <strong>차이가 벌어지는지 좁혀지는지</strong>가 또 하나의 신호다.</p>
+  </section>
+
+  <section id="age">
+    <h2>누가 일자리를 늘렸나: 고령층과 청년</h2>
+    <p>2025년 취업자 19.3만명 증가를 연령별로 나누면 그림 3이 된다. 늘어난 몫의 대부분은 60세 이상이다. 60세 이상 취업자는 34.5만명 늘었고 30대도 10.2만명 늘었지만, 20대는 17.0만명, 40대는 5.0만명, 50대는 2.6만명 줄었다. 15~29세 청년층 취업자는 17.8만명 줄어 3년 연속 감소했다 <span class="src">(국가데이터처, 「2025년 12월 및 연간 고용동향」 인용 보도)</span>.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 250" role="img" aria-label="2025년 연령대별 취업자 증감 막대그래프. 60세 이상 34.5만명 증가, 30대 10.2만명 증가, 20대 17.0만명 감소, 40대 5.0만명 감소, 50대 2.6만명 감소">
+        <line x1="230" y1="20" x2="230" y2="210" class="s-axis"/>
+        <g>
+          <text x="70" y="44" text-anchor="end" class="lbl">60세 이상</text>
+          <rect x="230" y="30" width="179" height="22" class="f-ok"/>
+          <text x="414" y="46" class="t-mono lbl">+34.5</text>
+          <text x="70" y="80" text-anchor="end" class="lbl">50대</text>
+          <rect x="216.5" y="66" width="13.5" height="22" class="f-bad"/>
+          <text x="210" y="82" text-anchor="end" class="t-mono lbl">−2.6</text>
+          <text x="70" y="116" text-anchor="end" class="lbl">40대</text>
+          <rect x="204" y="102" width="26" height="22" class="f-bad"/>
+          <text x="198" y="118" text-anchor="end" class="t-mono lbl">−5.0</text>
+          <text x="70" y="152" text-anchor="end" class="lbl">30대</text>
+          <rect x="230" y="138" width="53" height="22" class="f-ok"/>
+          <text x="289" y="154" class="t-mono lbl">+10.2</text>
+          <text x="70" y="188" text-anchor="end" class="lbl">20대</text>
+          <rect x="141.6" y="174" width="88.4" height="22" class="f-bad"/>
+          <text x="136" y="190" text-anchor="end" class="t-mono lbl">−17.0</text>
+        </g>
+        <text x="230" y="234" text-anchor="middle" class="lbl-dim">2025년 취업자 증감(전년 대비, 만명). 전체 +19.3</text>
+      </svg>
+      <figcaption><b>그림 3. 연령대별 취업자 증감, 2025년.</b> 60세 이상을 빼면 나머지 연령의 취업자는 합해서 줄었다. 15~19세는 그림에서 뺐다. <span class="src">(국가데이터처, 「2025년 12월 및 연간 고용동향」 2026-01-14 인용 보도)</span></figcaption>
+    </figure>
+
+    <p>이 그림을 "청년 일자리가 노인 일자리에 밀렸다"로 읽으면 반만 맞다. 취업자 수는 <strong>인구 × 고용률</strong>이다. 한국은 빠르게 늙고 있어 60세 이상 인구는 해마다 크게 늘고 20대 인구는 줄어든다. 고용률이 그대로여도 60세 이상 취업자는 늘고 20대 취업자는 준다. 그래서 연령별 고용 사정은 취업자 수보다 <strong>고용률</strong>로 비교한다. 2025년 20대 고용률은 60.2%로 전년보다 내렸고, 청년층 고용률도 3년째 내렸다고 보도되었다. 인구가 줄어서만이 아니라 일하는 비율 자체가 낮아졌다는 뜻이다.</p>
+    <p>2026년 8월에도 모양은 비슷했다. 취업자는 18.4만명 늘었지만 60세 이상이 19.1만명 늘었고, 15~64세 취업자는 7.9만명 줄었다. 청년층 취업자는 14.3만명 줄고 청년 고용률은 44.1%로 1.0%p 내렸다. 반대로 30·40·50대의 고용률은 올랐다 <span class="src">(국가데이터처, 「2026년 8월 고용동향」 인용 보도)</span>. 15~64세 고용률이 70.4%로 8월 기준 역대 최고를 기록한 것은, 15~64세 취업자가 줄었는데도 그 연령대 인구가 더 빨리 줄었기 때문이라고 읽을 수 있다.</p>
+
+    <div class="table-wrap"><table>
+      <thead><tr><th>같은 발표, 다른 숫자</th><th class="num">2025년 연간</th><th class="num">2026년 8월</th></tr></thead>
+      <tbody>
+        <tr><td>취업자 증감(전년 대비)</td><td class="num">+19.3만</td><td class="num">+18.4만</td></tr>
+        <tr><td>그중 60세 이상</td><td class="num">+34.5만</td><td class="num">+19.1만</td></tr>
+        <tr><td>청년층(15~29세) 취업자</td><td class="num">−17.8만</td><td class="num">−14.3만</td></tr>
+        <tr><td>실업률</td><td class="num">2.8%</td><td class="num">2.0% (원계열)</td></tr>
+        <tr><td>고용률 15세 이상 / 15~64세</td><td class="num">62.9% / 69.8%</td><td class="num">63.3% / 70.4%</td></tr>
+        <tr><td>확장실업률(지표 3)</td><td class="num">—</td><td class="num">7.6%</td></tr>
+      </tbody>
+    </table></div>
+    <p class="src" style="font-size:13px">(국가데이터처, 「2025년 12월 및 연간 고용동향」 2026-01-14, 「2026년 8월 고용동향」 2026-09-09. 발표를 인용한 보도로 확인. 2025년 연간 확장실업률은 이 책이 확인하지 못해 비웠다.)</p>
+  </section>
+
+  <section id="okun">
+    <h2>성장률과 실업률: 오쿤의 법칙</h2>
+    <p>경기가 나빠지면 실업이 는다. 얼마나 느는가를 처음 숫자로 정리한 사람이 미국 경제학자 아서 오쿤이다. 1962년 그는 미국 자료에서 실제 생산이 잠재 생산보다 낮아질수록 실업률이 일정한 비율로 오른다는 관계를 찾았다. 이를 <span class="term">오쿤의 법칙</span><span class="en">(Okun's law)</span>이라 한다. 법칙이라는 이름이 붙었지만 자연법칙이 아니라 경험적인 규칙성이고, 나라와 시기에 따라 계수가 다르다.</p>
+    <div class="formula">$$u - u^{*} \approx -\beta \times (\text{산출 갭})$$<div class="where">\(u\): 실업률, \(u^{*}\): 경기가 평범할 때의 실업률(자연실업률), 산출 갭: 실제 GDP가 잠재 GDP보다 몇 % 높거나 낮은가(<a href="cycle.html">4장</a>), \(\beta\): 산출 갭 1%p당 실업률이 움직이는 크기.</div></div>
+    <p>한국에서는 이 관계가 느슨하게 나타날 수 있다. 경기가 나빠져도 기업이 사람을 바로 내보내기보다 근로시간을 줄이고, 일자리를 잃은 사람이 실업자로 남기보다 자영업을 시작하거나 비경제활동인구로 빠지는 길이 넓기 때문이다. 계수의 크기는 연구와 기간에 따라 다르므로 이 책은 교육용 값을 쓴다. 아래 시뮬레이터에서 \(\beta\)를 바꿔 같은 경기 침체가 실업률을 얼마나 움직이는지 본다.</p>
+
+    <div class="sim" id="sim-okun">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>경기가 식으면 실업률은 얼마나 오르나</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="okun-cv"></canvas><span class="hint">점을 좌우로 끌어 산출 갭을 바꾼다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>오쿤 계수 β <output id="okun-b-out"></output></span><input type="range" id="okun-b" min="0.1" max="1" step="0.05" value="0.4"></label>
+          <label class="ctrl"><span>자연실업률 u* <output id="okun-n-out"></output></span><input type="range" id="okun-n" min="2" max="5" step="0.1" value="3"></label>
+          <div class="seg" id="okun-cmp"><button data-value="0" class="on">선 하나</button><button data-value="1">β 0.2와 0.8 비교</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">산출 갭</span><span class="v" id="okun-o-g">—</span></div>
+        <div class="stat"><span class="k">실업률</span><span class="v" id="okun-o-u">—</span></div>
+        <div class="stat"><span class="k">실업자 변화(u* 대비)</span><span class="v" id="okun-o-n">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 점을 −3%까지 끈다(심한 침체). β 0.4에서 실업률은 1.2%p 오른다. 경제활동인구 약 2,975만명이면 실업자 약 36만명이 더 생긴다. ② β를 0.8로 올린다. 같은 침체가 두 배의 실업을 만든다. 해고가 쉬운 노동시장의 모습이다. ③ β를 0.8로 두고 점을 +4%까지 끈다. 직선을 그대로 믿으면 실업률이 0%까지 떨어지지만 실제로는 일자리를 옮기는 사람 때문에 실업률이 0 가까이 갈 수 없다. 직선이 무너지는 곳이다. (교육용 선형 관계. 이 책의 작은 경제 모형 <code>EC.ECONOMY</code>는 β = 0.4, u* = 3.0%를 쓴다. 한국의 실제 계수는 연구와 기간에 따라 다르다.)</div>
+    </div>
+
+    <p>오쿤의 법칙은 거꾸로도 쓰인다. 실업률이 갑자기 오르면 아직 GDP 통계가 나오기 전이라도 경기가 식고 있다는 신호로 읽는다. 고용 통계는 GDP보다 한 달 이상 빨리 나오기 때문이다. 다만 한국에서는 취업자 증감이 정부의 직접일자리 사업, 고령층 인구 증가, 날씨 같은 경기 밖의 이유로도 크게 움직인다. 고용 숫자 하나로 경기를 판정하지 않고, 산업별(제조업·건설업·서비스업) 취업자와 근로시간을 함께 본다. 2025년에는 보건·사회복지서비스업 취업자가 23.7만명 늘었고 건설업은 12.5만명, 제조업은 7.3만명 줄었다 <span class="src">(국가데이터처, 「2025년 12월 및 연간 고용동향」 인용 보도)</span>.</p>
+  </section>
+
+  <section id="flow">
+    <h2>실업률은 흐름이 만든다</h2>
+    <p>실업자 83만명은 1년 내내 같은 83만명이 아니다. 매달 수십만 명이 일을 그만두거나 잃고 실업자가 되고, 그만큼의 사람이 일자리를 얻어 실업자 칸을 떠난다. 실업률은 고여 있는 물의 높이가 아니라 들어오고 나가는 물이 만든 수위다. 이 생각을 식 하나로 쓰면 이렇다.</p>
+    <div class="formula">$$u^{*}=\frac{s}{s+f}$$<div class="where">\(s\): 한 달 동안 취업자가 일자리를 잃는 비율(이직률), \(f\): 한 달 동안 실업자가 일자리를 찾는 비율(구직 성공률). 들어오는 흐름 \(s(1-u)\)와 나가는 흐름 \(f\,u\)가 같아지는 곳에서 실업률이 멈춘다.</div></div>
+    <p>이 식에서 두 가지를 읽는다. 첫째, 실업률이 낮은 이유는 둘 중 하나다. 일자리를 잘 잃지 않거나(s가 작다), 잃어도 금방 다시 찾는다(f가 크다). 같은 3% 실업률이라도 두 경제의 모습은 다르다. 둘째, 경기가 나빠질 때 기업이 해고를 늘리지 않더라도 <strong>채용을 줄이기만 하면</strong> f가 떨어져 실업률이 오른다. 청년처럼 새로 들어오는 사람이 가장 먼저 그 영향을 받는다.</p>
+
+    <div class="sim" id="sim-flow">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>들어오는 흐름과 나가는 흐름이 정하는 실업률</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="flow-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>월 이직률 s <output id="flow-s-out"></output></span><input type="range" id="flow-s" min="0.2" max="3" step="0.1" value="1"></label>
+          <label class="ctrl"><span>월 구직 성공률 f <output id="flow-f-out"></output></span><input type="range" id="flow-f" min="3" max="60" step="1" value="35"></label>
+          <div class="btn-row"><button class="btn" id="flow-hire">채용 한파(f 절반)</button><button class="btn primary" id="flow-re">처음으로</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">균형 실업률 s/(s+f)</span><span class="v" id="flow-o-u">—</span></div>
+        <div class="stat"><span class="k">평균 실업 기간 1/f</span><span class="v" id="flow-o-d">—</span></div>
+        <div class="stat"><span class="k">균형까지 반쯤 가는 데</span><span class="v" id="flow-o-h">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 처음 값(s 1%, f 35%)에서 균형 실업률은 약 2.8%다. 점들이 끊임없이 오가지만 실업자 칸의 크기는 거의 일정하다. ② '채용 한파'를 누른다. 아무도 더 해고되지 않았는데 실업률이 몇 달에 걸쳐 5%대로 오른다. ③ f를 5%까지 내린다. 평균 실업 기간이 20개월이 되고 실업률은 15%를 넘는다. 일자리를 찾는 흐름이 막히면 실업자가 쌓인다. (교육용 2칸 모형. 비경제활동인구와의 오감은 뺐다. 오른쪽 그래프는 2.8%에서 출발해 새 균형으로 가는 길이다.)</div>
+    </div>
+
+    <p>실제 노동시장에는 칸이 하나 더 있다. 비경제활동인구다. 실업자가 구직을 그만두면 실업자 칸을 떠나지만 일자리를 얻은 것은 아니다. 앞에서 본 실업률의 역설은 이 세 번째 문이 열려 있기 때문에 생긴다. 경제학은 빈 일자리(구인)와 실업자의 관계를 그린 <span class="term">베버리지 곡선</span><span class="en">(Beveridge curve)</span>으로 이 흐름의 효율을 따지기도 한다. 빈 일자리가 많은데도 실업자가 줄지 않는다면 사람과 일자리가 서로 맞지 않는다는 뜻이다(일자리 미스매치). 청년 고용의 어려움을 설명할 때 정부가 "주력산업 일자리 감소와 AI 확산에 따른 미스매치, 경력자 채용 관행"을 든 것도 이 흐름의 이야기다 <span class="src">(재정경제부, 2025년 연간 고용동향 브리핑 인용 보도)</span>.</p>
+  </section>
+
+  <section id="korea">
+    <h2>한국의 실업률은 왜 낮아 보이나</h2>
+    <p>한국의 실업률은 2025년 연간 2.8%, 2026년 8월 원계열 2.0%였다. 다른 선진국과 비교하면 낮은 편으로 꼽힌다. 그렇다고 일자리 사정이 그만큼 좋다고 단정하기는 어렵다. 이유는 정의가 달라서가 아니다. 한국도 ILO 기준(1시간 이상 일하면 취업자, 4주 구직활동을 하면 실업자)을 따른다. 차이는 <strong>사람들이 어느 칸에 서는가</strong>에서 나온다.</p>
+    <ul>
+      <li><strong>자영업자가 많다.</strong> 일자리를 잃은 사람이 실업자로 남지 않고 가게를 열면 취업자가 된다. 한국의 자영업자(무급가족종사자 포함) 비중은 2018년 25.1%로 OECD 평균 15.3%보다 약 10%p 높았고 <span class="src">(기획재정부 자료 인용 보도, 2019)</span>, 2023년에도 OECD 회원국 가운데 일곱 번째로 높았다 <span class="src">(OECD 통계 인용 보도, 2025)</span>.</li>
+      <li><strong>비경제활동인구로 빠지는 길이 넓다.</strong> 취업 준비생, 고시 준비생, '쉬었음'처럼 일자리를 원하지만 지난 4주 동안 구직활동을 하지 않은 사람은 실업자가 아니다. 확장실업률과 실업률의 차이가 큰 이유다.</li>
+      <li><strong>흐름이 빠를 수 있다.</strong> 앞 절의 식처럼 일자리를 잃은 사람이 금방 다른 일(임시직, 자영업)을 시작하면 f가 커지고 실업률은 낮게 유지된다. 일자리의 질은 그 숫자에 담기지 않는다. 나라별 흐름의 크기를 비교한 숫자는 이 책이 확인하지 못했다.</li>
+    </ul>
+    <p>그래서 나라끼리 비교할 때는 실업률보다 <strong>고용률</strong>을 많이 쓴다. 분모가 인구 전체라서 사람이 어느 칸에 서는지에 덜 흔들리기 때문이다. OECD 비교 기준인 15~64세 고용률은 2026년 8월 70.4%로 8월 기준 처음 70%를 넘었다 <span class="src">(국가데이터처, 「2026년 8월 고용동향」)</span>. 다만 이 숫자도 일자리의 질(근로시간, 임금, 고용 형태)은 말해 주지 않는다.</p>
+
+    <div class="callout stat"><strong>'고용률'이 두 개인 이유</strong>국가데이터처 보도자료에는 고용률이 두 줄 있다. 15세 이상 고용률(2025년 62.9%)과 15~64세 고용률(2025년 69.8%)이다. 앞의 것은 국내 시계열로 1963년부터 이어지는 숫자이고, 뒤의 것은 OECD가 나라끼리 비교할 때 쓰는 기준이다. 고령층 인구가 빠르게 늘면 일하는 비율이 낮은 65세 이상이 분모에 많이 들어와 15세 이상 고용률은 눌린다. 기사에 "역대 최고 고용률"이 나오면 어느 쪽 고용률인지, 연간인지 그달 기준인지 먼저 확인한다.</div>
+
+    <div class="callout warn"><strong>숫자는 기준 시점의 값이며 수정된다</strong>이 장의 고용 숫자는 2026년 10월 9일에 확인한 발표값이다. 경제활동인구조사는 인구 추계가 바뀔 때 과거 숫자를 다시 계산하고, 계절조정 계열은 새 자료가 더해질 때마다 고쳐진다. 2026년 9월 고용동향은 10월 중순에 나온다. 시뮬레이터의 계수(오쿤 계수, 이직률, 구직 성공률, 확장실업률의 구성)는 교육용 가정이며 전망이 아니다.</div>
+  </section>
+
+  <section id="recalc">
+    <h2>고용 동향 다시 계산하기</h2>
+    <p>이제 한 달의 고용 통계를 직접 다시 만든다. 출발점은 2026년 8월 발표값이다. 아래 손잡이로 그달 사람들의 이동을 바꾸면 취업자 증감, 실업률, 고용률(15세 이상과 15~64세), 확장실업률이 한꺼번에 다시 계산되고, 각각의 숫자로 뽑을 수 있는 헤드라인이 아래 칸에 나온다. 같은 달에서 어떤 제목이 나올 수 있는지 본다.</p>
+
+    <div class="sim" id="sim-recalc">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>고용 동향 다시 계산하기: 한 달, 여러 개의 헤드라인</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="rc-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>실업자 → 취업 <output id="rc-a-out"></output></span><input type="range" id="rc-a" min="-30" max="30" step="1" value="0"></label>
+          <label class="ctrl"><span>실업자 → 구직 포기 <output id="rc-b-out"></output></span><input type="range" id="rc-b" min="-30" max="40" step="1" value="0"></label>
+          <label class="ctrl"><span>쉬던 고령층 → 단기 일자리 <output id="rc-c-out"></output></span><input type="range" id="rc-c" min="-30" max="40" step="1" value="0"></label>
+          <label class="ctrl"><span>단시간 근로자(더 일하고 싶은) <output id="rc-d-out"></output></span><input type="range" id="rc-d" min="-40" max="60" step="1" value="0"></label>
+          <div class="btn-row"><button class="btn" id="rc-p1">구직 포기형</button><button class="btn" id="rc-p2">고령층 일자리형</button><button class="btn" id="rc-p3">채용 한파형</button><button class="btn primary" id="rc-p0">발표 그대로</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">취업자 증감(전년 동월)</span><span class="v" id="rc-o-e">—</span></div>
+        <div class="stat"><span class="k">실업률</span><span class="v" id="rc-o-u">—</span></div>
+        <div class="stat"><span class="k">고용률 15세+ · 15~64세</span><span class="v" id="rc-o-r">—</span></div>
+        <div class="stat"><span class="k">확장실업률</span><span class="v" id="rc-o-x">—</span></div>
+      </div>
+      <div class="hl-cards" id="rc-hl"></div>
+      <div class="sim-note">해볼 것: ① '구직 포기형'. 실업자 20만명이 구직을 그만둔다. 실업률은 1%대로 떨어져 "역대 최저 실업률" 제목이 가능하지만 확장실업률과 고용률은 꿈쩍하지 않는다. 구직을 그만둔 사람이 실업자 칸에서 잠재경제활동인구 칸으로 옮겨 갔을 뿐이기 때문이다. ② '고령층 일자리형'. 쉬던 고령층 25만명이 단기 일자리를 얻는다. 취업자 증가폭은 40만명대로 커지고 15세 이상 고용률도 오르지만 15~64세 고용률은 거의 그대로다. ③ '채용 한파형'. 실업자 대신 취업자가 줄고 구직 포기와 단시간 근로가 함께 늘면 모든 지표가 같은 방향을 가리킨다. 지표들이 서로 엇갈리는 달일수록 제목은 갈라진다. (출발값은 2026년 8월 발표의 취업자 2,915.1만명, 실업률 2.0%, 15세 이상 고용률 63.3%, 15~64세 70.4%, 확장실업률 7.6%와 그 전년 동월 값에서 거꾸로 계산한 근사다. 15~64세 인구 약 3,600만명, 고령층 일자리의 20%만 15~64세에 속한다는 것, 구직 포기자가 모두 잠재경제활동인구(일하고 싶은 비경제활동인구)로 잡힌다는 것은 교육용 가정이다.)</div>
+    </div>
+
+    <p>같은 사람들의 같은 한 달에서 나올 수 있는 제목은 여럿이다. 어떤 제목이 선택되는지는 그달 가장 크게 움직인 숫자, 기사를 쓰는 쪽의 관심, 앞선 기사들의 흐름에 따라 달라진다. 독자가 할 일은 제목 하나를 믿거나 의심하는 것이 아니라, 같은 표의 다른 줄들이 같은 방향을 가리키는지 확인하는 것이다. 취업자 증감, 실업률, 고용률, 확장실업률이 모두 같은 쪽을 가리키면 그 제목은 믿을 만하다. 서로 엇갈리면 사람들이 어느 칸에서 어느 칸으로 움직였는지를 찾아야 한다.</p>
+  </section>
+
+  <div class="casefile">
+    <div class="tag"><b>CASE 지우</b><span>헤드라인 노트 · 2026년 1월</span></div>
+    <div class="headline">2025년 취업자 19.3만명 늘고 실업률 2.8%… 고용률은 62.9%로 역대 최고<small>근거: 국가데이터처 「2025년 12월 및 연간 고용동향」(2026-01-14)</small></div>
+    <h4>"취업자는 늘었다는데, 회사 신입 공고는 왜 그대로일까"</h4>
+    <p>1월 중순, 지우는 고용동향 기사를 노트에 붙였다. 취업자 증가, 고용률 역대 최고. 좋은 소식처럼 보였다. 그런데 지우가 일하는 D식품 원료구매팀은 1년째 신입을 뽑지 않았고, 대학 후배들의 단톡방에는 "아직 준비 중"이라는 말이 늘었다. 삼촌 백정호의 질문은 늘 같았다. "언제 기준이고, 무엇과 비교했고, 누가 쟀니?" 지우는 답을 적었다. 2025년 1년 평균, 2024년 평균과 비교, 국가데이터처가 매달 약 3만 6천 가구를 조사한 결과.</p>
+    <p id="jobs-case-calc">—</p>
+    <p>삼촌은 하나를 더 물었다. "실업률은 왜 그대로였을까?" 지우는 '쉬었음' 줄을 찾았다. 255.5만명, 통계 작성 이후 최대였다. 일자리를 찾다 멈춘 사람은 실업자 칸이 아니라 비경제활동인구 칸에 있었다. 지우의 결론은 이렇다. 헤드라인의 숫자는 틀리지 않았지만, 늘어난 일자리의 대부분은 60세 이상에게 갔고 청년의 문은 좁아졌다. 자기 일자리는 아직 단단하지만, 3년 안에 집을 살지 판단할 때 "소득이 계속 들어온다"는 가정은 경기와 업종의 고용 숫자를 함께 보며 점검하기로 했다.</p>
+    <div class="clue">
+      <div><b>헤드라인이 말한 것</b>취업자 +19.3만명, 실업률 2.8%(전년과 같음), 고용률 62.9%(역대 최고).</div>
+      <div><b>숫자를 다시 보니</b><span id="jobs-case-clue">—</span></div>
+      <div><b>내 생활에는</b>지우의 일자리는 30대에 속해 영향이 작다. 다만 회사 업종(제조업) 취업자는 줄었다. 집 마련 계획의 소득 가정을 해마다 점검한다.</div>
+    </div>
+  </div>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>15세 이상 인구는 취업자·실업자·비경제활동인구로 나뉜다. 실업률의 분모는 경제활동인구, 고용률의 분모는 15세 이상 인구 전체다.</li>
+      <li>구직을 포기한 사람이 늘면 실업률은 내려가고 고용률은 그대로다. 실업률은 고용률, 비경제활동인구('쉬었음'), 확장실업률과 함께 읽는다.</li>
+      <li>취업자 증감은 1년 전 같은 달과 비교한 숫자다. 계절은 지워지지만 1년 전 숫자가 유난했다면 기저효과가 증가폭을 키우거나 줄인다.</li>
+      <li>취업자 수는 인구 × 고용률이다. 고령화로 60세 이상 취업자는 늘고 청년 취업자는 줄기 쉬우므로 연령별 사정은 고용률로 비교한다.</li>
+      <li>실업률은 일자리를 잃는 흐름과 찾는 흐름이 만든 수위(s/(s+f))이고, 경기와는 오쿤의 법칙으로 이어진다. 한국은 자영업과 비경제활동인구로 빠지는 길이 넓어 실업률이 경기에 덜 민감하게 보인다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q"><p>1. 경기가 나빠져 실업자 10만명이 구직을 포기하고 '쉬었음'으로 옮겼다. 다른 변화가 없다면 어떤 일이 생기는가?</p>
+        <div class="opts"><button class="opt">실업률과 고용률이 모두 내린다</button><button class="opt" data-correct>실업률은 내리고 고용률은 그대로다</button><button class="opt">실업률은 오르고 고용률은 내린다</button><button class="opt">아무 지표도 바뀌지 않는다</button></div>
+        <div class="quiz-exp">실업자가 줄고 경제활동인구(실업률의 분모)도 같은 수만큼 줄어 실업률은 내린다. 취업자와 15세 이상 인구는 그대로이므로 고용률은 변하지 않는다. 이들이 일하기를 원해 잠재경제활동인구로 잡히면 확장실업률(지표 3)은 거의 그대로다. 실업률만 좋아 보인다.</div></div>
+      <div class="quiz-q"><p>2. "9월 취업자 증가폭이 크게 줄었다"는 기사를 읽었다. 가장 먼저 확인할 것은?</p>
+        <div class="opts"><button class="opt">8월보다 취업자가 줄었는지</button><button class="opt">실업률이 4%를 넘었는지</button><button class="opt">정부의 일자리 예산이 줄었는지</button><button class="opt" data-correct>1년 전 9월의 취업자 증가폭이 유난히 컸는지</button></div>
+        <div class="quiz-exp">취업자 증감은 전년 동월 대비 숫자다. 1년 전 같은 달의 증가가 컸다면 올해 숫자가 평범해도 증가폭은 작게 나온다(기저효과). 지난달과의 비교는 계절 때문에 그대로 쓰기 어렵다.</div></div>
+      <div class="quiz-q"><p>3. 확장실업률(고용보조지표 3)이 실업률보다 높은 이유로 옳은 것은?</p>
+        <div class="opts"><button class="opt" data-correct>더 일하고 싶은 단시간 근로자와 일하고 싶지만 구직활동을 하지 않은 사람까지 세기 때문이다</button><button class="opt">조사 대상 가구가 더 많기 때문이다</button><button class="opt">계절조정을 하지 않기 때문이다</button><button class="opt">외국인 노동자를 포함하기 때문이다</button></div>
+        <div class="quiz-exp">지표 3은 실업자에 시간관련 추가취업가능자와 잠재경제활동인구를 더한다. 같은 조사에서 정의만 넓힌 지표다. 2026년 8월 실업률은 2.0%, 확장실업률은 7.6%였다.</div></div>
+      <div class="quiz-q"><p>4. 월 이직률 s가 1%, 월 구직 성공률 f가 24%인 경제가 있다. 흐름 모형으로 본 균형 실업률에 가장 가까운 것은?</p>
+        <div class="opts"><button class="opt">1%</button><button class="opt">2%</button><button class="opt" data-correct>4%</button><button class="opt">24%</button></div>
+        <div class="quiz-exp">u* = s/(s+f) = 1/(1+24) = 4%. 해고가 늘지 않아도 구직 성공률(채용)이 떨어지면 실업률은 오른다.</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var K = EC.KR;
+  var man = function (x, d) { d = d == null ? 1 : d; return (Math.round(x * Math.pow(10, d)) / Math.pow(10, d)).toLocaleString("ko-KR", { maximumFractionDigits: d }) + "만명"; };
+  var smanp = function (x, d) { return (x > 0.05 ? "+" : x < -0.05 ? "−" : "") + man(Math.abs(x), d); };
+  var p1 = function (x) { return (x * 100).toFixed(1) + "%"; };
+  var pp = function (x) { return (x > 0.0005 ? "+" : x < -0.0005 ? "−" : "") + Math.abs(x * 100).toFixed(1) + "%p"; };
+
+  /* 2025년 연간(만명): 국가데이터처 「2025년 12월 및 연간 고용동향」 인용 보도 */
+  var POP = 4576.2, LF = 2959.9, EMP = 2876.9, UNE = LF - EMP, NILF = POP - LF;
+
+  /* ---------------- sim-pop ---------------- */
+  (function () {
+    var TAIL = 150, HEAD = 200;               // 띠에 보이는 취업자 끝부분, 비경활 앞부분(만명)
+    var N = TAIL + UNE + HEAD;
+    var d1 = TAIL, d2 = TAIL + UNE, lay = null, grab = 0;
+    function vals() { var e = EMP + (d1 - TAIL), u = d2 - d1, n = NILF + (TAIL + UNE - d2); return { e: e, u: u, n: n, lf: e + u }; }
+    var cv = EB.canvas("#pop-cv", function (ctx, w, h) {
+      var P = EB.palette(), v = vals();
+      // 위: 전체 인구 띠
+      var x0 = 14, bw = w - 28, y0 = 30, bh = 26;
+      ctx.font = EB.font(12); ctx.fillStyle = P.dim; ctx.textAlign = "left";
+      ctx.fillText("15세 이상 인구 전체(" + Math.round(POP).toLocaleString("ko-KR") + "만명)", x0, 20);
+      var segs = [[v.e, P.ok, "취업자"], [v.u, P.bad, "실업자"], [v.n, P.warn, "비경제활동인구"]], x = x0;
+      segs.forEach(function (s) { var sw = bw * s[0] / POP; ctx.fillStyle = s[1]; ctx.globalAlpha = 0.8; ctx.fillRect(x, y0, sw, bh); ctx.globalAlpha = 1; x += sw; });
+      // 확대 창 표시
+      var zx0 = x0 + bw * (v.e - d1) / POP, zx1 = x0 + bw * (v.e - d1 + N) / POP;
+      ctx.strokeStyle = P.text; ctx.lineWidth = 1.5; ctx.strokeRect(zx0, y0 - 3, zx1 - zx0, bh + 6);
+      // 아래: 확대 띠
+      var Y = 112, H = Math.max(60, h - Y - 56), X0 = 14, W = w - 28, unit = W / N;
+      ctx.strokeStyle = P.faint; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(zx0, y0 + bh + 3); ctx.lineTo(X0, Y - 18); ctx.moveTo(zx1, y0 + bh + 3); ctx.lineTo(X0 + W, Y - 18); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = P.dim; ctx.textAlign = "center"; ctx.font = EB.font(11.5);
+      ctx.fillText("확대: 한 칸 = 1만명", w / 2, Y - 6);
+      [[0, d1, P.ok], [d1, d2, P.bad], [d2, N, P.warn]].forEach(function (s) {
+        ctx.fillStyle = s[2]; ctx.globalAlpha = 0.22; ctx.fillRect(X0 + s[0] * unit, Y, (s[1] - s[0]) * unit, H); ctx.globalAlpha = 1;
+        // 사람 점
+        var cols = Math.max(1, Math.round(s[1] - s[0])), r = Math.max(1, Math.min(3, unit * 0.32));
+        ctx.fillStyle = s[2];
+        for (var k = 0; k < cols; k++) { var cx = X0 + (s[0] + k + 0.5) * unit; for (var j = 0; j < 4; j++) { ctx.beginPath(); ctx.arc(cx, Y + H * (j + 0.6) / 4.4, r, 0, 6.29); ctx.fill(); } }
+      });
+      ctx.font = EB.font(12, false, 700); ctx.textAlign = "center";
+      var lab = function (a, b, t, c) { if ((b - a) * unit > 46) { ctx.fillStyle = c; ctx.fillText(t, X0 + (a + b) / 2 * unit, Y + H + 18); } };
+      lab(0, d1, "취업자", P.ok); lab(d1, d2, "실업자 " + Math.round(v.u) + "만", P.bad); lab(d2, N, "비경제활동인구", P.warn);
+      // 손잡이
+      [d1, d2].forEach(function (d, i) {
+        var hx = X0 + d * unit;
+        ctx.strokeStyle = P.text; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(hx, Y - 2); ctx.lineTo(hx, Y + H + 2); ctx.stroke();
+        ctx.beginPath(); ctx.arc(hx, Y + H + 34, 9, 0, 6.29); ctx.fillStyle = grab === i + 1 ? P.accent : P.text; ctx.fill();
+        ctx.strokeStyle = P.bg; ctx.lineWidth = 2; ctx.stroke();
+      });
+      lay = { X0: X0, unit: unit, Y: Y, H: H };
+      EB.stat("pop-o-u", man(v.u));
+      EB.stat("pop-o-ur", p1(v.u / v.lf) + " <small>(" + pp(v.u / v.lf - UNE / LF) + ")</small>");
+      EB.stat("pop-o-er", p1(v.e / POP) + " <small>(" + pp(v.e / POP - EMP / POP) + ")</small>");
+      EB.stat("pop-o-pr", p1(v.lf / POP) + " <small>(" + pp(v.lf / POP - LF / POP) + ")</small>");
+    }, { aspect: 0.62, minHeight: 280, maxHeight: 380 });
+    function set(a, b) { d1 = EB.clamp(a, 0, N); d2 = EB.clamp(b, d1, N); cv.redraw(); }
+    EB.drag(cv.canvas, {
+      start: function (x) { if (!lay) return; var u = (x - lay.X0) / lay.unit; grab = Math.abs(u - d1) <= Math.abs(u - d2) ? 1 : 2; if (Math.abs(u - d1) === Math.abs(u - d2)) grab = u < d1 ? 1 : 2; },
+      move: function (x) { if (!lay || !grab) return; var u = Math.round((x - lay.X0) / lay.unit); if (grab === 1) set(Math.min(u, d2), d2); else set(d1, Math.max(u, d1)); },
+      end: function () { grab = 0; cv.redraw(); },
+    });
+    document.getElementById("pop-quit").addEventListener("click", function () { set(d1, Math.max(d1, d2 - 20)); });
+    document.getElementById("pop-lose").addEventListener("click", function () { set(Math.max(0, d1 - 20), d2); });
+    document.getElementById("pop-join").addEventListener("click", function () { set(d1, Math.min(N, d2 + 20)); });
+    document.getElementById("pop-re").addEventListener("click", function () { set(TAIL, TAIL + UNE); });
+  })();
+
+  /* ---------------- sim-base ---------------- */
+  (function () {
+    var S = [-62, -55, -18, 4, 14, 20, 16, 12, 18, 16, 8, -20];   // 계절 모양(교육용, 만명)
+    var BASE = 2860, sel = 8, box = null, drag = -1;
+    var BUMP0 = 13;                                               // 작년 9월의 유난한 증가(교육용)
+    var last = [];
+    function resetLast() { last = S.map(function (s, m) { return BASE + s + 1.5 * m + (m === 8 ? BUMP0 : 0); }); }
+    resetLast();
+    var gMode = EB.seg("base-mode", draw);
+    var gT = EB.range("base-t", function (v) { return (v >= 0 ? "+" : "") + v + "만명"; }, draw);
+    function thisYear() { var t = gT(); return S.map(function (s, m) { return BASE + s + 1.5 * m + t + 0.4 * m * 0; }); }
+    var cv = EB.canvas("#base-cv", function (ctx, w, h) {
+      var P = EB.palette(), cur = thisYear(), mode = gMode();
+      var lo = Math.min.apply(null, last.concat(cur)) - 10, hi = Math.max.apply(null, last.concat(cur)) + 10;
+      var topH = Math.round(h * 0.55);
+      var c = EB.chart(ctx, { x: 52, y: 12, w: w - 66, h: topH - 34 }, {
+        x: [0.5, 12.5], y: [lo, hi], xTicks: [1, 3, 5, 7, 9, 11], xFmt: function (v) { return v + "월"; }, yFmt: function (v) { return Math.round(v).toLocaleString("ko-KR"); },
+        series: [
+          { data: last.map(function (v, m) { return [m + 1, v]; }), color: P.dim, width: 1.8, dash: [5, 4] },
+          { data: cur.map(function (v, m) { return [m + 1, v]; }), color: P.accent, width: 2.4 },
+        ],
+      });
+      last.forEach(function (v, m) { ctx.beginPath(); ctx.arc(c.X(m + 1), c.Y(v), m === sel ? 6.5 : 4.5, 0, 6.29); ctx.fillStyle = m === sel ? P.accent2 : P.dim; ctx.fill(); ctx.strokeStyle = P.bg; ctx.lineWidth = 1.5; ctx.stroke(); });
+      ctx.font = EB.font(11); ctx.textAlign = "left";
+      ctx.fillStyle = P.dim; ctx.fillText("작년(점선, 끌 수 있음)", c.box.x + 6, c.box.y + 10);
+      ctx.fillStyle = P.accent; ctx.fillText("올해", c.box.x + 6, c.box.y + 25);
+      // 아래 막대
+      var diff = mode === "yoy" ? cur.map(function (v, m) { return v - last[m]; }) : cur.map(function (v, m) { return m ? v - cur[m - 1] : v - last[11]; });
+      var lim = Math.max(30, Math.max.apply(null, diff.map(Math.abs)) * 1.15);
+      var bx = { x: 52, y: topH + 6, w: w - 66, h: h - topH - 30 };
+      var b = EB.chart(ctx, bx, { x: [0.5, 12.5], y: [-lim, lim], xTicks: [], yTicks: [-Math.round(lim * 0.6), 0, Math.round(lim * 0.6)], yFmt: function (v) { return (v > 0 ? "+" : "") + Math.round(v); }, hlines: [{ y: 0, color: P.axis, dash: [] }] });
+      var bw = bx.w / 12 * 0.6;
+      diff.forEach(function (d, m) {
+        ctx.fillStyle = d >= 0 ? P.ok : P.bad; ctx.globalAlpha = m === sel ? 1 : 0.55;
+        var y0 = b.Y(0), y1 = b.Y(d); ctx.fillRect(b.X(m + 1) - bw / 2, Math.min(y0, y1), bw, Math.max(1, Math.abs(y1 - y0))); ctx.globalAlpha = 1;
+      });
+      ctx.fillStyle = P.dim; ctx.font = EB.font(11); ctx.textAlign = "left";
+      ctx.fillText(mode === "yoy" ? "전년 동월 대비 증감(만명)" : "전월 대비 증감(만명, 원계열)", bx.x + 6, bx.y + 10);
+      box = c;
+      var yoy = cur[sel] - last[sel], mom = sel ? cur[sel] - cur[sel - 1] : cur[0] - last[11];
+      EB.stat("base-o-m", (sel + 1) + "월");
+      EB.stat("base-o-l", Math.round(cur[sel]).toLocaleString("ko-KR") + "만명");
+      EB.stat("base-o-y", smanp(yoy, 0));
+      EB.stat("base-o-d", smanp(mom, 0));
+    }, { aspect: 0.72, minHeight: 320, maxHeight: 440 });
+    EB.drag(cv.canvas, {
+      start: function (x, y) { if (!box) return; var m = EB.clamp(Math.round(EB.map(x, box.box.x, box.box.x + box.box.w, 0.5, 12.5)) - 1, 0, 11); sel = m; drag = y < box.box.y + box.box.h + 8 ? m : -1; },
+      move: function (x, y) { if (!box) return; if (drag < 0) { sel = EB.clamp(Math.round(EB.map(x, box.box.x, box.box.x + box.box.w, 0.5, 12.5)) - 1, 0, 11); cv.redraw(); return; }
+        var v = EB.map(y, box.box.y + box.box.h, box.box.y, 0, 1);
+        // 역변환: 현재 축 범위를 다시 계산
+        var cur = thisYear(), all = last.concat(cur), mn = Math.min.apply(null, all) - 10, mx = Math.max.apply(null, all) + 10;
+        last[drag] = EB.clamp(mn + v * (mx - mn), BASE - 120, BASE + 120); cv.redraw(); },
+      end: function () { drag = -1; },
+    });
+    document.getElementById("base-re").addEventListener("click", function () { resetLast(); cv.redraw(); });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-wide ---------------- */
+  (function () {
+    var LF26 = K.employed / 1e4 / (1 - K.unemployment);   // 2026년 8월 경제활동인구(만명, 역산)
+    var E26 = K.employed / 1e4;
+    var gU = EB.range("wide-u", function (v) { return v + "만명"; }, draw);
+    var gT = EB.range("wide-t", function (v) { return v + "만명"; }, draw);
+    var gP = EB.range("wide-p", function (v) { return v + "만명"; }, draw);
+    function calc() {
+      var u = gU(), t = gT(), p = gP(), lf = LF26;
+      return [u / lf, (u + t) / lf, (u + p) / (lf + p), (u + t + p) / (lf + p)];
+    }
+    var cv = EB.canvas("#wide-cv", function (ctx, w, h) {
+      var P = EB.palette(), r = calc();
+      var names = ["실업률", "지표 1 (+추가취업가능자)", "지표 2 (+잠재경활)", "지표 3 (확장실업률)"];
+      var cols = [P.bad, P.warn, P.accent2, P.accent];
+      var top = 16, rowH = (h - top - 10) / 4, xL = 14, mx = Math.max(0.2, Math.ceil(Math.max.apply(null, r) * 20) / 20 + 0.02);
+      var W = w - 28 - 56; mx = Math.max(0.1, Math.ceil(Math.max.apply(null, r) * 20) / 20 + 0.02);
+      r.forEach(function (v, i) {
+        var y = top + i * rowH;
+        ctx.fillStyle = P.text; ctx.font = EB.font(12.5, false, 600); ctx.textAlign = "left"; ctx.fillText(names[i], xL, y + 13);
+        ctx.fillStyle = P.grid; ctx.fillRect(xL, y + 20, W, rowH - 34);
+        ctx.fillStyle = cols[i]; ctx.fillRect(xL, y + 20, W * v / mx, rowH - 34);
+        ctx.fillStyle = P.text; ctx.font = EB.font(13, true, 700); ctx.fillText(p1(v), xL + W * v / mx + 6, y + 20 + (rowH - 34) / 2 + 5);
+      });
+      ["0%", p1(mx)].forEach(function (s, i) { ctx.fillStyle = P.faint; ctx.font = EB.font(10.5, true); ctx.textAlign = i ? "right" : "left"; ctx.fillText(s, xL + W * i, h - 2); });
+      EB.stat("wide-o-0", p1(r[0])); EB.stat("wide-o-1", p1(r[1])); EB.stat("wide-o-2", p1(r[2])); EB.stat("wide-o-3", p1(r[3]));
+    }, { aspect: 0.56, minHeight: 240, maxHeight: 330 });
+    function draw() { cv.redraw(); }
+    gU.set(Math.round(LF26 - E26));
+  })();
+
+  /* ---------------- sim-okun ---------------- */
+  (function () {
+    var gap = -1.5, box = null;
+    var LF26 = K.employed / 1e4 / (1 - K.unemployment);
+    var gB = EB.range("okun-b", function (v) { return v.toFixed(2); }, draw);
+    var gN = EB.range("okun-n", function (v) { return v.toFixed(1) + "%"; }, draw);
+    var gC = EB.seg("okun-cmp", draw);
+    var cv = EB.canvas("#okun-cv", function (ctx, w, h) {
+      var P = EB.palette(), b = gB(), n = gN();
+      var line = function (bb) { return [[-6, n + 6 * bb], [4, n - 4 * bb]]; };
+      var series = [{ data: line(b), color: P.accent, width: 2.6 }];
+      if (gC() === "1") { series.push({ data: line(0.2), color: P.faint, width: 1.6, dash: [5, 4] }); series.push({ data: line(0.8), color: P.accent2, width: 1.6, dash: [5, 4] }); }
+      var c = EB.chart(ctx, { x: 46, y: 14, w: w - 60, h: h - 56 }, {
+        x: [-6, 4], y: [0, 10], xTicks: [-6, -4, -2, 0, 2, 4], yTicks: [0, 2, 4, 6, 8, 10],
+        xFmt: function (v) { return (v > 0 ? "+" : "") + v + "%"; }, yFmt: function (v) { return v + "%"; }, xLabel: "산출 갭(실제 GDP − 잠재 GDP)",
+        series: series, vlines: [{ x: 0, color: P.faint }], hlines: [{ y: n, color: P.faint, label: "u*" }, { y: 1, color: P.bad, label: "마찰적 실업의 바닥(교육용)" }],
+      });
+      box = c;
+      var u = n - b * gap, x = c.X(gap), y = c.Y(EB.clamp(u, 0, 10));
+      ctx.strokeStyle = P.faint; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(x, c.box.y + c.box.h); ctx.lineTo(x, y); ctx.lineTo(c.box.x, y); ctx.stroke(); ctx.setLineDash([]);
+      ctx.beginPath(); ctx.arc(x, y, 8, 0, 6.29); ctx.fillStyle = u < 1 ? P.bad : P.accent; ctx.fill(); ctx.strokeStyle = P.bg; ctx.lineWidth = 2; ctx.stroke();
+      if (gC() === "1") { ctx.font = EB.font(11); ctx.textAlign = "left"; ctx.fillStyle = P.accent2; ctx.fillText("β 0.8", c.X(-5.8), c.Y(n + 5.8 * 0.8) + 14); ctx.fillStyle = P.dim; ctx.fillText("β 0.2", c.X(-5.8), c.Y(n + 5.8 * 0.2) - 6); }
+      EB.stat("okun-o-g", (gap > 0 ? "+" : gap < 0 ? "−" : "") + Math.abs(gap).toFixed(1) + "%");
+      EB.stat("okun-o-u", (u < 1 ? "<span class='bad-t'>" : "") + Math.max(0, u).toFixed(1) + "%" + (u < 1 ? " (직선이 무너짐)</span>" : ""));
+      EB.stat("okun-o-n", smanp(LF26 * (u - n) / 100, 0));
+    }, { aspect: 0.62, minHeight: 270, maxHeight: 400 });
+    EB.drag(cv.canvas, { move: function (x) { if (!box) return; gap = Math.round(EB.clamp(EB.map(x, box.box.x, box.box.x + box.box.w, -6, 4), -6, 4) * 10) / 10; cv.redraw(); } });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-flow ---------------- */
+  (function () {
+    var NDOT = 160, rng = EB.rng(7), dots = [], path = [], u0 = 0.028, t0 = 0, acc = 0;
+    var gS = EB.range("flow-s", function (v) { return v.toFixed(1) + "%"; }, reset);
+    var gF = EB.range("flow-f", function (v) { return v + "%"; }, reset);
+    function ustar() { var s = gS() / 100, f = gF() / 100; return s / (s + f); }
+    function mkPath() { var s = gS() / 100, f = gF() / 100, u = u0; path = [u]; for (var m = 0; m < 60; m++) { u = u + s * (1 - u) - f * u; path.push(u); } }
+    for (var i = 0; i < NDOT; i++) dots.push({ emp: i >= Math.round(NDOT * u0), x: rng(), y: rng(), vx: 0, vy: 0, t: 0 });
+    mkPath();
+    var cv = EB.canvas("#flow-cv", function (ctx, w, h) {
+      var P = EB.palette(), wide = w > 520;
+      var pw = wide ? w * 0.5 : w - 20, ph = wide ? h - 20 : h * 0.5;
+      var A = { x: 10, y: 22, w: pw * 0.66, h: ph - 30 }, B = { x: 10 + pw * 0.7, y: 22, w: pw * 0.3 - 4, h: ph - 30 };
+      ctx.fillStyle = EB.color("ok-soft"); ctx.fillRect(A.x, A.y, A.w, A.h); ctx.fillStyle = EB.color("bad-soft"); ctx.fillRect(B.x, B.y, B.w, B.h);
+      ctx.fillStyle = P.dim; ctx.font = EB.font(12, false, 600); ctx.textAlign = "left"; ctx.fillText("취업자", A.x, 15); ctx.fillText("실업자", B.x, 15);
+      var nu = 0;
+      dots.forEach(function (d) {
+        var R = d.emp ? A : B; if (!d.emp) nu++;
+        var tx = R.x + 6 + d.x * (R.w - 12), ty = R.y + 6 + d.y * (R.h - 12);
+        if (d.px == null) { d.px = tx; d.py = ty; }
+        d.px += (tx - d.px) * 0.12; d.py += (ty - d.py) * 0.12;
+        ctx.beginPath(); ctx.arc(d.px, d.py, 3.2, 0, 6.29); ctx.fillStyle = d.flash > 0 ? P.accent2 : d.emp ? P.ok : P.bad; ctx.fill();
+      });
+      ctx.fillStyle = P.dim; ctx.font = EB.font(10.5); ctx.textAlign = "left"; ctx.fillText("점 1개 ≈ 0.6%", A.x, A.y + A.h + 13);
+      // 실업률 경로
+      var C = wide ? { x: pw + 54, y: 16, w: w - pw - 66, h: h - 56 } : { x: 46, y: ph + 18, w: w - 60, h: h - ph - 52 };
+      var hi = Math.max(0.06, Math.max.apply(null, path) * 1.15);
+      EB.chart(ctx, C, { x: [0, 60], y: [0, hi * 100], xTicks: [0, 12, 24, 36, 48, 60], xFmt: function (v) { return v + "개월"; }, yFmt: function (v) { return v.toFixed(1) + "%"; },
+        series: [{ data: path.map(function (u, m) { return [m, u * 100]; }), color: P.bad, width: 2.4 }], hlines: [{ y: ustar() * 100, color: P.faint, label: "균형 " + p1(ustar()) }, { y: u0 * 100, color: P.dim }] });
+    }, { aspect: 0.6, minHeight: 330, maxHeight: 420 });
+    function reset() {
+      mkPath();
+      var us = ustar(), hl = 0; for (var m = 0; m < path.length; m++) { if (Math.abs(path[m] - us) <= Math.abs(u0 - us) / 2) { hl = m; break; } }
+      EB.stat("flow-o-u", p1(us));
+      EB.stat("flow-o-d", (100 / gF()).toFixed(1) + "개월");
+      EB.stat("flow-o-h", Math.abs(u0 - us) < 0.0005 ? "이미 균형" : "약 " + Math.max(1, hl) + "개월");
+      cv.redraw();
+    }
+    EB.loop(document.getElementById("sim-flow"), function (dt) {
+      acc += dt;
+      if (acc > 0.5) {   // 0.5초 = 한 달
+        acc = 0;
+        var s = gS() / 100, f = gF() / 100, target = Math.round(NDOT * ustar());
+        dots.forEach(function (d) {
+          if (d.flash > 0) d.flash--;
+          var k = Math.min(3, 0.95 / f), pr = d.emp ? s * k : f * k;   // 두 흐름을 같은 배율로 빠르게 그린다(균형은 같다)
+          if (rng() < pr) { d.emp = !d.emp; d.x = rng(); d.y = rng(); d.flash = 2; }
+        });
+        // 화면의 실업자 수를 균형 쪽으로 천천히 맞춘다(그림의 흔들림을 줄이기 위함)
+        var nu = dots.filter(function (d) { return !d.emp; }).length;
+        if (nu > target + 2) { var k = dots.find(function (d) { return !d.emp; }); k.emp = true; k.flash = 2; }
+        else if (nu < target - 2) { var k2 = dots.find(function (d) { return d.emp; }); k2.emp = false; k2.flash = 2; }
+      }
+      cv.redraw();
+    });
+    document.getElementById("flow-hire").addEventListener("click", function () { gF.set(Math.max(3, Math.round(gF() / 2))); });
+    document.getElementById("flow-re").addEventListener("click", function () { gS.set(1); gF.set(35); });
+    reset();
+  })();
+
+  /* ---------------- sim-recalc (대표) ---------------- */
+  (function () {
+    // 2026년 8월 발표(만명)에서 역산. 확인: 취업자 2,915.1만, 실업률 2.0%, 고용률 63.3%·70.4%, 확장실업률 7.6%, 취업자 +18.4만
+    var E1 = K.employed / 1e4, U1 = E1 / (1 - K.unemployment) - E1, POP1 = E1 / K.employmentRate15;
+    var E0 = E1 - K.jobsChange / 1e4, U0 = E0 / (1 - 0.020) - E0, POP0 = E0 / 0.633;
+    var R1564_0 = K.employmentRate1564 - 0.005, POP1564 = 3600, E1564 = K.employmentRate1564 * POP1564;
+    var X0 = K.extUnemployment + 0.006;                  // 2025년 8월 확장실업률(7.6% + 0.6%p)
+    var TR = 70, PL = 0;                                  // 교육용: 추가취업가능자 70만명, 잠재경활은 7.6%에 맞춰 계산
+    PL = ((U1 + TR) - K.extUnemployment * (E1 + U1)) / (K.extUnemployment - 1);
+    PL = Math.abs(PL);
+    var OLD60 = 19.1;                                     // 2026년 8월 60세 이상 취업자 증감
+    var gA = EB.range("rc-a", function (v) { return (v > 0 ? "+" : "") + v + "만명"; }, draw);
+    var gB = EB.range("rc-b", function (v) { return (v > 0 ? "+" : "") + v + "만명"; }, draw);
+    var gC = EB.range("rc-c", function (v) { return (v > 0 ? "+" : "") + v + "만명"; }, draw);
+    var gD = EB.range("rc-d", function (v) { return (v > 0 ? "+" : "") + v + "만명"; }, draw);
+    function calc() {
+      var a = gA(), b = gB(), c = gC(), d = gD();
+      var E = E1 + a + c, U = Math.max(0.5, U1 - a - b), pl = Math.max(0, PL + b), tr = Math.max(0, TR + d);
+      var r1564 = (E1564 + 0.85 * a + 0.2 * c) / POP1564;
+      return { dE: E - E0, u: U / (E + U), r15: E / POP1, r1564: r1564, x: (U + tr + pl) / (E + U + pl), old: OLD60 + c, U: U };
+    }
+    var base = { dE: 0, u: U0 / (E0 + U0), r15: E0 / POP0, r1564: R1564_0, x: X0 };
+    var cv = EB.canvas("#rc-cv", function (ctx, w, h) {
+      var P = EB.palette(), r = calc();
+      var rows = [
+        ["실업률", (r.u - base.u) * 100, true, p1(r.u)],
+        ["고용률 15세+", (r.r15 - base.r15) * 100, false, p1(r.r15)],
+        ["고용률 15~64세", (r.r1564 - base.r1564) * 100, false, p1(r.r1564)],
+        ["확장실업률", (r.x - base.x) * 100, true, p1(r.x)],
+      ];
+      var top = 30, cx = w * 0.5, half = w * 0.5 - 70, rowH = (h - top - 70) / rows.length, lim = 2.0;
+      ctx.fillStyle = P.dim; ctx.font = EB.font(11.5); ctx.textAlign = "center";
+      ctx.fillText("1년 전(2025년 8월)과 비교한 변화(%p)", cx, 16);
+      ctx.strokeStyle = P.axis; ctx.beginPath(); ctx.moveTo(cx, top - 4); ctx.lineTo(cx, top + rowH * rows.length); ctx.stroke();
+      rows.forEach(function (row, i) {
+        var y = top + i * rowH, v = row[1], len = EB.clamp(v / lim, -1, 1) * half, good = row[2] ? v < 0 : v > 0;
+        ctx.fillStyle = P.text; ctx.font = EB.font(12, false, 600); ctx.textAlign = "left"; ctx.fillText(row[0] + "  " + row[3], 8, y + 13);
+        ctx.fillStyle = Math.abs(v) < 0.05 ? P.dim : good ? P.ok : P.bad; ctx.globalAlpha = 0.85;
+        ctx.fillRect(len >= 0 ? cx : cx + len, y + 19, Math.max(2, Math.abs(len)), Math.max(8, rowH - 30)); ctx.globalAlpha = 1;
+        ctx.fillStyle = P.text; ctx.font = EB.font(11.5, true); ctx.textAlign = len >= 0 ? "left" : "right";
+        ctx.fillText((v > 0.005 ? "+" : v < -0.005 ? "−" : "") + Math.abs(v).toFixed(1), cx + len + (len >= 0 ? 5 : -5), y + 19 + Math.max(8, rowH - 30) / 2 + 4);
+      });
+      // 취업자 증감 막대 두 개: 전체와 60세 이상 제외
+      var by = top + rowH * rows.length + 12, bh = 16, sc = (w - 150) / 70;
+      [["취업자 증감", r.dE], ["60세 이상 빼면", r.dE - r.old]].forEach(function (it, i) {
+        var y = by + i * 22, v = it[1], x0 = 120 + 35 * sc;
+        ctx.fillStyle = P.text; ctx.font = EB.font(11.5, false, 600); ctx.textAlign = "left"; ctx.fillText(it[0], 8, y + 12);
+        ctx.fillStyle = v >= 0 ? P.ok : P.bad; ctx.globalAlpha = 0.85; var L = EB.clamp(v, -35, 35) * sc; ctx.fillRect(L >= 0 ? x0 : x0 + L, y, Math.max(2, Math.abs(L)), bh); ctx.globalAlpha = 1;
+        ctx.strokeStyle = P.axis; ctx.beginPath(); ctx.moveTo(x0, y - 2); ctx.lineTo(x0, y + bh + 2); ctx.stroke();
+        ctx.fillStyle = P.text; ctx.font = EB.font(11.5, true); ctx.textAlign = L >= 0 ? "left" : "right"; ctx.fillText(smanp(v, 1), x0 + L + (L >= 0 ? 5 : -5), y + 12);
+      });
+      // 헤드라인
+      var H = [];
+      H.push({ t: "취업자 " + man(Math.abs(r.dE)) + " " + (r.dE >= 0 ? "증가" : "감소"), s: "전년 동월 대비. 60세 이상을 빼면 " + smanp(r.dE - r.old, 1), g: r.dE >= 0 });
+      H.push({ t: "실업률 " + p1(r.u) + (Math.abs(r.u - base.u) < 0.0005 ? ", 1년 전과 같아" : (r.u < base.u ? ", " + pp(base.u - r.u).replace("+", "") + " 하락" : ", " + pp(r.u - base.u).replace("+", "") + " 상승")), s: r.u < base.u && r.r15 <= base.r15 + 0.0005 ? "고용률은 그대로. 구직 포기가 만든 하락일 수 있다" : "분모는 경제활동인구", g: r.u <= base.u + 1e-6 });
+      H.push({ t: "15~64세 고용률 " + p1(r.r1564) + (r.r1564 >= 0.7 ? ", 70% 넘어" : ""), s: "15세 이상 고용률 " + p1(r.r15) + " (" + pp(r.r15 - base.r15) + ")", g: r.r1564 >= base.r1564 - 1e-6 });
+      H.push({ t: "확장실업률 " + p1(r.x) + (r.x > base.x ? ", 1년 전보다 높아" : ""), s: "실업률과의 차이 " + ((r.x - r.u) * 100).toFixed(1) + "%p", g: r.x <= base.x + 1e-6 });
+      document.getElementById("rc-hl").innerHTML = H.map(function (x) { return '<div class="' + (x.g ? "good" : "bad") + '">' + x.t + "<small>" + x.s + "</small></div>"; }).join("");
+      EB.stat("rc-o-e", smanp(r.dE, 1));
+      EB.stat("rc-o-u", p1(r.u));
+      EB.stat("rc-o-r", p1(r.r15) + " · " + p1(r.r1564));
+      EB.stat("rc-o-x", p1(r.x));
+    }, { aspect: 0.62, minHeight: 330, maxHeight: 420 });
+    function preset(a, b, c, d) { gA.set(a); gB.set(b); gC.set(c); gD.set(d); }
+    document.getElementById("rc-p0").addEventListener("click", function () { preset(0, 0, 0, 0); });
+    document.getElementById("rc-p1").addEventListener("click", function () { preset(0, 20, 0, 0); });
+    document.getElementById("rc-p2").addEventListener("click", function () { preset(0, 0, 25, 0); });
+    document.getElementById("rc-p3").addEventListener("click", function () { preset(-20, 15, -10, 40); });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- 케이스 ---------------- */
+  (function () {
+    var total = K.jobsChange2025 / 1e4, old = 34.5, youth = -17.8;
+    document.getElementById("jobs-case-calc").innerHTML = "지우는 표에서 연령별 줄을 찾아 계산했다. 취업자 증가 " + man(total) + " 가운데 60세 이상이 " + man(old) + "이었다. 60세 이상을 빼면 나머지 연령의 취업자는 <b>" + smanp(total - old) + "</b>, 줄어든 셈이다. 청년층(15~29세)은 " + smanp(youth) + "으로 3년 연속 감소했다. 고용률 62.9%가 역대 최고인 것도 사실이지만, 고령층 인구가 늘고 그들의 고용률이 오른 몫이 컸다.";
+    document.getElementById("jobs-case-clue").textContent = "60세 이상을 빼면 취업자 " + smanp(total - old) + ". 청년층 " + smanp(youth) + ". '쉬었음' 255.5만명은 실업률에 잡히지 않는다.";
+  })();
+})();
+</script>
+</body>
+</html>

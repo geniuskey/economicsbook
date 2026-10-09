@@ -1,0 +1,646 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and EconomicsBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "기준금리 0.25%p는 어디로 가는가. 시장금리와 대출금리, 주가와 집값, 환율, 소비와 투자, 물가로 번지는 다섯 경로와 시차를 보고, 기준금리를 올리면 대출·주식·집값·환율이 어떻게 움직이는지 연결판 시뮬레이터로 한꺼번에 움직여 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>기준금리가 퍼지는 길 · EconomicsBook</title>
+<meta name="description" content="기준금리 0.25%p는 어디로 가는가. 시장금리와 대출금리, 주가와 집값, 환율, 소비와 투자, 물가로 번지는 다섯 경로와 시차를 보고, 기준금리를 올리면 대출·주식·집값·환율이 어떻게 움직이는지 연결판 시뮬레이터로 한꺼번에 움직여 본다.">
+<link rel="canonical" href="https://economicsbook.euiyun.com/chapters/transmission.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#4338ca">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="EconomicsBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="기준금리가 퍼지는 길 · EconomicsBook">
+<meta property="og:description" content="기준금리 0.25%p는 어디로 가는가. 시장금리와 대출금리, 주가와 집값, 환율, 소비와 투자, 물가로 번지는 다섯 경로와 시차를 보고, 기준금리를 올리면 대출·주식·집값·환율이 어떻게 움직이는지 연결판 시뮬레이터로 한꺼번에 움직여 본다.">
+<meta property="og:url" content="https://economicsbook.euiyun.com/chapters/transmission.html">
+<meta property="og:image" content="https://economicsbook.euiyun.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://economicsbook.euiyun.com/chapters/transmission.html#chapter","name":"기준금리가 퍼지는 길","headline":"기준금리가 퍼지는 길 · EconomicsBook","description":"기준금리 0.25%p는 어디로 가는가. 시장금리와 대출금리, 주가와 집값, 환율, 소비와 투자, 물가로 번지는 다섯 경로와 시차를 보고, 기준금리를 올리면 대출·주식·집값·환율이 어떻게 움직이는지 연결판 시뮬레이터로 한꺼번에 움직여 본다.","url":"https://economicsbook.euiyun.com/chapters/transmission.html","position":9,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://economicsbook.euiyun.com/og.png","dateModified":"2026-10-09","isPartOf":{"@type":"Book","@id":"https://economicsbook.euiyun.com/#book","name":"EconomicsBook · 경제 뉴스 읽는 교과서","url":"https://economicsbook.euiyun.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"EconomicsBook","item":"https://economicsbook.euiyun.com/"},{"@type":"ListItem","position":2,"name":"9. 기준금리가 퍼지는 길","item":"https://economicsbook.euiyun.com/chapters/transmission.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/econ.js"></script>
+<!--head:end-->
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"3d6151a0abc94ede89285d462527fa80"}'></script>
+<!-- End Cloudflare Web Analytics -->
+<style>
+  .board-grid { display: grid; gap: 1px; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--border); border-top: 1px solid var(--border); }
+  @media (max-width: 560px) { .board-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .board-grid > div { background: var(--bg-elev); padding: 10px 12px 8px; min-width: 0; }
+  .board-grid .k { display: block; font-size: 12.5px; color: var(--text-dim); }
+  .board-grid .v { display: block; font-family: var(--mono); font-size: 18px; font-weight: 600; margin: 2px 0 4px; }
+  .board-grid canvas { display: block; width: 100%; height: 44px; }
+  .board-grid .why { display: block; font-size: 12px; color: var(--text-faint); line-height: 1.4; }
+</style>
+</head>
+<body data-chapter="transmission">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 09</div>
+    <h1>기준금리가 퍼지는 길</h1>
+    <p class="lead">금융통화위원회가 기준금리를 0.25%p 올렸다는 한 줄은 그날 오후 채권 가격을, 다음 달 은행 대출금리를, 반년 뒤 내 전세대출 이자를, 1년 뒤 소비와 집값을, 2년 뒤 물가를 건드린다. 이 장은 그 길을 하나씩 따라간 뒤 연결판 위에서 한꺼번에 움직여 본다.</p>
+    <ul class="objectives">
+      <li>기준금리가 시장금리·대출금리·자산 가격·환율·소비·물가로 번지는 다섯 경로를 그릴 수 있다.</li>
+      <li>예상된 인상과 예상 밖 인상에 시장이 다르게 반응하는 이유를 설명할 수 있다.</li>
+      <li>변동금리 대출의 이자가 언제, 얼마나 바뀌는지 내 대출로 계산할 수 있다.</li>
+      <li>금리를 올렸는데 환율이 오르거나 집값이 오르는 기사를 다른 힘과 함께 읽을 수 있다.</li>
+    </ul>
+  </header>
+
+  <div class="headline" id="hl-top">한국은행, 기준금리 0.25%p 인상… 연 3.00%<small>지우의 헤드라인 노트 · 2026년 8월 · 근거: 한국은행 「통화정책방향」(2026-08-27)</small></div>
+
+  <section id="map">
+    <h2>0.25%p는 어디로 가는가</h2>
+    <p>기준금리는 한국은행이 은행들과 7일짜리 돈을 주고받을 때 쓰는 금리다(<a href="bok.html">8장</a>). 지우가 은행에서 빌린 전세대출의 금리도, 지우가 적립하는 ETF의 값도, 회사가 달러로 사는 밀가루의 원화 값도 이 금리로 정해지지 않는다. 그런데 이 금리를 바꾸면 그 모두가 움직인다. 기준금리는 경제 전체의 돈값을 직접 정하는 숫자가 아니라, <strong>다른 금리와 가격이 기대어 서는 기준점</strong>이기 때문이다.</p>
+    <p>경제학은 이 길을 <span class="term">통화정책 파급 경로</span><span class="en">(Monetary policy transmission mechanism)</span>라고 부른다. 한국은행은 경로를 다섯 갈래로 정리한다. 금리 경로, 자산 가격 경로, 환율 경로, 신용 경로, 기대 경로다. 그림 1은 그 길을 한 장에 그린 것이다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 330" role="img" aria-label="기준금리에서 시장금리, 대출금리, 자산 가격, 환율을 거쳐 소비·투자·순수출과 물가로 이어지는 파급 경로">
+        <defs><marker id="tr-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="170" y="10" width="120" height="38" rx="8" class="f-acc-soft"/>
+        <text x="230" y="34" text-anchor="middle" class="lbl-b">기준금리</text>
+        <rect x="20" y="78" width="130" height="36" rx="8" class="f-surface"/><text x="85" y="101" text-anchor="middle" class="lbl">단기·장기 시장금리</text>
+        <rect x="165" y="78" width="130" height="36" rx="8" class="f-surface"/><text x="230" y="101" text-anchor="middle" class="lbl">기대(앞으로의 금리)</text>
+        <rect x="310" y="78" width="130" height="36" rx="8" class="f-surface"/><text x="375" y="101" text-anchor="middle" class="lbl">내외 금리 차</text>
+        <rect x="20" y="148" width="100" height="36" rx="8" class="f-elev"/><text x="70" y="171" text-anchor="middle" class="lbl">대출·예금 금리</text>
+        <rect x="130" y="148" width="100" height="36" rx="8" class="f-elev"/><text x="180" y="171" text-anchor="middle" class="lbl">주가·채권값</text>
+        <rect x="240" y="148" width="90" height="36" rx="8" class="f-elev"/><text x="285" y="171" text-anchor="middle" class="lbl">집값</text>
+        <rect x="340" y="148" width="100" height="36" rx="8" class="f-elev"/><text x="390" y="171" text-anchor="middle" class="lbl">환율</text>
+        <rect x="20" y="218" width="130" height="36" rx="8" class="f-acc2-soft"/><text x="85" y="241" text-anchor="middle" class="lbl">소비·투자</text>
+        <rect x="165" y="218" width="130" height="36" rx="8" class="f-acc2-soft"/><text x="230" y="241" text-anchor="middle" class="lbl">순수출</text>
+        <rect x="310" y="218" width="130" height="36" rx="8" class="f-acc2-soft"/><text x="375" y="241" text-anchor="middle" class="lbl">수입물가</text>
+        <rect x="120" y="282" width="220" height="38" rx="8" class="f-acc-soft"/><text x="230" y="306" text-anchor="middle" class="lbl-b">성장(GDP)·고용·물가</text>
+        <g class="s-line" marker-end="url(#tr-ar)">
+          <path d="M200 48L95 78"/><path d="M230 48V78"/><path d="M260 48L365 78"/>
+          <path d="M70 114V148"/><path d="M100 114L170 148"/><path d="M130 114L270 148"/><path d="M375 114L390 148"/><path d="M230 114L190 148"/>
+          <path d="M70 184V218"/><path d="M180 184L110 218"/><path d="M285 184L130 218"/><path d="M390 184L390 218"/><path d="M370 184L250 218"/>
+          <path d="M85 254L170 282"/><path d="M230 254V282"/><path d="M375 254L290 282"/>
+        </g>
+        <text x="448" y="40" text-anchor="end" class="lbl-dim">며칠</text>
+        <text x="448" y="140" text-anchor="end" class="lbl-dim">몇 주~몇 달</text>
+        <text x="448" y="210" text-anchor="end" class="lbl-dim">1~2년</text>
+      </svg>
+      <figcaption><b>그림 1. 기준금리가 퍼지는 길.</b> 위쪽 칸일수록 빨리, 아래쪽 칸일수록 늦게 반응한다. 금융시장의 가격은 며칠 안에 움직이고, 대출금리와 환율은 몇 주에서 몇 달, 소비·투자·물가는 1~2년에 걸쳐 따라온다. 한국은행이 설명하는 경로를 이 책이 단순하게 다시 그렸다.</figcaption>
+    </figure>
+
+    <p>이 그림에서 기억할 것은 두 가지다. 첫째, 길이 여러 갈래다. 금리를 올리면 대출 이자가 늘어 소비가 줄고(금리 경로), 주식과 집의 값이 눌려 부자가 된 느낌이 줄고(자산 가격 경로), 원화 예금의 매력이 커져 원화가 강해지고(환율 경로), 은행이 대출 심사를 조이고(신용 경로), 사람들이 "앞으로 물가가 덜 오르겠구나" 하고 기대를 고친다(기대 경로). 둘째, 길마다 걸리는 시간이 다르다. 한국은행이 오늘 금리를 정하면서 1~2년 뒤의 물가를 보는 이유가 여기 있다.</p>
+
+    <div class="callout link"><strong>MoneyBook·StockBook·EstateBook에서 이어 읽기</strong>이 장은 경제 전체가 움직이는 길을 본다. 금리가 내 돈의 결정에 닿는 지점은 시리즈의 다른 책이 더 깊게 다룬다. 대출 이자와 상환은 MoneyBook <a href="https://moneybook.euiyun.com/chapters/interest.html">금리와 복리</a>·<a href="https://moneybook.euiyun.com/chapters/loan.html">대출 상환의 구조</a>, 금리와 주가는 StockBook <a href="https://stockbook.euiyun.com/chapters/macro.html">금리·경기·주식</a>, 금리와 집값은 EstateBook <a href="https://estatebook.euiyun.com/chapters/value.html">집값과 금리</a>·<a href="https://estatebook.euiyun.com/chapters/mortgage.html">주택담보대출</a>에서 이어진다.</div>
+  </section>
+
+  <section id="rates">
+    <h2>첫 번째 길: 시장금리에서 내 대출금리까지</h2>
+    <p>기준금리가 바뀐 날, 가장 먼저 움직이는 것은 은행끼리 하루짜리 돈을 빌려주는 <span class="term">콜금리</span><span class="en">(Call rate)</span>다. 한국은행이 이 금리를 기준금리 근처에 붙잡아 두기 때문에 거의 같은 폭으로 따라간다. 그다음이 양도성예금증서(CD) 금리, 국고채 금리 같은 시장금리다. 은행은 예금과 채권으로 돈을 모아 대출을 내주므로, 시장금리가 오르면 은행이 돈을 구하는 값, 곧 <span class="term">조달금리</span><span class="en">(Funding cost)</span>가 오른다. 변동금리 주택담보대출과 전세대출은 이 조달금리를 모아 만든 <span class="term">코픽스</span><span class="en">(COFIX, 자금조달비용지수)</span>나 금융채 금리에 가산금리를 더해 정한다.</p>
+    <p>여기서 두 가지 시차가 생긴다. 코픽스는 은행들이 그달 새로 모은 돈의 평균 금리라서 한 달에 한 번, 시장금리를 몇 달에 걸쳐 따라간다. 그리고 내 대출은 계약서에 적힌 <span class="term">금리 재산정 주기</span><span class="en">(Reset period)</span>가 돌아와야 새 금리로 바뀐다. 6개월 변동이면 기준금리가 오른 다음 날 내 이자가 늘지 않는다. 다음 재산정일까지는 옛 금리 그대로다.</p>
+
+    <p>아래 시뮬레이터에서 기준금리 인상 폭과 "시장이 미리 예상한 정도"를 바꿔 본다. 선 세 개는 은행 창구의 신규 대출금리(시장), 국고채 3년 금리, 지우의 6개월 변동 전세대출 금리다.</p>
+
+    <div class="sim" id="sim-pass">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>기준금리에서 내 대출금리까지: 두 번의 시차</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="pass-cv"></canvas><span class="hint">세로선을 끌어 달을 고른다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>기준금리 변화 <output id="pass-d-out"></output></span><input type="range" id="pass-d" min="-1" max="1" step="0.25" value="0.25"></label>
+          <label class="ctrl"><span>예상하지 못한 몫 <output id="pass-s-out"></output></span><input type="range" id="pass-s" min="0" max="100" step="5" value="30"></label>
+          <div class="seg" id="pass-r"><button data-value="3">3개월 변동</button><button data-value="6" class="on">6개월 변동</button><button data-value="12">12개월 변동</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 달</span><span class="v" id="pass-o-m">—</span></div>
+        <div class="stat"><span class="k">은행 신규 대출금리</span><span class="v" id="pass-o-l">—</span></div>
+        <div class="stat"><span class="k">지우의 대출금리</span><span class="v" id="pass-o-j">—</span></div>
+        <div class="stat"><span class="k">지우의 월 이자 변화</span><span class="v" id="pass-o-i">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 0.25%p 인상에서 세로선을 0개월에서 6개월로 끈다. 은행 창구의 금리는 몇 달에 걸쳐 오르지만 지우의 금리는 6개월째에 한 번에 계단을 오른다. ② '예상하지 못한 몫'을 0%로 내린다. 국고채 금리는 발표일에 거의 움직이지 않는다. 시장이 이미 인상을 값에 넣어 두었기 때문이다. 100%로 올리면 발표일에 크게 뛴다. ③ 12개월 변동으로 바꾼다. 같은 인상이 1년 늦게 지우의 가계부에 닿는다. 금리를 내릴 때도 똑같이 늦다. (모형: 대출금리는 조달금리 변화의 90%를 약 2개월의 반감 시간으로 따라간다. 국고채 3년물은 예상 밖 몫의 80%, 예상된 몫의 15%만 발표 뒤에 반영한다. 전세대출 1억 4,000만원, 이자만 내는 방식. 교육용 가정이다.)</div>
+    </div>
+
+    <p>계단의 높이는 기준금리 변화보다 조금 낮게 그렸다. 은행 조달금리가 기준금리와 똑같이 움직이지 않고, 은행이 가산금리를 조정하기도 하기 때문이다. 실제로는 반대 방향으로 벌어지기도 한다. 금리 인상기에 가계대출이 너무 빨리 늘면 금융당국이 대출을 조이라고 주문하고, 은행은 가산금리를 올려 대출금리가 기준금리보다 더 오르기도 한다. 기준금리를 내리는데 대출금리가 덜 내리는 기사도 같은 구조에서 나온다.</p>
+
+    <div class="callout stat"><strong>대출금리는 어디서 확인하나</strong>한국은행은 매달 「금융기관 가중평균금리」를 발표한다. 예금은행이 그달 새로 내준 대출(신규취급액)과 이미 나가 있는 대출(잔액)의 평균 금리를 주택담보대출·신용대출·기업대출로 나눠 보여 준다. ECOS(한국은행 경제통계시스템)의 '금리' 항목에서 월별로 내려받을 수 있다. 은행별 코픽스는 은행연합회가 매달 15일 무렵 공시한다. 기사에서 "주담대 금리 ○%"를 보면 신규취급액 기준인지 잔액 기준인지부터 확인한다. 잔액 기준은 옛 대출이 섞여 있어 훨씬 늦게 움직인다.</div>
+  </section>
+
+  <section id="expect">
+    <h2>두 번째 길: 기대, 발표 전에 이미 움직인 값</h2>
+    <p>앞의 시뮬레이터에서 '예상하지 못한 몫'을 0%로 내리면 국고채 금리가 발표일에 거의 움직이지 않았다. 이상하게 들리지만 시장에서는 흔한 일이다. 채권을 사고파는 사람들은 금통위가 열리기 전에 이미 결정을 예상해 값에 넣어 둔다. 총재의 발언, 물가 지표, 미국의 금리, 금통위원들의 지난 회의 의사록을 보고 "다음 회의에서 올릴 확률"을 매긴다. 그래서 발표일에 움직이는 것은 <strong>결정 그 자체가 아니라 결정과 예상의 차이</strong>다.</p>
+    <p>이 차이가 왜 중요한가. 같은 0.25%p 인상이라도 모두가 예상했다면 주가와 환율은 발표일에 조용하고, 아무도 예상하지 못했다면 크게 흔들린다. 반대로 인상을 "동결"했는데 시장이 인상을 확신하고 있었다면, 동결 발표에 금리가 내리고 주가가 오른다. 기사 제목이 "금리 인상에도 증시 상승"이라면 먼저 시장이 무엇을 예상했는지 묻는다.</p>
+
+    <div class="sim" id="sim-surprise">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>발표일의 반응: 결정이 아니라 예상과의 차이</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="sur-cv"></canvas></div>
+        <div class="sim-controls">
+          <div class="seg" id="sur-dec"><button data-value="0">동결</button><button data-value="0.25" class="on">0.25%p 인상</button><button data-value="0.5">0.5%p 인상</button></div>
+          <label class="ctrl"><span>시장이 매긴 인상 확률 <output id="sur-p-out"></output></span><input type="range" id="sur-p" min="0" max="100" step="5" value="70"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">시장이 예상한 인상 폭</span><span class="v" id="sur-o-e">—</span></div>
+        <div class="stat"><span class="k">예상과의 차이</span><span class="v" id="sur-o-s">—</span></div>
+        <div class="stat"><span class="k">발표일 국고채 3년</span><span class="v" id="sur-o-b">—</span></div>
+        <div class="stat"><span class="k">발표일 주가 · 환율</span><span class="v" id="sur-o-x">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 0.25%p 인상, 인상 확률 100%. 모두가 아는 인상이라 막대가 거의 없다. ② 인상 확률을 0%로 내린다. 같은 결정이 이번에는 깜짝 인상이다. 국고채 금리가 뛰고 주가가 내리고 원화가 강해진다. ③ '동결'을 누르고 인상 확률 80%. 아무것도 바꾸지 않았는데 금리가 내리고 주가가 오른다. 시장에는 이것이 깜짝 완화다. (모형: 시장이 예상한 폭 = 확률 × 0.25%p. 반응 = 예상과의 차이 × 계수. 국고채 0.8, 주가 −4%/%p, 원/달러 −2%/%p. 교육용 가정이다.)</div>
+    </div>
+
+    <p>중앙은행이 앞으로의 방향을 미리 말하는 <span class="term">포워드 가이던스</span><span class="en">(Forward guidance)</span>가 힘을 갖는 이유도 이것이다. 한국은행은 2022년부터 기자간담회에서 금통위원들의 3개월 내 금리 전망을 밝혀 왔고, 2026년 2월부터는 위원 각자의 6개월 뒤 금리 전망을 점으로 찍은 점도표를 내놓는다. 결정이 예상대로 나오면 충격이 작고, 시장은 다음 걸음을 미리 반영한다. 말이 곧 정책이 되는 셈이다(<a href="bok.html">8장</a>).</p>
+
+    <div class="callout news"><strong>"예상대로"라는 말을 찾아라</strong>백정호는 금리 결정 기사를 볼 때 제목보다 본문의 두 단어를 먼저 찾으라고 했다. "예상대로"와 "예상을 깨고"다. 전자라면 그날 시장이 조용한 것이 정상이고, 시장이 크게 움직였다면 결정이 아니라 총재 간담회에서 나온 다음 걸음의 신호에 반응한 것일 가능성이 크다. 후자라면 그날의 주가·환율·채권 기사는 모두 이 한 단어에서 시작한다. "금리 올렸는데 왜 주가가 오르나" 같은 제목은 대개 예상과의 차이를 빼먹은 제목이다.</div>
+  </section>
+
+  <section id="assets">
+    <h2>세 번째 길: 주가와 집값</h2>
+    <p>주식 한 주의 값은 그 회사가 앞으로 벌어 나눠 줄 돈을 오늘의 값으로 할인해 더한 것이다. 할인에 쓰는 비율에 금리가 들어 있다. 금리가 오르면 같은 미래의 돈이 오늘 덜 가치 있고, 예금이나 채권이 주는 확실한 이자와 견줘 주식의 매력이 준다. 회사의 이자 비용이 늘고 소비가 줄어 이익 자체가 줄기도 한다. 그래서 금리 인상은 대체로 주가를 누른다. 다만 "대체로"다. 경기가 좋아 금리를 올리는 시기라면 이익이 늘어나는 힘이 할인율의 힘보다 클 수 있다.</p>
+    <p>집값도 같은 원리를 따르지만 길이 하나 더 있다. 대부분의 사람이 집을 대출로 사기 때문이다. 금리가 오르면 같은 소득으로 빌릴 수 있는 돈이 줄고(DSR), 그만큼 낼 수 있는 값이 준다. 아래 시뮬레이터는 두 길을 나란히 놓는다.</p>
+
+    <div class="sim" id="sim-assets">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>할인율과 대출 한도: 금리 1%p가 주가와 집값을 누르는 힘</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="as-cv"></canvas><span class="hint">아래 손잡이를 끌어 금리를 옮긴다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>주식: 기대 이익 성장률(연) <output id="as-g-out"></output></span><input type="range" id="as-g" min="0" max="5" step="0.5" value="3"></label>
+          <label class="ctrl"><span>집: 연소득 <output id="as-y-out"></output></span><input type="range" id="as-y" min="3000" max="12000" step="100" value="4600"></label>
+          <div class="seg" id="as-dsr"><button data-value="0.4" class="on">DSR 40%</button><button data-value="0.5">DSR 50%</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">금리</span><span class="v" id="as-o-r">—</span></div>
+        <div class="stat"><span class="k">주가 지수(금리 3% = 100)</span><span class="v" id="as-o-s">—</span></div>
+        <div class="stat"><span class="k">빌릴 수 있는 돈</span><span class="v" id="as-o-l">—</span></div>
+        <div class="stat"><span class="k">금리 +1%p면</span><span class="v" id="as-o-d">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 금리를 3%에서 4%로 끈다. 빌릴 수 있는 돈은 10% 남짓 준다. 주가 선은 기대 성장률에 따라 기울기가 다르다. ② 기대 성장률을 5%로 올린다. 할인율과 성장률의 차이가 작아져 같은 1%p가 주가를 훨씬 크게 누른다. 미래 이익의 비중이 큰 성장주가 금리에 더 민감한 이유다. ③ 연소득을 바꿔도 대출 한도가 줄어드는 비율은 같다. 금리가 한도를 깎는 힘은 소득과 무관하게 비율로 작동한다. (주가: 고든 성장 모형, 할인율 = 금리 + 위험 프리미엄 5%p. 대출: 30년 원리금균등, 다른 빚 없음, 스트레스 금리 생략. 교육용 단순화.)</div>
+    </div>
+
+    <p>두 선 모두 금리가 낮을수록 가파르다. 금리가 1%에서 2%로 오르는 1%p가 5%에서 6%로 오르는 1%p보다 자산 가격을 더 크게 흔든다. 2020~2021년 초저금리 시기에 주가와 집값이 크게 오르고 2022년 금리가 빠르게 오르자 크게 흔들린 것을 이 모양으로 읽을 수 있다. 물론 그 시기 자산 가격을 움직인 힘은 금리 말고도 많았다. 이 그래프는 금리라는 힘 하나가 어느 방향으로 얼마나 미는지만 보여 준다.</p>
+
+    <div class="callout link"><strong>주가와 집값의 금리 민감도를 더 깊게</strong>할인율과 가치평가는 StockBook <a href="https://stockbook.euiyun.com/chapters/valuation.html">가치평가</a>와 <a href="https://stockbook.euiyun.com/chapters/macro.html">금리·경기·주식</a>, 임대수익률과 금리로 집값을 보는 법(자본환원율)은 EstateBook <a href="https://estatebook.euiyun.com/chapters/value.html">집값과 금리</a>, DSR·LTV와 스트레스 금리로 대출 한도가 정해지는 원리는 EstateBook <a href="https://estatebook.euiyun.com/chapters/mortgage.html">주택담보대출</a>에서 시뮬레이터로 이어진다.</div>
+  </section>
+
+  <section id="fx">
+    <h2>네 번째 길: 환율, 두 나라의 금리 차</h2>
+    <p>원화 예금 금리가 오르면 같은 돈을 달러 대신 원화로 들고 있을 이유가 커진다. 외국 투자자는 한국 채권을 더 사려고 달러를 원화로 바꾸고, 그만큼 원화가 귀해져 원/달러 환율이 내린다(원화 강세). 그래서 교과서의 답은 "금리를 올리면 환율이 내린다"다.</p>
+    <p>그런데 투자자가 보는 것은 한국의 금리 하나가 아니라 <strong>한국과 미국 금리의 차이</strong>다. 한국이 0.25%p 올리는 동안 미국이 0.75%p 올리면 차이는 오히려 벌어져 달러가 더 매력적이다. 2022년이 그랬다. 한국은행은 기준금리를 1.00%에서 3.25%까지 올렸지만 미국 연준은 0~0.25%에서 4.25~4.50%까지 더 빠르게 올렸고, 원/달러 환율은 그해 가을 1,400원을 넘었다(<a href="fx.html">10장</a>). 기준금리를 올렸는데 환율이 오른 것이다.</p>
+
+    <div class="sim" id="sim-gap">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>한국이 올리고 미국도 올리면: 금리 차와 환율</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="gap-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>한국 기준금리 변화 <output id="gap-k-out"></output></span><input type="range" id="gap-k" min="-1" max="1.5" step="0.25" value="0.25"></label>
+          <label class="ctrl"><span>미국 정책금리 변화 <output id="gap-u-out"></output></span><input type="range" id="gap-u" min="-1" max="1.5" step="0.25" value="0"></label>
+          <label class="ctrl"><span>위험 회피(세계 불안) <output id="gap-r-out"></output></span><input type="range" id="gap-r" min="0" max="5" step="0.5" value="0"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">한·미 금리 차 변화</span><span class="v" id="gap-o-d">—</span></div>
+        <div class="stat"><span class="k">원/달러 환율 변화(즉시)</span><span class="v" id="gap-o-f">—</span></div>
+        <div class="stat"><span class="k">1,400원이던 환율은</span><span class="v" id="gap-o-l">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 한국만 0.25%p 올린다. 원화가 조금 강해진다. ② 미국을 0.75%p로 올린다. 한국이 올렸는데도 원화가 약해진다. ③ 둘을 같게 맞추고 위험 회피를 3으로 올린다. 금리 차는 그대로인데 환율이 오른다. 세계가 불안하면 투자자는 금리보다 안전을 찾아 달러로 몰린다. (모형: 금리 차 1%p당 2%, 위험 회피 1단계당 1%. 발표 직후의 반응만 그렸고, 시간이 지나면 일부 되돌아간다. 교육용 가정이다.)</div>
+    </div>
+
+    <p>환율은 다시 물가로 돌아온다. 원화가 약해지면 같은 달러 값의 밀가루·원유·부품이 원화로 비싸지고, 그 몫이 몇 달에 걸쳐 소비자물가에 스며든다. 지우의 회사가 원가표를 다시 짜는 것도 이 길 위에서다. 금리 인상이 환율을 거쳐 물가를 누르는 힘은 미국의 금리와 세계의 불안에 따라 커지기도, 거꾸로 서기도 한다.</p>
+  </section>
+
+  <section id="real">
+    <h2>다섯 번째 길: 소비·투자, 그리고 가장 늦게 오는 물가</h2>
+    <p>앞의 네 길은 결국 사람과 회사의 지출로 모인다. 이자가 늘어난 가계는 소비를 줄이고, 자산 가격이 내려 덜 부유하다고 느끼는 가계도 지갑을 닫는다. 기업은 빌려서 공장을 짓는 투자를 미룬다. 원화가 강해지면 수출이 조금 불리해진다. 수요가 줄면 기업은 값을 덜 올리고, 사람을 덜 뽑는다. 이것이 금리 인상이 물가를 낮추는 본래의 길이다. 그리고 가장 오래 걸린다.</p>
+    <p>한국은행과 해외 중앙은행의 분석은 대체로 기준금리 변화가 성장에는 1년 안팎, 물가에는 1~2년에 걸쳐 가장 크게 나타난다고 본다. 크기는 연구와 시기에 따라 다르다. 아래 그래프는 이 책의 모형으로 그린 반응이다. 크기보다 <strong>모양</strong>을 본다.</p>
+
+    <div class="sim" id="sim-lag">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>성장은 먼저, 물가는 나중에: 3년의 반응 곡선</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="lag-cv"></canvas><span class="hint">세로선을 끌어 달을 고른다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>기준금리 변화 <output id="lag-d-out"></output></span><input type="range" id="lag-d" min="-1" max="1" step="0.25" value="1"></label>
+          <label class="ctrl"><span>가계부채 민감도 <output id="lag-b-out"></output></span><input type="range" id="lag-b" min="0.5" max="2" step="0.1" value="1"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 달</span><span class="v" id="lag-o-m">—</span></div>
+        <div class="stat"><span class="k">GDP 수준(기준선 대비)</span><span class="v" id="lag-o-g">—</span></div>
+        <div class="stat"><span class="k">물가 수준(기준선 대비)</span><span class="v" id="lag-o-c">—</span></div>
+        <div class="stat"><span class="k">각 반응의 정점</span><span class="v" id="lag-o-p">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 1%p 인상에서 세로선을 끌어 GDP의 정점(약 15개월)과 물가의 정점(약 24개월)을 찾는다. ② 가계부채 민감도를 2로 올린다. 빚이 많은 경제일수록 같은 금리 인상이 소비를 더 크게 누른다. 한국처럼 가계부채가 크고 변동금리 대출이 많은 나라에서 금리의 힘이 크다고 보는 이유다. ③ 금리를 내리는 쪽(−1%p)으로 바꿔 대칭을 본다. (이 책의 모형: 1%p 인상이 GDP 수준을 최대 0.5%, 물가 수준을 최대 0.35% 낮추는 혹 모양 반응, 환율 경로 포함. 실제 크기는 연구에 따라 이보다 작거나 크다. 교육용 가정이며 전망이 아니다.)</div>
+    </div>
+
+    <div class="callout warn"><strong>시뮬레이터는 전망이 아니다</strong>이 장의 반응 크기와 시차는 국내외 연구가 보고하는 범위 안에서 고른 교육용 가정이다. 실제 경제에서는 같은 0.25%p라도 가계부채, 고정·변동금리의 비중, 미국의 금리, 정부의 재정, 사람들의 기대에 따라 반응이 달라진다. 숫자는 "이 정도 규모, 이런 순서"를 보여 주기 위한 것이고, 다음 금리 결정 뒤의 주가·집값·환율을 예측하지 않는다.</div>
+  </section>
+
+  <section id="board">
+    <h2>연결판: 기준금리를 올리면 대출·주식·집값·환율은</h2>
+    <p>이제 다섯 길을 한 판 위에 올린다. 가운데 기준금리에서 출발한 신호가 시간이 흐르며 각 칸으로 번진다. 아래쪽 칸들은 2년 동안 각 숫자가 어떤 길로 움직이는지 작은 그래프로 보여 준다. 마지막 줄은 지우의 가계부다.</p>
+
+    <div class="sim" id="sim-board">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>기준금리 연결판: 대출·주식·집값·환율·성장·물가</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="bd-cv"></canvas><span class="hint">시간 막대를 끌거나 재생한다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>기준금리 변화 <output id="bd-d-out"></output></span><input type="range" id="bd-d" min="-1" max="1" step="0.25" value="0.25"></label>
+          <label class="ctrl"><span>예상하지 못한 몫 <output id="bd-s-out"></output></span><input type="range" id="bd-s" min="0" max="100" step="10" value="50"></label>
+          <label class="ctrl"><span>같은 기간 미국 금리 변화 <output id="bd-u-out"></output></span><input type="range" id="bd-u" min="-1" max="1" step="0.25" value="0"></label>
+          <label class="ctrl"><span>가계부채 민감도 <output id="bd-b-out"></output></span><input type="range" id="bd-b" min="0.5" max="2" step="0.1" value="1"></label>
+          <div class="btn-row"><button class="btn primary" id="bd-go">2년 재생</button><button class="btn" id="bd-re">처음으로</button></div>
+        </div>
+      </div>
+      <div class="board-grid" id="bd-grid"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">지우의 월 대출 이자</span><span class="v" id="bd-o-i">—</span></div>
+        <div class="stat"><span class="k">지우의 ETF 평가액</span><span class="v" id="bd-o-e">—</span></div>
+        <div class="stat"><span class="k">회사의 달러 원료값(원화)</span><span class="v" id="bd-o-f">—</span></div>
+        <div class="stat"><span class="k">지우가 빌릴 수 있는 돈</span><span class="v" id="bd-o-l">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 0.25%p 인상으로 '2년 재생'을 누른다. 채권과 주가, 환율은 첫 달에 움직이고, 대출금리는 몇 달에 걸쳐, 집값과 성장은 1년 넘게, 물가는 가장 늦게 따라온다. ② '예상하지 못한 몫'을 0으로 내린다. 첫 달의 주가·환율 반응이 사라지고 느린 반응만 남는다. ③ 미국 금리를 +0.75%p로 올린다. 한국이 금리를 올렸는데도 환율 칸이 위로 간다(원화 약세). 회사의 원료값이 오르고, 수입물가 경로가 물가를 거꾸로 밀어 올린다. ④ 기준금리를 −1%p로 내리고 가계부채 민감도를 2로 올린다. 대출 이자는 줄고 주가와 집값은 오르는 방향이지만, 그 크기는 빚의 크기에 달려 있다. (모형: <code>EC.transmit</code>. 반응 크기와 시차는 교육용 가정이며 아래 '모형의 가정'에 밝혔다. 다른 조건은 변하지 않는다고 가정한다. 전망이 아니다.)</div>
+    </div>
+
+    <p>연결판을 몇 번 돌려 보면 두 가지가 눈에 들어온다. 하나는 <strong>순서</strong>다. 금융시장의 가격(채권·주식·환율)이 먼저, 은행의 금리가 다음, 집값과 실물 경제가 그다음, 물가가 마지막이다. 다른 하나는 <strong>크기의 차이</strong>다. 지우의 월 이자는 기준금리 0.25%p에 3만원 남짓 늘지만, 주가는 하루에 그보다 훨씬 큰 폭으로 오르내린다. 금리의 효과는 자산 가격에서 크고 빠르게, 가계의 현금흐름에서 작고 확실하게 나타난다.</p>
+  </section>
+
+  <section id="assume">
+    <h2>모형의 가정과 실제의 금리 사이클</h2>
+    <p>연결판의 숫자는 이 책이 고른 계수에서 나온다. 무엇을 가정했는지 표로 밝힌다. 계수는 <code>EC.TRANSMIT</code>에 있고 장 안의 모든 시뮬레이터가 같은 값을 쓴다.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>경로</th><th>가정(1%p 인상 기준)</th><th>시차</th><th>왜 이렇게 골랐나</th></tr></thead>
+      <tbody>
+        <tr><td>국고채 3년</td><td class="num">예상 밖 몫의 80%, 예상된 몫의 15%</td><td>발표일</td><td>단기 시장금리는 기준금리 기대를 거의 그대로 반영한다</td></tr>
+        <tr><td>변동 대출금리</td><td class="num">90% 전가</td><td>반감 약 2개월 + 재산정 주기</td><td>코픽스는 월 단위로 신규 조달금리를 따라간다</td></tr>
+        <tr><td>주가</td><td class="num">발표 즉시 −4%(예상 밖 몫), 1년간 −3% 더</td><td>즉시~1년</td><td>할인율 경로. 경기 상황에 따라 부호까지 바뀔 수 있다</td></tr>
+        <tr><td>집값</td><td class="num">2년 뒤 −4%</td><td>반감 약 9개월</td><td>대출 한도와 이자 부담. 공급·정책·기대가 더 큰 힘일 수 있다</td></tr>
+        <tr><td>원/달러 환율</td><td class="num">예상 밖 몫 −2%, 미국 1%p 인상 +2%</td><td>즉시, 1년 반에 걸쳐 되돌림</td><td>내외 금리 차. 위험 회피 국면에서는 금리 차보다 안전 선호가 앞선다</td></tr>
+        <tr><td>GDP 수준</td><td class="num">최대 −0.5%</td><td>정점 약 15개월</td><td>소비·투자 감소. 가계부채 민감도로 크기 조절</td></tr>
+        <tr><td>물가 수준</td><td class="num">최대 −0.35% + 환율 1%당 0.08%</td><td>정점 약 24개월</td><td>수요 경로는 가장 늦고, 환율 경로는 몇 달 안에 온다</td></tr>
+      </tbody>
+    </table></div>
+
+    <p>실제 금리 사이클 하나를 놓고 보자. 한국은행은 2021년 8월부터 2023년 1월까지 기준금리를 0.50%에서 3.50%로 3%p 올렸다. 표 아래 행들의 방향은 대체로 맞았다. 대출금리가 크게 올랐고, 주가와 집값은 2022년에 내렸고, 소비자물가 상승률은 2022년 7월 6.3%를 정점으로 내려왔다. 그러나 환율은 미국이 더 빨리 올린 탓에 반대로 움직였고, 물가가 내려온 데에는 국제 유가의 하락도 큰 몫을 했다. 한 사이클의 모든 움직임을 금리 하나로 설명할 수 없다는 것, 그리고 같은 방향의 힘이 여럿 겹칠 때 움직임이 커진다는 것을 함께 기억한다. <span class="src">(기준금리: 한국은행 기준금리 추이. 물가: 통계청 소비자물가동향)</span></p>
+
+    <div class="callout stat"><strong>금리 결정의 원문은 어디에</strong>한국은행 누리집의 「통화정책방향」은 결정 당일 발표되는 한두 쪽짜리 문서다. 결정의 이유(성장·물가·금융안정 판단)와 앞으로의 방향이 담겨 있다. 2주 뒤에는 금통위원들의 발언이 적힌 「의사록」이, 분기마다 「통화신용정책보고서」가 나온다. 기사에 인용된 한 문장보다 원문 첫 문단의 판단(물가가 목표 수준으로 수렴할 것으로 예상된다 등)을 직접 읽어 보는 것이 가장 빠른 확인이다.</div>
+  </section>
+
+  <div class="casefile">
+    <div class="tag"><b>CASE 지우</b><span>헤드라인 노트 · 2026년 8월</span></div>
+    <div class="headline">한국은행, 기준금리 0.25%p 인상… 연 3.00%<small>근거: 한국은행 「통화정책방향」(2026-08-27). 7월 결정(2.50% → 2.75%)에 이은 두 번째 인상</small></div>
+    <h4>"그래서 내 이자는 언제, 얼마나 오르나"</h4>
+    <p id="case-text">지우는 7월과 8월 두 번의 인상을 노트에 나란히 적었다. 7월은 2023년 1월 이후 처음 올린 인상이었고(만장일치), 8월은 2회 연속 인상이었다(7명 중 6명 찬성, 1명은 동결 의견). 삼촌 백정호의 첫 질문은 "시장은 예상했나?"였다. 지우는 발표 전 몇 주 동안 국고채 3년 금리가 이미 오르고 있었는지 ECOS에서 찾아보기로 했다. 발표 전에 올랐다면 그만큼은 예상된 인상이고, 발표일의 움직임은 나머지 몫이다. 그다음 질문은 자기 대출이었다.</p>
+    <p id="case-calc">—</p>
+    <div class="clue">
+      <div><b>헤드라인이 말한 것</b>기준금리 2.75% → 3.00%. 두 달 연속 인상.</div>
+      <div><b>숫자를 다시 보니</b>발표일 반응은 예상과의 차이만큼이다. 대출금리에 닿는 데는 몇 달(재산정 주기), 물가에 닿는 데는 1년 넘게 걸린다.</div>
+      <div><b>내 생활에는</b><span id="case-life">—</span></div>
+    </div>
+  </div>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>기준금리는 경제의 모든 금리를 직접 정하지 않는다. 시장금리·대출금리·자산 가격·환율이 기대어 서는 기준점이며, 다섯 경로(금리·자산 가격·환율·신용·기대)로 번진다.</li>
+      <li>경로마다 시차가 다르다. 금융시장 가격은 며칠, 대출금리는 몇 달(재산정 주기까지), 성장은 1년 안팎, 물가는 1~2년에 걸쳐 가장 크게 반응한다.</li>
+      <li>발표일에 시장이 반응하는 것은 결정이 아니라 예상과의 차이다. 예상된 인상은 조용하고, 예상 밖의 동결은 완화처럼 작용한다.</li>
+      <li>금리 인상은 대체로 주가와 집값을 누르고, 금리가 낮을 때 같은 1%p의 힘이 더 크다. 집값에는 할인율에 더해 대출 한도의 길이 있다.</li>
+      <li>환율은 한국 금리 하나가 아니라 한·미 금리 차와 세계의 위험 회피로 움직인다. 한국이 올려도 미국이 더 올리면 원화는 약해질 수 있다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q"><p>1. 6개월 변동금리 전세대출을 쓰는 사람이 있다. 재산정일 바로 다음 날 기준금리가 0.25%p 올랐다. 이 사람의 대출 이자는 언제 늘어나는가?</p>
+        <div class="opts"><button class="opt">다음 날부터 바로 늘어난다</button><button class="opt">한 달 뒤 코픽스가 공시되면 늘어난다</button><button class="opt" data-correct>약 6개월 뒤 다음 재산정일에 늘어난다</button><button class="opt">대출 만기 때 한 번에 정산된다</button></div>
+        <div class="quiz-exp">변동금리 대출은 계약서의 재산정 주기가 돌아와야 새 금리가 적용된다. 그 사이 코픽스가 올라도 이미 적용된 금리는 바뀌지 않는다. 금리 인하도 같은 시차로 늦게 반영된다.</div></div>
+      <div class="quiz-q"><p>2. 시장이 인상을 거의 확신하고 있었는데 금통위가 기준금리를 동결했다. 발표 직후 국고채 금리와 주가는 대체로 어떻게 움직이겠는가?</p>
+        <div class="opts"><button class="opt" data-correct>국고채 금리는 내리고 주가는 오른다</button><button class="opt">아무것도 바뀌지 않았으니 움직이지 않는다</button><button class="opt">국고채 금리는 오르고 주가는 내린다</button><button class="opt">둘 다 오른다</button></div>
+        <div class="quiz-exp">시장 가격에는 이미 인상이 들어 있었다. 동결은 예상보다 낮은 금리라는 뜻이므로 시장에는 완화 충격으로 작용한다. 발표일 반응은 결정과 예상의 차이로 읽는다.</div></div>
+      <div class="quiz-q"><p>3. 한국은행이 기준금리를 0.25%p 올린 같은 기간에 미국 연준이 0.75%p를 올렸다. 다른 조건이 같다면 원/달러 환율에 대해 가장 그럴듯한 설명은?</p>
+        <div class="opts"><button class="opt">한국이 금리를 올렸으므로 원화가 강해져 환율이 내린다</button><button class="opt">금리와 환율은 관계가 없다</button><button class="opt">두 나라가 모두 올렸으므로 환율은 그대로다</button><button class="opt" data-correct>한·미 금리 차가 벌어져 달러가 더 매력적이므로 환율이 오를 수 있다</button></div>
+        <div class="quiz-exp">자본은 금리 수준이 아니라 금리 차를 본다. 미국이 더 많이 올리면 달러 자산의 매력이 커져 원화가 약해질 수 있다. 2022년 한국이 금리를 올리는 동안 원/달러 환율이 오른 것이 그 예다.</div></div>
+      <div class="quiz-q"><p>4. 기준금리 인상이 물가에 가장 크게 영향을 미치기까지 걸리는 시간에 대한 설명으로 가장 알맞은 것은?</p>
+        <div class="opts"><button class="opt">발표 당일 소비자물가에 바로 반영된다</button><button class="opt" data-correct>소비·투자를 거쳐 1~2년에 걸쳐 나타나므로 중앙은행은 앞날의 물가를 보고 결정한다</button><button class="opt">대출금리와 같은 날 나타난다</button><button class="opt">물가에는 영향을 주지 않는다</button></div>
+        <div class="quiz-exp">수요를 줄여 물가를 낮추는 길은 가장 길다. 환율을 거친 수입물가 경로는 몇 달 안에 오지만, 본래의 수요 경로는 1~2년이 걸린다. 그래서 중앙은행은 지금의 물가가 아니라 앞으로의 물가 전망을 보고 금리를 정한다.</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var K = EC.KR, C = EC.CASE, T = EC.TRANSMIT;
+  var BASE0 = 0.0275;                                   // 8월 결정 직전 기준금리
+  var BOND0 = K.bond3y || 0.029, LOAN0 = C.home.loanRate; // 시작 수준
+  var LOAN = C.home.loan;
+  var pctp = function (x) { return (x >= 0 ? "+" : "−") + Math.abs(x).toFixed(2) + "%p"; };
+  var sgn = function (x, d) { d = d == null ? 1 : d; return (x > 0.00001 ? "+" : x < -0.00001 ? "−" : "") + Math.abs(x * 100).toFixed(d) + "%"; };
+  var rate2 = function (x) { return (x * 100).toFixed(2) + "%"; };
+
+  /* ---------------- sim-pass ---------------- */
+  (function () {
+    var month = 7, box = null;
+    var gD = EB.range("pass-d", function (v) { return (v >= 0 ? "+" : "") + v.toFixed(2) + "%p"; }, draw);
+    var gS = EB.range("pass-s", function (v) { return v + "%"; }, draw);
+    var gR = EB.seg("pass-r", draw);
+    function run() { return EC.transmit({ dRate: gD() / 100, surprise: gS() / 100, reset: +gR(), months: 24, base0: BASE0, bond0: BOND0, loan0: LOAN0 }); }
+    var cv = EB.canvas("#pass-cv", function (ctx, w, h) {
+      var P = EB.palette(), r = run(), rows = r.rows;
+      var lo = Math.min(BASE0, BASE0 + gD() / 100) - 0.004, hi = Math.max(LOAN0, LOAN0 + gD() / 100) + 0.004;
+      var pre = [[-3, BASE0], [0, BASE0]];
+      var c = EB.chart(ctx, { x: 52, y: 14, w: w - 66, h: h - 50 }, {
+        x: [-3, 24], y: [lo, hi], xTicks: [0, 6, 12, 18, 24], xFmt: function (v) { return v + "개월"; }, yFmt: function (v) { return (v * 100).toFixed(1) + "%"; },
+        series: [
+          { data: pre.concat(rows.map(function (q) { return [q.m, q.base]; })), color: P.faint, width: 1.6, dash: [4, 4] },
+          { data: [[-3, BOND0], [0, BOND0]].concat(rows.map(function (q) { return [q.m, q.bond3]; })), color: P.accent2, width: 2 },
+          { data: [[-3, LOAN0], [0, LOAN0]].concat(rows.map(function (q) { return [q.m, q.loan]; })), color: P.accent, width: 2.2 },
+          { data: [[-3, LOAN0]].concat(rows.map(function (q) { return [q.m, q.loanMine]; })), color: P.bad, width: 2.6 },
+        ],
+        vlines: [{ x: 0, color: P.faint, label: "발표" }],
+      });
+      box = c;
+      var x = c.X(month);
+      ctx.save(); ctx.strokeStyle = P.text; ctx.globalAlpha = 0.6; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(x, c.box.y); ctx.lineTo(x, c.box.y + c.box.h); ctx.stroke(); ctx.restore();
+      ctx.beginPath(); ctx.arc(x, c.box.y + c.box.h, 7, 0, Math.PI * 2); ctx.fillStyle = P.text; ctx.fill();
+      ctx.font = EB.font(11); ctx.textAlign = "left";
+      var lg = [["기준금리", P.faint], ["국고채 3년", P.accent2], ["은행 신규 대출금리", P.accent], ["지우의 대출금리", P.bad]];
+      var lgx = c.box.x + c.box.w - 120, lgy = c.box.y + c.box.h * 0.45;
+      lg.forEach(function (l, i) { ctx.fillStyle = l[1]; ctx.fillRect(lgx, lgy + i * 15, 10, 3); ctx.fillStyle = P.dim; ctx.fillText(l[0], lgx + 16, lgy + 5 + i * 15); });
+      var q = rows[month];
+      EB.stat("pass-o-m", month + "개월 뒤");
+      EB.stat("pass-o-l", rate2(q.loan));
+      EB.stat("pass-o-j", rate2(q.loanMine));
+      var di = LOAN * (q.loanMine - LOAN0) / 12;
+      EB.stat("pass-o-i", (di >= 0 ? "+" : "−") + EB.won(Math.abs(di)));
+    }, { aspect: 0.62, minHeight: 260, maxHeight: 400 });
+    EB.drag(cv.canvas, { move: function (x) { if (!box) return; month = EB.clamp(Math.round(EB.map(x, box.box.x, box.box.x + box.box.w, -3, 24)), 0, 24); cv.redraw(); }, start: function (x) { this.move(x); } });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-surprise ---------------- */
+  (function () {
+    var gDec = EB.seg("sur-dec", draw);
+    var gP = EB.range("sur-p", function (v) { return v + "%"; }, draw);
+    var cv = EB.canvas("#sur-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      var dec = +gDec(), exp = gP() / 100 * 0.25, s = dec - exp; // %p
+      var bond = T.bondPass * s, stock = T.stockNow * s, fx = T.fxNow * s;
+      var items = [["국고채 3년(%p)", bond, 0.5], ["주가(%)", stock, 2.2], ["원/달러 환율(%)", fx, 1.1]];
+      var top = 34, rowH = (h - top - 16) / items.length, cx = w / 2, half = w / 2 - 20;
+      ctx.fillStyle = P.dim; ctx.font = EB.font(11.5); ctx.textAlign = "center";
+      ctx.fillText("발표일 반응 = (실제 결정 − 시장이 예상한 결정) × 반응 계수", cx, 18);
+      ctx.strokeStyle = P.axis; ctx.beginPath(); ctx.moveTo(cx, top - 4); ctx.lineTo(cx, h - 10); ctx.stroke();
+      items.forEach(function (it, i) {
+        var y = top + i * rowH, v = it[1], len = EB.clamp(v / it[2], -1, 1) * half * 0.9;
+        ctx.fillStyle = P.text; ctx.font = EB.font(12, false, 600); ctx.textAlign = "left";
+        ctx.fillText(it[0], 10, y + 14);
+        var col = i === 0 ? (v > 0 ? P.bad : P.ok) : i === 1 ? (v < 0 ? P.bad : P.ok) : (v < 0 ? P.accent : P.accent2);
+        ctx.fillStyle = col; ctx.globalAlpha = 0.85;
+        ctx.fillRect(len >= 0 ? cx : cx + len, y + 22, Math.abs(len), Math.max(10, rowH - 40));
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = P.text; ctx.font = EB.font(12, true); ctx.textAlign = len >= 0 ? "left" : "right";
+        var txt = (v > 0.0005 ? "+" : v < -0.0005 ? "−" : "") + Math.abs(v).toFixed(2);
+        ctx.fillText(txt, cx + len + (len >= 0 ? 6 : -6), y + 22 + Math.max(10, rowH - 40) / 2 + 4);
+      });
+      EB.stat("sur-o-e", "+" + exp.toFixed(3).replace(/0$/, "") + "%p");
+      EB.stat("sur-o-s", (s >= 0 ? "+" : "−") + Math.abs(s).toFixed(3).replace(/0$/, "") + "%p" + (Math.abs(s) < 0.02 ? " (거의 없음)" : s > 0 ? " (긴축 충격)" : " (완화 충격)"));
+      EB.stat("sur-o-b", (bond >= 0 ? "+" : "−") + Math.abs(bond).toFixed(2) + "%p");
+      EB.stat("sur-o-x", "주가 " + (stock >= 0 ? "+" : "−") + Math.abs(stock).toFixed(1) + "% · 환율 " + (fx >= 0 ? "+" : "−") + Math.abs(fx).toFixed(1) + "%");
+    }, { aspect: 0.55, minHeight: 230, maxHeight: 340 });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-assets ---------------- */
+  (function () {
+    var r = 0.035, box = null;
+    var gG = EB.range("as-g", function (v) { return v.toFixed(1) + "%"; }, draw);
+    var gY = EB.range("as-y", function (v) { return EB.won(v * 1e4); }, draw);
+    var gD = EB.seg("as-dsr", draw);
+    var ERP = 0.05;
+    function stockIdx(rate) { var g = gG() / 100, k = rate + ERP; return k - g > 0.004 ? (1 / (k - g)) / (1 / (0.03 + ERP - g)) * 100 : 400; }
+    function loanMax(rate) { var pay = gY() * 1e4 * +gD() / 12; var m = rate / 12, n = 360; return pay * (1 - Math.pow(1 + m, -n)) / m; }
+    var cv = EB.canvas("#as-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      var xs = []; for (var x = 0.01; x <= 0.0801; x += 0.0025) xs.push(x);
+      var L3 = loanMax(0.03);
+      var c = EB.chart(ctx, { x: 48, y: 16, w: w - 62, h: h - 52 }, {
+        x: [0.01, 0.08], y: [0, 260], xTicks: [0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08], xFmt: function (v) { return Math.round(v * 100) + "%"; }, yTicks: [0, 50, 100, 150, 200, 250],
+        series: [
+          { data: xs.map(function (x) { return [x, Math.min(260, stockIdx(x))]; }), color: P.accent2, width: 2.4 },
+          { data: xs.map(function (x) { return [x, loanMax(x) / L3 * 100]; }), color: P.accent, width: 2.4 },
+        ],
+        hlines: [{ y: 100, color: P.faint, label: "금리 3% = 100" }],
+      });
+      box = c;
+      var px = c.X(r);
+      ctx.save(); ctx.strokeStyle = P.text; ctx.globalAlpha = 0.5; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(px, c.box.y); ctx.lineTo(px, c.box.y + c.box.h); ctx.stroke(); ctx.restore();
+      [[stockIdx(r), P.accent2], [loanMax(r) / L3 * 100, P.accent]].forEach(function (p) { ctx.beginPath(); ctx.arc(px, c.Y(Math.min(260, p[0])), 5.5, 0, Math.PI * 2); ctx.fillStyle = p[1]; ctx.fill(); });
+      ctx.beginPath(); ctx.arc(px, c.box.y + c.box.h, 8, 0, Math.PI * 2); ctx.fillStyle = P.text; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = P.bg; ctx.stroke();
+      ctx.font = EB.font(11); ctx.textAlign = "left";
+      ctx.fillStyle = P.accent2; ctx.fillText("주가(고든 모형, 지수)", c.box.x + 10, c.box.y + c.box.h - 26);
+      ctx.fillStyle = P.accent; ctx.fillText("대출 한도(지수)", c.box.x + 10, c.box.y + c.box.h - 11);
+      var s = stockIdx(r), L = loanMax(r), s1 = stockIdx(r + 0.01), L1 = loanMax(r + 0.01);
+      EB.stat("as-o-r", rate2(r));
+      EB.stat("as-o-s", s >= 400 ? "끝없이 커진다" : s.toFixed(0));
+      EB.stat("as-o-l", EB.won(L));
+      EB.stat("as-o-d", "주가 " + (s >= 400 ? "—" : sgn(s1 / s - 1, 0)) + " · 한도 " + sgn(L1 / L - 1, 0));
+    }, { aspect: 0.6, minHeight: 260, maxHeight: 400 });
+    EB.drag(cv.canvas, { move: function (x) { if (!box) return; r = EB.clamp(Math.round(EB.map(x, box.box.x, box.box.x + box.box.w, 0.01, 0.08) * 400) / 400, 0.01, 0.075); cv.redraw(); }, start: function (x) { this.move(x); } });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-gap ---------------- */
+  (function () {
+    var gK = EB.range("gap-k", function (v) { return (v >= 0 ? "+" : "") + v.toFixed(2) + "%p"; }, draw);
+    var gU = EB.range("gap-u", function (v) { return (v >= 0 ? "+" : "") + v.toFixed(2) + "%p"; }, draw);
+    var gRk = EB.range("gap-r", function (v) { return v.toFixed(1); }, draw);
+    var t0 = 0;
+    var cv = EB.canvas("#gap-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      var dk = gK(), du = gU(), risk = gRk();
+      var gap = dk - du, fx = T.fxNow * gap + T.usFx * 0 + risk * 1.0; // %
+      // 저울: 왼쪽 원화, 오른쪽 달러. 무게 = 금리 매력 + 안전
+      var tilt = EB.clamp(-fx / 6, -0.35, 0.35);
+      var cx = w / 2, cy = h * 0.42, L = Math.min(w * 0.36, 190);
+      ctx.save(); ctx.translate(cx, cy); ctx.rotate(tilt);
+      ctx.strokeStyle = P.text; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(-L, 0); ctx.lineTo(L, 0); ctx.stroke();
+      ctx.restore();
+      ctx.fillStyle = P.dim; ctx.beginPath(); ctx.moveTo(cx - 12, cy + 26); ctx.lineTo(cx + 12, cy + 26); ctx.lineTo(cx, cy + 2); ctx.fill();
+      var lx = cx - L * Math.cos(tilt), ly = cy - L * Math.sin(tilt), rx = cx + L * Math.cos(tilt), ry = cy + L * Math.sin(tilt);
+      function pan(x, y, label, sub, col) {
+        ctx.strokeStyle = P.axis; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x - 30, y + 34); ctx.moveTo(x, y); ctx.lineTo(x + 30, y + 34); ctx.stroke();
+        ctx.fillStyle = col; ctx.globalAlpha = 0.18; ctx.fillRect(x - 40, y + 34, 80, 34); ctx.globalAlpha = 1;
+        ctx.strokeStyle = col; ctx.strokeRect(x - 40, y + 34, 80, 34);
+        ctx.fillStyle = P.text; ctx.font = EB.font(13, false, 700); ctx.textAlign = "center"; ctx.fillText(label, x, y + 50);
+        ctx.fillStyle = P.dim; ctx.font = EB.font(10.5); ctx.fillText(sub, x, y + 63);
+      }
+      pan(lx, ly, "원화 자산", "금리 변화 " + (dk >= 0 ? "+" : "") + dk.toFixed(2) + "%p", P.accent);
+      pan(rx, ry, "달러 자산", "금리 변화 " + (du >= 0 ? "+" : "") + du.toFixed(2) + "%p", P.accent2);
+      // 흐르는 점: 돈의 방향
+      var dir = fx < -0.05 ? -1 : fx > 0.05 ? 1 : 0;
+      ctx.fillStyle = dir < 0 ? P.accent : P.accent2;
+      if (dir) for (var k = 0; k < 6; k++) { var f = ((t0 * 0.35 + k / 6) % 1); var xx = dir > 0 ? EB.lerp(lx, rx, f) : EB.lerp(rx, lx, f); var yy = EB.lerp(dir > 0 ? ly : ry, dir > 0 ? ry : ly, f) - 26; ctx.beginPath(); ctx.arc(xx, yy, 3.2, 0, Math.PI * 2); ctx.fill(); }
+      ctx.fillStyle = P.text; ctx.font = EB.font(12.5, false, 600); ctx.textAlign = "center";
+      ctx.fillText(dir < 0 ? "돈이 원화 쪽으로 → 원화 강세(환율 하락)" : dir > 0 ? "돈이 달러 쪽으로 → 원화 약세(환율 상승)" : "균형: 환율 변화 거의 없음", cx, h - 14);
+      EB.stat("gap-o-d", (gap >= 0 ? "+" : "−") + Math.abs(gap).toFixed(2) + "%p (한국 − 미국)");
+      EB.stat("gap-o-f", (fx >= 0 ? "+" : "−") + Math.abs(fx).toFixed(1) + "%");
+      EB.stat("gap-o-l", Math.round(1400 * (1 + fx / 100)).toLocaleString("ko-KR") + "원");
+    }, { aspect: 0.55, minHeight: 240, maxHeight: 340 });
+    EB.loop(document.getElementById("sim-gap"), function (dt) { t0 += dt; cv.redraw(); });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-lag ---------------- */
+  (function () {
+    var month = 15, box = null;
+    var gD = EB.range("lag-d", function (v) { return (v >= 0 ? "+" : "") + v.toFixed(2) + "%p"; }, draw);
+    var gB = EB.range("lag-b", function (v) { return "× " + v.toFixed(1); }, draw);
+    var cv = EB.canvas("#lag-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      var r = EC.transmit({ dRate: gD() / 100, surprise: 0.5, months: 36, debt: gB(), base0: BASE0, bond0: BOND0, loan0: LOAN0 });
+      var lim = Math.max(0.3, Math.abs(gD()) * 1.1 * Math.max(1, gB()) * 0.6);
+      var c = EB.chart(ctx, { x: 52, y: 14, w: w - 66, h: h - 50 }, {
+        x: [0, 36], y: [-lim, lim], xTicks: [0, 6, 12, 18, 24, 30, 36], xFmt: function (v) { return v + "개월"; }, yFmt: function (v) { return (v > 0 ? "+" : "") + v.toFixed(1) + "%"; },
+        series: [
+          { data: r.rows.map(function (q) { return [q.m, q.gdp * 100]; }), color: P.accent, width: 2.6 },
+          { data: r.rows.map(function (q) { return [q.m, q.cpi * 100]; }), color: P.accent2, width: 2.6 },
+        ],
+        hlines: [{ y: 0, color: P.axis }],
+      });
+      box = c;
+      var x = c.X(month);
+      ctx.save(); ctx.strokeStyle = P.text; ctx.globalAlpha = 0.6; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(x, c.box.y); ctx.lineTo(x, c.box.y + c.box.h); ctx.stroke(); ctx.restore();
+      ctx.beginPath(); ctx.arc(x, c.box.y + c.box.h, 7, 0, Math.PI * 2); ctx.fillStyle = P.text; ctx.fill();
+      ctx.font = EB.font(11); ctx.textAlign = "left";
+      ctx.fillStyle = P.accent; ctx.fillText("GDP 수준", c.box.x + 8, c.box.y + 12);
+      ctx.fillStyle = P.accent2; ctx.fillText("소비자물가 수준", c.box.x + 8, c.box.y + 27);
+      var q = r.rows[month];
+      EB.stat("lag-o-m", month + "개월 뒤");
+      EB.stat("lag-o-g", sgn(q.gdp, 2));
+      EB.stat("lag-o-c", sgn(q.cpi, 2));
+      EB.stat("lag-o-p", "성장 " + r.peak.gdp.m + "개월 · 물가 " + r.peak.cpi.m + "개월");
+    }, { aspect: 0.58, minHeight: 250, maxHeight: 380 });
+    EB.drag(cv.canvas, { move: function (x) { if (!box) return; month = EB.clamp(Math.round(EB.map(x, box.box.x, box.box.x + box.box.w, 0, 36)), 0, 36); cv.redraw(); }, start: function (x) { this.move(x); } });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-board ---------------- */
+  (function () {
+    var month = 0, playing = false, box = null, pulse = 0;
+    var gD = EB.range("bd-d", function (v) { return (v >= 0 ? "+" : "") + v.toFixed(2) + "%p"; }, draw);
+    var gS = EB.range("bd-s", function (v) { return v + "%"; }, draw);
+    var gU = EB.range("bd-u", function (v) { return (v >= 0 ? "+" : "") + v.toFixed(2) + "%p"; }, draw);
+    var gB = EB.range("bd-b", function (v) { return "× " + v.toFixed(1); }, draw);
+    var FX0 = K.usdkrw || 1400, KOSPI0 = 100, ETF0 = C.etf.value, INCOME = C.jiwoo.salary;
+    var NODES = [
+      { key: "loan", name: "대출금리", unit: "rate", why: "조달금리를 몇 달에 걸쳐 따라간다" },
+      { key: "stock", name: "주가", unit: "pct", why: "할인율이 오르면 즉시, 이익이 줄면 천천히" },
+      { key: "house", name: "집값", unit: "pct", why: "대출 한도와 이자 부담을 거쳐 1~2년" },
+      { key: "fx", name: "원/달러 환율", unit: "pct", why: "한·미 금리 차. 음수는 원화 강세" },
+      { key: "gdp", name: "성장(GDP 수준)", unit: "pct", why: "소비·투자가 줄며 1년 남짓에 정점" },
+      { key: "cpi", name: "물가 수준", unit: "pct", why: "가장 늦다. 환율 경로는 빨리 온다" },
+    ];
+    var grid = document.getElementById("bd-grid");
+    grid.innerHTML = NODES.map(function (n) { return '<div><span class="k">' + n.name + '</span><span class="v" id="bd-v-' + n.key + '">—</span><canvas id="bd-sp-' + n.key + '"></canvas><span class="why">' + n.why + "</span></div>"; }).join("");
+    function run() { return EC.transmit({ dRate: gD() / 100, surprise: gS() / 100, usRate: gU() / 100, debt: gB(), months: 24, base0: BASE0, bond0: BOND0, loan0: LOAN0 }); }
+    var R = run();
+    function fmtNode(n, q) {
+      if (n.unit === "rate") return rate2(q[n.key]) + " (" + pctp((q[n.key] - LOAN0) * 100) + ")";
+      return sgn(q[n.key], n.key === "gdp" || n.key === "cpi" ? 2 : 1);
+    }
+    function nodeVal(n, q) { return n.unit === "rate" ? (q.loan - LOAN0) / 0.01 : q[n.key] * 100; }
+    var sparks = NODES.map(function (n) {
+      return EB.canvas("#bd-sp-" + n.key, function (ctx, w, h) {
+        var P = EB.palette(), rows = R.rows;
+        var vals = rows.map(function (q) { return nodeVal(n, q); });
+        var lim = Math.max(1e-6, Math.max.apply(null, vals.map(Math.abs)));
+        var X = function (m) { return 4 + (w - 8) * m / 24; }, Y = function (v) { return h / 2 - (v / lim) * (h / 2 - 5); };
+        ctx.strokeStyle = P.grid; ctx.beginPath(); ctx.moveTo(4, h / 2); ctx.lineTo(w - 4, h / 2); ctx.stroke();
+        ctx.strokeStyle = P.faint; ctx.lineWidth = 1.4; ctx.beginPath();
+        vals.forEach(function (v, i) { if (i) ctx.lineTo(X(i), Y(v)); else ctx.moveTo(X(i), Y(v)); }); ctx.stroke();
+        var up = vals[month] >= 0, good = n.key === "fx" ? !up : n.key === "loan" || n.key === "cpi" ? !up : up;
+        ctx.strokeStyle = Math.abs(vals[month]) < 1e-6 ? P.dim : good ? P.ok : P.bad; ctx.lineWidth = 2.2; ctx.beginPath();
+        for (var i = 0; i <= month; i++) { if (i) ctx.lineTo(X(i), Y(vals[i])); else ctx.moveTo(X(i), Y(vals[i])); } ctx.stroke();
+        ctx.beginPath(); ctx.arc(X(month), Y(vals[month]), 3, 0, Math.PI * 2); ctx.fillStyle = P.text; ctx.fill();
+      }, { aspect: 0.3, minHeight: 40, maxHeight: 48 });
+    });
+    var cv = EB.canvas("#bd-cv", function (ctx, w, h) {
+      var P = EB.palette(), q = R.rows[month];
+      var tl = { x: 40, y: h - 34, w: w - 80 };
+      var cx = w / 2, cy = (h - 44) / 2 + 4, rad = Math.min(w * 0.38, (h - 60) * 0.42);
+      // 시간 막대
+      ctx.strokeStyle = P.border; ctx.lineWidth = 6; ctx.lineCap = "round"; ctx.beginPath(); ctx.moveTo(tl.x, tl.y); ctx.lineTo(tl.x + tl.w, tl.y); ctx.stroke();
+      ctx.strokeStyle = P.accent; ctx.beginPath(); ctx.moveTo(tl.x, tl.y); ctx.lineTo(tl.x + tl.w * month / 24, tl.y); ctx.stroke(); ctx.lineCap = "butt";
+      ctx.fillStyle = P.dim; ctx.font = EB.font(10.5); ctx.textAlign = "center";
+      [0, 6, 12, 18, 24].forEach(function (m) { ctx.fillText(m + "개월", tl.x + tl.w * m / 24, tl.y + 18); });
+      ctx.beginPath(); ctx.arc(tl.x + tl.w * month / 24, tl.y, 9, 0, Math.PI * 2); ctx.fillStyle = P.text; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = P.bg; ctx.stroke();
+      box = tl;
+      // 노드
+      var pos = NODES.map(function (n, i) { var a = -Math.PI / 2 + (i + 0.5) * (Math.PI * 2 / NODES.length); return { x: cx + Math.cos(a) * rad * 1.15, y: cy + Math.sin(a) * rad }; });
+      NODES.forEach(function (n, i) {
+        var p = pos[i], v = nodeVal(n, q), all = R.rows.map(function (r) { return Math.abs(nodeVal(n, r)); });
+        var mx = Math.max.apply(null, all) || 1, strength = Math.abs(v) / mx;
+        // 연결선과 펄스
+        ctx.strokeStyle = P.grid; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(p.x, p.y); ctx.stroke();
+        if (Math.abs(gD()) + Math.abs(gU()) > 0) {
+          ctx.strokeStyle = P.accent; ctx.globalAlpha = 0.25 + 0.75 * strength; ctx.lineWidth = 1 + 4 * strength; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(p.x, p.y); ctx.stroke(); ctx.globalAlpha = 1;
+          var f = (pulse * (0.4 + 0.6 * strength) + i * 0.17) % 1;
+          ctx.beginPath(); ctx.arc(EB.lerp(cx, p.x, f), EB.lerp(cy, p.y, f), 2.5 + 2 * strength, 0, Math.PI * 2); ctx.fillStyle = P.accent; ctx.globalAlpha = strength > 0.02 ? 0.9 : 0.15; ctx.fill(); ctx.globalAlpha = 1;
+        }
+        var up = v >= 0, good = n.key === "fx" || n.key === "loan" || n.key === "cpi" ? !up : up;
+        var col = Math.abs(v) < 1e-4 ? P.dim : good ? P.ok : P.bad;
+        var bw = Math.min(118, w * 0.27), bh = 40;
+        ctx.fillStyle = EB.color("canvas-bg"); ctx.strokeStyle = col; ctx.lineWidth = 1.5;
+        ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(p.x - bw / 2, p.y - bh / 2, bw, bh, 8); else ctx.rect(p.x - bw / 2, p.y - bh / 2, bw, bh); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = P.dim; ctx.font = EB.font(10.5); ctx.textAlign = "center"; ctx.fillText(n.name, p.x, p.y - 5);
+        ctx.fillStyle = col; ctx.font = EB.font(12.5, true, 600);
+        ctx.fillText(n.unit === "rate" ? pctp((q.loan - LOAN0) * 100) : sgn(q[n.key], n.key === "gdp" || n.key === "cpi" ? 2 : 1), p.x, p.y + 12);
+      });
+      // 가운데
+      ctx.beginPath(); ctx.arc(cx, cy, 34, 0, Math.PI * 2); ctx.fillStyle = EB.color("canvas-bg"); ctx.fill(); ctx.fillStyle = EB.color("accent-soft"); ctx.fill(); ctx.strokeStyle = P.accent; ctx.lineWidth = 2; ctx.stroke();
+      ctx.fillStyle = P.text; ctx.font = EB.font(11); ctx.textAlign = "center"; ctx.fillText("기준금리", cx, cy - 4);
+      ctx.font = EB.font(13, true, 700); ctx.fillText(rate2(q.base), cx, cy + 13);
+      ctx.fillStyle = P.dim; ctx.font = EB.font(11); ctx.textAlign = "left"; ctx.fillText(month + "개월 뒤", 10, 16);
+    }, { get height() { return Math.max(300, Math.min(420, (document.getElementById("bd-cv").clientWidth || 600) * 0.62)); }, aspect: 0.62, minHeight: 300, maxHeight: 420 });
+    EB.drag(cv.canvas, { move: function (x) { if (!box) return; playing = false; month = EB.clamp(Math.round((x - box.x) / box.w * 24), 0, 24); update(); }, start: function (x, y) { if (box && y > box.y - 24) this.move(x); } });
+    function update() {
+      var q = R.rows[month];
+      NODES.forEach(function (n) { EB.stat("bd-v-" + n.key, fmtNode(n, q)); });
+      sparks.forEach(function (s) { s.redraw(); });
+      EB.stat("bd-o-i", EB.won(LOAN * q.loanMine / 12) + " (" + (q.loanMine >= LOAN0 ? "+" : "−") + EB.won(Math.abs(LOAN * (q.loanMine - LOAN0) / 12)) + ")");
+      EB.stat("bd-o-e", EB.won(ETF0 * (1 + q.stock)));
+      EB.stat("bd-o-f", "달러당 " + Math.round(FX0 * (1 + q.fx)).toLocaleString("ko-KR") + "원");
+      var m = q.loan / 12, pay = INCOME * 0.4 / 12, L = pay * (1 - Math.pow(1 + m, -360)) / m;
+      var m0 = LOAN0 / 12, L0 = pay * (1 - Math.pow(1 + m0, -360)) / m0;
+      EB.stat("bd-o-l", EB.won(L) + " (" + sgn(L / L0 - 1, 1) + ")");
+      cv.redraw();
+    }
+    function draw() { R = run(); update(); }
+    document.getElementById("bd-go").addEventListener("click", function () { if (month >= 24) month = 0; playing = true; });
+    document.getElementById("bd-re").addEventListener("click", function () { playing = false; month = 0; update(); });
+    var acc = 0;
+    EB.loop(document.getElementById("sim-board"), function (dt) {
+      pulse += dt * 0.8;
+      if (playing) { acc += dt; if (acc > 0.25) { acc = 0; month = Math.min(24, month + 1); if (month >= 24) playing = false; update(); return; } }
+      cv.redraw();
+    });
+    draw();
+  })();
+
+  /* ---------------- 케이스 ---------------- */
+  (function () {
+    var before = C.home.loanRate, hikes = 0.005;            // 7월·8월 두 번, 합계 0.5%p
+    var after = before + hikes * T.loanPass;
+    var di = C.home.loan * (after - before) / 12;
+    document.getElementById("case-calc").innerHTML = "지우의 전세대출 1억 4,000만원은 6개월마다 금리가 바뀐다. 마지막 재산정은 2026년 4월이었고 다음은 10월이다. 두 번의 인상(합계 0.5%p)이 은행 조달금리를 거쳐 90% 전가된다고 보면, 10월부터 금리는 연 " + rate2(before) + "에서 약 " + rate2(after) + "로 오르고 월 이자는 " + EB.won(C.home.loan * before / 12) + "에서 약 " + EB.won(C.home.loan * after / 12) + "로 <b>" + EB.won(di) + "</b>쯤 늘어난다. 이 책의 모형으로 계산한 값이다. 실제 금리는 은행의 가산금리와 코픽스 공시에 따라 다르다. 지우가 정리한 순서는 이렇다. 채권과 환율은 이미 움직였다. 이자는 10월에 바뀐다. 3년 뒤 집을 살 때 빌릴 수 있는 돈은 금리가 이대로라면 지금보다 줄어 있다.";
+    document.getElementById("case-life").textContent = "10월부터 월 이자 약 " + EB.won(di) + " 증가. 월 저축 여력 " + EB.won(C.monthlySaving) + "의 약 " + Math.round(di / C.monthlySaving * 100) + "%.";
+  })();
+})();
+</script>
+</body>
+</html>

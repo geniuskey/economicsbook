@@ -1,0 +1,671 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and EconomicsBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "소비자물가지수의 장바구니와 가중치, 체감물가와 생활물가, 상승률과 수준의 차이, 근원물가, 기대 인플레이션, 수요 견인과 비용 상승, 유가와 환율의 전가, 실질 임금, 물가안정목표가 2%인 이유를 시뮬레이터로 따라가고 물가를 항목별 기여도로 분해한다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>물가 · EconomicsBook</title>
+<meta name="description" content="소비자물가지수의 장바구니와 가중치, 체감물가와 생활물가, 상승률과 수준의 차이, 근원물가, 기대 인플레이션, 수요 견인과 비용 상승, 유가와 환율의 전가, 실질 임금, 물가안정목표가 2%인 이유를 시뮬레이터로 따라가고 물가를 항목별 기여도로 분해한다.">
+<link rel="canonical" href="https://economicsbook.euiyun.com/chapters/inflation.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#4338ca">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="EconomicsBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="물가 · EconomicsBook">
+<meta property="og:description" content="소비자물가지수의 장바구니와 가중치, 체감물가와 생활물가, 상승률과 수준의 차이, 근원물가, 기대 인플레이션, 수요 견인과 비용 상승, 유가와 환율의 전가, 실질 임금, 물가안정목표가 2%인 이유를 시뮬레이터로 따라가고 물가를 항목별 기여도로 분해한다.">
+<meta property="og:url" content="https://economicsbook.euiyun.com/chapters/inflation.html">
+<meta property="og:image" content="https://economicsbook.euiyun.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://economicsbook.euiyun.com/chapters/inflation.html#chapter","name":"물가","headline":"물가 · EconomicsBook","description":"소비자물가지수의 장바구니와 가중치, 체감물가와 생활물가, 상승률과 수준의 차이, 근원물가, 기대 인플레이션, 수요 견인과 비용 상승, 유가와 환율의 전가, 실질 임금, 물가안정목표가 2%인 이유를 시뮬레이터로 따라가고 물가를 항목별 기여도로 분해한다.","url":"https://economicsbook.euiyun.com/chapters/inflation.html","position":6,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://economicsbook.euiyun.com/og.png","dateModified":"2026-10-09","isPartOf":{"@type":"Book","@id":"https://economicsbook.euiyun.com/#book","name":"EconomicsBook · 경제 뉴스 읽는 교과서","url":"https://economicsbook.euiyun.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"EconomicsBook","item":"https://economicsbook.euiyun.com/"},{"@type":"ListItem","position":2,"name":"6. 물가","item":"https://economicsbook.euiyun.com/chapters/inflation.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/econ.js"></script>
+<!--head:end-->
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"3d6151a0abc94ede89285d462527fa80"}'></script>
+<!-- End Cloudflare Web Analytics -->
+</head>
+<body data-chapter="inflation">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 06</div>
+    <h1>물가</h1>
+    <p class="lead">"올해 물가는 2.1% 올랐다." 장을 본 사람이라면 고개를 갸웃한다. 사과값도 외식비도 그보다 훨씬 오른 것 같다. 이 장은 소비자물가지수라는 장바구니를 직접 채워 보고, 체감과 통계가 어긋나는 이유, 물가를 끌어올리는 힘의 종류, 그리고 왜 중앙은행이 0%가 아니라 2%를 목표로 삼는지를 따라간다. 마지막에는 유가·환율·임금·수요를 한꺼번에 움직여 물가를 항목별로 분해해 본다.</p>
+    <ul class="objectives">
+      <li>소비자물가지수가 품목별 가격 변화를 가중치로 평균한 숫자라는 것을 알고, 가중치가 바뀌면 상승률이 어떻게 달라지는지 계산할 수 있다.</li>
+      <li>체감물가와 통계의 차이, 상승률과 물가 수준의 차이("물가가 내렸다"는 착각)를 설명할 수 있다.</li>
+      <li>헤드라인 물가와 근원물가를 구분하고, 수요 견인·비용 상승·환율 전가·기대 인플레이션이 물가를 움직이는 길을 그릴 수 있다.</li>
+      <li>물가가 내 월급의 실질 가치에 주는 영향을 계산하고, 물가안정목표가 2%인 이유를 양쪽 근거로 말할 수 있다.</li>
+    </ul>
+  </header>
+
+  <div class="headline" id="hl-top">2025년 소비자물가 2.1% 상승… 2020년 이후 가장 낮아<small>지우의 헤드라인 노트 · 2025년 12월 · 근거: 국가데이터처 「2025년 12월 및 연간 소비자물가동향」(2025-12-31)</small></div>
+
+  <section id="basket">
+    <h2>장바구니 하나로 재는 물가</h2>
+    <p>물가는 하나의 가격이 아니다. 쌀, 휘발유, 전셋값, 휴대전화 요금, 미용실 커트, 학원비가 저마다 다르게 움직인다. 이것을 숫자 하나로 줄이기 위해 국가데이터처는 가구가 실제로 돈을 쓰는 품목을 골라 하나의 장바구니를 만든다. 이것이 <span class="term">소비자물가지수</span><span class="en">(CPI, Consumer Price Index)</span>다. 현재 지수는 2020년을 100으로 놓고 <strong>458개 품목</strong>의 가격을 매달 조사해 만든다.</p>
+    <p>품목마다 무게가 다르다. 가구가 한 해 동안 집세에 쓰는 돈이 고사리에 쓰는 돈보다 훨씬 많으므로 집세의 가격 변화가 지수를 더 크게 움직여야 한다. 이 무게가 <span class="term">가중치</span><span class="en">(Weight)</span>다. 가중치는 가계동향조사의 지출 비중으로 정하고, 전체를 1,000으로 놓고 나눠 갖는다. 2020년 기준 지수의 현행 가중치(2022년 지출 구조를 반영해 조정한 것)에서 상품은 447.6, 서비스는 552.4다. 서비스 가운데 집세(전세·월세)는 99.1, 외식·미용·학원비 같은 개인서비스는 333.3이다 <span class="src">(국가데이터처, 2025년 기준 소비자물가지수 개편 잠정안 발표 2026-07-07 인용 보도의 '개편 전' 값)</span>.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 270" role="img" aria-label="소비자물가지수의 분류. 상품 447.6(농축수산물, 공업제품, 전기·가스·수도)과 서비스 552.4(집세 99.1, 공공서비스, 개인서비스 333.3)">
+        <defs><marker id="if-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="150" y="10" width="160" height="44" rx="8" class="f-acc-soft"/>
+        <text x="230" y="30" text-anchor="middle" class="lbl-b">소비자물가지수</text>
+        <text x="230" y="47" text-anchor="middle" class="t-mono lbl-dim">1,000 (458개 품목)</text>
+        <rect x="20" y="88" width="180" height="44" rx="8" class="f-acc2-soft"/>
+        <text x="110" y="108" text-anchor="middle" class="lbl-b">상품</text>
+        <text x="110" y="125" text-anchor="middle" class="t-mono lbl-dim">447.6</text>
+        <rect x="260" y="88" width="180" height="44" rx="8" class="f-ok-soft"/>
+        <text x="350" y="108" text-anchor="middle" class="lbl-b">서비스</text>
+        <text x="350" y="125" text-anchor="middle" class="t-mono lbl-dim">552.4</text>
+        <rect x="8" y="168" width="68" height="52" rx="6" class="f-surface"/><text x="42" y="190" text-anchor="middle" class="lbl">농축</text><text x="42" y="208" text-anchor="middle" class="lbl">수산물</text>
+        <rect x="80" y="168" width="68" height="52" rx="6" class="f-surface"/><text x="114" y="190" text-anchor="middle" class="lbl">공업</text><text x="114" y="208" text-anchor="middle" class="lbl">제품</text>
+        <rect x="152" y="168" width="78" height="52" rx="6" class="f-surface"/><text x="191" y="190" text-anchor="middle" class="lbl">전기·가스</text><text x="191" y="208" text-anchor="middle" class="lbl">·수도</text>
+        <rect x="240" y="168" width="62" height="52" rx="6" class="f-surface"/><text x="271" y="190" text-anchor="middle" class="lbl">집세</text><text x="271" y="208" text-anchor="middle" class="t-mono lbl-dim">99.1</text>
+        <rect x="306" y="168" width="68" height="52" rx="6" class="f-surface"/><text x="340" y="190" text-anchor="middle" class="lbl">공공</text><text x="340" y="208" text-anchor="middle" class="lbl">서비스</text>
+        <rect x="378" y="168" width="76" height="52" rx="6" class="f-surface"/><text x="416" y="190" text-anchor="middle" class="lbl">개인서비스</text><text x="416" y="208" text-anchor="middle" class="t-mono lbl-dim">333.3</text>
+        <g class="s-line" marker-end="url(#if-ar)">
+          <path d="M200 54L130 88"/><path d="M260 54L330 88"/>
+          <path d="M80 132L42 168"/><path d="M110 132L114 168"/><path d="M140 132L190 168"/>
+          <path d="M310 132L271 168"/><path d="M350 132L340 168"/><path d="M390 132L414 168"/>
+        </g>
+        <text x="20" y="246" class="lbl-dim">석유류는 공업제품 안에 있다. 근원물가는 이 가운데 변동이 큰 칸을 뺀다.</text>
+      </svg>
+      <figcaption><b>그림 1. 소비자물가지수의 품목성질별 분류와 가중치.</b> 2020년 기준 지수의 현행 가중치(1,000분비). 국가데이터처는 2025년 기준으로 지수를 개편해 2026년 12월에 공표할 예정이며, 잠정안에서 상품은 421.8, 서비스는 578.2로 서비스의 무게가 커진다. <span class="src">(국가데이터처, 2025년 기준 소비자물가지수 개편 잠정안 2026-07-07 인용 보도)</span></figcaption>
+    </figure>
+
+    <p>소비자물가 상승률은 품목별 가격 변화율을 가중치로 평균한 값에 가깝다. 정확히는 기준 시점의 장바구니를 그대로 두고 그 값이 얼마나 변했는지를 잰다(라스파이레스 방식).</p>
+    <div class="formula">$$\pi \approx \sum_{i} w_i \, \pi_i, \qquad \text{기여도}_i = w_i \, \pi_i$$<div class="where">\(w_i\): 품목 \(i\)의 가중치(전체를 1로 놓은 비중), \(\pi_i\): 품목 \(i\)의 가격 변화율. 기사에서 "석유류가 전체 물가를 0.93%p 끌어올렸다"고 할 때의 숫자가 기여도다.</div></div>
+    <p>아래 막대의 <strong>폭</strong>은 가중치, <strong>높이</strong>는 가격 변화율이다. 넓이가 곧 기여도다. 막대 꼭대기를 끌어 가격을 바꾸고, 가중치 슬라이더로 장바구니의 구성을 바꿔 본다.</p>
+
+    <div class="sim" id="sim-basket">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>장바구니 채우기: 가격과 가중치가 만드는 물가</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="bk-cv"></canvas><span class="hint">막대 꼭대기를 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="bk-cat"><button data-value="0" class="on">식료품</button><button data-value="1">음식·숙박</button><button data-value="2">주거·광열</button><button data-value="3">교통</button><button data-value="4">교육·보건·통신</button><button data-value="5">기타</button></div>
+          <label class="ctrl"><span>고른 항목의 가중치 <output id="bk-w-out"></output></span><input type="range" id="bk-w" min="20" max="500" step="5" value="140"></label>
+          <div class="seg" id="bk-who"><button data-value="cpi" class="on">지수의 가중치</button><button data-value="me">지우의 가중치</button></div>
+          <div class="btn-row"><button class="btn" id="bk-re">처음으로</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">물가 상승률(지수)</span><span class="v" id="bk-o-c">—</span></div>
+        <div class="stat"><span class="k">지우의 가중치로 계산</span><span class="v" id="bk-o-j">—</span></div>
+        <div class="stat"><span class="k">고른 항목의 기여도</span><span class="v" id="bk-o-s">—</span></div>
+        <div class="stat"><span class="k">가장 큰 기여</span><span class="v" id="bk-o-m">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 교통 막대를 +15%로 끌어올린다. 기름값이 크게 올라도 교통의 폭이 좁아 전체는 1.5%p 남짓 오른다. ② '지우의 가중치'를 누른다. 외식과 식료품에 돈을 더 쓰는 지우의 장바구니는 같은 가격에서도 다른 상승률을 낸다. 사람마다 자기 물가가 있다. ③ 식료품 막대를 −10%까지 내리고 나머지를 크게 올린다. 한 품목이 내려도 지수는 오를 수 있다. 반대로 '기타'의 가중치를 500까지 올리면 그 항목 하나가 지수를 좌우한다. (6개 항목과 가중치, 처음 가격 변화율은 실제와 비슷한 크기로 이 책이 정한 교육용 값이다. 실제 12개 지출목적별 가중치는 KOSIS에 있다.)</div>
+    </div>
+
+    <p>가중치는 고정되어 있지 않다. 사람들의 소비가 바뀌면 장바구니도 바뀐다. 국가데이터처는 5년마다 기준 연도를 바꾸며 품목과 가중치를 다시 짜고, 그 사이에도 가중치를 손본다. 2025년 기준 개편 잠정안에서는 땅콩·고사리·부탄가스처럼 지출이 적어진 품목이 빠지고 스마트워치, 밀키트, 전기차 충전료, 소프트웨어 구독료 같은 품목이 들어가 455개가 된다 <span class="src">(국가데이터처, 개편 잠정안 2026-07-07 인용 보도)</span>. 새 지수는 2026년 12월 31일 소비자물가동향부터 쓰이며, 과거 지수도 새 기준으로 다시 계산된다.</p>
+  </section>
+
+  <section id="feel">
+    <h2>체감물가는 왜 더 높은가</h2>
+    <p>지수가 2%대인데 사람들이 느끼는 물가는 더 높다는 이야기는 해마다 나온다. 이유는 여럿이다. 첫째, 사람들은 <strong>자주 사는 물건</strong>의 가격을 기억한다. 매주 사는 채소와 우유, 매일 넣는 기름값은 눈에 띄지만, 몇 년에 한 번 사는 가전제품 값이나 매달 자동이체되는 요금의 변화는 잘 느끼지 못한다. 둘째, 사람마다 장바구니가 다르다(앞 시뮬레이터의 지우처럼). 셋째, 오른 가격은 오래 기억하고 내린 가격은 쉽게 잊는다.</p>
+    <p>국가데이터처는 첫째 이유를 보완하려고 구입 빈도가 높고 지출 비중이 큰 <strong>144개 품목</strong>으로 <span class="term">생활물가지수</span><span class="en">(Living cost index)</span>를 따로 낸다. 2025년 생활물가지수는 2.4% 올라 전체 소비자물가(2.1%)보다 높았고, 12월에는 2.8%였다 <span class="src">(국가데이터처, 「2025년 12월 및 연간 소비자물가동향」 인용 보도)</span>. 한국은행 조사에서 사람들이 답한 "지난 1년 물가 상승률"(물가인식)은 2026년 9월 3.0%였다. 같은 달 실제 소비자물가 상승률은 2.9%, 8월은 3.1%였다 <span class="src">(한국은행, 「2026년 9월 소비자동향조사」 인용 보도. 국가데이터처, 「2026년 9월 소비자물가동향」)</span>.</p>
+
+    <p>체감과 통계가 어긋나는 더 근본적인 이유가 하나 있다. 사람들은 <strong>가격의 수준</strong>을 느끼고, 통계는 <strong>가격의 변화율</strong>을 말한다. "물가 상승률이 2%대로 내려왔다"는 기사는 물가가 내렸다는 뜻이 아니다. 작년보다 2% 더 올랐다는 뜻이다. 2022년에 5.1% 오른 가격은 그 뒤 상승률이 낮아져도 제자리로 돌아가지 않고, 그 위에 다시 쌓인다.</p>
+
+    <div class="sim" id="sim-level">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>상승률이 내려가도 물가는 오른다: 변화율과 수준</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="lv-cv"></canvas><span class="hint">2026년 이후 막대를 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="btn-row"><button class="btn" id="lv-dis">상승률을 1%로 낮추면</button><button class="btn" id="lv-def">디플레이션(−1%)</button></div>
+          <div class="btn-row"><button class="btn" id="lv-hot">다시 4%로</button><button class="btn primary" id="lv-re">처음으로</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">2025년 지수(계산)</span><span class="v" id="lv-o-25">—</span></div>
+        <div class="stat"><span class="k">2030년 지수</span><span class="v" id="lv-o-30">—</span></div>
+        <div class="stat"><span class="k">2020년 1만원짜리는 2030년에</span><span class="v" id="lv-o-w">—</span></div>
+        <div class="stat"><span class="k">가격 수준이 내려간 해</span><span class="v" id="lv-o-d">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 2021~2025년의 실제 상승률로 계산한 2025년 지수가 공표된 116.61과 거의 같다(반올림 차이). 상승률이 5.1%에서 2.1%로 내려오는 동안에도 아래 선은 계속 올라갔다. ② '상승률을 1%로 낮추면'. 선의 기울기만 완만해질 뿐 내려오지 않는다. ③ '디플레이션'을 누르거나 막대를 0 아래로 끈다. 그제서야 수준이 내려간다. 물가가 "내리는" 것은 상승률이 음수일 때뿐이다. (2021~2025년은 국가데이터처 연간 상승률. 2026년 이후는 이 책이 넣은 가정이며 전망이 아니다.)</div>
+    </div>
+
+    <p>2020년을 100으로 놓은 지수는 2025년 116.61이었다 <span class="src">(국가데이터처, 2025년 연간 소비자물가동향)</span>. 5년 동안 물가 수준이 약 17% 올랐다는 뜻이다. 2025년의 2.1%는 그 높아진 수준에서 다시 2.1%를 얹은 것이다. 체감물가가 "물가가 너무 비싸다"는 느낌이라면 그것은 상승률이 아니라 수준에 대한 이야기이고, 수준은 상승률이 낮아져도 내려오지 않는다. 한국은행이 상승률을 2%로 되돌리는 데 성공해도 2022년 이전의 가격으로 돌아가지 않는 이유다.</p>
+
+    <div class="callout link"><strong>MoneyBook에서 이어 읽기</strong>물가가 내 돈의 구매력을 깎는 원리, 72의 법칙으로 보는 물가의 복리, 물가를 이기는 저축과 투자의 기준은 MoneyBook <a href="https://moneybook.euiyun.com/chapters/inflation.html">물가와 구매력</a>에서 시뮬레이터로 이어진다. 이 장은 물가가 왜, 어디서 오르는지를 경제 전체의 눈으로 본다.</div>
+  </section>
+
+  <section id="core">
+    <h2>근원물가: 흔들리는 것을 빼고 보기</h2>
+    <p>농산물 가격은 날씨에, 석유류 가격은 국제 유가와 전쟁 소식에 크게 흔들린다. 이런 품목은 몇 달 사이에 수십 % 오르내려 전체 물가를 출렁이게 하지만, 그 출렁임은 대개 오래가지 않는다. 그래서 물가의 바탕 흐름을 보려고 변동이 큰 품목을 뺀 <span class="term">근원물가</span><span class="en">(Core inflation)</span>를 함께 본다. 국가데이터처는 두 가지를 낸다.</p>
+    <ul>
+      <li><strong>농산물 및 석유류 제외 지수</strong>: 한국에서 오래 써 온 근원물가. 2025년 2.2%, 2026년 9월 2.7%.</li>
+      <li><strong>식료품 및 에너지 제외 지수</strong>: OECD가 나라끼리 비교할 때 쓰는 기준. 가공식품과 전기·가스까지 뺀다. 2025년 1.9%, 2026년 9월 2.8%.</li>
+    </ul>
+    <p class="src" style="font-size:13px">(국가데이터처, 「2025년 12월 및 연간 소비자물가동향」, 「2026년 9월 소비자물가동향」 인용 보도. 2025년 연간 근원물가는 보도 1건으로 확인)</p>
+    <p>2026년의 물가가 좋은 예다. 그림 2는 2026년 1~9월 소비자물가 상승률이다. 연초 2.0%에서 출발해 3월부터 2%를 넘었고, 5~6월에 3%를 넘었다. 중동 전쟁으로 국제 유가가 오르면서 석유류 가격이 6월에 1년 전보다 24.7% 뛰어 전체 물가를 0.93%p 끌어올렸다. 우크라이나 전쟁 초기였던 2022년 7월(35.2%) 이후 가장 큰 석유류 상승폭이었다 <span class="src">(국가데이터처, 「2026년 6월 소비자물가동향」 2026-07-02 인용 보도)</span>.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 280" role="img" aria-label="2026년 1월부터 9월까지 소비자물가 상승률 꺾은선. 2.0, 2.0, 2.2, 2.6, 3.1, 3.2, 2.8, 3.1, 2.9%">
+        <g class="s-dash"><line x1="44" y1="70" x2="440" y2="70"/><line x1="44" y1="110" x2="440" y2="110"/><line x1="44" y1="150" x2="440" y2="150"/></g>
+        <line x1="44" y1="190" x2="440" y2="190" class="s-acc2"/>
+        <line x1="44" y1="230" x2="440" y2="230" class="s-axis"/>
+        <text x="38" y="74" text-anchor="end" class="t-mono lbl-dim">3.5</text>
+        <text x="38" y="114" text-anchor="end" class="t-mono lbl-dim">3.0</text>
+        <text x="38" y="154" text-anchor="end" class="t-mono lbl-dim">2.5</text>
+        <text x="38" y="194" text-anchor="end" class="t-mono lbl-dim">2.0</text>
+        <text x="38" y="234" text-anchor="end" class="t-mono lbl-dim">1.5</text>
+        <text x="436" y="184" text-anchor="end" class="lbl-acc2">물가안정목표 2%</text>
+        <polyline points="64,190 109,190 154,174 199,142 244,102 289,94 334,126 379,102 424,118" class="s-acc" fill="none"/>
+        <g class="f-acc">
+          <circle cx="64" cy="190" r="4"/><circle cx="109" cy="190" r="4"/><circle cx="154" cy="174" r="4"/><circle cx="199" cy="142" r="4"/><circle cx="244" cy="102" r="4"/><circle cx="289" cy="94" r="5"/><circle cx="334" cy="126" r="4"/><circle cx="379" cy="102" r="4"/><circle cx="424" cy="118" r="4"/>
+        </g>
+        <text x="289" y="82" text-anchor="middle" class="t-mono lbl">3.2</text>
+        <text x="424" y="106" text-anchor="middle" class="t-mono lbl">2.9</text>
+        <text x="289" y="58" text-anchor="middle" class="lbl-dim">6월 석유류 +24.7%</text>
+        <text x="379" y="90" text-anchor="middle" class="lbl-dim">8월 통신요금 기저효과</text>
+        <g class="t-mono lbl-dim">
+          <text x="64" y="250" text-anchor="middle">1월</text><text x="154" y="250" text-anchor="middle">3월</text><text x="244" y="250" text-anchor="middle">5월</text><text x="334" y="250" text-anchor="middle">7월</text><text x="424" y="250" text-anchor="middle">9월</text>
+        </g>
+        <text x="44" y="272" class="lbl-dim">소비자물가 상승률(전년 동월 대비, %), 2026년</text>
+      </svg>
+      <figcaption><b>그림 2. 2026년 소비자물가 상승률.</b> 1·2월 2.0%, 3월 2.2%, 4월 2.6%, 5월 3.1%, 6월 3.2%, 7월 2.8%, 8월 3.1%, 9월 2.9%. <span class="src">(국가데이터처, 월별 「소비자물가동향」 인용 보도. 9월은 2026-10-02 발표)</span></figcaption>
+    </figure>
+
+    <p>9월에는 석유류 상승률이 14.8%로 6월보다 낮아졌지만 여전히 전체 물가를 0.56%p 끌어올렸다. 반면 근원물가는 2.7%(농산물·석유류 제외)와 2.8%(식료품·에너지 제외)로 헤드라인과 비슷한 수준까지 올라왔다 <span class="src">(국가데이터처, 「2026년 9월 소비자물가동향」 인용 보도)</span>. 유가 충격이 휘발유값에 머물지 않고 항공 유류할증료, 배달비, 공산품 가격으로 번지고 있다는 신호로 읽을 수 있다. 근원물가가 헤드라인을 따라 올라오기 시작하면 중앙은행은 그 충격을 "지나가는 것"으로 보기 어려워진다.</p>
+
+    <div class="callout news"><strong>통신요금이 만든 8월의 3.1%</strong>백정호는 2026년 8월 물가 기사를 보고 지우에게 표의 한 줄을 짚었다. 공공서비스 물가 상승률이 8월 6.5%에서 9월 1.5%로 내려왔다. 2025년 8월에 통신요금 감면이 있어 그달 요금이 일시적으로 낮았고, 1년 뒤 그 낮은 숫자와 비교하니 상승률이 부풀었다. OECD 기준 근원물가가 8월 3.4%에서 9월 2.8%로 내려온 것도 같은 이유다 <span class="src">(국가데이터처, 2026년 8·9월 소비자물가동향 인용 보도)</span>. 그는 "전년 동월 대비 숫자가 튀면, 올해가 아니라 작년 그달을 먼저 의심하라"고 했다. 기저효과는 물가에서도 고용에서도 같은 얼굴로 나온다(<a href="jobs.html">5장</a>).</div>
+
+    <div class="callout stat"><strong>소비자물가동향은 언제, 어디서 나오나</strong>국가데이터처는 매달 초(대개 첫 영업일 무렵) 전달의 「소비자물가동향」을 발표한다. 12월분은 12월 말일에 연간 결과와 함께 나온다. 보도자료 첫 쪽에 전체 지수와 전년 동월비·전월비, 근원물가 두 가지, 생활물가지수, 신선식품지수가 있고, 뒤쪽에 품목성질별 기여도 표가 있다. 품목별 지수와 가중치는 KOSIS 국가통계포털의 '소비자물가조사'에서 내려받는다. 기사에서 "기여도 ○%p"라는 말이 나오면 이 표에서 나온 숫자다.</div>
+  </section>
+
+  <section id="cause">
+    <h2>수요가 끌어올린 물가, 비용이 밀어올린 물가</h2>
+    <p>물가가 오르는 이유는 크게 둘로 나뉜다. 경제 전체의 지출(총수요)이 생산 능력보다 빠르게 늘면 기업은 값을 올려도 팔린다. 이것이 <span class="term">수요 견인 인플레이션</span><span class="en">(Demand-pull inflation)</span>이다. 반대로 원유·원자재·임금 같은 생산 비용이 오르면 기업은 같은 양을 만들기 위해 값을 올려야 한다. 이것이 <span class="term">비용 상승 인플레이션</span><span class="en">(Cost-push inflation)</span>이다.</p>
+    <p>둘은 물가만 보면 같아 보이지만 생산과 고용에서 갈린다. 수요 견인이면 생산과 고용이 늘면서 물가가 오른다. 비용 상승이면 생산이 줄면서 물가가 오른다. 경기는 식는데 물가는 오르는 이 조합을 <span class="term">스태그플레이션</span><span class="en">(Stagflation)</span>이라 한다. 중앙은행에게는 가장 어려운 상황이다. 물가를 잡으려 금리를 올리면 식어 가는 경기를 더 누르고, 경기를 살리려 금리를 내리면 물가를 더 밀어 올린다.</p>
+    <p>아래 그래프의 가로축은 생산(GDP), 세로축은 물가 수준이다. 내려가는 선이 총수요(AD), 올라가는 선이 총공급(AS)이다. 총수요 선을 끌어 옮기고, 비용 슬라이더로 총공급 선을 위로 올려 본다.</p>
+
+    <div class="sim" id="sim-adas">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>총수요·총공급: 같은 물가 상승, 다른 원인</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ad-cv"></canvas><span class="hint">총수요(AD) 선을 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>생산 비용 충격(유가·원자재) <output id="ad-s-out"></output></span><input type="range" id="ad-s" min="-4" max="12" step="0.5" value="0"></label>
+          <div class="btn-row"><button class="btn" id="ad-d">수요 과열</button><button class="btn" id="ad-c">유가 급등</button><button class="btn primary" id="ad-re">처음으로</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">물가 수준 변화</span><span class="v" id="ad-o-p">—</span></div>
+        <div class="stat"><span class="k">생산 변화</span><span class="v" id="ad-o-y">—</span></div>
+        <div class="stat"><span class="k">진단</span><span class="v" id="ad-o-k">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① AD 선을 오른쪽으로 조금 끈다. 생산과 물가가 함께 오른다(수요 견인). ② AD를 오른쪽 끝까지 민다. 생산 능력(세로 점선) 근처에서 AS가 가팔라져 생산은 거의 늘지 않고 물가만 뛴다. 과열된 경제에서 돈을 더 풀면 생기는 일이다. ③ '유가 급등'을 누른다. AS가 위로 올라 물가는 오르고 생산은 줄어든다(스태그플레이션). 이때 AD를 왼쪽으로 끌어 물가를 되돌려 보면 생산이 얼마나 더 줄어야 하는지 보인다. (교육용 모형. 생산 100 = 잠재 생산, 물가 100 = 출발점.)</div>
+    </div>
+
+    <p>현실의 물가 상승은 대개 두 힘이 섞여 있다. 2022년이 그랬다. 코로나19 뒤 억눌렸던 소비가 풀리고 각국이 돈을 풀어 수요가 늘던 차에, 러시아의 우크라이나 침공으로 원유·곡물값이 치솟고 공급망이 막혔다. 한국 소비자물가 상승률은 2022년 7월 6.3%로 1998년 11월(6.8%) 이후 가장 높았고, 2022년 연간으로는 5.1%였다 <span class="src">(통계청, 「2022년 7월 소비자물가동향」. 국가데이터처, 연간 소비자물가 시계열)</span>. 어느 힘이 더 컸는지는 지금도 연구마다 답이 다르다.</p>
+  </section>
+
+  <section id="pass">
+    <h2>유가와 환율은 어떻게 물가로 건너오나</h2>
+    <p>한국은 원유를 거의 전부, 밀과 옥수수 같은 곡물도 대부분 수입한다. 수입품의 원화 가격은 두 숫자를 곱해 정해진다. 달러로 매긴 국제 가격과 원/달러 환율이다. 국제 유가가 그대로여도 환율이 10% 오르면 원화로 사는 원유는 10% 비싸진다. 국제 유가가 10% 오르는데 환율도 10% 오르면 원화 값은 약 21% 오른다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 300" role="img" aria-label="국제 원자재 가격(달러)과 원/달러 환율이 수입물가, 생산자물가를 거쳐 소비자물가로 전가되는 흐름과 시차">
+        <defs><marker id="if-ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="16" y="14" width="190" height="46" rx="8" class="f-acc2-soft"/><text x="111" y="34" text-anchor="middle" class="lbl-b">국제 유가·곡물값</text><text x="111" y="51" text-anchor="middle" class="lbl-dim">(달러 표시)</text>
+        <rect x="254" y="14" width="190" height="46" rx="8" class="f-acc2-soft"/><text x="349" y="34" text-anchor="middle" class="lbl-b">원/달러 환율</text><text x="349" y="51" text-anchor="middle" class="lbl-dim">(<a href="fx.html">10장</a>)</text>
+        <rect x="120" y="92" width="220" height="44" rx="8" class="f-surface"/><text x="230" y="112" text-anchor="middle" class="lbl-b">수입물가(원화 기준)</text><text x="230" y="129" text-anchor="middle" class="lbl-dim">한국은행 「수출입물가지수」</text>
+        <rect x="120" y="166" width="220" height="44" rx="8" class="f-surface"/><text x="230" y="186" text-anchor="middle" class="lbl-b">생산자물가</text><text x="230" y="203" text-anchor="middle" class="lbl-dim">기업끼리 사고파는 값</text>
+        <rect x="16" y="240" width="200" height="46" rx="8" class="f-acc-soft"/><text x="116" y="260" text-anchor="middle" class="lbl-b">석유류·항공료</text><text x="116" y="277" text-anchor="middle" class="lbl-dim">빠르게(몇 주~몇 달)</text>
+        <rect x="244" y="240" width="200" height="46" rx="8" class="f-acc-soft"/><text x="344" y="260" text-anchor="middle" class="lbl-b">가공식품·외식</text><text x="344" y="277" text-anchor="middle" class="lbl-dim">천천히(몇 달~1년)</text>
+        <g class="s-line" marker-end="url(#if-ar2)">
+          <path d="M111 60L190 92"/><path d="M349 60L270 92"/><path d="M230 136V166"/>
+          <path d="M40 60C10 140 30 200 70 240"/><path d="M200 210L140 240"/><path d="M260 210L320 240"/>
+        </g>
+        <text x="50" y="150" class="lbl-dim">석유류는</text><text x="50" y="166" class="lbl-dim">거의</text><text x="50" y="182" class="lbl-dim">바로</text>
+      </svg>
+      <figcaption><b>그림 3. 수입 원가가 소비자물가로 건너오는 길.</b> 휘발유·경유는 국제 가격과 환율의 변화가 몇 주 안에 주유소 가격에 반영된다. 밀가루·식용유처럼 가공을 거치는 품목은 기업의 재고와 계약 주기 때문에 몇 달에서 1년에 걸쳐 따라온다. 시차는 이 책의 개략이며 품목과 시기에 따라 다르다.</figcaption>
+    </figure>
+
+    <p>지우의 회사가 바로 이 길 위에 있다. D식품은 밀·원당·대두유를 달러로 계약한다. 국제 곡물값이 그대로여도 환율이 오르면 원가가 오른다. 회사는 몇 달 동안은 재고와 마진으로 버티다가, 원가 상승이 이어지면 라면·과자·식용유 값을 올린다. 그 가격표가 소비자물가의 '가공식품' 줄에 몇 달 늦게 나타난다. 2025년 12월 소비자물가에서 석유류는 6.1% 올랐는데, 고환율로 수입 비용이 늘어난 영향이라고 보도되었다 <span class="src">(국가데이터처, 「2025년 12월 및 연간 소비자물가동향」 인용 보도)</span>. 2025년 원/달러 환율의 연평균은 1,421.97원으로 1998년보다 높은 역대 최고였다 <span class="src">(한국은행 자료 인용 보도)</span>.</p>
+    <p>원화 가격이 오른 만큼 소비자물가가 모두 오르지는 않는다. 수입 원자재는 최종 가격의 일부일 뿐이고, 국내 인건비·임대료·유통비가 나머지를 차지한다. 기업이 경쟁 때문에 값을 바로 올리지 못하기도 하고, 정부가 유류세를 깎거나 공공요금 인상을 미루기도 한다. 수입 비용이 소비자 가격에 옮겨 가는 비율을 <span class="term">전가율</span><span class="en">(Pass-through)</span>이라 한다. 마지막 절의 물가 분해 판에서 이 전가가 항목마다 다르게 일어나는 모습을 본다.</p>
+  </section>
+
+  <section id="expect">
+    <h2>기대 인플레이션: 사람들이 믿는 물가</h2>
+    <p>물가에는 스스로를 실현하는 성질이 있다. 사람들이 "내년에도 물가가 4% 오를 것"이라고 믿으면 노동자는 4% 이상의 임금 인상을 요구하고, 기업은 원가가 오를 것을 예상해 미리 값을 올리고, 소비자는 오르기 전에 사 둔다. 그 결과 실제로 물가가 오른다. 사람들이 앞으로의 물가 상승률을 얼마로 보는가를 <span class="term">기대 인플레이션</span><span class="en">(Inflation expectations)</span>이라 한다.</p>
+    <p>한국은행은 매달 「소비자동향조사」에서 일반인에게 앞으로 1년의 물가 상승률을 묻는다. 2026년 9월 조사에서 향후 1년 기대인플레이션율은 2.7%로 전달과 같았고, 3년 뒤와 5년 뒤 기대는 각각 2.6%였다. 앞으로 물가가 오를 것으로 보는 사람의 비중을 보여 주는 물가수준전망CSI는 150이었다 <span class="src">(한국은행, 「2026년 9월 소비자동향조사」 2026-09 인용 보도)</span>. 실제 물가가 3% 안팎인데 기대가 2%대 후반에 머물러 있다는 것은, 사람들이 이번 유가 충격을 어느 정도는 지나갈 것으로 본다는 뜻으로 읽을 수 있다.</p>
+    <p>중앙은행이 가장 신경 쓰는 것이 이 기대다. 기대가 목표(2%) 근처에 <strong>붙잡혀(anchored)</strong> 있으면 유가 충격이 와도 물가는 잠시 올랐다가 돌아온다. 기대가 풀려 지난 물가를 따라 올라가기 시작하면, 물가가 임금을 밀고 임금이 다시 물가를 미는 <span class="term">임금-물가 악순환</span><span class="en">(Wage-price spiral)</span>이 생길 수 있다. 아래 시뮬레이터에서 같은 유가 충격을 두 종류의 경제에 넣어 본다.</p>
+
+    <div class="sim" id="sim-expect">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>붙잡힌 기대와 풀린 기대: 같은 충격, 다른 물가</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ex-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>충격 크기(1년간 물가를 밀어 올리는 폭) <output id="ex-s-out"></output></span><input type="range" id="ex-s" min="0" max="4" step="0.25" value="1.5"></label>
+          <label class="ctrl"><span>목표에 대한 믿음 <output id="ex-c-out"></output></span><input type="range" id="ex-c" min="0" max="0.9" step="0.05" value="0.6"></label>
+          <label class="ctrl"><span>임금·가격이 지난 물가를 따라가는 정도 <output id="ex-f-out"></output></span><input type="range" id="ex-f" min="0.5" max="1.4" step="0.05" value="1"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">물가 상승률 정점</span><span class="v" id="ex-o-p">—</span></div>
+        <div class="stat"><span class="k">충격이 끝난 1년 뒤</span><span class="v" id="ex-o-a">—</span></div>
+        <div class="stat"><span class="k">2.5% 아래로 돌아오기까지</span><span class="v" id="ex-o-t">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 처음 값(믿음 0.6)에서 충격이 끝나면 물가는 몇 분기 안에 2% 근처로 돌아온다. ② 믿음을 0으로 내린다. 사람들이 목표 대신 지난 물가만 보면 충격이 끝난 뒤에도 물가가 높은 채로 남는다. ③ 믿음 0에서 '따라가는 정도'를 1.2 이상으로 올린다. 물가가 스스로 커져 끝없이 오른다. 임금-물가 악순환이 무너지는 지점이다. 반대로 믿음이 크면 같은 값에서도 수렴한다. (교육용 모형: 이번 분기 상승률 = 2% + (1 − 믿음) × 따라가는 정도 × (지난 분기 상승률 − 2%) + 충격. 충격은 1~4분기에만 들어온다.)</div>
+    </div>
+
+    <p>이 모형은 거칠지만 중앙은행이 왜 "말"을 중요하게 여기는지 보여 준다. 목표에 대한 믿음이 클수록 같은 충격을 견디는 데 필요한 금리 인상이 작다. 믿음은 한 번에 얻어지지 않는다. 물가가 목표를 벗어났을 때 중앙은행이 실제로 금리를 움직여 되돌려 놓는 경험이 쌓여야 생긴다. 2026년 7월과 8월 한국은행의 연속 금리 인상(<a href="transmission.html">9장</a>)도 이 맥락에서 읽힌다. 다만 그 결정이 적절했는지에 대해서는, 기대가 아직 2%대에 머물러 있으니 서두를 필요가 없었다는 시각과 근원물가가 오르기 시작했으니 늦지 않게 대응해야 했다는 시각이 함께 있다.</p>
+  </section>
+
+  <section id="wage">
+    <h2>내 월급의 실질 가치</h2>
+    <p>물가가 내 생활에 닿는 가장 직접적인 길은 월급이다. 연봉이 3% 올라도 물가가 5% 오르면 같은 월급으로 살 수 있는 것은 줄어든다. 물가를 감안한 임금을 <span class="term">실질 임금</span><span class="en">(Real wage)</span>이라 한다.</p>
+    <div class="formula">$$\text{실질 임금 변화율} \approx \text{명목 임금 상승률} - \text{물가 상승률}$$<div class="where">정확히는 \((1+\text{명목})/(1+\text{물가})-1\). 차이가 작을 때는 빼기로 근사해도 된다. 금리에도 같은 식이 쓰인다(피셔 방정식, <a href="rates.html">7장</a>).</div></div>
+    <p>지우의 연봉 4,600만원으로 계산해 본다. 아래 시뮬레이터에서 명목 인상률과 물가를 바꾸면 몇 년 뒤의 연봉이 오늘의 구매력으로 얼마인지 보인다.</p>
+
+    <div class="sim" id="sim-wage">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>지우의 연봉, 오늘의 돈으로 다시 세기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="wg-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>연봉 인상률(명목, 연) <output id="wg-n-out"></output></span><input type="range" id="wg-n" min="0" max="10" step="0.1" value="3"></label>
+          <label class="ctrl"><span>물가 상승률(연) <output id="wg-p-out"></output></span><input type="range" id="wg-p" min="-1" max="10" step="0.1" value="2.1"></label>
+          <label class="ctrl"><span>기간 <output id="wg-y-out"></output></span><input type="range" id="wg-y" min="1" max="15" step="1" value="5"></label>
+          <div class="btn-row"><button class="btn" id="wg-22">2022년처럼(물가 5.1%)</button><button class="btn" id="wg-25">2025년처럼(물가 2.1%)</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">기간 뒤 명목 연봉</span><span class="v" id="wg-o-n">—</span></div>
+        <div class="stat"><span class="k">오늘 돈으로(실질)</span><span class="v" id="wg-o-r">—</span></div>
+        <div class="stat"><span class="k">실질 변화</span><span class="v" id="wg-o-d">—</span></div>
+        <div class="stat"><span class="k">구매력을 지키려면 올해 인상액</span><span class="v" id="wg-o-k">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① '2022년처럼'. 연봉이 3% 올라도 물가 5.1%에서 실질 연봉은 해마다 2%쯤 준다. 5년이면 오늘 돈으로 400만원 넘게 깎인다. ② 기간을 15년으로 늘리고 물가를 4%로 둔다. 연 1%p 차이가 쌓여 큰 격차가 된다. 인플레이션은 조용한 세금이라는 말이 이것이다. ③ 물가를 −1%로 내린다. 연봉이 그대로여도 실질 가치는 오른다. 그런데 그런 경제에서 회사가 연봉을 올려 줄까? 다음 절의 이야기다. (연봉 4,600만원은 이 책의 가상 인물 지우의 값. 세금·호봉은 생략한 교육용 계산이다.)</div>
+    </div>
+
+    <p>실질 임금이 줄면 같은 월급으로 저축 여력이 준다. 지우의 월 실수령은 약 320만원이고 생활비는 210만원이다. 생활비가 물가만큼 오르고 실수령이 그보다 덜 오르면, 남는 돈(저축 여력)은 비율로 훨씬 크게 줄어든다. 생활비 210만원이 2.1% 오르면 약 4.4만원이 더 나가는데, 이는 저축 여력 110만원의 4%다. 3년 안의 내 집 마련 계획이 물가에 민감한 이유다.</p>
+  </section>
+
+  <section id="target">
+    <h2>왜 0%가 아니라 2%인가</h2>
+    <p>물가가 오르는 것이 그렇게 나쁘다면 왜 한국은행은 물가 상승률 0%가 아니라 <strong>2%</strong>를 목표로 할까 <span class="src">(한국은행, 물가안정목표: 소비자물가 상승률 전년동기대비 2%)</span>. 미국 연준, 유럽중앙은행, 일본은행도 2%를 목표로 삼는다. 이유는 네 가지로 정리된다.</p>
+    <div class="flow">
+      <div><b>재는 숫자가 실제보다 높다</b>물건의 품질이 좋아진 몫이나 더 싼 대체품으로 옮겨 가는 소비자의 행동을 지수가 다 반영하지 못해, 측정된 물가 상승률은 실제 생활비 상승보다 조금 높게 나온다고 본다. 0%를 목표로 하면 실제로는 물가가 내리는 셈이 될 수 있다.</div>
+      <div><b>금리를 내릴 여유</b>명목금리는 0% 아래로 크게 내리기 어렵다. 물가가 2%면 평상시 명목금리도 그만큼 높아, 불황이 왔을 때 금리를 내릴 여유가 생긴다(<a href="bok.html">8장</a>).</div>
+      <div><b>디플레이션의 덫</b>물가가 계속 내리면 사람들은 더 싸질 때까지 소비를 미루고, 빚의 실질 부담은 커진다. 수요가 줄어 물가가 더 내리는 악순환이 생기면 빠져나오기 어렵다.</div>
+      <div><b>임금은 깎기 어렵다</b>명목 임금은 잘 깎이지 않는다. 물가가 조금 오르면 명목 임금을 그대로 두는 것만으로 실질 임금이 조정되어 산업 사이의 구조조정이 덜 고통스럽다.</div>
+    </div>
+    <p>반론도 있다. 2%라도 오래 쌓이면 예금과 고정 소득의 가치가 깎인다. 35년이면 물가 수준이 두 배가 된다. 그래서 물가는 낮을수록 좋다는 주장이 있다. 반대쪽에서는 금리를 내릴 여유를 더 확보하려면 목표를 3~4%로 올려야 한다는 주장도 2010년 무렵부터 학계에서 제기되었다. 목표를 바꾸면 그동안 쌓은 믿음(앞 절의 '믿음' 슬라이더)이 흔들릴 수 있다는 반박도 강하다. 2%는 이런 장단점 사이의 관행적인 타협점이고, 정답이 정해진 숫자는 아니다.</p>
+
+    <div class="callout deep"><strong>디플레이션은 왜 무서운가</strong>지우가 앞 시뮬레이터에서 물가를 −1%로 내렸을 때 실질 연봉이 올랐다. 그렇다면 물가가 내리는 것은 좋은 일일까. 문제는 디플레이션이 대개 수요가 무너질 때 생긴다는 것이다. 매출이 줄어든 회사는 연봉을 올려 주지 않고 사람을 덜 뽑는다(<a href="jobs.html">5장</a>). 빚은 명목 금액이 그대로라서, 물가와 소득이 내리면 갚아야 할 부담이 실질적으로 커진다. 1990년대 이후 일본이 오랜 기간 물가 하락과 저성장을 함께 겪은 것이 각국 중앙은행이 0%보다 조금 높은 목표를 두는 배경으로 자주 언급된다.</div>
+
+    <div class="callout warn"><strong>숫자는 기준 시점의 값이며, 시뮬레이터는 전망이 아니다</strong>이 장의 물가 숫자는 2026년 10월 9일에 확인한 발표값이다. 2026년 12월에는 2025년 기준으로 지수가 개편되어 2025년 1월 이후의 지수와 상승률이 다시 계산될 수 있다. 장바구니·총수요·기대·물가 분해 시뮬레이터의 가중치와 계수는 교육용 가정이며 앞으로의 물가를 예측하지 않는다.</div>
+  </section>
+
+  <section id="board">
+    <h2>물가 분해 판</h2>
+    <p>이제 이 장의 힘들을 한 판에 올린다. 국제 유가, 원/달러 환율, 임금 상승률, 수요(산출 갭)를 움직이면 여섯 항목(농축수산물, 가공식품, 석유류, 전기·가스·수도, 그 밖의 공업제품, 서비스)의 상승률이 다시 계산되고, 각 항목이 전체 물가에 보탠 몫(기여도)이 쌓인다. 왼쪽 막대가 헤드라인, 가운데와 오른쪽이 두 가지 근원물가다. 근원물가는 뺀 항목을 제외하고 남은 항목의 가중치로 다시 평균한다.</p>
+
+    <div class="sim" id="sim-decomp">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>물가 분해 판: 유가·환율·임금·수요가 만드는 헤드라인과 근원물가</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="dc-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>국제 유가(1년 전 대비) <output id="dc-o-out"></output></span><input type="range" id="dc-o" min="-50" max="100" step="5" value="0"></label>
+          <label class="ctrl"><span>원/달러 환율(1년 전 대비) <output id="dc-x-out"></output></span><input type="range" id="dc-x" min="-20" max="30" step="1" value="0"></label>
+          <label class="ctrl"><span>임금 상승률 <output id="dc-w-out"></output></span><input type="range" id="dc-w" min="0" max="10" step="0.5" value="3"></label>
+          <label class="ctrl"><span>수요(산출 갭) <output id="dc-g-out"></output></span><input type="range" id="dc-g" min="-4" max="4" step="0.5" value="0"></label>
+          <label class="check"><input type="checkbox" id="dc-2nd"> 2차 효과: 임금이 물가를 따라간다</label>
+          <div class="btn-row"><button class="btn" id="dc-p22">2022년형</button><button class="btn" id="dc-p26">2026년 유가형</button><button class="btn" id="dc-pd">수요 과열형</button><button class="btn primary" id="dc-p0">평상시</button></div>
+        </div>
+      </div>
+      <div class="legend" style="padding:8px 14px 0">
+        <span><i style="background:var(--ok)"></i>농축수산물</span><span><i style="background:var(--warn)"></i>가공식품</span><span><i style="background:var(--bad)"></i>석유류</span><span><i style="background:var(--blue)"></i>전기·가스·수도</span><span><i style="background:var(--accent-2)"></i>그 밖의 공업제품</span><span><i style="background:var(--accent)"></i>서비스</span><span style="color:var(--text-faint)">근원 ① 농산물·석유류 제외 · ② 식료품·에너지 제외</span>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">헤드라인 물가</span><span class="v" id="dc-r-h">—</span></div>
+        <div class="stat"><span class="k">근원(농산물·석유류 제외)</span><span class="v" id="dc-r-k">—</span></div>
+        <div class="stat"><span class="k">근원(식료품·에너지 제외)</span><span class="v" id="dc-r-o">—</span></div>
+        <div class="stat"><span class="k">가장 큰 기여</span><span class="v" id="dc-r-m">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① '2026년 유가형'(유가 +60%). 헤드라인은 3%를 넘지만 두 근원물가는 2%대에 머문다. 석유류 칸이 헤드라인만 키운다. ② 여기에 환율 +10%를 더한다. 원화로 본 유가가 더 오르고 가공식품과 공업제품이 따라 오르면서 근원물가도 올라온다. 지우의 회사 원가가 오르는 길이다. ③ '수요 과열형'에서 '2차 효과'를 켠다. 서비스 칸이 커지며 헤드라인과 근원물가가 함께 오른다. 유가가 내려가도 쉽게 꺼지지 않는 물가다. 유가 +100%, 환율 +30%, 임금 10%, 산출 갭 +4%까지 밀면 헤드라인이 10%를 넘는다. (교육용 모형. 항목 가중치는 상품 45%·서비스 55%로 실제 비중과 비슷하게 이 책이 정했다. 원화 유가 10% 상승은 석유류 3.5%, 전기·가스 1%, 공업제품 0.15%, 서비스 0.05%로, 환율 10% 상승은 가공식품 1.5%, 공업제품 1.2%로 옮겨 간다고 가정했다. 근원(농산물·석유류 제외)은 농축수산물 전체를 빼는 것으로 단순화했다. 전망이 아니다.)</div>
+    </div>
+
+    <p>판을 몇 번 돌려 보면 헤드라인과 근원물가가 다른 질문에 답한다는 것이 보인다. 헤드라인은 "지금 내 장바구니가 얼마나 비싸졌나"에, 근원물가는 "이 물가 상승이 얼마나 오래갈까"에 가깝다. 석유류와 농산물이 끌어올린 물가는 충격이 지나가면 상승률이 내려오지만, 임금과 수요가 끌어올린 서비스 물가는 오래 머문다. 그래서 중앙은행은 유가 충격 하나에 바로 금리를 움직이기보다 그 충격이 근원물가와 기대 인플레이션으로 번지는지를 지켜본다.</p>
+  </section>
+
+  <div class="casefile">
+    <div class="tag"><b>CASE 지우</b><span>헤드라인 노트 · 2025년 12월</span></div>
+    <div class="headline">2025년 소비자물가 2.1% 상승… 2020년 이후 가장 낮아<small>근거: 국가데이터처 「2025년 12월 및 연간 소비자물가동향」(2025-12-31). 12월은 2.3%</small></div>
+    <h4>"물가가 안정됐다는데, 왜 장바구니는 무겁지?"</h4>
+    <p>12월 31일, 지우는 연간 물가 기사를 노트에 붙였다. 2.1%, 5년 만에 가장 낮은 상승률. 그런데 회사에서는 원가표를 다시 짜는 중이었고, 동네 마트의 과일값은 1년 전보다 확실히 비쌌다. 삼촌 백정호는 늘 그렇듯 세 가지를 물었다. 지우는 답을 적었다. <b>언제 기준인가</b>: 2025년 1~12월 평균 지수(116.61)를 2024년 평균과 비교한 연간 상승률. 12월 한 달만 보면 2.3%였다. <b>무엇과 비교했나</b>: 1년 전. 2020년과 비교하면 약 17% 높은 수준이다. <b>누가 쟀나</b>: 국가데이터처가 458개 품목을 가중치로 평균했다. 내 장바구니가 아니다.</p>
+    <p id="inf-case-calc">—</p>
+    <p>회사 쪽 숫자도 적었다. 12월 석유류는 6.1% 올랐고, 2025년 원/달러 환율 연평균은 1,421.97원으로 역대 최고였다. 달러로 사는 밀과 대두유의 원화 값이 오른 몫은 아직 라면·과자 가격에 다 반영되지 않았다. 지우는 내년 물가에서 '가공식품' 줄을 따로 지켜보기로 했다. 그리고 하나를 더 적었다. "물가 상승률이 내려왔다는 것은 물가가 내렸다는 뜻이 아니다. 장바구니가 무거운 것은 지난 5년이 쌓인 무게다."</p>
+    <div class="clue">
+      <div><b>헤드라인이 말한 것</b>2025년 연간 2.1%, 2020년 이후 최저. 12월은 2.3%.</div>
+      <div><b>숫자를 다시 보니</b>생활물가는 2.4%, 근원물가는 2.2%(농산물·석유류 제외). 수준은 2020년보다 약 17% 높다.</div>
+      <div><b>내 생활에는</b><span id="inf-case-life">—</span></div>
+    </div>
+  </div>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>소비자물가지수는 458개 품목의 가격 변화를 가계 지출 비중(가중치, 전체 1,000)으로 평균한 숫자다. 품목의 기여도는 가중치 × 가격 변화율이다.</li>
+      <li>체감물가가 더 높은 이유는 자주 사는 품목, 사람마다 다른 장바구니, 그리고 수준과 변화율의 차이다. 상승률이 낮아져도 물가 수준은 내려가지 않는다.</li>
+      <li>근원물가는 농산물·석유류(또는 식료품·에너지)를 뺀 물가로, 물가 상승이 얼마나 오래갈지를 보여 준다. 전년 동월 대비 숫자가 튀면 기저효과부터 의심한다.</li>
+      <li>물가는 수요 견인과 비용 상승으로 오르고, 수입 물가는 국제 가격 × 환율로 정해져 시차를 두고 전가된다. 기대 인플레이션이 목표에 붙잡혀 있으면 충격은 지나가고, 풀리면 오래 머문다.</li>
+      <li>실질 임금은 명목 인상률에서 물가 상승률을 뺀 것에 가깝다. 물가안정목표가 0%가 아니라 2%인 이유는 측정 편의, 금리 인하 여유, 디플레이션 위험, 임금 경직성이며 반론도 있다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q"><p>1. 소비자물가 상승률이 지난해 5%에서 올해 2%로 낮아졌다. 이에 대한 설명으로 옳은 것은?</p>
+        <div class="opts"><button class="opt">물가 수준이 지난해보다 3% 내렸다</button><button class="opt">물가 수준이 지난해와 같아졌다</button><button class="opt" data-correct>물가 수준은 지난해보다 2% 더 올랐다</button><button class="opt">물가 수준이 2년 전으로 돌아갔다</button></div>
+        <div class="quiz-exp">상승률은 변화의 속도다. 2%로 낮아졌다는 것은 덜 빠르게 오른다는 뜻이고, 수준은 여전히 오른다. 수준이 내리려면 상승률이 음수여야 한다.</div></div>
+      <div class="quiz-q"><p>2. 석유류 가중치가 4.5%인 장바구니에서 석유류 가격이 20% 올랐다. 다른 품목이 그대로라면 전체 물가에 대한 석유류의 기여도는?</p>
+        <div class="opts"><button class="opt" data-correct>약 0.9%p</button><button class="opt">약 4.5%p</button><button class="opt">약 20%p</button><button class="opt">약 0.2%p</button></div>
+        <div class="quiz-exp">기여도 = 가중치 × 가격 변화율 = 0.045 × 20% = 0.9%p. 2026년 6월 석유류가 24.7% 올라 전체 물가를 0.93%p 끌어올린 것과 비슷한 크기다.</div></div>
+      <div class="quiz-q"><p>3. 국제 유가가 크게 올라 헤드라인 물가는 3.5%가 되었지만 근원물가(식료품·에너지 제외)는 2.0%다. 이 상황에 대한 해석으로 가장 알맞은 것은?</p>
+        <div class="opts"><button class="opt">근원물가가 낮으므로 사람들의 생활비는 오르지 않았다</button><button class="opt">헤드라인 물가가 잘못 계산되었다</button><button class="opt">임금이 크게 올라 서비스 물가가 뛰었다</button><button class="opt" data-correct>물가 상승이 에너지에 몰려 있어, 충격이 다른 품목과 기대로 번지는지가 관건이다</button></div>
+        <div class="quiz-exp">헤드라인은 실제 장바구니의 비용, 근원물가는 바탕 흐름을 보여 준다. 차이가 크면 충격이 특정 품목에 몰려 있다는 뜻이고, 그것이 근원물가와 기대 인플레이션으로 번지는지를 지켜본다.</div></div>
+      <div class="quiz-q"><p>4. 지우의 연봉이 3% 오르고 물가가 5% 올랐다. 실질 연봉의 변화로 가장 가까운 것은?</p>
+        <div class="opts"><button class="opt">+8%</button><button class="opt" data-correct>약 −2%</button><button class="opt">+3%</button><button class="opt">−5%</button></div>
+        <div class="quiz-exp">실질 변화 ≈ 3% − 5% = −2%. 정확히는 1.03 ÷ 1.05 − 1 ≈ −1.9%. 명목 연봉이 올라도 구매력은 줄었다.</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var K = EC.KR, H = EC.HIST, C = EC.CASE;
+  var p1 = function (x) { return (x >= 0 ? "" : "−") + Math.abs(x).toFixed(1) + "%"; };
+  var sp1 = function (x) { return (x > 0.05 ? "+" : x < -0.05 ? "−" : "") + Math.abs(x).toFixed(1) + "%"; };
+  var spp = function (x) { return (x > 0.005 ? "+" : x < -0.005 ? "−" : "") + Math.abs(x).toFixed(2) + "%p"; };
+
+  /* ---------------- sim-basket ---------------- */
+  (function () {
+    var CATS0 = [
+      { n: "식료품", w: 140, p: 3, jw: 180 }, { n: "음식·숙박", w: 145, p: 3, jw: 220 }, { n: "주거·광열", w: 175, p: 1.5, jw: 120 },
+      { n: "교통", w: 110, p: 1, jw: 130 }, { n: "교육·보건·통신", w: 180, p: 1.5, jw: 100 }, { n: "기타", w: 250, p: 2, jw: 250 },
+    ];
+    var cats = JSON.parse(JSON.stringify(CATS0)), lay = null, dragI = -1;
+    var gWho = EB.seg("bk-who", draw);
+    var gCat = EB.seg("bk-cat", function (v) { gW.set(cats[+v].w); });
+    var gW = EB.range("bk-w", function (v) { return v; }, function (v) { cats[+gCat()].w = v; draw(); });
+    function rate(key) { var s = 0, ws = 0; cats.forEach(function (c) { s += c[key] * c.p; ws += c[key]; }); return s / ws; }
+    var cv = EB.canvas("#bk-cv", function (ctx, w, h) {
+      var P = EB.palette(), key = gWho() === "me" ? "jw" : "w", sel = +gCat();
+      var tot = cats.reduce(function (s, c) { return s + c[key]; }, 0);
+      var box = { x: 44, y: 14, w: w - 56, h: h - 70 };
+      var c = EB.chart(ctx, box, { x: [0, 1], y: [-10, 20], xTicks: [], yTicks: [-10, -5, 0, 5, 10, 15, 20], yFmt: function (v) { return (v > 0 ? "+" : "") + v + "%"; }, hlines: [{ y: 0, color: P.axis, dash: [] }] });
+      var x = 0, cols = [P.ok, P.warn, P.blue, P.bad, P.accent2, P.accent];
+      lay = { c: c, xs: [] };
+      cats.forEach(function (ct, i) {
+        var bw = ct[key] / tot, x0 = c.X(x), x1 = c.X(x + bw);
+        ctx.fillStyle = cols[i]; ctx.globalAlpha = i === sel ? 0.95 : 0.6;
+        var y0 = c.Y(0), y1 = c.Y(ct.p); ctx.fillRect(x0 + 1, Math.min(y0, y1), x1 - x0 - 2, Math.max(1.5, Math.abs(y1 - y0))); ctx.globalAlpha = 1;
+        // 손잡이
+        ctx.fillStyle = P.text; ctx.fillRect((x0 + x1) / 2 - 10, y1 - 3, 20, 6);
+        ctx.fillStyle = P.text; ctx.font = EB.font(w < 480 ? 9 : 10.5, true); ctx.textAlign = "center"; ctx.textBaseline = ct.p >= 0 ? "bottom" : "top";
+        ctx.fillText(sp1(ct.p), (x0 + x1) / 2, ct.p >= 0 ? y1 - 5 : y1 + 5);
+        ctx.textBaseline = "alphabetic";
+        ctx.save(); ctx.translate((x0 + x1) / 2, box.y + box.h + 12); ctx.fillStyle = i === sel ? P.text : P.dim; ctx.font = EB.font(10.5, false, i === sel ? 700 : 400);
+        var nm = ct.n; if (x1 - x0 < 52 && nm.length > 3) nm = nm.slice(0, 3) + "…"; ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText(nm, 0, 0);
+        ctx.fillStyle = P.faint; ctx.font = EB.font(10, true); ctx.fillText(Math.round(ct[key] / tot * 1000), 0, 14); ctx.restore();
+        lay.xs.push([x0, x1]); x += bw;
+      });
+      ctx.fillStyle = P.dim; ctx.font = EB.font(10.5); ctx.textAlign = "left"; ctx.fillText("막대 폭 = 가중치(1,000분비, " + (key === "jw" ? "지우" : "지수") + ")", box.x + 6, box.y + box.h + 44);
+      var r = rate("w"), rj = rate("jw"), tw = cats.reduce(function (s, c) { return s + c.w; }, 0);
+      var contr = cats.map(function (ct) { return ct.w / tw * ct.p; }), mi = 0; contr.forEach(function (v, i) { if (Math.abs(v) > Math.abs(contr[mi])) mi = i; });
+      EB.stat("bk-o-c", sp1(r));
+      EB.stat("bk-o-j", sp1(rj) + " <small>(" + spp(rj - r) + ")</small>");
+      EB.stat("bk-o-s", cats[sel].n + " " + spp(contr[sel]));
+      EB.stat("bk-o-m", cats[mi].n + " " + spp(contr[mi]));
+    }, { aspect: 0.62, minHeight: 280, maxHeight: 400 });
+    EB.drag(cv.canvas, {
+      start: function (x) { if (!lay) return; dragI = lay.xs.findIndex(function (a) { return x >= a[0] && x <= a[1]; }); if (dragI >= 0) { gCat.set(String(dragI)); } },
+      move: function (x, y) { if (!lay || dragI < 0) return; cats[dragI].p = Math.round(EB.clamp(EB.map(y, lay.c.box.y + lay.c.box.h, lay.c.box.y, -10, 20), -10, 20) * 2) / 2; draw(); },
+      end: function () { dragI = -1; },
+    });
+    document.getElementById("bk-re").addEventListener("click", function () { cats = JSON.parse(JSON.stringify(CATS0)); gW.set(cats[+gCat()].w); draw(); });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-level ---------------- */
+  (function () {
+    var YEARS = [], RATES = [], A = H.cpiAnnual, box = null, dragI = -1;
+    for (var y = 2021; y <= 2030; y++) { YEARS.push(y); RATES.push(A[y] != null ? A[y] * 100 : 2.0); }
+    var FIX = 5;                             // 2021~2025는 실제 값(고정)
+    function levels() { var L = [100]; RATES.forEach(function (r) { L.push(L[L.length - 1] * (1 + r / 100)); }); return L; }
+    var cv = EB.canvas("#lv-cv", function (ctx, w, h) {
+      var P = EB.palette(), L = levels();
+      var topH = Math.round(h * 0.45);
+      var c = EB.chart(ctx, { x: 46, y: 18, w: w - 58, h: topH - 34 }, { x: [2020.5, 2030.5], y: [-3, 8], xTicks: [], yTicks: [-2, 0, 2, 4, 6, 8], yFmt: function (v) { return v + "%"; }, hlines: [{ y: 0, color: P.axis, dash: [] }, { y: 2, color: P.accent2 }] });
+      box = c; var bw = c.box.w / 10 * 0.6;
+      RATES.forEach(function (r, i) {
+        var x = c.X(YEARS[i]), y0 = c.Y(0), y1 = c.Y(r);
+        ctx.fillStyle = i < FIX ? P.faint : r < 0 ? P.bad : P.accent; ctx.globalAlpha = i < FIX ? 0.8 : 0.9;
+        ctx.fillRect(x - bw / 2, Math.min(y0, y1), bw, Math.max(1.5, Math.abs(y1 - y0))); ctx.globalAlpha = 1;
+        if (i >= FIX) { ctx.fillStyle = P.text; ctx.fillRect(x - bw / 2, y1 - 2.5, bw, 5); }
+        ctx.fillStyle = P.text; ctx.font = EB.font(10, true); ctx.textAlign = "center"; ctx.fillText(r.toFixed(1), x, r >= 0 ? y1 - 6 : y1 + 13);
+      });
+      ctx.fillStyle = P.dim; ctx.font = EB.font(11); ctx.textAlign = "left"; ctx.fillText(w < 520 ? "상승률(연, %)" : "물가 상승률(연, %) · 회색 실제, 남색 가정, 점선 목표 2%", c.box.x + 4, 12);
+      var lo = Math.min.apply(null, L) - 3, hi = Math.max.apply(null, L) + 3;
+      var d = EB.chart(ctx, { x: 46, y: topH + 12, w: w - 58, h: h - topH - 40 }, {
+        x: [2019.5, 2030.5], y: [Math.min(95, lo), Math.max(130, hi)], xTicks: [2020, 2022, 2024, 2026, 2028, 2030], xFmt: function (v) { return String(v); },
+        series: [{ data: L.map(function (v, i) { return [2020 + i, v]; }), color: P.accent2, width: 2.6 }],
+        points: [{ x: 2025, y: L[5], color: P.accent2, r: 4.5, label: L[5].toFixed(1) }, { x: 2030, y: L[10], color: P.accent2, r: 4.5 }],
+        hlines: [{ y: 100, color: P.faint, label: "2020 = 100" }],
+      });
+      ctx.fillStyle = P.dim; ctx.font = EB.font(11); ctx.textAlign = "left"; ctx.fillText("물가 수준(지수)", d.box.x + 4, d.box.y + 12);
+      ctx.fillStyle = P.text; ctx.font = EB.font(11, true); ctx.textAlign = "right"; ctx.fillText(L[10].toFixed(1), d.X(2030) - 6, d.Y(L[10]) - 8);
+      var down = RATES.map(function (r, i) { return r < 0 ? YEARS[i] : null; }).filter(function (v) { return v; });
+      EB.stat("lv-o-25", L[5].toFixed(2) + " <small>(공표 116.61)</small>");
+      EB.stat("lv-o-30", L[10].toFixed(1));
+      EB.stat("lv-o-w", Math.round(10000 * L[10] / 100).toLocaleString("ko-KR") + "원");
+      EB.stat("lv-o-d", down.length ? down.join(", ") + "년" : "없음");
+    }, { aspect: 0.7, minHeight: 330, maxHeight: 440 });
+    EB.drag(cv.canvas, {
+      start: function (x) { if (!box) return; var yr = Math.round(EB.map(x, box.box.x, box.box.x + box.box.w, 2020.5, 2030.5)); dragI = YEARS.indexOf(yr); if (dragI < FIX) dragI = -1; },
+      move: function (x, y) { if (!box || dragI < 0) return; RATES[dragI] = Math.round(EB.clamp(EB.map(y, box.box.y + box.box.h, box.box.y, -3, 8), -3, 8) * 10) / 10; cv.redraw(); },
+      end: function () { dragI = -1; },
+    });
+    function setAll(v) { for (var i = FIX; i < RATES.length; i++) RATES[i] = v; cv.redraw(); }
+    document.getElementById("lv-dis").addEventListener("click", function () { setAll(1); });
+    document.getElementById("lv-def").addEventListener("click", function () { setAll(-1); });
+    document.getElementById("lv-hot").addEventListener("click", function () { setAll(4); });
+    document.getElementById("lv-re").addEventListener("click", function () { setAll(2); });
+  })();
+
+  /* ---------------- sim-adas ---------------- */
+  (function () {
+    var sD = 0, box = null;
+    var gS = EB.range("ad-s", function (v) { return (v > 0 ? "+" : "") + v.toFixed(1); }, draw);
+    function AS(Y, s) { return 100 + s + 0.35 * (Y - 100) + 0.6 * Math.pow(Math.max(0, Y - 102), 2); }
+    function AD(Y, d) { return 100 - 1.2 * (Y - 100 - d); }
+    function eq(d, s) { var lo = 80, hi = 110; for (var k = 0; k < 60; k++) { var m = (lo + hi) / 2; if (AS(m, s) > AD(m, d)) hi = m; else lo = m; } return { Y: (lo + hi) / 2, P: AD((lo + hi) / 2, d) }; }
+    var cv = EB.canvas("#ad-cv", function (ctx, w, h) {
+      var P = EB.palette(), s = gS(), e0 = eq(0, 0), e = eq(sD, s);
+      var ys = []; for (var Y = 88; Y <= 108.01; Y += 0.25) ys.push(Y);
+      var c = EB.chart(ctx, { x: 46, y: 14, w: w - 60, h: h - 56 }, {
+        x: [88, 108], y: [88, 125], xTicks: [90, 95, 100, 105], yTicks: [90, 100, 110, 120], xLabel: "생산(GDP, 잠재 = 100)",
+        series: [
+          { data: ys.map(function (Y) { return [Y, AS(Y, 0)]; }), color: P.faint, width: 1.4, dash: [5, 4] },
+          { data: ys.map(function (Y) { return [Y, AD(Y, 0)]; }), color: P.faint, width: 1.4, dash: [5, 4] },
+          { data: ys.map(function (Y) { return [Y, AS(Y, s)]; }), color: P.accent2, width: 2.6 },
+          { data: ys.map(function (Y) { return [Y, AD(Y, sD)]; }), color: P.accent, width: 2.6 },
+        ],
+        vlines: [{ x: 104.5, color: P.bad }],
+        points: [{ x: e0.Y, y: e0.P, color: P.faint, r: 4 }, { x: e.Y, y: e.P, color: P.text, r: 6 }],
+      });
+      box = c;
+      ctx.font = EB.font(12, false, 700); ctx.textAlign = "left";
+      ctx.fillStyle = P.accent; var ax = EB.clamp(89 + sD, 89, 104); ctx.fillText("AD", c.X(ax), c.Y(Math.min(123, AD(ax, sD))) + 14);
+      ctx.fillStyle = P.accent2; ctx.fillText("AS", c.X(103.3), c.Y(Math.min(123, AS(103.3, s))) - 6);
+      // AD 손잡이
+      var hy = 110, hx = c.X(100 + sD + (100 - hy) / 1.2);
+      ctx.beginPath(); ctx.arc(hx, c.Y(hy), 8, 0, 6.29); ctx.fillStyle = P.accent; ctx.fill(); ctx.strokeStyle = P.bg; ctx.lineWidth = 2; ctx.stroke();
+      var dp = (e.P / e0.P - 1) * 100, dy = (e.Y / e0.Y - 1) * 100, kind;
+      if (Math.abs(dp) < 0.2 && Math.abs(dy) < 0.2) kind = "출발점";
+      else if (dp > 0 && dy >= 0) kind = e.Y > 103 ? "과열: 물가만 뛴다" : "수요 견인";
+      else if (dp > 0 && dy < 0) kind = "비용 상승(스태그플레이션)";
+      else if (dp <= 0 && dy < 0) kind = "수요 위축";
+      else kind = "비용 하락";
+      EB.stat("ad-o-p", sp1(dp)); EB.stat("ad-o-y", sp1(dy)); EB.stat("ad-o-k", kind);
+    }, { aspect: 0.66, minHeight: 280, maxHeight: 420 });
+    EB.drag(cv.canvas, { move: function (x) { if (!box) return; var Y = EB.map(x, box.box.x, box.box.x + box.box.w, 88, 108); sD = EB.clamp(Math.round((Y - (100 + (100 - 110) / 1.2)) * 2) / 2, -8, 14); cv.redraw(); } });
+    document.getElementById("ad-d").addEventListener("click", function () { sD = 6; gS.set(0); });
+    document.getElementById("ad-c").addEventListener("click", function () { sD = 0; gS.set(8); });
+    document.getElementById("ad-re").addEventListener("click", function () { sD = 0; gS.set(0); });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-expect ---------------- */
+  (function () {
+    var gS = EB.range("ex-s", function (v) { return "+" + v.toFixed(2) + "%p"; }, draw);
+    var gC = EB.range("ex-c", function (v) { return v.toFixed(2); }, draw);
+    var gF = EB.range("ex-f", function (v) { return v.toFixed(2); }, draw);
+    function run(cr, f, s) { var pi = [2], Q = 20; for (var t = 1; t <= Q; t++) { var sh = t <= 4 ? s : 0; pi.push(2 + (1 - cr) * f * (pi[t - 1] - 2) + sh); } return pi; }
+    var cv = EB.canvas("#ex-cv", function (ctx, w, h) {
+      var P = EB.palette(), s = gS(), cr = gC(), f = gF();
+      var a = run(cr, f, s), b = run(0.8, 1, s), z = run(0, f, s);
+      var hi = Math.min(16, Math.max(6, Math.max.apply(null, a) + 1));
+      EB.chart(ctx, { x: 44, y: 14, w: w - 58, h: h - 54 }, {
+        x: [0, 20], y: [0, hi], xTicks: [0, 4, 8, 12, 16, 20], xFmt: function (v) { return v + "분기"; }, yFmt: function (v) { return v + "%"; },
+        bands: [{ x0: 0.5, x1: 4.5, color: EB.color("warn-soft") }],
+        series: [
+          { data: b.map(function (v, t) { return [t, v]; }), color: P.ok, width: 1.6, dash: [5, 4] },
+          { data: z.map(function (v, t) { return [t, Math.min(v, hi + 1)]; }), color: P.bad, width: 1.6, dash: [5, 4] },
+          { data: a.map(function (v, t) { return [t, Math.min(v, hi + 1)]; }), color: P.accent, width: 2.8 },
+        ],
+        hlines: [{ y: 2, color: P.accent2, label: "목표 2%" }],
+      });
+      ctx.font = EB.font(11); ctx.textAlign = "left";
+      ctx.fillStyle = P.dim; ctx.fillText("충격 기간", 48 + (w - 58) * 0.03, 28);
+      ctx.fillStyle = P.accent; ctx.fillText("지금 설정", w - 150, 28);
+      ctx.fillStyle = P.ok; ctx.fillText("믿음 0.8(붙잡힌 기대)", w - 150, 43);
+      ctx.fillStyle = P.bad; ctx.fillText("믿음 0(지난 물가만 봄)", w - 150, 58);
+      var pk = Math.max.apply(null, a), after = a[8], back = -1;
+      for (var t = 5; t < a.length; t++) { if (a[t] < 2.5) { back = t; break; } }
+      EB.stat("ex-o-p", pk > 50 ? "끝없이 오른다" : pk.toFixed(1) + "%");
+      EB.stat("ex-o-a", after > 50 ? "—" : after.toFixed(1) + "%");
+      EB.stat("ex-o-t", back < 0 ? (a[20] > a[10] ? "<span class='bad-t'>돌아오지 않음(악순환)</span>" : "5년 안에 못 돌아옴") : (back <= 4 ? "충격 직후" : "충격 뒤 " + (back - 4) + "분기"));
+    }, { aspect: 0.6, minHeight: 270, maxHeight: 400 });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-wage ---------------- */
+  (function () {
+    var S0 = C.jiwoo.salary;
+    var gN = EB.range("wg-n", function (v) { return v.toFixed(1) + "%"; }, draw);
+    var gP = EB.range("wg-p", function (v) { return v.toFixed(1) + "%"; }, draw);
+    var gY = EB.range("wg-y", function (v) { return v + "년"; }, draw);
+    var cv = EB.canvas("#wg-cv", function (ctx, w, h) {
+      var P = EB.palette(), n = gN() / 100, p = gP() / 100, Y = gY();
+      var nom = [], real = [];
+      for (var t = 0; t <= Y; t++) { nom.push([t, S0 * Math.pow(1 + n, t)]); real.push([t, S0 * Math.pow(1 + n, t) / Math.pow(1 + p, t)]); }
+      var all = nom.concat(real).map(function (d) { return d[1]; }), lo = Math.min.apply(null, all), hi = Math.max.apply(null, all);
+      var pad = Math.max(2e6, (hi - lo) * 0.15);
+      var c = EB.chart(ctx, { x: 58, y: 14, w: w - 72, h: h - 54 }, {
+        x: [0, Y], y: [lo - pad, hi + pad], xTicks: Y <= 8 ? null : [0, 5, 10, 15].filter(function (v) { return v <= Y; }), xFmt: function (v) { return v + "년"; }, yFmt: function (v) { return EB.wonAxis(v); },
+        series: [{ data: nom, color: P.accent2, width: 2.4 }, { data: real, color: P.accent, width: 2.6, fill: EB.color("accent-soft") }],
+        hlines: [{ y: S0, color: P.faint, label: "오늘 4,600만원" }],
+      });
+      ctx.font = EB.font(11); ctx.textAlign = "left";
+      ctx.fillStyle = P.accent2; ctx.fillText("명목 연봉", c.box.x + 6, c.box.y + 12);
+      ctx.fillStyle = P.accent; ctx.fillText("실질 연봉(오늘 돈)", c.box.x + 6, c.box.y + 27);
+      var N = nom[Y][1], R = real[Y][1];
+      EB.stat("wg-o-n", EB.won(N));
+      EB.stat("wg-o-r", EB.won(R));
+      EB.stat("wg-o-d", "<span class='" + (R >= S0 ? "ok-t" : "bad-t") + "'>" + sp1((R / S0 - 1) * 100) + " (" + (R >= S0 ? "+" : "−") + EB.won(Math.abs(R - S0)) + ")</span>");
+      EB.stat("wg-o-k", p > 0 ? EB.won(S0 * p) + " 이상" : "0원");
+    }, { aspect: 0.6, minHeight: 260, maxHeight: 380 });
+    document.getElementById("wg-22").addEventListener("click", function () { gN.set(3); gP.set(H.cpiAnnual[2022] * 100); });
+    document.getElementById("wg-25").addEventListener("click", function () { gN.set(3); gP.set(H.cpiAnnual[2025] * 100); });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-decomp (대표) ---------------- */
+  (function () {
+    // 교육용 6항목: 가중치(합 1), 평상시 상승률(%), 식료품(food)·에너지(energy)·농산물·석유류(kr) 제외 여부
+    var ITEMS = [
+      { n: "농축수산물", w: 0.075, b: 2.0, food: 1, en: 0, kr: 1, col: "ok" },
+      { n: "가공식품", w: 0.085, b: 2.0, food: 1, en: 0, kr: 0, col: "warn" },
+      { n: "석유류", w: 0.045, b: 0.0, food: 0, en: 1, kr: 1, col: "bad" },
+      { n: "전기·가스·수도", w: 0.045, b: 2.0, food: 0, en: 1, kr: 0, col: "blue" },
+      { n: "그 밖의 공업제품", w: 0.20, b: 1.0, food: 0, en: 0, kr: 0, col: "accent-2" },
+      { n: "서비스", w: 0.55, b: 2.5, food: 0, en: 0, kr: 0, col: "accent" },
+    ];
+    var pct = function (v) { return (v > 0 ? "+" : "") + v + "%"; };
+    var gO = EB.range("dc-o", pct, draw), gX = EB.range("dc-x", pct, draw);
+    var gW = EB.range("dc-w", function (v) { return v.toFixed(1) + "%"; }, draw), gG = EB.range("dc-g", function (v) { return (v > 0 ? "+" : "") + v.toFixed(1) + "%"; }, draw);
+    var c2 = document.getElementById("dc-2nd"); c2.addEventListener("change", draw);
+    function rates(wage) {
+      var oil = gO(), fx = gX(), gap = gG(), oilK = ((1 + oil / 100) * (1 + fx / 100) - 1) * 100, dw = wage - 3;
+      return [
+        2.0 + 0.05 * fx + 0.2 * gap,
+        2.0 + 0.15 * fx + 0.02 * oilK + 0.10 * dw + 0.1 * gap,
+        0.0 + 0.35 * oilK,
+        2.0 + 0.10 * oilK,
+        1.0 + 0.015 * oilK + 0.12 * fx + 0.25 * gap,
+        2.5 + 0.5 * dw + 0.4 * gap + 0.005 * oilK,
+      ];
+    }
+    function calc() {
+      var wage = gW(), r = rates(wage), hd = 0;
+      if (c2.checked) { for (var k = 0; k < 30; k++) { hd = ITEMS.reduce(function (s, it, i) { return s + it.w * r[i]; }, 0); r = rates(gW() + 0.6 * Math.max(0, hd - 2)); } }
+      var head = ITEMS.reduce(function (s, it, i) { return s + it.w * r[i]; }, 0);
+      var core = function (f) { var ws = 0, s = 0; ITEMS.forEach(function (it, i) { if (!f(it)) { ws += it.w; s += it.w * r[i]; } }); return { v: s / ws, ws: ws }; };
+      return { r: r, head: head, kr: core(function (it) { return it.kr; }), oecd: core(function (it) { return it.food || it.en; }) };
+    }
+    var cv = EB.canvas("#dc-cv", function (ctx, w, h) {
+      var P = EB.palette(), R = calc();
+      var stacks = ITEMS.map(function (it, i) {
+        return { label: it.n, color: EB.color(it.col), data: [it.w * R.r[i], it.kr ? 0 : it.w * R.r[i] / R.kr.ws, (it.food || it.en) ? 0 : it.w * R.r[i] / R.oecd.ws] };
+      });
+      var tops = [R.head, R.kr.v, R.oecd.v], hi;
+      var pos = [0, 0, 0]; stacks.forEach(function (s) { s.data.forEach(function (v, j) { if (v > 0) pos[j] += v; }); });
+      hi = Math.max(4, Math.max.apply(null, pos) * 1.18);
+      var neg = [0, 0, 0]; stacks.forEach(function (s) { s.data.forEach(function (v, j) { if (v < 0) neg[j] += v; }); });
+      var lo = Math.min(-0.5, Math.min.apply(null, neg) * 1.2);
+      EB.bars(ctx, { x: 46, y: 22, w: w - 60, h: h - 56 }, {
+        labels: ["헤드라인", "근원 ①", "근원 ②"], stacks: stacks, y: [lo, hi], gap: 0.4,
+        yFmt: function (v) { return v.toFixed(0) + "%"; }, hlines: [{ y: 2, color: P.text, label: "목표 2%" }],
+        valueFmt: function (v, i) { return tops[i].toFixed(1) + "%"; },
+      });
+      var con = ITEMS.map(function (it, i) { return it.w * R.r[i]; }), mi = 0;
+      con.forEach(function (v, i) { if (Math.abs(v) > Math.abs(con[mi])) mi = i; });
+      EB.stat("dc-r-h", R.head.toFixed(1) + "%");
+      EB.stat("dc-r-k", R.kr.v.toFixed(1) + "%");
+      EB.stat("dc-r-o", R.oecd.v.toFixed(1) + "%");
+      EB.stat("dc-r-m", ITEMS[mi].n + " " + spp(con[mi]));
+    }, { aspect: 0.62, minHeight: 300, maxHeight: 420 });
+    function preset(o, x, wg, g, sec) { c2.checked = !!sec; gO.set(o); gX.set(x); gW.set(wg); gG.set(g); }
+    document.getElementById("dc-p0").addEventListener("click", function () { preset(0, 0, 3, 0, false); });
+    document.getElementById("dc-p26").addEventListener("click", function () { preset(60, 0, 3, 0, false); });
+    document.getElementById("dc-p22").addEventListener("click", function () { preset(50, 10, 4.5, 1.5, false); });
+    document.getElementById("dc-pd").addEventListener("click", function () { preset(0, 0, 5, 2.5, false); });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- 케이스 ---------------- */
+  (function () {
+    var infl = K.cpi2025, sal = C.jiwoo.salary, cost = C.livingCost, save = C.monthlySaving;
+    var up = cost * infl;
+    document.getElementById("inf-case-calc").innerHTML = "지우는 자기 숫자로 바꿔 봤다. 연봉 " + EB.won(sal) + "이 구매력을 지키려면 1년에 최소 " + EB.won(sal * infl) + "(2.1%) 이상 올라야 한다. 월 생활비 " + EB.won(cost) + "이 물가만큼 오르면 한 달에 약 " + EB.won(up) + "이 더 나가고, 이는 월 저축 여력 " + EB.won(save) + "의 " + (up / save * 100).toFixed(0) + "%다. 그리고 지우의 가장 큰 지출 가운데 하나인 전세대출 이자는 소비자물가지수에 들어가지 않는다는 것도 적었다. 지수의 '집세'는 전세·월세 가격을 재지, 세입자가 낸 대출 이자를 재지 않는다. 금리가 오르면 지우의 생활비는 지수보다 더 빨리 오를 수 있다.";
+    document.getElementById("inf-case-life").textContent = "연봉이 2.1%(약 " + EB.won(sal * infl) + ") 넘게 올라야 실질 소득이 는다. 생활비 증가는 월 약 " + EB.won(up) + ". 전세대출 이자는 지수 밖이다.";
+  })();
+})();
+</script>
+</body>
+</html>

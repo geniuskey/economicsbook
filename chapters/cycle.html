@@ -1,0 +1,786 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and EconomicsBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "경기는 왜 물결치는가. 확장·정점·수축·저점, 잠재 산출과 산출 갭, 선행·동행지수와 순환변동치, 기준순환일, 소비자심리지수와 BSI를 읽고, 승수와 가속도와 재고가 출렁임을 키우는 원리를 경기 순환 실험으로 직접 돌려 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>경기 순환과 경기 지표 · EconomicsBook</title>
+<meta name="description" content="경기는 왜 물결치는가. 확장·정점·수축·저점, 잠재 산출과 산출 갭, 선행·동행지수와 순환변동치, 기준순환일, 소비자심리지수와 BSI를 읽고, 승수와 가속도와 재고가 출렁임을 키우는 원리를 경기 순환 실험으로 직접 돌려 본다.">
+<link rel="canonical" href="https://economicsbook.euiyun.com/chapters/cycle.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#4338ca">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="EconomicsBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="경기 순환과 경기 지표 · EconomicsBook">
+<meta property="og:description" content="경기는 왜 물결치는가. 확장·정점·수축·저점, 잠재 산출과 산출 갭, 선행·동행지수와 순환변동치, 기준순환일, 소비자심리지수와 BSI를 읽고, 승수와 가속도와 재고가 출렁임을 키우는 원리를 경기 순환 실험으로 직접 돌려 본다.">
+<meta property="og:url" content="https://economicsbook.euiyun.com/chapters/cycle.html">
+<meta property="og:image" content="https://economicsbook.euiyun.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://economicsbook.euiyun.com/chapters/cycle.html#chapter","name":"경기 순환과 경기 지표","headline":"경기 순환과 경기 지표 · EconomicsBook","description":"경기는 왜 물결치는가. 확장·정점·수축·저점, 잠재 산출과 산출 갭, 선행·동행지수와 순환변동치, 기준순환일, 소비자심리지수와 BSI를 읽고, 승수와 가속도와 재고가 출렁임을 키우는 원리를 경기 순환 실험으로 직접 돌려 본다.","url":"https://economicsbook.euiyun.com/chapters/cycle.html","position":4,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://economicsbook.euiyun.com/og.png","dateModified":"2026-10-09","isPartOf":{"@type":"Book","@id":"https://economicsbook.euiyun.com/#book","name":"EconomicsBook · 경제 뉴스 읽는 교과서","url":"https://economicsbook.euiyun.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"EconomicsBook","item":"https://economicsbook.euiyun.com/"},{"@type":"ListItem","position":2,"name":"4. 경기 순환과 경기 지표","item":"https://economicsbook.euiyun.com/chapters/cycle.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/econ.js"></script>
+<!--head:end-->
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"3d6151a0abc94ede89285d462527fa80"}'></script>
+<!-- End Cloudflare Web Analytics -->
+</head>
+<body data-chapter="cycle">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 04</div>
+    <h1>경기 순환과 경기 지표</h1>
+    <p class="lead">"3분기 성장률 반등"이라는 제목을 보면 사람들은 묻는다. 그럼 바닥을 친 건가, 경기가 좋아지는 건가. 이 장은 그 질문에 답하는 도구를 모은다. 경기의 물결을 잴 기준선(잠재 산출), 물결의 지금 위치를 알려 주는 지수(동행지수), 앞날을 먼저 보여 주는 지수(선행지수와 심리지수), 그리고 작은 충격이 왜 큰 물결로 번지는지 설명하는 승수와 가속도의 원리다.</p>
+    <ul class="objectives">
+      <li>경기 순환의 네 국면(확장·정점·수축·저점)과 성장률·산출 갭의 관계를 설명할 수 있다.</li>
+      <li>선행·동행지수 순환변동치, 소비자심리지수, BSI가 무엇을 재는지 알고 발표 자료에서 찾을 수 있다.</li>
+      <li>기준순환일이 누가, 언제, 어떻게 정하는지와 "2분기 연속 마이너스"가 공식 정의가 아님을 설명할 수 있다.</li>
+      <li>승수·가속도·재고가 충격을 순환으로 키우는 원리를 모형으로 보이고, 정책 대응이 물결을 줄이는 방식을 설명할 수 있다.</li>
+    </ul>
+  </header>
+
+  <div class="headline" id="hl-top">3분기 성장률 1.2%로 반등, 소비가 이끌었다<small>지우의 헤드라인 노트 · 2025년 10월 · 근거: 한국은행 「2025년 3/4분기 실질 국내총생산(속보)」(2025-10-28)</small></div>
+
+  <section id="phases">
+    <h2>경기는 물결친다: 확장·정점·수축·저점</h2>
+    <p>경제는 해마다 같은 속도로 자라지 않는다. 몇 해 동안 생산과 고용과 소비가 함께 늘다가, 어느 시점에 꺾여 한동안 함께 줄고, 다시 바닥을 치고 올라온다. 이 오르내림을 <span class="term">경기 순환</span><span class="en">(Business cycle)</span>이라고 한다. 오르는 구간이 <span class="term">확장</span>, 꼭대기가 <span class="term">정점</span><span class="en">(Peak)</span>, 내려가는 구간이 <span class="term">수축</span>, 바닥이 <span class="term">저점</span><span class="en">(Trough)</span>이다. 저점에서 다음 저점까지가 한 순환이다.</p>
+    <p>여기서 중요한 것은 무엇이 오르내리느냐다. 한국을 비롯한 많은 나라는 경제가 길게 자라는 추세를 먼저 걷어 내고, 그 추세선 위아래로 출렁이는 부분을 경기로 본다. 그래서 GDP가 계속 늘고 있어도 추세보다 느리게 늘면 경기는 수축 국면일 수 있다. 성장률이 플러스인데 "경기 하강"이라는 말이 나오는 이유다. 한국의 공식 경기 순환은 이런 <span class="term">성장 순환</span><span class="en">(Growth cycle)</span> 개념을 따른다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 250" role="img" aria-label="상승하는 추세선 위아래로 출렁이는 GDP. 저점에서 정점까지 확장, 정점에서 저점까지 수축">
+        <defs><marker id="cy-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="88" y="20" width="118" height="190" class="f-ok-soft"/>
+        <rect x="206" y="20" width="110" height="190" class="f-bad-soft"/>
+        <rect x="316" y="20" width="118" height="190" class="f-ok-soft"/>
+        <line x1="30" y1="210" x2="445" y2="210" class="s-axis"/>
+        <line x1="30" y1="20" x2="30" y2="210" class="s-axis"/>
+        <path d="M30 180L445 70" class="s-dash"/>
+        <path d="M30 168C55 182 70 196 88 196C120 196 160 118 206 104C236 95 262 150 316 156C360 160 400 70 434 60L445 62" class="s-acc" fill="none" stroke-width="2.6"/>
+        <circle cx="88" cy="196" r="5" class="f-bad"/>
+        <circle cx="206" cy="104" r="5" class="f-ok"/>
+        <circle cx="316" cy="156" r="5" class="f-bad"/>
+        <text x="88" y="230" text-anchor="middle" class="lbl-b">저점</text>
+        <text x="206" y="230" text-anchor="middle" class="lbl-b">정점</text>
+        <text x="316" y="230" text-anchor="middle" class="lbl-b">저점</text>
+        <text x="147" y="38" text-anchor="middle" class="lbl">확장</text>
+        <text x="261" y="38" text-anchor="middle" class="lbl">수축</text>
+        <text x="375" y="38" text-anchor="middle" class="lbl">확장</text>
+        <text x="440" y="96" text-anchor="end" class="lbl-dim">추세(잠재 산출)</text>
+        <text x="236" y="84" text-anchor="middle" class="lbl-acc">실제 GDP</text>
+        <path d="M88 246H316" class="s-line" marker-start="url(#cy-ar)" marker-end="url(#cy-ar)"/>
+        <text x="40" y="246" class="lbl-dim">한 순환</text>
+      </svg>
+      <figcaption><b>그림 1. 경기 순환의 네 국면.</b> 점선이 경제가 길게 자라는 추세, 실선이 실제 GDP다. 정점 뒤 수축 구간에서도 실제 GDP가 줄지 않고 추세보다 느리게 늘 수 있다. 한국의 경기 국면은 이 추세선과의 거리로 판단한다. 모양은 설명용이다.</figcaption>
+    </figure>
+
+    <p>아래 시뮬레이터는 같은 생각을 숫자로 옮긴다. 추세 성장률, 물결의 크기, 한 순환의 길이를 바꾸고, 세로선을 끌어 시점을 고른다. 위 그래프는 GDP 수준, 아래 그래프는 전년동기비 성장률이다.</p>
+
+    <div class="sim" id="sim-phase">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>성장률이 플러스인데 수축 국면? 추세와 순환 나누기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ph-cv"></canvas><span class="hint">세로선을 끌어 시점을 고른다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>추세 성장률(연) <output id="ph-g-out"></output></span><input type="range" id="ph-g" min="0" max="5" step="0.1" value="2"></label>
+          <label class="ctrl"><span>순환의 진폭 <output id="ph-a-out"></output></span><input type="range" id="ph-a" min="0" max="5" step="0.1" value="1.5"></label>
+          <label class="ctrl"><span>한 순환의 길이 <output id="ph-p-out"></output></span><input type="range" id="ph-p" min="8" max="32" step="1" value="18"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 시점</span><span class="v" id="ph-o-t">—</span></div>
+        <div class="stat"><span class="k">국면</span><span class="v" id="ph-o-s">—</span></div>
+        <div class="stat"><span class="k">추세와의 거리(산출 갭)</span><span class="v" id="ph-o-gap">—</span></div>
+        <div class="stat"><span class="k">전년동기비 성장률</span><span class="v" id="ph-o-y">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 기본값에서 정점 바로 뒤로 세로선을 끈다. 국면은 '수축'인데 성장률은 아직 플러스다. 수축은 "줄어든다"가 아니라 "추세보다 느리다"에서 시작한다. ② 추세 성장률을 0.5%로 낮춘다. 같은 물결인데 수축 국면마다 성장률이 마이너스로 내려간다. 잠재성장률이 낮은 경제일수록 같은 경기 하강이 역성장으로 보이기 쉽다. ③ 진폭을 5%로, 길이를 8분기로 바꾼다. 성장률이 롤러코스터처럼 오르내린다. 실제 경제의 순환은 이처럼 규칙적이지 않다. (모형: GDP 수준 = 추세 × (1 + 진폭 × sin). 분기 단위, 10년. 교육용 가정이다.)</div>
+    </div>
+
+    <p>한국에서 한 순환은 얼마나 길까. 통계청이 1972년 이후 정한 순환들은 길이가 제각각이었다. 가장 최근에 끝난 제11순환만 해도 확장이 54개월, 수축이 32개월로, 수축이 1972년 이후 가장 길었다. 정해진 주기로 돌아오는 시계가 아니라는 뜻이다. 그래서 경기를 읽는 사람들은 "언제 정점이 오나"를 맞히기보다, 지금이 어느 국면에 있는지 여러 지표로 확인하는 데 힘을 쓴다.</p>
+  </section>
+
+  <section id="gap">
+    <h2>잠재 산출과 산출 갭: 경기를 재는 기준선</h2>
+    <p>그림 1의 점선에는 이름이 있다. 노동과 자본을 무리 없이(물가를 밀어 올리지 않고) 쓸 때 경제가 만들 수 있는 양, <span class="term">잠재 산출</span><span class="en">(Potential output)</span>이다. 그 증가율이 <span class="term">잠재성장률</span>이다. 실제 GDP와 잠재 산출의 차이를 잠재 산출로 나눈 것이 <span class="term">산출 갭</span><span class="en">(Output gap)</span>이다.</p>
+    <div class="formula">$$\text{산출 갭} = \frac{\text{실제 GDP} - \text{잠재 GDP}}{\text{잠재 GDP}} \times 100\ (\%)$$<div class="where">갭이 플러스면 경제가 무리해서 돌아가는 상태(물가 상승 압력), 마이너스면 놀고 있는 설비와 일손이 있는 상태(실업 증가, 물가 하락 압력)다.</div></div>
+    <p>잠재 산출은 눈에 보이지 않는다. 한국은행 같은 기관이 노동력·자본·생산성의 추세로 추정할 뿐이고, 추정 방법에 따라 값이 다르다. 한국은행은 2024년 12월 보고서에서 2024~2026년 한국의 잠재성장률을 2% 수준으로 추정했고, 지금 추세가 이어지면 2025~2029년에는 1.8% 안팎으로 낮아질 것으로 보았다 <span class="src">(한국은행, 「우리 경제의 잠재성장률과 향후 전망」·2024-12-19, 보도 인용)</span>. 2000년대 초 5% 안팎이던 것이 고령화와 생산성 둔화로 내려온 것이다. 이 숫자가 2%라면, 연간 성장률 1%는 산출 갭이 1%p쯤 벌어지는 속도로 읽힌다.</p>
+    <p>산출 갭이 경기 이야기의 중심에 서는 이유는 그것이 고용과 물가로 이어지기 때문이다. 갭이 마이너스로 벌어지면 기업은 사람을 덜 뽑고(<a href="jobs.html">5장</a>), 값을 덜 올린다(<a href="inflation.html">6장</a>). 중앙은행이 금리를 정할 때 물가와 함께 산출 갭을 보는 것도 그래서다(<a href="bok.html">8장</a>). 아래 시뮬레이터는 이 책의 작은 경제 모형에 수요 충격을 하나 넣고, 정책이 대응할 때와 하지 않을 때를 견준다.</p>
+
+    <div class="sim" id="sim-gap">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>수요 충격 하나가 산출 갭·실업률·물가로 번지는 길</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="gp-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>수요 충격(분기, GDP 대비) <output id="gp-d-out"></output></span><input type="range" id="gp-d" min="-4" max="4" step="0.5" value="-2"></label>
+          <label class="ctrl"><span>충격이 이어지는 분기 수 <output id="gp-n-out"></output></span><input type="range" id="gp-n" min="1" max="6" step="1" value="2"></label>
+          <div class="seg" id="gp-rule"><button data-value="off">금리 고정</button><button data-value="on" class="on">금리로 대응(준칙)</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">가장 깊은 산출 갭</span><span class="v" id="gp-o-y">—</span></div>
+        <div class="stat"><span class="k">실업률의 정점</span><span class="v" id="gp-o-u">—</span></div>
+        <div class="stat"><span class="k">물가상승률의 바닥</span><span class="v" id="gp-o-p">—</span></div>
+        <div class="stat"><span class="k">갭이 −0.3% 안으로</span><span class="v" id="gp-o-r">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 기본값(−2%, 2분기)에서 '금리 고정'과 '금리로 대응'을 번갈아 누른다. 대응하면 금리가 내려가 갭이 덜 깊고 빨리 메워진다. ② 충격을 +4%, 6분기로 바꾼다. 수요가 넘치면 갭이 플러스가 되고 물가가 목표 2% 위로 오른다. 대응하면 금리가 오른다. ③ 충격을 −4%, 6분기로 하고 '금리 고정'을 누른다. 실업률이 크게 오르고 물가가 목표 아래로 처진다. 바닥을 지나도 갭이 메워지는 데 오래 걸린다. (모형: <code>EC.economy</code>. 산출 갭의 지속성 0.7, 실질금리 갭 1%p당 산출 갭 −0.25%p, 필립스 곡선 기울기 0.2, 오쿤 계수 0.4, 자연실업률 3%, 준칙은 테일러 준칙(물가 1.5, 갭 0.5)에 평활화 0.7. 교육용 가정이며 전망이 아니다.)</div>
+    </div>
+
+    <p>모형이 단순해도 순서는 분명하다. 수요가 줄면 산출 갭이 먼저 벌어지고, 실업률이 따라 오르고, 물가상승률은 가장 늦게 처진다. 그리고 갭은 충격이 끝난 뒤에도 몇 분기 동안 천천히 메워진다. 이 느린 회복이 "저점은 지났는데 체감 경기는 여전히 나쁘다"는 말의 정체다. 저점은 방향이 바뀌는 시점이지, 수준이 회복되는 시점이 아니다.</p>
+  </section>
+
+  <section id="indices">
+    <h2>경기종합지수: 지금과 앞날을 한 숫자로</h2>
+    <p>GDP는 분기에 한 번, 그것도 한 달 가까이 지나서 나온다. 경기의 방향을 매달 보고 싶은 사람들은 더 빨리 나오는 지표를 묶어 쓴다. 국가데이터처(옛 통계청)가 매달 「산업활동동향」과 함께 발표하는 <span class="term">경기종합지수</span><span class="en">(CI, Composite Index)</span>가 그것이다. 경기와 함께 움직이는 지표, 앞서 움직이는 지표, 뒤따르는 지표를 각각 하나의 지수로 합친다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 280" role="img" aria-label="선행종합지수, 동행종합지수, 후행종합지수의 구성 지표와 시간 순서">
+        <defs><marker id="cy-ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="8" y="14" width="146" height="232" rx="8" class="f-acc2-soft"/>
+        <text x="81" y="36" text-anchor="middle" class="lbl-b">선행지수</text>
+        <text x="81" y="54" text-anchor="middle" class="lbl-dim">앞날(수 개월 뒤)</text>
+        <text x="81" y="80" text-anchor="middle" class="lbl">재고순환지표</text>
+        <text x="81" y="100" text-anchor="middle" class="lbl">경제심리지수</text>
+        <text x="81" y="120" text-anchor="middle" class="lbl">기계류내수출하</text>
+        <text x="81" y="140" text-anchor="middle" class="lbl">건설수주액</text>
+        <text x="81" y="160" text-anchor="middle" class="lbl">수출입물가비율</text>
+        <text x="81" y="180" text-anchor="middle" class="lbl">코스피</text>
+        <text x="81" y="200" text-anchor="middle" class="lbl">장단기금리차</text>
+        <rect x="160" y="14" width="146" height="232" rx="8" class="f-acc-soft"/>
+        <text x="233" y="36" text-anchor="middle" class="lbl-b">동행지수</text>
+        <text x="233" y="54" text-anchor="middle" class="lbl-dim">지금</text>
+        <text x="233" y="80" text-anchor="middle" class="lbl">비농림어업취업자</text>
+        <text x="233" y="100" text-anchor="middle" class="lbl">광공업생산</text>
+        <text x="233" y="120" text-anchor="middle" class="lbl">서비스업생산</text>
+        <text x="233" y="140" text-anchor="middle" class="lbl">소매판매액</text>
+        <text x="233" y="160" text-anchor="middle" class="lbl">내수출하</text>
+        <text x="233" y="180" text-anchor="middle" class="lbl">건설기성액</text>
+        <text x="233" y="200" text-anchor="middle" class="lbl">수입액</text>
+        <rect x="312" y="14" width="140" height="232" rx="8" class="f-surface"/>
+        <text x="382" y="36" text-anchor="middle" class="lbl-b">후행지수</text>
+        <text x="382" y="54" text-anchor="middle" class="lbl-dim">지난 경기의 확인</text>
+        <text x="382" y="80" text-anchor="middle" class="lbl">재고</text>
+        <text x="382" y="100" text-anchor="middle" class="lbl">소비재 수입</text>
+        <text x="382" y="120" text-anchor="middle" class="lbl">취업자·금리 등</text>
+        <path d="M30 266H430" class="s-line" marker-end="url(#cy-ar2)"/>
+        <text x="81" y="232" text-anchor="middle" class="lbl-acc2">먼저 꺾인다</text>
+        <text x="233" y="232" text-anchor="middle" class="lbl-acc">함께 꺾인다</text>
+        <text x="382" y="232" text-anchor="middle" class="lbl-dim">늦게 꺾인다</text>
+      </svg>
+      <figcaption><b>그림 2. 경기종합지수의 세 갈래.</b> 선행·동행지수는 각각 7개 지표로 만든다(구성은 개편 때마다 바뀌며, 그림은 최근 보도에 인용된 구성이다). 후행지수 칸은 대표 지표만 적었다. 선행지수의 재고순환지표는 출하 증가율에서 재고 증가율을 뺀 것으로, 팔리는 속도가 쌓이는 속도보다 빠르면 곧 생산을 늘린다는 신호다.</figcaption>
+    </figure>
+
+    <p>기사에 나오는 것은 대개 지수 그 자체가 아니라 <span class="term">순환변동치</span>다. 동행종합지수는 경제와 함께 길게 자라므로 거의 늘 오른다. 여기서 추세를 걷어 내면 100을 중심으로 오르내리는 값이 남는데, 이것이 동행지수 순환변동치다. 100보다 높으면 추세 위, 낮으면 추세 아래이고, 오르면 확장, 내리면 수축 쪽이다. 그림 1의 실선과 점선 사이 거리를 매달 재는 셈이다. 선행지수 순환변동치는 같은 방식으로 몇 달 앞을 비춘다.</p>
+    <p>선행지수가 정말 먼저 꺾일까. 대체로 그렇지만 늘 그렇지는 않다. 코스피와 경제심리지수는 경기와 상관없는 소식에도 출렁이고, 한두 달 꺾였다가 다시 오르는 <strong>거짓 신호</strong>를 자주 낸다. 그래서 "선행지수 순환변동치가 몇 달 연속 하락했다"처럼 연속성을 따진다. 아래 시뮬레이터는 실제 자료가 아니라 교육용 가상 데이터로, 선행지수가 앞서는 정도와 잡음을 바꿔 가며 신호가 얼마나 믿을 만한지 본다.</p>
+
+    <div class="sim" id="sim-cli">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>선행지수는 얼마나 먼저, 얼마나 정확히 꺾이나</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="cl-cv"></canvas><span class="hint">세로선을 끌어 달을 고른다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>선행 시차 <output id="cl-l-out"></output></span><input type="range" id="cl-l" min="0" max="9" step="1" value="5"></label>
+          <label class="ctrl"><span>잡음(코스피·심리의 출렁임) <output id="cl-s-out"></output></span><input type="range" id="cl-s" min="0" max="1.5" step="0.05" value="0.35"></label>
+          <label class="ctrl"><span>신호로 볼 연속 하락·상승 개월 <output id="cl-k-out"></output></span><input type="range" id="cl-k" min="1" max="6" step="1" value="3"></label>
+          <div class="btn-row"><button class="btn" id="cl-new">다른 잡음</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 달</span><span class="v" id="cl-o-m">—</span></div>
+        <div class="stat"><span class="k">그 달의 방향(선행 · 동행)</span><span class="v" id="cl-o-d">—</span></div>
+        <div class="stat"><span class="k">맞힌 전환점 · 거짓 신호</span><span class="v" id="cl-o-h">—</span></div>
+        <div class="stat"><span class="k">신호가 앞선 평균</span><span class="v" id="cl-o-l">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 잡음을 0으로 내린다. 선행지수의 신호(삼각형)가 동행지수의 전환점보다 시차만큼 정확히 앞선다. 교과서 속 선행지수다. ② 잡음을 1.0으로 올린다. 거짓 신호가 늘어난다. 신호로 볼 연속 개월 수를 5로 늘리면 거짓 신호는 줄지만 신호가 늦어져 앞서는 시간이 짧아진다. 빨리 알 것인가, 정확히 알 것인가의 맞바꿈이다. ③ 선행 시차를 0으로 둔다. 선행지수가 동행지수와 같이 움직이면 신호를 기다리는 동안 이미 전환점이 지나 있다. (교육용 가상 데이터: 동행지수 = 100 + 2 × sin(2π × 월 ÷ 46), 선행지수 = 같은 물결을 시차만큼 앞당기고 잡음을 더한 것. 신호 = 몇 달 연속 반대 방향. 실제 경기종합지수가 아니다.)</div>
+    </div>
+
+    <p>실제로도 이 맞바꿈은 피할 수 없다. 그래서 국가데이터처는 선행지수 하나로 국면을 단정하지 않고, 동행지수 순환변동치와 GDP, 생산·소비·투자·고용 지표를 함께 본다. 기사가 "선행지수가 3개월 연속 올라 경기 반등 기대"라고 쓸 때는 그 상승이 어떤 구성 지표에서 왔는지(코스피 한 가지가 끌어올린 것은 아닌지)를 함께 확인한다.</p>
+
+    <div class="callout stat"><strong>경기종합지수와 성장률은 어디에 나오나</strong><span>국가데이터처의 「산업활동동향」은 보통 다음 달 말에 나온다. 9월분은 10월 말, 10월분은 11월 말이다. 보도자료 끝에 경기종합지수 표가 있고, 동행지수 순환변동치와 선행지수 순환변동치의 전월 대비 변화가 적혀 있다. 긴 시계열은 KOSIS(국가통계포털)의 '경기종합지수' 통계표에서 내려받는다. GDP는 한국은행이 분기 끝나고 약 4주 뒤 속보를 낸다. 2025년 3분기 속보는 2025-10-28에 나왔고, 한 달 남짓 뒤인 2025-12-03 잠정치에서 1.2%가 1.3%로 고쳐졌다. 속보에 빠져 있던 9월 자료가 반영된 결과다(<a href="gdp.html">3장</a>).</span></div>
+  </section>
+
+  <section id="dating">
+    <h2>기준순환일: 정점과 저점은 누가, 언제 정하나</h2>
+    <p>경기의 정점과 저점을 공식적으로 정한 날짜를 <span class="term">기준순환일</span><span class="en">(Reference date)</span>이라고 한다. 한국에서는 통계청(지금의 국가데이터처)이 동행지수 순환변동치, GDP, 개별 지표들의 움직임을 분석하고 전문가 의견을 들은 뒤 국가통계위원회의 심의를 거쳐 정한다. 1972년 이후의 순환에 번호를 붙여 왔다.</p>
+    <p>기준순환일에서 가장 중요한 특징은 <strong>늦게 정해진다</strong>는 것이다. 정점은 경기가 한참 내려간 뒤에야, 저점은 한참 올라온 뒤에야 확인할 수 있다. 몇 달 꺾였다 다시 오르면 정점이 아니기 때문이다. 아래 표는 가장 최근에 정해진 기준순환일이다.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>순환</th><th>저점</th><th>정점</th><th>다음 저점</th><th>정한 때</th></tr></thead>
+      <tbody>
+        <tr><td>제11순환</td><td class="num">2013년 3월</td><td class="num">2017년 9월</td><td class="num">2020년 5월</td><td>정점은 2019년 9월 확정(정점 뒤 2년), 다음 저점은 2023년 3월 잠정 설정</td></tr>
+        <tr><td>제12순환</td><td class="num">2020년 5월</td><td>공식 설정 확인하지 못함</td><td>—</td><td>정점은 이 책이 확인한 범위(2026년 10월)에서 공식 발표를 찾지 못했다</td></tr>
+      </tbody>
+    </table></div>
+    <p class="src">(통계청, 기준순환일 설정. 2019-09-20 보도와 2023년 3월 보도로 확인. 확장 54개월, 수축 32개월. 32개월은 1972년 이후 가장 긴 수축이었다.)</p>
+    <p>2017년 9월 정점을 공식 확정한 것은 2019년 9월이었다. 그 2년 동안 사람들은 "경기가 하강 국면인가"를 두고 논쟁했고, 확정 발표는 "그때 이미 내려가고 있었다"는 사후 확인이었다. 2020년 5월 저점도 3년 가까이 지난 2023년에 잠정 설정되었다. 기준순환일은 지금 경기를 알려 주는 신호가 아니라 지난 경기를 정리하는 기록이다. 지금의 국면은 동행·선행지수와 심리지수로 추정할 수밖에 없다.</p>
+
+    <h3>"2분기 연속 마이너스"는 경기 침체의 정의인가</h3>
+    <p>기사에 자주 나오는 <span class="term">기술적 경기 침체</span><span class="en">(Technical recession)</span>는 "실질 GDP가 2분기 연속 전기 대비 마이너스"를 뜻하는 어림 규칙이다. 기준이 단순하고 바로 확인할 수 있어 널리 쓰이지만 공식 정의는 아니다. 한국에는 정부가 정한 경기 침체의 정의가 없고, 공식적인 것은 위의 기준순환일뿐이다. 미국도 마찬가지로, 민간 연구기관인 전미경제연구소(NBER)의 위원회가 생산·고용·소득·소비를 함께 보고 정점과 저점을 판정한다.</p>
+    <p>어림 규칙에는 두 가지 함정이 있다. 첫째, 한 분기 크게 줄고 다음 분기에 0.1% 늘면 침체가 아니고, 두 분기 연속 −0.1%씩 줄면 침체다. 깊이가 아니라 부호만 본다. 둘째, 잠재성장률이 낮아질수록 같은 경기 하강이 마이너스로 나타나기 쉽다(앞의 시뮬레이터 ②). 2025년 1분기 −0.2%, 4분기 −0.3%(속보)처럼 한 분기씩 떨어진 마이너스는 이 규칙에 걸리지 않는다 <span class="src">(한국은행, 2025년 4/4분기 및 연간 실질 국내총생산(속보)·2026-01-22)</span>.</p>
+
+    <div class="callout news"><strong>"경기 바닥"이라는 말은 누가 했나</strong>백정호는 "바닥을 쳤다"는 제목을 보면 그 말을 한 사람이 누구인지부터 찾으라고 했다. 정부의 그린북, 한국은행 총재의 기자간담회, 증권사 보고서, 기사 작성자의 해석은 무게가 다 다르다. 공식적으로 바닥을 정하는 것은 몇 년 뒤의 기준순환일뿐이다. 그 전까지 "바닥"은 누군가의 판단이며, 그 판단은 대개 선행지수나 심리지수가 몇 달 오른 것을 근거로 한다. 그는 이런 기사에서 근거가 된 지표의 이름과 몇 달째인지를 노트에 따로 적었다. 반 년 뒤 다시 보면 맞은 것보다 틀린 것이 더 많았다고 했다.</div>
+  </section>
+
+  <section id="sentiment">
+    <h2>심리지수: 마음이 먼저 움직인다</h2>
+    <p>소비자와 기업이 앞날을 어떻게 보는지는 실제 지출보다 먼저 움직이는 경우가 많다. 일자리가 불안하다고 느끼면 실제로 월급이 깎이기 전에 지갑을 닫고, 주문이 줄 것 같으면 실제로 줄기 전에 투자를 미룬다. 이 마음을 설문으로 재는 것이 심리지수다.</p>
+    <ul>
+      <li><b>소비자심리지수</b>(CCSI, 한국은행). 매달 전국의 가구에게 현재 생활형편, 생활형편 전망, 가계수입 전망, 소비지출 전망, 현재 경기판단, 향후 경기전망을 묻고 6개 지수를 합성한다. 장기 평균(2003년~2024년 12월)을 100으로 놓아, 100보다 크면 평균보다 낙관적이라는 뜻이다.</li>
+      <li><b>기업경기실사지수</b>(BSI). 기업에게 "지난달보다 좋아졌나, 나빠졌나"를 묻고, 좋아졌다는 응답 비중에서 나빠졌다는 응답 비중을 빼서 100을 더한다. 100보다 크면 좋아졌다는 기업이 더 많다는 뜻이다. 한국은행은 BSI와 CCSI를 합쳐 <b>경제심리지수</b>(ESI)도 낸다. ESI는 선행지수의 구성 지표다.</li>
+    </ul>
+    <p>최근 숫자를 보자. 2025년 11월 소비자심리지수는 112.4로 한 달 전보다 2.6포인트 올라 2017년 11월(113.9) 이후 가장 높았다. 9월(−1.3포인트)과 10월(−0.3포인트) 잇따라 내린 뒤의 반등이었고, 한국은행은 한미 관세 협상 타결과 3분기 성장률이 예상을 웃돈 것을 이유로 들었다 <span class="src">(한국은행, 2025년 11월 소비자동향조사·2025-11-25)</span>. 성장률 발표가 다시 심리를 움직인 것이다. 지표와 심리가 서로를 밀어 올리는 이 고리가 경기 순환을 키우는 힘 가운데 하나다.</p>
+
+    <div class="sim" id="sim-bsi">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>BSI 계산기: 100이라는 숫자 뒤의 응답 분포</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="bs-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>"좋아졌다" 응답 <output id="bs-u-out"></output></span><input type="range" id="bs-u" min="0" max="100" step="1" value="22"></label>
+          <label class="ctrl"><span>"나빠졌다" 응답 <output id="bs-d-out"></output></span><input type="range" id="bs-d" min="0" max="100" step="1" value="30"></label>
+          <div class="seg" id="bs-pre"><button data-value="x" class="on">직접</button><button data-value="calm">대부분 보통</button><button data-value="split">양극화</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">"비슷하다" 응답</span><span class="v" id="bs-o-s">—</span></div>
+        <div class="stat"><span class="k">BSI</span><span class="v" id="bs-o-b">—</span></div>
+        <div class="stat"><span class="k">읽는 법</span><span class="v" id="bs-o-r">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① '대부분 보통'을 누른다. 90%가 "비슷하다"고 답해도 BSI는 나머지 10%의 균형으로 정해진다. ② '양극화'를 누른다. 45%는 좋아졌고 45%는 나빠졌다는데 BSI는 100이다. 반도체 기업과 건설 기업의 사정이 정반대인 달에 전체 BSI만 보면 "보통"으로 읽힌다. 업종별 BSI를 함께 보는 이유다. ③ "좋아졌다"를 0으로, "나빠졌다"를 100으로 민다. BSI의 바닥은 0, 꼭대기는 200이다. (계산: BSI = (좋아졌다 − 나빠졌다) + 100, 응답 비중은 %. 가중치와 계절조정은 생략했다.)</div>
+    </div>
+
+    <p>심리지수가 쓸모 있는 것은 빨리 나오기 때문이다. 소비자동향조사는 그달 말에 그달 숫자가 나오고, 생산·소비 통계보다 한 달 이상 빠르다. 대신 실제 행동과 어긋나기도 한다. 사람들은 "경기가 나쁘다"고 답하면서도 소비를 줄이지 않을 수 있고, 뉴스의 분위기에 따라 응답이 출렁이기도 한다. 심리지수는 방향을 미리 비추는 등불이지 도착지를 알려 주는 지도가 아니다.</p>
+  </section>
+
+  <section id="accel">
+    <h2>승수와 가속도: 작은 충격이 물결이 되는 원리</h2>
+    <p>경기는 왜 한 방향으로 한동안 계속 움직일까. 첫 번째 답은 <span class="term">승수</span><span class="en">(Multiplier)</span>다. 정부가 1조원을 쓰면 그 돈은 누군가의 소득이 되고, 그 사람은 소득의 일부(한계소비성향 \(c\))를 다시 쓴다. 그것이 또 다른 사람의 소득이 된다. 1조 + 0.8조 + 0.64조 + … 처럼 이어져, 처음 지출의 \(1/(1-c)\)배까지 소득이 늘 수 있다. 줄어들 때도 같다.</p>
+    <p>두 번째 답은 <span class="term">가속도 원리</span><span class="en">(Accelerator)</span>다. 기업은 판매가 <strong>늘어나는 만큼</strong> 설비를 늘린다. 판매가 계속 늘어도 늘어나는 속도가 줄면 새 설비가 덜 필요하므로 투자가 줄어든다. 소비가 "덜 빨리" 늘기만 해도 투자는 실제로 줄어드는 것이다. 경제학자 새뮤얼슨은 이 둘을 합쳐 경기 순환을 설명하는 간단한 모형을 만들었다.</p>
+    <div class="formula">$$Y_t = C_t + I_t + G, \quad C_t = c\,Y_{t-1}, \quad I_t = v\,(C_t - C_{t-1})$$<div class="where">\(Y\): 소득(GDP), \(C\): 소비, \(I\): 유발 투자, \(G\): 정부 지출. \(c\): 한계소비성향(0~1), \(v\): 가속도 계수. 정리하면 \(Y_t = c(1+v)Y_{t-1} - c\,v\,Y_{t-2} + G\)인 2계 차분방정식이 된다.</div></div>
+    <p>이 식은 \(c\)와 \(v\)의 조합에 따라 전혀 다르게 움직인다. 정부 지출을 한 번 10% 늘리는 충격을 주고, 오른쪽 평면의 점을 끌어 \(c\)와 \(v\)를 바꿔 본다.</p>
+
+    <div class="sim" id="sim-sam">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>새뮤얼슨의 승수-가속도 모형: 수렴·진동·폭발</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="sm-cv"></canvas><span class="hint">오른쪽 평면의 점을 끈다</span></div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">한계소비성향 c · 가속도 v</span><span class="v" id="sm-o-p">—</span></div>
+        <div class="stat"><span class="k">움직임</span><span class="v" id="sm-o-r">—</span></div>
+        <div class="stat"><span class="k">새 균형(승수)</span><span class="v" id="sm-o-m">—</span></div>
+        <div class="stat"><span class="k">주기 · 감쇠</span><span class="v" id="sm-o-c">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 점을 왼쪽 아래(c 0.5, v 0.2) 근처로 끈다. 소득이 출렁임 없이 새 균형으로 올라간다. 승수만 있는 세계다. ② 점을 c 0.8, v 1 근처로 옮긴다. 소득이 새 균형을 넘어섰다가 내려오고 다시 오르며 점점 잦아든다. 아무도 경기를 흔들지 않았는데 한 번의 충격이 몇 차례의 정점과 저점을 만든다. ③ 점을 v 1.5 위로 올린다(c 0.8이면 cv > 1). 물결이 회마다 커지며 그래프 밖으로 터져 나간다. 기업이 판매 변화에 과하게 반응하면 경제가 스스로 불안정해진다. 평면 오른쪽 위 구석은 출렁임 없이 끝없이 커지는 영역이다. (모형: 새뮤얼슨(1939). 정부 지출 G = 1에서 1.1로 한 번 늘리고 유지. 한 기는 분기쯤으로 읽는다. 실제 경제에는 이 밖에도 금리·재고·기대가 있다.)</div>
+    </div>
+
+    <p>평면의 네 영역은 수학이 정한다. 차분방정식의 특성근이 복소수이면 물결이 생기고(\(c(1+v)^2 < 4v\)), 근의 크기가 1보다 작으면 잦아든다(\(cv < 1\)). 이 모형이 알려 주는 것은 두 가지다. 하나, 경제가 출렁이는 데 외부의 흔들림이 계속 필요하지 않다. 소비와 투자가 서로를 밀고 당기는 구조 자체가 물결을 만든다. 둘, 그 구조가 조금만 달라져도(기업이 판매 변화에 더 민감해지면) 잦아들던 물결이 커지는 물결로 바뀐다. 실제 경제에서 끝없이 커지는 폭발이 보이지 않는 것은 설비 용량, 실업자 수, 그리고 정책 같은 천장과 바닥이 있기 때문이다.</p>
+
+    <h3>재고가 만드는 짧은 물결</h3>
+    <p>가속도 원리의 가장 빠른 형태는 재고에서 나타난다. 판매가 갑자기 늘면 창고의 재고가 먼저 줄고, 기업은 판매를 맞추면서 줄어든 재고까지 채우려고 판매보다 더 많이 생산한다. 판매가 꺾이면 반대로 쌓인 재고를 털어 내느라 판매보다 더 적게 생산한다. 그래서 생산은 판매보다 크게 출렁인다. 이 재고의 움직임은 출하 증가율과 재고 증가율을 두 축으로 놓은 <span class="term">재고순환도</span>에서 한 바퀴 도는 모양으로 나타난다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 300" role="img" aria-label="가로축 출하 증가율, 세로축 재고 증가율인 재고순환도에서 회복, 확장, 둔화, 조정 국면이 반시계 방향으로 돈다">
+        <defs><marker id="cy-ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="230" y="150" width="190" height="120" class="f-ok-soft"/>
+        <rect x="230" y="30" width="190" height="120" class="f-acc-soft"/>
+        <rect x="40" y="30" width="190" height="120" class="f-warn-soft"/>
+        <rect x="40" y="150" width="190" height="120" class="f-bad-soft"/>
+        <line x1="40" y1="150" x2="420" y2="150" class="s-axis"/>
+        <line x1="230" y1="30" x2="230" y2="270" class="s-axis"/>
+        <line x1="70" y1="250" x2="390" y2="50" class="s-dash"/>
+        <path d="M150 228C220 262 320 240 345 190C370 140 350 90 300 70C240 46 160 60 130 100C105 135 110 200 150 228" class="s-acc" fill="none" stroke-width="2.4" marker-end="url(#cy-ar3)"/>
+        <text x="325" y="252" text-anchor="middle" class="lbl-b">회복</text>
+        <text x="325" y="268" text-anchor="middle" class="lbl-dim">출하↑ 재고↓</text>
+        <text x="380" y="58" text-anchor="middle" class="lbl-b">확장</text>
+        <text x="380" y="74" text-anchor="middle" class="lbl-dim">출하↑ 재고↑</text>
+        <text x="90" y="52" text-anchor="middle" class="lbl-b">둔화</text>
+        <text x="90" y="68" text-anchor="middle" class="lbl-dim">출하↓ 재고↑</text>
+        <text x="90" y="240" text-anchor="middle" class="lbl-b">조정</text>
+        <text x="90" y="256" text-anchor="middle" class="lbl-dim">출하↓ 재고↓</text>
+        <text x="420" y="166" text-anchor="end" class="lbl-dim">출하 증가율 →</text>
+        <text x="236" y="24" class="lbl-dim">↑ 재고 증가율</text>
+        <text x="392" y="44" text-anchor="end" class="lbl-dim">45°선</text>
+      </svg>
+      <figcaption><b>그림 3. 재고순환도.</b> 가로축은 출하(판매) 증가율, 세로축은 재고 증가율이다. 경기가 돌면 점이 반시계 방향으로 돈다. 회복기에는 팔리는 만큼 재고가 줄고, 확장기에는 재고를 다시 쌓고, 둔화기에는 안 팔린 재고가 쌓이고, 조정기에는 재고를 털어 낸다. 출하 증가율이 재고 증가율보다 높은 45°선 아래쪽은 경기 개선 쪽이다. 선행지수의 재고순환지표(출하 증가율 − 재고 증가율)가 이것이다. 모양은 설명용이다.</figcaption>
+    </figure>
+
+    <p>반도체처럼 재고의 출렁임이 큰 산업이 수출의 큰 몫을 차지하는 한국에서는 이 재고 순환이 경기 전체를 흔든다. 반도체 경기의 "재고 조정"과 "재고 소진"이라는 말이 경제면 머리기사에 오르는 이유다. 반도체 수출이 경상수지와 성장률을 함께 움직이는 이야기는 <a href="trade.html">11장</a>에서 이어진다.</p>
+  </section>
+
+  <section id="board">
+    <h2>경기 순환 실험: 충격, 승수, 가속도, 그리고 정책</h2>
+    <p>이제 앞의 조각을 한 판에 올린다. 잠재 산출이 연 2%씩 자라는 경제에 수요 충격을 넣는다. 소비는 승수로, 투자는 가속도로 충격을 키우고, 정책은 산출 갭을 보고 반대 방향으로 민다. 위 그래프의 파란 선은 산출 갭(동행지수 순환변동치에 해당), 주황 선은 판매의 변화에 먼저 반응하는 선행지수다. 삼각형은 각 선의 정점(▲)과 저점(▼), 붉은 띠는 정점에서 저점까지의 수축 국면이다. 아래 막대는 실제 GDP의 전기비 성장률이다.</p>
+
+    <div class="sim" id="sim-board">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>경기 순환 실험: 충격 · 승수 · 가속도 · 정책 대응과 선행·동행 지표</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="bd-cv"></canvas><span class="hint">세로선을 끌거나 재생한다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>수요 충격 <output id="bd-s-out"></output></span><input type="range" id="bd-s" min="-5" max="5" step="0.5" value="-3"></label>
+          <label class="ctrl"><span>한계소비성향 c <output id="bd-c-out"></output></span><input type="range" id="bd-c" min="0.5" max="0.95" step="0.01" value="0.8"></label>
+          <label class="ctrl"><span>가속도 v(투자·재고의 민감도) <output id="bd-v-out"></output></span><input type="range" id="bd-v" min="0" max="2" step="0.05" value="1"></label>
+          <label class="ctrl"><span>정책 대응 강도 <output id="bd-k-out"></output></span><input type="range" id="bd-k" min="0" max="1" step="0.05" value="0"></label>
+          <label class="check"><input type="checkbox" id="bd-n"> 작은 충격이 계속 온다</label>
+          <div class="btn-row"><button class="btn primary" id="bd-go">10년 재생</button><button class="btn" id="bd-re">처음으로</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 분기 · 국면</span><span class="v" id="bd-o-t">—</span></div>
+        <div class="stat"><span class="k">산출 갭 · 전기비</span><span class="v" id="bd-o-g">—</span></div>
+        <div class="stat"><span class="k">가장 깊은 갭</span><span class="v" id="bd-o-m">—</span></div>
+        <div class="stat"><span class="k">정점·저점 수</span><span class="v" id="bd-o-n">—</span></div>
+        <div class="stat"><span class="k">선행지수가 앞선 평균</span><span class="v" id="bd-o-l">—</span></div>
+        <div class="stat"><span class="k">2분기 연속 마이너스</span><span class="v" id="bd-o-r">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 기본값(충격 −3%, c 0.8, v 1, 정책 0)으로 '10년 재생'을 누른다. 한 번의 충격이 3~4년 주기의 물결을 몇 번 만들고 잦아든다. 주황 선의 삼각형이 파란 선보다 한두 분기 먼저 찍힌다. 수축 국면마다 전기비가 마이너스인지 세어 본다. ② 가속도 v를 1.3 이상으로 올린다. 물결이 잦아들지 않고 커진다. 정책 대응 강도를 0.4쯤 올리면 같은 v에서도 다시 잦아든다. 정책은 물결의 크기뿐 아니라 경제가 스스로 안정되는지를 바꾼다. ③ '작은 충격이 계속 온다'를 켠다. 큰 충격 없이도 크기와 길이가 제각각인 순환이 끝없이 이어진다. 실제 경기 순환이 규칙적이지 않은 이유이고, 선행지수의 거짓 신호도 여기서 생긴다. (모형: 산출 갭 x를 새뮤얼슨식 2계 차분방정식 x(t) = [c(1+v)x(t−1) − cv·x(t−2) + 충격] ÷ (1 + 정책 강도)로 굴린다. 잠재성장률 연 2%(분기 0.5%)는 한국은행 추정 수준을 빌린 교육용 가정. 선행지수 = 갭 + 2.5 × 갭의 변화. 정책은 갭에 비례해 반대로 미는 재정·통화 대응을 한 덩어리로 본 것이다. 전망이 아니다.)</div>
+    </div>
+
+    <p>판을 돌려 보면 이 장에서 본 것들이 한꺼번에 나타난다. 수축 국면의 일부만 실제 마이너스 성장으로 나타나고(잠재성장률이 높을수록 더 그렇다), 선행지수는 판매의 변화에 반응하므로 정점과 저점을 조금 먼저 찍는다. 승수와 가속도는 한 번의 충격을 여러 번의 물결로 늘리고, 그 계수가 크면 물결이 스스로 커진다. 정책 대응은 물결을 눌러 주지만 공짜는 아니다. 실제 정책은 갭을 늦게 알아채고(통계가 늦게 나오고 수정된다), 효과도 늦게 나타난다(<a href="transmission.html">9장</a>). 늦게 밀면 오히려 물결을 키울 수 있다는 것이 정책 시차를 둘러싼 오래된 논쟁이다.</p>
+
+    <div class="callout warn"><strong>모형은 교육용이며 전망이 아니다</strong>이 장의 시뮬레이터는 경기 순환의 원리를 보이기 위한 단순한 모형이다. 계수는 실제 한국 경제에서 추정한 값이 아니며, 다음 정점이나 저점이 언제 올지 알려 주지 않는다. 본문의 성장률·심리지수·기준순환일은 2026년 10월 9일까지 확인한 공식 발표 기준의 값이고, 성장률은 이후 잠정치·국민계정 발표에서 바뀔 수 있다.</div>
+
+    <div class="callout link"><strong>경기 국면과 주식</strong>경기 국면에 따라 주가와 업종의 성적이 어떻게 달라지는지, 선행지수와 주가 가운데 무엇이 먼저 움직이는지는 StockBook <a href="https://stockbook.euiyun.com/chapters/macro.html">금리·경기·주식</a>에서 이어진다. 경기와 금리·환율을 한 번에 훑는 개관은 MoneyBook <a href="https://moneybook.euiyun.com/chapters/economy.html">금리·환율·경기</a>에 있다.</div>
+  </section>
+
+  <div class="casefile">
+    <div class="tag"><b>CASE 지우</b><span>헤드라인 노트 · 2025년 10월</span></div>
+    <div class="headline">3분기 성장률 1.2%로 반등, 소비가 이끌었다<small>근거: 한국은행 「2025년 3/4분기 실질 국내총생산(속보)」(2025-10-28). 전기 대비, 계절조정 실질 GDP</small></div>
+    <h4>"반등이면 바닥을 친 건가?"</h4>
+    <p>노트의 첫 장이다. 지우는 1년 동안 매달 헤드라인 하나를 골라 삼촌 백정호의 세 질문으로 읽어 보기로 했다. 첫 헤드라인은 3분기 성장률 1.2%였다. 2분기 0.7%에 이어 두 분기 연속 오른 숫자였고, 민간소비가 1.3% 늘어 성장률 가운데 0.6%p를 채웠다. 정부소비 0.2%p를 더하면 소비가 성장률의 3분의 2를 만들었다. 수출은 0.7%p를 보탰지만 수입이 0.6%p를 빼 순수출은 0.1%p였다.</p>
+    <p id="case-calc">—</p>
+    <p>삼촌은 고개를 끄덕이면서도 두 가지를 짚었다. 하나는 이 숫자가 속보라는 것. 9월 자료가 다 들어오면 고쳐진다. 다른 하나는 소비를 끌어올린 힘이 무엇이었느냐는 것이었다. 3분기에는 정부의 소비쿠폰이 풀렸다. 한 번 풀린 쿠폰이 만든 소비가 다음 분기에도 이어질지, 기업들이 그 소비를 보고 투자를 늘릴지(가속도)는 아직 아무도 모른다. "반등은 방향이 바뀌었다는 뜻이지 바닥이 확인됐다는 뜻은 아니다. 바닥은 몇 년 뒤에 국가데이터처가 정한다." 지우는 노트에 다음 달 볼 것을 적었다. 10월 말에 나올 9월 「산업활동동향」의 동행·선행지수 순환변동치, 그리고 11월 소비자심리지수.</p>
+    <div class="clue">
+      <div><b>헤드라인이 말한 것</b>3분기 실질 GDP 전기 대비 1.2%. 민간소비 1.3% 증가, 내수 기여도 1.1%p.</div>
+      <div><b>숫자를 다시 보니</b>전기비라 연율로는 5% 가까이. 소비쿠폰이 섞인 반등이며 속보치다. 국면 판단은 동행·선행지수와 함께 해야 한다.</div>
+      <div><b>내 생활에는</b><span id="case-life">—</span></div>
+    </div>
+  </div>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>경기 순환은 확장·정점·수축·저점으로 이어지는 물결이며, 한국은 추세(잠재 산출)와의 거리로 국면을 판단한다. 그래서 성장률이 플러스여도 추세보다 느리면 수축 국면일 수 있다.</li>
+      <li>산출 갭은 실제 GDP와 잠재 GDP의 차이다. 한국은행은 2024~2026년 잠재성장률을 2% 수준으로 추정했다. 갭이 벌어지면 실업률이 오르고, 물가는 가장 늦게 반응한다.</li>
+      <li>경기종합지수는 동행·선행·후행 지표를 묶은 것이며 기사는 주로 추세를 걷어 낸 순환변동치를 쓴다. 선행지수와 심리지수(CCSI, BSI)는 빠르지만 거짓 신호가 있어 연속성과 구성 지표를 함께 본다.</li>
+      <li>공식 정점·저점(기준순환일)은 국가데이터처(옛 통계청)가 몇 년 뒤에 정한다. 가장 최근 확정된 정점은 2017년 9월, 저점은 2020년 5월(잠정)이다. "2분기 연속 마이너스"는 어림 규칙이지 공식 정의가 아니다.</li>
+      <li>승수와 가속도(투자·재고)는 한 번의 충격을 여러 번의 물결로 키우고, 계수가 크면 물결이 스스로 커진다. 정책 대응은 물결을 줄이지만 인식과 효과의 시차 때문에 늦으면 오히려 키울 수 있다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q"><p>1. 잠재성장률이 연 2%인 경제에서 실질 GDP가 1년 동안 1% 늘었다. 이 해의 경기에 대한 설명으로 가장 알맞은 것은?</p>
+        <div class="opts"><button class="opt">GDP가 늘었으므로 확장 국면이다</button><button class="opt" data-correct>추세보다 느리게 자라 산출 갭이 벌어지는 쪽이므로 수축 국면일 수 있다</button><button class="opt">마이너스 성장이 아니므로 경기 순환과 관계없다</button><button class="opt">2분기 연속 마이너스가 아니므로 반드시 확장 국면이다</button></div>
+        <div class="quiz-exp">한국의 경기 국면은 추세와의 거리(산출 갭, 순환변동치)로 판단한다. 잠재성장률보다 낮은 성장은 갭을 마이너스 쪽으로 벌리므로, GDP가 늘어도 수축 국면일 수 있다.</div></div>
+      <div class="quiz-q"><p>2. 한국의 경기 정점과 저점(기준순환일)에 대한 설명으로 옳은 것은?</p>
+        <div class="opts"><button class="opt">한국은행이 분기 GDP 속보와 함께 즉시 발표한다</button><button class="opt">실질 GDP가 2분기 연속 감소하면 자동으로 정해진다</button><button class="opt">대통령실이 경제정책방향에서 정한다</button><button class="opt" data-correct>국가데이터처(옛 통계청)가 지표를 분석하고 국가통계위원회 심의를 거쳐 몇 년 뒤에 정한다</button></div>
+        <div class="quiz-exp">기준순환일은 사후에 정해진다. 2017년 9월 정점은 2019년 9월에, 2020년 5월 저점은 2023년에 잠정 설정되었다. "2분기 연속 마이너스"는 기사에서 쓰는 어림 규칙일 뿐 공식 정의가 아니다.</div></div>
+      <div class="quiz-q"><p>3. 기업 100곳에 설문했더니 40곳은 "좋아졌다", 40곳은 "나빠졌다", 20곳은 "비슷하다"고 답했다. BSI와 그 해석으로 알맞은 것은?</p>
+        <div class="opts"><button class="opt" data-correct>BSI는 100이며, 응답이 양쪽으로 갈렸다는 사실은 숫자에 드러나지 않는다</button><button class="opt">BSI는 140이며 경기가 매우 좋다는 뜻이다</button><button class="opt">BSI는 60이며 경기가 매우 나쁘다는 뜻이다</button><button class="opt">BSI는 120이며 "비슷하다"가 20%이기 때문이다</button></div>
+        <div class="quiz-exp">BSI = (좋아졌다 비중 − 나빠졌다 비중) + 100 = (40 − 40) + 100 = 100이다. 업종 사정이 양극화되어도 전체 BSI는 "보통"으로 보일 수 있으므로 업종별 BSI를 함께 본다.</div></div>
+      <div class="quiz-q"><p>4. 새뮤얼슨의 승수-가속도 모형에서 한계소비성향이 0.8일 때, 가속도 계수를 0.5에서 1.5로 올리면 정부 지출 충격 뒤 소득의 움직임은 어떻게 바뀌는가?</p>
+        <div class="opts"><button class="opt">출렁임 없이 더 빨리 새 균형에 도달한다</button><button class="opt">가속도 계수는 승수만 바꾸므로 새 균형의 높이만 달라진다</button><button class="opt" data-correct>잦아들던 출렁임이 점점 커지는 출렁임으로 바뀐다(cv가 1을 넘는다)</button><button class="opt">소득이 곧바로 0으로 떨어진다</button></div>
+        <div class="quiz-exp">이 모형에서 물결의 크기가 줄어드는 조건은 \(cv < 1\)이다. c = 0.8, v = 0.5이면 0.4로 잦아들고, v = 1.5이면 1.2로 회마다 커진다. 새 균형의 높이(승수 1/(1−c))는 v와 관계없다. 투자가 판매 변화에 과하게 반응하면 경제가 스스로 불안정해질 수 있다는 뜻이다.</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var C = EC.CASE, K = EC.KR;
+  var sg = function (x, d) { d = d == null ? 1 : d; var v = +x.toFixed(d); return (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(d); };
+  var pc = function (x, d) { return sg(x, d) + "%"; };   // x는 % 단위
+
+  /* ---------------- sim-phase ---------------- */
+  (function () {
+    var N = 40, sel = 14, box = null;
+    var gG = EB.range("ph-g", function (v) { return v.toFixed(1) + "%"; }, draw);
+    var gA = EB.range("ph-a", function (v) { return "±" + v.toFixed(1) + "%"; }, draw);
+    var gP = EB.range("ph-p", function (v) { return v + "분기(" + (v / 4).toFixed(1) + "년)"; }, draw);
+    function series() {
+      var g = gG() / 100, A = gA() / 100, P = gP(), lv = [], tr = [], cyc = [];
+      for (var t = -4; t <= N; t++) {
+        var trend = 100 * Math.pow(1 + g, t / 4), c = A * Math.sin(2 * Math.PI * (t - 2) / P);
+        tr.push(trend); cyc.push(c); lv.push(trend * (1 + c));
+      }
+      return { lv: lv, tr: tr, cyc: cyc };   // 인덱스 0 = t −4
+    }
+    var cv = EB.canvas("#ph-cv", function (ctx, w, h) {
+      var P = EB.palette(), s = series(), o = 4;
+      var top = { x: 50, y: 14, w: w - 62, h: (h - 44) * 0.55 }, bot = { x: 50, y: top.y + top.h + 18, w: w - 62, h: (h - 44) * 0.45 - 18 };
+      var lvs = s.lv.slice(o), trs = s.tr.slice(o);
+      var lo = Math.min.apply(null, lvs.concat(trs)), hi = Math.max.apply(null, lvs.concat(trs));
+      // 국면 띠: 순환 성분이 내려가는 구간(수축)
+      var bands = [];
+      for (var t = 0; t < N; t++) { if (s.cyc[t + o + 1] < s.cyc[t + o]) bands.push({ x0: t, x1: t + 1, color: EB.color("bad-soft") }); }
+      var c1 = EB.chart(ctx, top, {
+        x: [0, N], y: [lo - 1, hi + 1], xTicks: [], yFmt: function (v) { return v.toFixed(0); }, bands: bands,
+        series: [{ data: trs.map(function (v, i) { return [i, v]; }), color: P.faint, width: 1.5, dash: [5, 4] },
+                 { data: lvs.map(function (v, i) { return [i, v]; }), color: P.accent, width: 2.4 }],
+      });
+      var yo = []; for (t = 0; t <= N; t++) yo.push((s.lv[t + o] / s.lv[t] - 1) * 100);
+      var ext = Math.max(3, Math.max.apply(null, yo.map(Math.abs)) + 0.5);
+      var c2 = EB.chart(ctx, bot, {
+        x: [0, N], y: [-ext, ext], xTicks: [0, 8, 16, 24, 32, 40], xFmt: function (v) { return (v / 4) + "년"; }, yFmt: function (v) { return v.toFixed(0) + "%"; }, bands: bands,
+        series: [{ data: yo.map(function (v, i) { return [i, v]; }), color: P.accent2, width: 2.2 }],
+        hlines: [{ y: 0, color: P.axis, dash: [] }, { y: gG(), color: P.faint, label: "추세 성장률" }],
+      });
+      box = c1;
+      var x = c1.X(sel);
+      ctx.save(); ctx.strokeStyle = P.text; ctx.globalAlpha = 0.55; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(x, top.y); ctx.lineTo(x, bot.y + bot.h); ctx.stroke(); ctx.restore();
+      ctx.beginPath(); ctx.arc(x, c1.Y(lvs[sel]), 5, 0, Math.PI * 2); ctx.fillStyle = P.accent; ctx.fill();
+      ctx.beginPath(); ctx.arc(x, bot.y + bot.h, 7, 0, Math.PI * 2); ctx.fillStyle = P.text; ctx.fill();
+      ctx.font = EB.font(11); ctx.textAlign = "left"; ctx.fillStyle = P.dim;
+      ctx.fillText("GDP 수준(실선)과 추세(점선) · 붉은 띠 = 수축 국면", top.x + 6, top.y + 12);
+      ctx.fillText("전년동기비 성장률", bot.x + 6, bot.y + 12);
+      var up = s.cyc[sel + o + 1] >= s.cyc[sel + o];
+      var gap = s.cyc[sel + o] * 100, y = yo[sel];
+      EB.stat("ph-o-t", (Math.floor(sel / 4) + 1) + "년차 " + (sel % 4 + 1) + "분기");
+      EB.stat("ph-o-s", (up ? "확장" : "수축") + (gap >= 0 ? " · 추세 위" : " · 추세 아래"));
+      EB.stat("ph-o-gap", pc(gap));
+      EB.stat("ph-o-y", pc(y) + (!up && y > 0 ? " (수축인데 플러스)" : up && y < 0 ? " (확장인데 마이너스)" : ""));
+    }, { aspect: 0.66, minHeight: 300, maxHeight: 440 });
+    EB.drag(cv.canvas, { start: function (x) { this.move(x); }, move: function (x) { if (!box) return; sel = EB.clamp(Math.round(EB.map(x, box.box.x, box.box.x + box.box.w, 0, N)), 0, N - 1); cv.redraw(); } });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-gap ---------------- */
+  (function () {
+    var Q = 16;
+    var gD = EB.range("gp-d", function (v) { return (v > 0 ? "+" : "") + v.toFixed(1) + "%"; }, draw);
+    var gN = EB.range("gp-n", function (v) { return v + "분기"; }, draw);
+    var gR = EB.seg("gp-rule", draw);
+    function run(rule) {
+      var dem = []; for (var t = 0; t <= Q; t++) dem.push(t >= 1 && t <= gN() ? gD() : 0);
+      return EC.economy({ quarters: Q, rule: rule, ratePath: [], shocks: { demand: dem } }).rows;
+    }
+    var cv = EB.canvas("#gp-cv", function (ctx, w, h) {
+      var P = EB.palette(), rule = gR() === "on", rows = run(rule), alt = run(!rule);
+      var ext = Math.max(2, Math.max.apply(null, rows.concat(alt).map(function (r) { return Math.max(Math.abs(r.y), Math.abs(r.pi - 2), Math.abs(r.u - 3), Math.abs(r.i - 2.25)); })) + 0.3);
+      var c = EB.chart(ctx, { x: 46, y: 26, w: w - 58, h: h - 62 }, {
+        x: [0, Q], y: [-ext, ext], xTicks: [0, 4, 8, 12, 16], xFmt: function (v) { return v + "분기"; }, yFmt: function (v) { return (v > 0 ? "+" : "") + v.toFixed(1); },
+        series: [
+          { data: alt.map(function (r) { return [r.t, r.y]; }), color: P.faint, width: 1.4, dash: [4, 4] },
+          { data: rows.map(function (r) { return [r.t, r.y]; }), color: P.accent, width: 2.8 },
+          { data: rows.map(function (r) { return [r.t, r.u - 3]; }), color: P.bad, width: 2 },
+          { data: rows.map(function (r) { return [r.t, r.pi - 2]; }), color: P.accent2, width: 2 },
+          { data: rows.map(function (r) { return [r.t, r.i - 2.25]; }), color: P.ok, width: 1.6, dash: [2, 3] },
+        ],
+        hlines: [{ y: 0, color: P.axis, dash: [] }],
+      });
+      ctx.font = EB.font(10.5); ctx.textAlign = "left";
+      var items = [["산출 갭", P.accent], ["실업률 − 3%", P.bad], ["물가 − 2%", P.accent2], ["금리 변화", P.ok], ["반대 선택의 갭", P.faint]];
+      var lx = 46, ly = 14;
+      items.forEach(function (it) { var tw = ctx.measureText(it[0]).width + 24; if (lx + tw > w - 6) { lx = 46; ly += 13; } ctx.fillStyle = it[1]; ctx.fillRect(lx, ly - 6, 12, 3); ctx.fillStyle = P.dim; ctx.fillText(it[0], lx + 15, ly); lx += tw; });
+      var minY = rows.reduce(function (a, r) { return Math.abs(r.y) > Math.abs(a.y) ? r : a; }, rows[0]);
+      var maxU = rows.reduce(function (a, r) { return r.u > a.u ? r : a; }, rows[0]);
+      var piX = gD() >= 0 ? Math.max.apply(null, rows.map(function (r) { return r.pi; })) : Math.min.apply(null, rows.map(function (r) { return r.pi; }));
+      var rec = "—"; for (var t = gN() + 1; t <= Q; t++) { if (Math.abs(rows[t].y) < 0.3) { rec = t + "분기째"; break; } }
+      if (rec === "—" && gD() !== 0) rec = Q + "분기 안에 못 메움";
+      EB.stat("gp-o-y", pc(minY.y, 2) + " (" + minY.t + "분기)");
+      EB.stat("gp-o-u", maxU.u.toFixed(2) + "%");
+      EB.stat("gp-o-p", (gD() >= 0 ? "정점 " : "") + piX.toFixed(2) + "%");
+      EB.stat("gp-o-r", gD() === 0 ? "충격 없음" : rec);
+    }, { aspect: 0.6, minHeight: 280, maxHeight: 400 });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-cli ---------------- */
+  (function () {
+    var M = 120, PER = 46, seed = 7, sel = 60, box = null;
+    var gL = EB.range("cl-l", function (v) { return v + "개월"; }, draw);
+    var gS = EB.range("cl-s", function (v) { return v.toFixed(2); }, draw);
+    var gK = EB.range("cl-k", function (v) { return v + "개월"; }, draw);
+    function make() {
+      var rnd = EC.gauss(seed), noise = [], co = [], le = [];
+      for (var m = 0; m <= M; m++) noise.push(rnd());
+      // 잡음은 3개월 이동평균으로 부드럽게(실제 지수도 매끈하게 만든다)
+      for (m = 0; m <= M; m++) {
+        var nz = (noise[m] + (noise[m - 1] || 0) + (noise[m - 2] || 0)) / 3;
+        co.push(100 + 2 * Math.sin(2 * Math.PI * m / PER));
+        le.push(100 + 2 * Math.sin(2 * Math.PI * (m + gL()) / PER) + gS() * 1.6 * nz);
+      }
+      return { co: co, le: le };
+    }
+    function turns(arr) { // 진짜 전환점(극값)
+      var out = []; for (var m = 1; m < arr.length - 1; m++) { if (arr[m] > arr[m - 1] && arr[m] >= arr[m + 1]) out.push({ m: m, type: "P" }); else if (arr[m] < arr[m - 1] && arr[m] <= arr[m + 1]) out.push({ m: m, type: "T" }); }
+      return out;
+    }
+    function signals(arr, k) { // 앞선 방향과 반대로 k개월 연속 움직이면 신호
+      var out = [], dir = 0, run = 0, start = 0, last = null;
+      for (var m = 1; m < arr.length; m++) {
+        var d = arr[m] > arr[m - 1] ? 1 : -1;
+        if (d === dir) run++; else { dir = d; run = 1; start = m - 1; }
+        if (run === k && start > 0) { var type = d < 0 ? "P" : "T"; if (type !== last) { out.push({ m: m, turn: start, type: type }); last = type; } }
+      }
+      return out;
+    }
+    var cv = EB.canvas("#cl-cv", function (ctx, w, h) {
+      var P = EB.palette(), d = make(), k = gK();
+      var all = d.co.concat(d.le), lo = Math.min.apply(null, all) - 0.4, hi = Math.max.apply(null, all) + 0.4;
+      var c = EB.chart(ctx, { x: 50, y: 22, w: w - 62, h: h - 58 }, {
+        x: [0, M], y: [lo, hi], xTicks: [0, 24, 48, 72, 96, 120], xFmt: function (v) { return (v / 12) + "년"; }, yFmt: function (v) { return v.toFixed(0); },
+        series: [{ data: d.co.map(function (v, i) { return [i, v]; }), color: P.accent, width: 2.4 },
+                 { data: d.le.map(function (v, i) { return [i, v]; }), color: P.accent2, width: 1.8 }],
+        hlines: [{ y: 100, color: P.faint }],
+      });
+      box = c;
+      var tt = turns(d.co), ss = signals(d.le, k);
+      // 진짜 전환점 표시
+      tt.forEach(function (p) { ctx.strokeStyle = P.accent; ctx.globalAlpha = 0.35; ctx.setLineDash([2, 3]); ctx.beginPath(); ctx.moveTo(c.X(p.m), c.box.y); ctx.lineTo(c.X(p.m), c.box.y + c.box.h); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1; });
+      // 신호 매칭: 신호 뒤 0~14개월 안의 같은 종류 전환점, 또는 신호보다 늦게(놓침)
+      var hits = 0, falses = 0, leads = [], used = {};
+      ss.forEach(function (s) {
+        var match = null;
+        tt.forEach(function (p) { if (!used[p.m] && p.type === s.type && p.m - s.m >= -6 && p.m - s.m <= 14 && (!match || Math.abs(p.m - s.m) < Math.abs(match.m - s.m))) match = p; });
+        var ok = !!match;
+        if (ok) { hits++; used[match.m] = 1; leads.push(match.m - s.m); } else falses++;
+        var x = c.X(s.m), y = c.Y(d.le[s.m]) + (s.type === "P" ? -10 : 10);
+        ctx.beginPath();
+        if (s.type === "P") { ctx.moveTo(x, y - 5); ctx.lineTo(x + 5, y + 4); ctx.lineTo(x - 5, y + 4); } else { ctx.moveTo(x, y + 5); ctx.lineTo(x + 5, y - 4); ctx.lineTo(x - 5, y - 4); }
+        ctx.closePath(); ctx.fillStyle = ok ? P.accent2 : P.bad; ctx.fill();
+        if (!ok) { ctx.strokeStyle = P.bad; ctx.lineWidth = 1.2; ctx.stroke(); }
+      });
+      // 커서
+      var x = c.X(sel);
+      ctx.save(); ctx.strokeStyle = P.text; ctx.globalAlpha = 0.55; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(x, c.box.y); ctx.lineTo(x, c.box.y + c.box.h); ctx.stroke(); ctx.restore();
+      ctx.beginPath(); ctx.arc(x, c.box.y + c.box.h, 7, 0, Math.PI * 2); ctx.fillStyle = P.text; ctx.fill();
+      ctx.font = EB.font(10.5); ctx.textAlign = "left";
+      var lx = 50, ly = 12;
+      [["동행지수 순환변동치", P.accent], ["선행지수 순환변동치", P.accent2], ["거짓 신호", P.bad]].forEach(function (it) { var tw = ctx.measureText(it[0]).width + 26; if (lx + tw > w - 120) { lx = 50; ly += 13; } ctx.fillStyle = it[1]; ctx.fillRect(lx, ly - 6, 12, 4); ctx.fillStyle = P.dim; ctx.fillText(it[0], lx + 15, ly); lx += tw; });
+      var dirL = sel > 0 ? (d.le[sel] >= d.le[sel - 1] ? "상승" : "하락") : "—", dirC = sel > 0 ? (d.co[sel] >= d.co[sel - 1] ? "상승" : "하락") : "—";
+      EB.stat("cl-o-m", (Math.floor(sel / 12) + 1) + "년차 " + (sel % 12 + 1) + "월");
+      EB.stat("cl-o-d", dirL + " · " + dirC);
+      EB.stat("cl-o-h", hits + "번 · " + falses + "번");
+      var avg = leads.length ? leads.reduce(function (a, b) { return a + b; }, 0) / leads.length : NaN;
+      EB.stat("cl-o-l", isFinite(avg) ? (avg >= 0 ? avg.toFixed(1) + "개월 먼저" : Math.abs(avg).toFixed(1) + "개월 늦게") : "—");
+    }, { aspect: 0.6, minHeight: 280, maxHeight: 400 });
+    EB.drag(cv.canvas, { start: function (x) { this.move(x); }, move: function (x) { if (!box) return; sel = EB.clamp(Math.round(EB.map(x, box.box.x, box.box.x + box.box.w, 0, M)), 0, M); cv.redraw(); } });
+    document.getElementById("cl-new").addEventListener("click", function () { seed = (seed * 7 + 13) % 997; draw(); });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-bsi ---------------- */
+  (function () {
+    var lock = false;
+    var gU = EB.range("bs-u", function (v) { return v + "%"; }, function () { fix("u"); });
+    var gDn = EB.range("bs-d", function (v) { return v + "%"; }, function () { fix("d"); });
+    var gPre = EB.seg("bs-pre", function (v) { lock = true; if (v === "calm") { gU.set(4); gDn.set(6); } else if (v === "split") { gU.set(45); gDn.set(45); } lock = false; cv.redraw(); });
+    function fix(which) { if (gU() + gDn() > 100) { if (which === "u") gDn.set(100 - gU()); else gU.set(100 - gDn()); } if (!lock) gPre.set("x", false); cv.redraw(); }
+    var cv = EB.canvas("#bs-cv", function (ctx, w, h) {
+      var P = EB.palette(), u = gU(), d = gDn(), s = Math.max(0, 100 - u - d), bsi = u - d + 100;
+      // 응답 막대
+      var bx = 20, bw = w - 40, by = 34, bh = 30;
+      ctx.fillStyle = P.dim; ctx.font = EB.font(11.5); ctx.textAlign = "left"; ctx.fillText("응답 100곳의 분포", bx, by - 10);
+      var segs = [[u, P.ok, "좋아졌다"], [s, P.faint, "비슷하다"], [d, P.bad, "나빠졌다"]], x = bx;
+      segs.forEach(function (sgm) {
+        var ww = bw * sgm[0] / 100; ctx.fillStyle = sgm[1]; ctx.globalAlpha = 0.85; ctx.fillRect(x, by, ww, bh); ctx.globalAlpha = 1;
+        if (ww > 54) { ctx.fillStyle = EB.isDark() ? "#0b0d12" : "#fff"; ctx.font = EB.font(11, false, 600); ctx.textAlign = "center"; ctx.fillText(sgm[2] + " " + sgm[0], x + ww / 2, by + 19); }
+        x += ww;
+      });
+      // BSI 눈금자
+      var gy = by + bh + 58, gx0 = bx, gx1 = bx + bw, X = function (v) { return gx0 + (gx1 - gx0) * v / 200; };
+      ctx.strokeStyle = P.axis; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(gx0, gy); ctx.lineTo(gx1, gy); ctx.stroke();
+      [0, 50, 100, 150, 200].forEach(function (v) { ctx.beginPath(); ctx.moveTo(X(v), gy - 6); ctx.lineTo(X(v), gy + 6); ctx.stroke(); ctx.fillStyle = P.dim; ctx.font = EB.font(11, true); ctx.textAlign = "center"; ctx.fillText(v, X(v), gy + 20); });
+      ctx.fillStyle = EB.color("bad-soft"); ctx.fillRect(X(0), gy - 4, X(100) - X(0), 8);
+      ctx.fillStyle = EB.color("ok-soft"); ctx.fillRect(X(100), gy - 4, X(200) - X(100), 8);
+      ctx.beginPath(); ctx.arc(X(bsi), gy, 9, 0, Math.PI * 2); ctx.fillStyle = bsi >= 100 ? P.ok : P.bad; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = P.bg; ctx.stroke();
+      ctx.fillStyle = P.text; ctx.font = EB.font(15, true, 700); ctx.textAlign = "center"; ctx.fillText("BSI " + bsi, X(bsi), gy - 16);
+      ctx.fillStyle = P.dim; ctx.font = EB.font(11); ctx.textAlign = "left"; ctx.fillText("나빠졌다는 쪽이 많다", gx0, gy + 40); ctx.textAlign = "right"; ctx.fillText("좋아졌다는 쪽이 많다", gx1, gy + 40);
+      EB.stat("bs-o-s", s + "%");
+      EB.stat("bs-o-b", String(bsi));
+      EB.stat("bs-o-r", bsi > 100 ? "좋아졌다는 기업이 " + (u - d) + "%p 많다" : bsi < 100 ? "나빠졌다는 기업이 " + (d - u) + "%p 많다" : "양쪽이 같다(분포는 알 수 없다)");
+    }, { aspect: 0.42, minHeight: 200, maxHeight: 260 });
+  })();
+
+  /* ---------------- sim-sam ---------------- */
+  (function () {
+    var c = 0.8, v = 1, plane = null, T = 40;
+    function path(cc, vv) {
+      var G0 = 1, G1 = 1.1, Y0 = G0 / (1 - cc), Y = [Y0, Y0], Cs = [cc * Y0, cc * Y0];
+      for (var t = 2; t <= T; t++) {
+        var Ct = cc * Y[t - 1], It = vv * (Ct - Cs[t - 1]), Yt = Ct + It + G1;
+        Cs.push(Ct); Y.push(Yt);
+      }
+      return { Y: Y, Y0: Y0, Y1: G1 / (1 - cc) };
+    }
+    function region(cc, vv) {
+      var osc = cc * Math.pow(1 + vv, 2) < 4 * vv, stable = cc * vv < 1;
+      if (osc) return stable ? "잦아드는 진동" : "커지는 진동(폭발)";
+      return stable ? "출렁임 없이 수렴" : "출렁임 없이 발산";
+    }
+    var cv = EB.canvas("#sm-cv", function (ctx, w, h) {
+      var Pl = EB.palette(), narrow = w < 560;
+      var pw = narrow ? w - 64 : Math.min(260, w * 0.38), ph = narrow ? 190 : h - 64;
+      var pbox = narrow ? { x: 48, y: h - ph - 36, w: pw, h: ph } : { x: w - pw - 16, y: 18, w: pw, h: ph };
+      var lbox = narrow ? { x: 48, y: 18, w: w - 64, h: h - ph - 100 } : { x: 48, y: 18, w: w - pw - 110, h: h - 64 };
+      // 경로 그래프
+      var p = path(c, v), Y = p.Y, lo = Math.min(p.Y0, p.Y1), hi = Math.max(p.Y0, p.Y1);
+      var span = (hi - lo) || 1, ylo = lo - span * 1.6, yhi = hi + span * 1.6;
+      var exploded = Y.some(function (y) { return y > yhi || y < ylo; });
+      EB.chart(ctx, lbox, {
+        x: [0, T], y: [ylo, yhi], xTicks: [0, 10, 20, 30, 40], xFmt: function (q) { return q + "기"; }, yFmt: function (q) { return q.toFixed(1); },
+        series: [{ data: Y.map(function (y, i) { return [i, y]; }), color: exploded ? Pl.bad : Pl.accent, width: 2.4 }],
+        hlines: [{ y: p.Y1, color: Pl.ok, label: "새 균형" }, { y: p.Y0, color: Pl.faint, label: "처음 균형" }],
+      });
+      ctx.fillStyle = Pl.dim; ctx.font = EB.font(11); ctx.textAlign = "left"; ctx.fillText("소득 Y(정부 지출 1 → 1.1)", lbox.x + 6, lbox.y + 12);
+      // 매개변수 평면
+      var V1 = 4, X = function (vv) { return pbox.x + pbox.w * vv / V1; }, Yp = function (cc) { return pbox.y + pbox.h * (1 - cc); };
+      // 영역 칠하기(격자)
+      var step = 4;
+      for (var px = 0; px < pbox.w; px += step) for (var py = 0; py < pbox.h; py += step) {
+        var vv = (px + step / 2) / pbox.w * V1, cc = 1 - (py + step / 2) / pbox.h;
+        var r = region(cc, vv);
+        ctx.fillStyle = r === "출렁임 없이 수렴" ? EB.color("ok-soft") : r === "잦아드는 진동" ? EB.color("accent-soft") : r === "커지는 진동(폭발)" ? EB.color("bad-soft") : EB.color("warn-soft");
+        ctx.fillRect(pbox.x + px, pbox.y + py, step, step);
+      }
+      ctx.strokeStyle = Pl.axis; ctx.lineWidth = 1; ctx.strokeRect(pbox.x, pbox.y, pbox.w, pbox.h);
+      // 경계선
+      ctx.lineWidth = 1.5; ctx.strokeStyle = Pl.text; ctx.globalAlpha = 0.5;
+      ctx.beginPath(); for (var q = 0.02; q <= V1; q += 0.02) { var cc1 = 4 * q / Math.pow(1 + q, 2); var yy = Yp(Math.min(1, cc1)); q === 0.02 ? ctx.moveTo(X(q), yy) : ctx.lineTo(X(q), yy); } ctx.stroke();
+      ctx.beginPath(); var first = true; for (q = 1; q <= V1; q += 0.02) { var cc2 = 1 / q; if (first) { ctx.moveTo(X(q), Yp(cc2)); first = false; } else ctx.lineTo(X(q), Yp(cc2)); } ctx.stroke();
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = Pl.dim; ctx.font = EB.font(10.5, true); ctx.textAlign = "center";
+      [0, 1, 2, 3, 4].forEach(function (t) { ctx.fillText(t, X(t), pbox.y + pbox.h + 14); });
+      ctx.textAlign = "right"; [0, 0.5, 1].forEach(function (t) { ctx.fillText(t, pbox.x - 5, Yp(t) + 4); });
+      ctx.font = EB.font(11); ctx.textAlign = "center"; ctx.fillText("가속도 v", pbox.x + pbox.w / 2, pbox.y + pbox.h + 28);
+      ctx.save(); ctx.translate(pbox.x - 30, pbox.y + pbox.h / 2); ctx.rotate(-Math.PI / 2); ctx.fillText("한계소비성향 c", 0, 0); ctx.restore();
+      ctx.font = EB.font(10); ctx.textAlign = "left"; ctx.fillStyle = Pl.text;
+      ctx.fillText("수렴", X(0.08), Yp(0.12));
+      ctx.fillText("잦아드는 진동", X(0.55), Yp(0.86));
+      ctx.fillText("커지는 진동", X(1.6), Yp(0.86));
+      ctx.fillText("발산", X(3.2), Yp(0.97) + 4);
+      // 점
+      ctx.beginPath(); ctx.arc(X(v), Yp(c), 8, 0, Math.PI * 2); ctx.fillStyle = Pl.text; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = Pl.bg; ctx.stroke();
+      plane = { box: pbox, V1: V1 };
+      var reg = region(c, v), mod = Math.sqrt(c * v);
+      var disc = Math.pow(c * (1 + v), 2) - 4 * c * v, per = disc < 0 ? 2 * Math.PI / Math.acos(EB.clamp(c * (1 + v) / (2 * mod), -1, 1)) : NaN;
+      EB.stat("sm-o-p", "c " + c.toFixed(2) + " · v " + v.toFixed(2));
+      EB.stat("sm-o-r", reg);
+      EB.stat("sm-o-m", (1 / (1 - c)).toFixed(1) + "배");
+      EB.stat("sm-o-c", (isFinite(per) ? "주기 " + per.toFixed(1) + "기 · " : "") + "cv " + (c * v).toFixed(2) + (c * v < 1 ? " (잦아듦)" : " (커짐)"));
+    }, { get height() { var el = document.getElementById("sm-cv"); var w = (el && el.parentElement.clientWidth) || 600; return w < 560 ? 520 : 360; } });
+    EB.drag(cv.canvas, {
+      start: function (x, y) { this.move(x, y); },
+      move: function (x, y) {
+        if (!plane) return; var b = plane.box;
+        if (x < b.x - 14 || x > b.x + b.w + 14 || y < b.y - 14 || y > b.y + b.h + 14) return;
+        v = EB.clamp(Math.round((x - b.x) / b.w * plane.V1 * 20) / 20, 0, plane.V1);
+        c = EB.clamp(Math.round((1 - (y - b.y) / b.h) * 100) / 100, 0.05, 0.98);
+        cv.redraw();
+      },
+    });
+  })();
+
+  /* ---------------- sim-board ---------------- */
+  (function () {
+    var Q = 40, sel = 0, shown = Q, playing = false, box = null, R = null;
+    var gS = EB.range("bd-s", function (v) { return (v > 0 ? "+" : "") + v.toFixed(1) + "%"; }, draw);
+    var gC = EB.range("bd-c", function (v) { return v.toFixed(2); }, draw);
+    var gV = EB.range("bd-v", function (v) { return v.toFixed(2); }, draw);
+    var gK = EB.range("bd-k", function (v) { return v.toFixed(2); }, draw);
+    var nEl = document.getElementById("bd-n"); nEl.addEventListener("change", draw);
+    var POT = 0.005;   // 잠재 성장률(분기 0.5%, 연 2%) — 교육용 가정
+    function run() {
+      var c = gC(), v = gV(), k = gK(), S = gS(), rnd = EC.gauss(11);
+      var x = [0, 0], blown = false;
+      for (var t = 2; t <= Q + 1; t++) {
+        var e = (t === 3 ? S : 0) + (nEl.checked ? 0.6 * rnd() : 0);
+        var nx = (c * (1 + v) * x[t - 1] - c * v * x[t - 2] + e) / (1 + k);
+        if (Math.abs(nx) > 40) { nx = EB.clamp(nx, -40, 40); blown = true; }
+        x.push(nx);
+      }
+      x = x.slice(2);   // 0..Q
+      var lead = x.map(function (g, i) { return g + 2.5 * (g - (i ? x[i - 1] : 0)); });
+      var qoq = x.map(function (g, i) { return i ? ((1 + POT) * (1 + g / 100) / (1 + (x[i - 1]) / 100) - 1) * 100 : POT * 100; });
+      return { x: x, lead: lead, qoq: qoq, blown: blown };
+    }
+    function extrema(a, upto, minAmp) {
+      var out = [];
+      for (var i = 1; i < upto && i < a.length - 1; i++) {
+        if (a[i] > a[i - 1] && a[i] >= a[i + 1] && Math.abs(a[i]) > minAmp) out.push({ i: i, type: "P" });
+        else if (a[i] < a[i - 1] && a[i] <= a[i + 1] && Math.abs(a[i]) > minAmp) out.push({ i: i, type: "T" });
+      }
+      return out;
+    }
+    function tri(ctx, x, y, up, col) { ctx.beginPath(); if (up) { ctx.moveTo(x, y - 6); ctx.lineTo(x + 5, y + 3); ctx.lineTo(x - 5, y + 3); } else { ctx.moveTo(x, y + 6); ctx.lineTo(x + 5, y - 3); ctx.lineTo(x - 5, y - 3); } ctx.closePath(); ctx.fillStyle = col; ctx.fill(); }
+    R = run();
+    var cv = EB.canvas("#bd-cv", function (ctx, w, h) {
+      var P = EB.palette(), r = R, n = shown;
+      var top = { x: 46, y: 26, w: w - 58, h: (h - 56) * 0.64 }, bot = { x: 46, y: top.y + top.h + 22, w: w - 58, h: (h - 56) * 0.36 - 22 };
+      var xs = r.x.slice(0, n + 1), ls = r.lead.slice(0, n + 1);
+      var ext = Math.max(2, Math.max.apply(null, r.x.map(Math.abs).concat(r.lead.map(Math.abs))) * 1.05);
+      var pk = extrema(r.x, n, 0.05), pl = extrema(r.lead, n, 0.05);
+      // 수축 띠: 갭의 정점 → 다음 저점
+      var bands = [];
+      for (var i = 0; i < pk.length; i++) if (pk[i].type === "P") { var tr = pk.slice(i + 1).find(function (p) { return p.type === "T"; }); bands.push({ x0: pk[i].i, x1: tr ? tr.i : n, color: EB.color("bad-soft") }); }
+      // 충격 직후 첫 하강(정점 없이 시작)도 띠로
+      if (gS() < 0 && n >= 1) { var t1 = pk.find(function (p) { return p.type === "T"; }); bands.push({ x0: 1, x1: t1 ? t1.i : n, color: EB.color("bad-soft") }); }
+      var c1 = EB.chart(ctx, top, {
+        x: [0, Q], y: [-ext, ext], xTicks: [], yFmt: function (v) { return (v > 0 ? "+" : "") + v.toFixed(0) + "%"; }, bands: bands,
+        series: [{ data: ls.map(function (v, k) { return [k, v]; }), color: P.accent2, width: 1.8 },
+                 { data: xs.map(function (v, k) { return [k, v]; }), color: P.accent, width: 2.6 }],
+        hlines: [{ y: 0, color: P.axis, dash: [] }],
+      });
+      pk.forEach(function (p) { tri(ctx, c1.X(p.i), c1.Y(r.x[p.i]) + (p.type === "P" ? -10 : 10), p.type === "P", P.accent); });
+      pl.forEach(function (p) { tri(ctx, c1.X(p.i), c1.Y(r.lead[p.i]) + (p.type === "P" ? -10 : 10), p.type === "P", P.accent2); });
+      var qs = r.qoq.slice(0, n + 1), qext = Math.max(1.5, Math.max.apply(null, r.qoq.map(Math.abs)) * 1.05);
+      var c2 = EB.chart(ctx, bot, { x: [0, Q], y: [-qext, qext], xTicks: [0, 8, 16, 24, 32, 40], xFmt: function (v) { return (v / 4) + "년"; }, yFmt: function (v) { return v.toFixed(0) + "%"; }, hlines: [{ y: 0, color: P.axis, dash: [] }] });
+      var bw = c2.box.w / Q * 0.6, recs = 0;
+      for (i = 1; i <= n; i++) {
+        var neg2 = qs[i] < 0 && qs[i - 1] < 0 && i > 1;
+        ctx.fillStyle = qs[i] >= 0 ? P.accent : (neg2 ? P.bad : P.warn);
+        ctx.fillRect(c2.X(i) - bw / 2, Math.min(c2.Y(0), c2.Y(qs[i])), bw, Math.abs(c2.Y(qs[i]) - c2.Y(0)));
+        if (neg2 && !(qs[i - 2] < 0 && i > 2)) recs++;
+      }
+      ctx.font = EB.font(10.5); ctx.textAlign = "left";
+      var lx = 46, ly = 13;
+      [["산출 갭(동행)", P.accent], ["선행지수", P.accent2], ["2분기 연속 마이너스", P.bad]].forEach(function (it) { var tw = ctx.measureText(it[0]).width + 26; if (lx + tw > w - 110) { lx = 46; ly += 13; } ctx.fillStyle = it[1]; ctx.fillRect(lx, ly - 6, 12, 4); ctx.fillStyle = P.dim; ctx.fillText(it[0], lx + 15, ly); lx += tw; });
+      ctx.fillStyle = P.dim; ctx.fillText("실제 GDP 전기비", bot.x + 6, bot.y + 10);
+      if (r.blown) { ctx.fillStyle = P.bad; ctx.font = EB.font(13, false, 700); ctx.textAlign = "center"; ctx.fillText("물결이 끝없이 커진다: 모형이 폭발한다", top.x + top.w / 2, top.y + top.h - 12); }
+      // 커서
+      var cx = c1.X(sel);
+      ctx.save(); ctx.strokeStyle = P.text; ctx.globalAlpha = 0.55; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(cx, top.y); ctx.lineTo(cx, bot.y + bot.h); ctx.stroke(); ctx.restore();
+      ctx.beginPath(); ctx.arc(cx, bot.y + bot.h, 7, 0, Math.PI * 2); ctx.fillStyle = P.text; ctx.fill();
+      box = c1;
+      // 선행 시차: 갭의 전환점마다 직전(0~8분기 앞)의 같은 종류 선행 전환점
+      var leads = [];
+      pk.forEach(function (p) { var m = null; pl.forEach(function (q) { if (q.type === p.type && p.i - q.i >= 0 && p.i - q.i <= 8 && (!m || q.i > m.i)) m = q; }); if (m) leads.push(p.i - m.i); });
+      var j = Math.min(sel, n), up = j > 0 ? r.x[j] >= r.x[j - 1] : gS() >= 0;
+      var deep = r.x.slice(0, n + 1).reduce(function (a, b) { return Math.abs(b) > Math.abs(a) ? b : a; }, 0);
+      EB.stat("bd-o-t", (Math.floor(j / 4) + 1) + "년차 " + (j % 4 + 1) + "분기 · " + (up ? "확장" : "수축"));
+      EB.stat("bd-o-g", pc(r.x[j], 2) + " · " + pc(r.qoq[j], 2));
+      EB.stat("bd-o-m", pc(deep, 2) + (r.blown ? " (폭발)" : ""));
+      EB.stat("bd-o-n", pk.filter(function (p) { return p.type === "P"; }).length + "번 · " + pk.filter(function (p) { return p.type === "T"; }).length + "번");
+      EB.stat("bd-o-l", leads.length ? (leads.reduce(function (a, b) { return a + b; }, 0) / leads.length).toFixed(1) + "분기" : "—");
+      EB.stat("bd-o-r", recs + "번");
+    }, { aspect: 0.72, minHeight: 360, maxHeight: 520 });
+    EB.drag(cv.canvas, { start: function (x) { this.move(x); }, move: function (x) { if (!box) return; playing = false; sel = EB.clamp(Math.round(EB.map(x, box.box.x, box.box.x + box.box.w, 0, Q)), 0, Q); if (sel > shown) shown = sel; cv.redraw(); } });
+    function draw() { R = run(); cv.redraw(); }
+    document.getElementById("bd-go").addEventListener("click", function () { shown = 0; sel = 0; playing = true; });
+    document.getElementById("bd-re").addEventListener("click", function () { playing = false; shown = Q; sel = 0; cv.redraw(); });
+    var acc = 0;
+    EB.loop(document.getElementById("sim-board"), function (dt) {
+      if (!playing) return;
+      acc += dt; if (acc < 0.12) return; acc = 0;
+      shown = Math.min(Q, shown + 1); sel = shown; if (shown >= Q) playing = false;
+      cv.redraw();
+    });
+  })();
+
+  /* ---------------- 케이스 ---------------- */
+  (function () {
+    var q3 = 0.012, ann = EC.annualize(q3) * 100;
+    var rate = C.home.loanRate, mi = C.home.loan * rate / 12;
+    document.getElementById("case-calc").innerHTML = "삼촌의 첫 질문은 \"무엇과 비교했나\"였다. 1.2%는 2분기와 견준 전기비다. 지우가 반올림한 1.2%로 연율을 계산하니 약 <b>" + ann.toFixed(1) + "%</b>였다. 미국식으로 쓰면 5% 가까운 성장이다. 그러나 2분기 0.7% 앞에는 1분기 −0.2%가 있었다. 바닥에서 올라오는 반등은 숫자가 커 보이기 쉽다. 두 번째 질문은 \"누가 쟀나\"였다. 한국은행의 속보치이고, 분기 마지막 달인 9월 자료가 다 모이기 전에 나온 숫자다.";
+    document.getElementById("case-life").textContent = "10월 재산정에서 전세대출 금리는 연 " + (rate * 100).toFixed(1) + "%, 월 이자 약 " + EB.won(mi) + ". 기준금리는 연 2.50%에서 그대로였다. 경기가 살아난다는 신호가 이어지면 금리를 더 내릴 이유가 줄어든다는 것을 노트에 적었다.";
+  })();
+})();
+</script>
+</body>
+</html>

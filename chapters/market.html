@@ -1,0 +1,770 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and EconomicsBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "가격은 누가 정하는가. 수요·공급 곡선을 직접 끌어 곡선의 이동과 곡선 위의 이동을 구분하고, 탄력성으로 쌀값이 크게 흔들리는 이유와 풍년의 역설을, 가격 상한이 만드는 품귀와 세금이 누구에게 떨어지는지를, 정부 양곡 방출이 공급을 옮기는 모습을 시뮬레이터로 본다. 2025년 가을 쌀값 기사를 곡선으로 다시 그린다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>수요와 공급 · EconomicsBook</title>
+<meta name="description" content="가격은 누가 정하는가. 수요·공급 곡선을 직접 끌어 곡선의 이동과 곡선 위의 이동을 구분하고, 탄력성으로 쌀값이 크게 흔들리는 이유와 풍년의 역설을, 가격 상한이 만드는 품귀와 세금이 누구에게 떨어지는지를, 정부 양곡 방출이 공급을 옮기는 모습을 시뮬레이터로 본다. 2025년 가을 쌀값 기사를 곡선으로 다시 그린다.">
+<link rel="canonical" href="https://economicsbook.euiyun.com/chapters/market.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#4338ca">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="EconomicsBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="수요와 공급 · EconomicsBook">
+<meta property="og:description" content="가격은 누가 정하는가. 수요·공급 곡선을 직접 끌어 곡선의 이동과 곡선 위의 이동을 구분하고, 탄력성으로 쌀값이 크게 흔들리는 이유와 풍년의 역설을, 가격 상한이 만드는 품귀와 세금이 누구에게 떨어지는지를, 정부 양곡 방출이 공급을 옮기는 모습을 시뮬레이터로 본다. 2025년 가을 쌀값 기사를 곡선으로 다시 그린다.">
+<meta property="og:url" content="https://economicsbook.euiyun.com/chapters/market.html">
+<meta property="og:image" content="https://economicsbook.euiyun.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://economicsbook.euiyun.com/chapters/market.html#chapter","name":"수요와 공급","headline":"수요와 공급 · EconomicsBook","description":"가격은 누가 정하는가. 수요·공급 곡선을 직접 끌어 곡선의 이동과 곡선 위의 이동을 구분하고, 탄력성으로 쌀값이 크게 흔들리는 이유와 풍년의 역설을, 가격 상한이 만드는 품귀와 세금이 누구에게 떨어지는지를, 정부 양곡 방출이 공급을 옮기는 모습을 시뮬레이터로 본다. 2025년 가을 쌀값 기사를 곡선으로 다시 그린다.","url":"https://economicsbook.euiyun.com/chapters/market.html","position":2,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://economicsbook.euiyun.com/og.png","dateModified":"2026-10-09","isPartOf":{"@type":"Book","@id":"https://economicsbook.euiyun.com/#book","name":"EconomicsBook · 경제 뉴스 읽는 교과서","url":"https://economicsbook.euiyun.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"EconomicsBook","item":"https://economicsbook.euiyun.com/"},{"@type":"ListItem","position":2,"name":"2. 수요와 공급","item":"https://economicsbook.euiyun.com/chapters/market.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/econ.js"></script>
+<!--head:end-->
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"3d6151a0abc94ede89285d462527fa80"}'></script>
+<!-- End Cloudflare Web Analytics -->
+<style>
+  .callout.stat { display: block; } /* .stat(시뮬레이터 수치 칸)의 grid 규칙이 .callout.stat에도 걸려 굵은 글씨·링크가 줄을 나누는 것을 막는다 */
+</style>
+</head>
+<body data-chapter="market">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 02</div>
+    <h1>수요와 공급</h1>
+    <p class="lead">2025년 가을, 쌀값이 1년 전보다 20% 넘게 올랐다는 발표가 나왔다. 쌀은 남아돈다는 이야기를 오래 들어 왔는데 왜 값이 뛰었을까. 정부가 창고의 쌀을 풀면 값은 얼마나 내려갈까. 값을 묶어 버리면 안 될까. 이 장은 경제학의 가장 오래된 그림, 수요 곡선과 공급 곡선을 직접 끌어 보며 이 질문들에 답한다. 같은 그림이 지우의 회사가 사는 밀가루와 설탕의 값, 그리고 그 원가가 과자 값으로 얼마나 넘어가는지도 설명한다.</p>
+    <ul class="objectives">
+      <li>수요·공급 곡선으로 가격과 거래량이 정해지는 원리를 설명하고, 곡선의 이동과 곡선 위의 이동을 구분할 수 있다.</li>
+      <li>가격 탄력성으로 농산물 값이 크게 흔들리는 이유와 풍년의 역설을 설명할 수 있다.</li>
+      <li>가격 상한이 품귀를 만드는 과정과, 세금이나 원가 상승이 소비자와 생산자에게 나뉘는 비율을 탄력성으로 계산할 수 있다.</li>
+      <li>정부 양곡 방출·시장격리 같은 기사를 공급 곡선의 이동으로 다시 그릴 수 있다.</li>
+    </ul>
+  </header>
+
+  <div class="headline" id="hl-top">10월 소비자물가 2.4% 상승… 쌀은 1년 전보다 21.3% 올라<small>지우의 헤드라인 노트 · 2025년 11월 · 근거: 국가데이터처 「2025년 10월 소비자물가동향」(2025-11-04)</small></div>
+
+  <section id="who">
+    <h2>가격은 누가 정하는가</h2>
+    <p>2025년 11월 4일, 국가데이터처는 10월 소비자물가가 1년 전보다 2.4% 올랐다고 발표했다. 2024년 7월 이후 가장 높은 상승률이었다. 품목별 표에서 지우의 눈에 들어온 것은 쌀이었다. 1년 전보다 21.3%, 찹쌀은 45.5% 올랐다 <span class="src">(국가데이터처, 「2025년 10월 소비자물가동향」, 2025-11-04)</span>. 발표문은 가을철 잦은 비로 출하가 늦어진 것을 이유로 들었다.</p>
+    <p>지우는 원료구매팀에서 일하면서 값이 오르는 이유를 늘 공급 쪽에서 찾았다. 밀 작황이 나쁘다, 운임이 올랐다, 환율이 올랐다. 그런데 삼촌 백정호는 "값은 사는 사람과 파는 사람이 함께 정한다"고 했다. 같은 비가 내려도 사람들이 쌀을 덜 먹는 나라였다면 값이 이만큼 뛰지 않았을 것이다. 값은 한쪽이 아니라 양쪽이 만나는 곳에서 정해진다.</p>
+    <p>경제학은 이것을 두 개의 곡선으로 그린다. <span class="term">수요 곡선</span><span class="en">(Demand curve)</span>은 값이 얼마일 때 사람들이 얼마나 사려고 하는지를 잇는다. 값이 오르면 덜 사니 오른쪽 아래로 기운다. <span class="term">공급 곡선</span><span class="en">(Supply curve)</span>은 값이 얼마일 때 생산자가 얼마나 팔려고 하는지를 잇는다. 값이 오르면 더 팔려고 하니 오른쪽 위로 기운다. 두 곡선이 만나는 점이 <span class="term">균형</span><span class="en">(Equilibrium)</span>이다. 그 값에서 사려는 양과 팔려는 양이 같아 남는 것도 모자라는 것도 없다.</p>
+    <p>균형이 아닌 값에서는 무슨 일이 일어날까. 아래 시뮬레이터에서 가격선을 위아래로 끌어 본다.</p>
+
+    <div class="sim" id="sim-price">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>가격선을 끌면: 남는 물건과 모자라는 물건</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="pr-cv"></canvas><span class="hint">가격선을 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="btn-row"><button class="btn primary" id="pr-go">시장에 맡기기</button><button class="btn" id="pr-re">다시</button></div>
+          <label class="ctrl"><span>조정 속도 <output id="pr-k-out"></output></span><input type="range" id="pr-k" min="0.2" max="2" step="0.1" value="0.8"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">가격</span><span class="v" id="pr-o-p">—</span></div>
+        <div class="stat"><span class="k">사려는 양(수요량)</span><span class="v" id="pr-o-d">—</span></div>
+        <div class="stat"><span class="k">팔려는 양(공급량)</span><span class="v" id="pr-o-s">—</span></div>
+        <div class="stat"><span class="k">시장 상태</span><span class="v" id="pr-o-x">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 가격선을 위로 끌어 70에 둔다. 팔려는 양이 사려는 양보다 많아 물건이 남는다(초과공급). 가게는 재고를 털려고 값을 내린다. ② 가격선을 아래로 끌어 30에 둔다. 이번에는 사려는 사람이 더 많아 물건이 모자란다(초과수요). 줄이 생기고 값을 더 주겠다는 사람이 나온다. ③ 아무 값에 두고 '시장에 맡기기'를 누른다. 값이 남는 쪽에서는 내리고 모자라는 쪽에서는 올라 두 곡선이 만나는 50에서 멈춘다. (교육용 모형: 수요 P = 90 − 0.8Q, 공급 P = 10 + 0.8Q. 가격은 초과수요에 비례해 움직인다. 단위는 지수다.)</div>
+    </div>
+
+    <p>균형은 누가 계산해서 정하는 값이 아니다. 값이 너무 높으면 팔리지 않는 물건이, 너무 낮으면 줄 선 손님이 값을 움직인다. 애덤 스미스가 <span class="term">보이지 않는 손</span><span class="en">(Invisible hand)</span>이라고 부른 것이 이 과정이다. 실제 시장에서는 이 조정에 시간이 걸린다. 쌀처럼 1년에 한 번 수확하는 물건은 특히 그렇다.</p>
+  </section>
+
+  <section id="shift">
+    <h2>곡선이 움직이는가, 곡선 위를 움직이는가</h2>
+    <p>경제 기사를 읽다 가장 자주 헷갈리는 구분이 이것이다. "값이 올라서 덜 산다"와 "덜 사서 값이 내렸다"는 같은 이야기처럼 들리지만 그림에서는 전혀 다른 움직임이다.</p>
+    <ul>
+      <li><strong>곡선 위의 이동</strong>: 그 물건의 값이 바뀌어서 사려는 양(수요량)이나 팔려는 양(공급량)이 바뀌는 것. 곡선은 그대로이고 점이 곡선을 따라 미끄러진다.</li>
+      <li><strong>곡선의 이동</strong>: 값 말고 다른 무엇이 바뀌어 같은 값에서도 사려는 양이나 팔려는 양이 달라지는 것. 수요 곡선은 소득, 다른 물건의 값(대체재·보완재), 취향, 인구, 앞으로 값이 오르리라는 기대에 따라 움직인다. 공급 곡선은 날씨와 작황, 원료값과 인건비, 기술, 생산자의 수, 정부의 비축 물량에 따라 움직인다.</li>
+    </ul>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 240" role="img" aria-label="왼쪽: 공급 곡선이 왼쪽으로 이동하면 수요 곡선 위를 따라 가격이 오르고 수요량이 준다. 오른쪽: 같은 가격 상승이 수요 곡선 자체의 이동에서 올 수도 있다">
+        <defs><marker id="mk-ar1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <g class="s-axis"><path d="M30 20V190H210"/><path d="M250 20V190H430"/></g>
+        <text x="20" y="28" class="lbl-dim" text-anchor="end">P</text><text x="212" y="205" class="lbl-dim">Q</text>
+        <text x="240" y="28" class="lbl-dim" text-anchor="end">P</text><text x="432" y="205" class="lbl-dim">Q</text>
+        <path d="M40 40L200 170" class="s-acc"/><text x="196" y="160" class="lbl-acc" text-anchor="end">D</text>
+        <path d="M40 170L200 40" class="s-dash"/><text x="196" y="40" class="lbl-dim" text-anchor="end">S</text>
+        <path d="M20 150L160 36" class="s-acc2"/><text x="150" y="30" class="lbl-acc2">S′</text>
+        <circle cx="120" cy="105" r="5" class="f-surface"/>
+        <circle cx="96" cy="85" r="5" class="f-acc2"/>
+        <path d="M117 102L100 88" class="s-line" marker-end="url(#mk-ar1)"/>
+        <text x="120" y="216" text-anchor="middle" class="lbl">공급 곡선 이동 →</text>
+        <text x="120" y="230" text-anchor="middle" class="lbl-dim" style="font-size:12px">수요 곡선 위의 이동</text>
+        <path d="M260 40L420 170" class="s-dash"/><text x="416" y="182" class="lbl-dim" text-anchor="end">D</text>
+        <path d="M290 30L440 152" class="s-acc"/><text x="436" y="146" class="lbl-acc" text-anchor="end">D′</text>
+        <path d="M260 170L420 40" class="s-acc2"/><text x="418" y="56" class="lbl-acc2" text-anchor="end">S</text>
+        <circle cx="340" cy="105" r="5" class="f-surface"/>
+        <circle cx="362" cy="87" r="5" class="f-acc"/>
+        <path d="M343 102L358 90" class="s-line" marker-end="url(#mk-ar1)"/>
+        <text x="340" y="216" text-anchor="middle" class="lbl">수요 곡선 이동 →</text>
+        <text x="340" y="230" text-anchor="middle" class="lbl-dim" style="font-size:12px">공급 곡선 위의 이동</text>
+      </svg>
+      <figcaption><b>그림 1. 같은 "값 상승", 다른 원인.</b> 왼쪽은 흉작으로 공급 곡선이 왼쪽으로 옮겨 값이 오르고 거래량이 준 경우다. 소비자는 수요 곡선을 따라 덜 산다. 오른쪽은 사려는 사람이 늘어 수요 곡선이 오른쪽으로 옮겨 값이 오르고 거래량도 는 경우다. 값만 보면 둘을 구별할 수 없다. <strong>거래량이 어느 쪽으로 움직였는지</strong>를 함께 봐야 원인이 보인다.</figcaption>
+    </figure>
+
+    <p>아래 시뮬레이터에서 사건을 하나씩 눌러 보거나, 곡선을 직접 끌어 옮겨 본다. 흐린 선은 처음의 곡선이다.</p>
+
+    <div class="sim" id="sim-shift">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>사건이 일어나면 어느 곡선이 움직이나</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="sh-cv"></canvas><span class="hint">곡선을 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="sh-ev"><button data-value="base" class="on">처음</button><button data-value="income">소득 증가</button><button data-value="subst">빵값 상승</button><button data-value="diet">쌀 소비 감소 추세</button><button data-value="rain">잦은 비, 출하 지연</button><button data-value="bumper">풍작</button><button data-value="cost">비료·인건비 상승</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">무엇이 움직였나</span><span class="v" id="sh-o-w" style="font-size:14px;font-family:var(--font)">—</span></div>
+        <div class="stat"><span class="k">가격</span><span class="v" id="sh-o-p">—</span></div>
+        <div class="stat"><span class="k">거래량</span><span class="v" id="sh-o-q">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① '빵값 상승'을 누른다. 쌀의 대체재인 빵이 비싸지면 같은 쌀값에서도 쌀을 더 사려 한다. 수요 곡선이 오른쪽으로 옮겨 값과 거래량이 함께 오른다. ② '잦은 비, 출하 지연'을 누른다. 공급 곡선이 왼쪽으로 옮겨 값은 오르고 거래량은 준다. 소비자는 수요 곡선 위를 따라 올라가며 덜 산다. ③ 두 곡선을 직접 끌어 값은 그대로인데 거래량만 늘어나는 조합을 찾아본다. 수요와 공급이 함께 늘면 된다. (교육용 모형: 두 곡선의 기울기는 같고 평행 이동만 한다. 단위는 지수다.)</div>
+    </div>
+
+    <p>2025년 가을의 쌀값을 이 그림에 올리면 어느 쪽일까. 1인당 쌀 소비는 오랫동안 줄어 온 추세라 수요 곡선이 갑자기 오른쪽으로 갔다고 보기는 어렵다. 반대로 공급 쪽에는 사건이 겹쳤다. 수확기에 비가 잦아 햅쌀 출하가 늦어졌고, 그 전에 쓸 묵은쌀(구곡) 재고는 빠듯했다. 공급 곡선이 왼쪽으로 옮긴 것이다. 그러면 값은 오르고 거래량은 준다. 다만 값이 이만큼, 20% 넘게 오른 이유는 곡선의 이동만으로는 설명되지 않는다. 곡선이 얼마나 가파른지, 다음 절의 탄력성이 답한다.</p>
+  </section>
+
+  <section id="elastic">
+    <h2>탄력성: 왜 쌀값은 크게 흔들리는가</h2>
+    <p>값이 1% 오를 때 사려는 양이 몇 % 주는지를 <span class="term">수요의 가격 탄력성</span><span class="en">(Price elasticity of demand)</span>이라고 한다. 1보다 작으면 비탄력적, 크면 탄력적이라고 한다. 쌀, 소금, 전기, 기름처럼 대신할 것이 마땅치 않고 꼭 필요한 물건은 값이 올라도 덜 사기 어렵다. 탄력성이 작다. 외식, 여행, 수입 과자처럼 미루거나 바꿀 수 있는 것은 탄력성이 크다.</p>
+    <div class="formula">$$\varepsilon = \frac{\text{수요량 변화율}}{\text{가격 변화율}},\qquad \text{가격 변화율} \approx \frac{\text{공급량 변화율}}{\varepsilon}$$<div class="where">공급량이 단기에 고정되어 있을 때(수확이 끝난 뒤) 공급이 바뀐 만큼 수요량이 바뀌어야 시장이 맞는다. 그러려면 값은 공급 변화율을 탄력성으로 나눈 만큼 움직여야 한다. 부호는 생략하고 크기만 쓴다.</div></div>
+    <p>식이 말하는 것은 간단하다. 탄력성이 0.25라면 공급이 5% 줄 때 값이 20% 가까이 올라야 사람들이 그만큼 덜 산다. 탄력성이 작을수록 같은 작황 변화가 값을 크게 흔든다. 게다가 농산물의 공급은 단기에 거의 고정되어 있다. 값이 오른다고 이번 가을에 벼를 더 거둘 수 없다. 공급 곡선이 수직에 가깝고 수요 곡선도 가파르니, 두 곡선 중 하나만 조금 옮겨도 교차점은 위아래로 크게 뛴다.</p>
+
+    <p>이 성질은 거꾸로도 작동한다. 풍년이 들어 수확이 늘면 값이 크게 떨어진다. 탄력성이 1보다 작으면 값이 떨어지는 비율이 양이 느는 비율보다 커서, 농가가 판 돈의 합계(총수입)가 오히려 준다. 이것이 <span class="term">풍년의 역설</span><span class="en">(Paradox of plenty)</span>이다. 아래에서 탄력성과 수확량을 바꿔 본다.</p>
+
+    <div class="sim" id="sim-harvest">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>풍년의 역설: 수확이 늘었는데 농가 수입이 준다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="hv-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>수요의 가격 탄력성 <output id="hv-e-out"></output></span><input type="range" id="hv-e" min="0.1" max="2" step="0.05" value="0.3"></label>
+          <label class="ctrl"><span>올해 수확량(평년 대비) <output id="hv-h-out"></output></span><input type="range" id="hv-h" min="-20" max="20" step="1" value="10"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">가격 변화</span><span class="v" id="hv-o-p">—</span></div>
+        <div class="stat"><span class="k">팔린 양 변화</span><span class="v" id="hv-o-q">—</span></div>
+        <div class="stat"><span class="k">농가 총수입 변화</span><span class="v" id="hv-o-r">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 탄력성 0.3, 수확 +10%. 값이 25% 넘게 떨어지고 농가 총수입은 약 20% 준다. 풍년인데 농가는 가난해진다. ② 탄력성을 1.5로 올린다. 이번에는 값이 조금만 떨어지고 총수입이 는다. 탄력성 1이 갈림길이다. ③ 탄력성 0.1, 수확 −20%로 민다. 값이 몇 배로 뛴다. 비탄력적인 필수품에서 작은 흉작이 큰 값 폭등이 되는 모습이다. (교육용 모형: 탄력성이 일정한 수요 곡선, 수확이 끝난 뒤 공급은 수직선. 평년 가격과 수확량을 100으로 둔다. 실제 쌀값은 재고, 정부 수매, 유통 단계에 따라 덜 흔들린다.)</div>
+    </div>
+
+    <p>탄력성을 0.1까지 내리면 수확이 20% 줄 때 값이 9배 넘게 뛴다. 실제 시장이 그렇게 되지 않는 것은 완충 장치가 있기 때문이다. 묵은 재고가 풀리고, 수입이 늘고, 정부가 창고의 물량을 내놓는다. 거꾸로 풍년에는 정부가 남는 쌀을 사들여 시장에서 떼어 낸다. 쌀 시장의 정책이 대부분 공급 곡선을 옮기는 일인 이유다.</p>
+
+    <div class="callout deep"><strong>공급의 탄력성은 시간이 지나면 커진다</strong>수확이 끝난 가을에 쌀 공급은 거의 수직이다. 그러나 1년이 지나면 농가는 값을 보고 내년에 벼를 심을 면적을 정하고, 몇 년이 지나면 논을 다른 작물로 돌리거나 되돌린다. 공급 곡선은 단기에는 가파르고 장기에는 완만하다. 값이 높은 해에 많이 심고, 그 물량이 쏟아지는 다음 해에 값이 떨어지는 순환이 생기기도 한다. 짓는 데 몇 년이 걸리는 집도 같은 구조다.</div>
+
+    <div class="callout link"><strong>공급이 늦게 오는 시장</strong>공급이 값을 따라오는 데 시간이 걸리면 값이 출렁인다. 아파트처럼 짓는 데 3~5년이 걸리는 시장에서 이 시차가 집값과 전셋값의 파도를 만드는 과정은 EstateBook <a href="https://estatebook.euiyun.com/chapters/supply.html">공급의 시차</a>에서 시뮬레이터로 이어진다.</div>
+  </section>
+
+  <section id="rice">
+    <h2>2025년 가을, 쌀 시장에서 일어난 일</h2>
+    <p>이제 실제 발표를 따라가 본다. 정부 발표와 이를 인용한 보도에서 확인한 사실만 시간순으로 적었다.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>때</th><th>무엇이 있었나</th><th>곡선으로 읽으면</th></tr></thead>
+      <tbody>
+        <tr><td>2025년 8월 25일부터</td><td>농림축산식품부, 산지유통업체의 원료곡 부족을 이유로 정부양곡 3만 톤(정곡 기준)을 <strong>대여</strong> 방식으로 공급. 2025년산 햅쌀로 2026년 3월까지 되갚는 조건</td><td>지금의 공급 곡선을 오른쪽으로, 반납 때의 공급을 왼쪽으로</td></tr>
+        <tr><td>2025년 9월(11~12일 발표)</td><td>3만 톤 중 절반 이상이 2주 만에 팔려, 햅쌀 출하가 본격화되는 10월 중순까지 쓸 정부양곡 2.5만 톤을 같은 방식으로 추가 공급. 조생종 수확기의 잦은 비로 출하가 늦어진 것이 이유</td><td>공급 곡선 왼쪽 이동(출하 지연)을 일부 되돌림</td></tr>
+        <tr><td>2025년 10월 초</td><td>산지 쌀값이 20kg당 6만 1,988원(10월 5일 조사)까지 올라, 현재 방식으로 통계를 낸 2017년 이후 처음 6만원을 넘었다는 보도</td><td>수직에 가까운 단기 공급 + 비탄력적 수요</td></tr>
+        <tr><td>2025년 10월 13일</td><td>수확기 쌀 수급 대책: 2025년산 예상 초과 생산량 16.5만 톤 가운데 10만 톤을 시장에서 격리하기로(대여 반납분 5.5만 톤 포함). 쌀값이 높아 예년보다 격리 물량을 줄였다는 설명</td><td>수확기 공급 곡선을 왼쪽으로(값이 너무 떨어지는 것을 막음)</td></tr>
+        <tr><td>2025년 11월 4일</td><td>10월 소비자물가 2.4% 상승, 쌀 21.3%·찹쌀 45.5% 상승(전년동월비)</td><td>소비자 단계에서 본 결과</td></tr>
+        <tr><td>2025년 11월 13일</td><td>2025년산 쌀 생산량 353만 9천 톤 확정, 1년 전보다 1.3% 감소(재배면적 −2.9%, 10a당 생산량 +1.7%)</td><td>올해 공급량의 크기 확인</td></tr>
+      </tbody>
+    </table></div>
+    <p class="src" style="font-size:12.5px">(농림축산식품부 보도자료 「쌀 수급 안정을 위해 정부양곡 3만톤 공급(대여)」(2025년 8월), 정부양곡 추가 공급 보도자료(2025년 9월), 「’25년산 쌀 예상 초과량 16.5만 톤 중 10만 톤 격리 계획 수립」(2025-10-13). 국가데이터처 「2025년 10월 소비자물가동향」, 「2025년 재배면적(확정) 및 농작물생산량조사 결과」(2025-11-13), 산지쌀값 조사. 공식 발표를 인용한 보도와 대조했다. 산지 쌀값 6만 1,988원은 보도 기준이며 원표로 다시 확인해야 한다.)</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 250" role="img" aria-label="쌀이 농가에서 산지유통업체와 도정을 거쳐 소매와 소비자로 가는 길, 정부 창고가 시장격리로 쌀을 빼내고 대여·방출로 다시 넣는 길, 그리고 각 단계에서 값을 재는 통계">
+        <defs><marker id="mk-ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="8" y="86" width="82" height="46" rx="8" class="f-ok-soft"/><text x="49" y="106" text-anchor="middle" class="lbl-b">농가</text><text x="49" y="124" text-anchor="middle" class="lbl-dim">벼</text>
+        <rect x="118" y="86" width="100" height="46" rx="8" class="f-surface"/><text x="168" y="106" text-anchor="middle" class="lbl">산지유통업체</text><text x="168" y="124" text-anchor="middle" class="lbl-dim">도정 → 쌀</text>
+        <rect x="246" y="86" width="90" height="46" rx="8" class="f-surface"/><text x="291" y="106" text-anchor="middle" class="lbl">소매</text><text x="291" y="124" text-anchor="middle" class="lbl-dim">마트·온라인</text>
+        <rect x="364" y="86" width="88" height="46" rx="8" class="f-acc-soft"/><text x="408" y="106" text-anchor="middle" class="lbl-b">소비자</text><text x="408" y="124" text-anchor="middle" class="lbl-dim">밥·가공식품</text>
+        <rect x="118" y="184" width="100" height="52" rx="8" class="f-acc2-soft"/><text x="168" y="206" text-anchor="middle" class="lbl-b">정부 창고</text><text x="168" y="225" text-anchor="middle" class="lbl-dim">공공비축·격리</text>
+        <g class="s-line" marker-end="url(#mk-ar2)"><path d="M90 109H116"/><path d="M218 109H244"/><path d="M336 109H362"/></g>
+        <path d="M60 132Q70 200 116 206" class="s-acc2" marker-end="url(#mk-ar2)"/>
+        <text x="28" y="196" class="lbl-acc2" style="font-size:12px">격리(매입)</text>
+        <path d="M190 182V134" class="s-acc2" marker-end="url(#mk-ar2)"/>
+        <text x="196" y="160" class="lbl-acc2" style="font-size:12px">대여·방출</text>
+        <text x="168" y="34" text-anchor="middle" class="lbl-dim" style="font-size:12px">산지 쌀값</text>
+        <text x="168" y="50" text-anchor="middle" class="lbl-dim" style="font-size:11px">국가데이터처, 5·15·25일</text>
+        <path d="M168 56V84" class="s-dash"/>
+        <text x="350" y="34" text-anchor="middle" class="lbl-dim" style="font-size:12px">소비자물가 쌀 품목</text>
+        <text x="350" y="50" text-anchor="middle" class="lbl-dim" style="font-size:11px">국가데이터처, 매월</text>
+        <path d="M320 56L300 84" class="s-dash"/>
+      </svg>
+      <figcaption><b>그림 2. 쌀이 밥상까지 가는 길과 정부 창고.</b> 정부는 풍년에 남는 쌀을 사들여 시장에서 떼어 내고(시장격리, 공급 곡선을 왼쪽으로), 모자랄 때 창고의 쌀을 내놓는다(방출·대여, 공급 곡선을 오른쪽으로). 같은 쌀값도 어느 단계에서 쟀는지에 따라 숫자가 다르다. 산지 쌀값은 산지유통업체가 파는 값, 소비자물가의 쌀은 소비자가 사는 값이다.</figcaption>
+    </figure>
+
+    <div class="callout news"><strong>"쌀값 21% 폭등"의 비교 대상</strong>백정호는 이 헤드라인에 먼저 "1년 전 쌀값은 어땠나"를 물었다. 21.3%는 전년동월비다. 2024년 가을 쌀값이 낮았다면 그 기저 위에서 상승률이 커 보인다. 농림축산식품부도 상승폭이 커 보여도 낮았던 가격이 회복된 측면을 함께 봐야 한다는 설명자료를 냈다. 반대로 소비자에게는 기저가 무엇이든 지금 계산대에서 내는 값이 중요하다. 같은 숫자를 농가는 회복으로, 소비자는 부담으로 읽는다. 기사가 어느 쪽 목소리를 제목에 올렸는지 보면 그 기사가 보는 쪽이 보인다. 그리고 산지 쌀값과 소비자물가의 쌀은 서로 다른 통계라는 것도 확인한다.</div>
+
+    <div class="callout stat"><strong>쌀값은 어디서 재나</strong>쌀값 통계는 단계마다 따로 있다. 국가데이터처의 <strong>산지쌀값 조사</strong>는 산지유통업체가 파는 쌀(20kg) 값을 매월 5일·15일·25일 기준으로 열흘마다 발표한다. 같은 기관의 <strong>소비자물가동향</strong>은 458개 품목 가운데 하나로 쌀의 소비자 가격 지수를 매월 초 발표하며, 헤드라인에는 대개 전년동월비가 쓰인다. 한국농수산식품유통공사(aT)의 농산물유통정보(KAMIS)는 날마다 소매·도매 가격을 공개한다. 생산량은 국가데이터처가 10월 초에 예상치, 11월 중순에 확정치(「농작물생산량조사」)를 낸다. 원표는 KOSIS에서 품목별로 내려받을 수 있다.</div>
+
+    <p>정부 창고의 쌀이 시장에 나오면 공급 곡선이 오른쪽으로 옮겨 값이 내린다. 그런데 2025년 8~9월의 방출은 파는 것이 아니라 빌려주는 것이었다. 빌려 간 쌀은 햅쌀로 되갚아야 한다. 지금의 공급을 늘리는 대신 되갚는 때의 공급을 줄이는 셈이다. 아래 시뮬레이터에서 두 방식을 비교한다.</p>
+
+    <div class="sim" id="sim-stock">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>정부 양곡을 풀면: 판매와 대여, 두 시점의 값</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="st-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>햅쌀 전 시장 물량(평년 대비) <output id="st-s-out"></output></span><input type="range" id="st-s" min="-15" max="5" step="1" value="-6"></label>
+          <label class="ctrl"><span>정부 양곡 공급(시장 물량 대비) <output id="st-r-out"></output></span><input type="range" id="st-r" min="0" max="12" step="0.5" value="3"></label>
+          <div class="seg" id="st-m"><button data-value="sell">판매(공매)</button><button data-value="lend" class="on">대여(나중에 반납)</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">지금 값(공급 전 → 후)</span><span class="v" id="st-o-n">—</span></div>
+        <div class="stat"><span class="k">반납하는 때의 값</span><span class="v" id="st-o-l">—</span></div>
+        <div class="stat"><span class="k">정부 창고</span><span class="v" id="st-o-g">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 시장 물량 −6%에서 정부 양곡을 0으로 둔다. 탄력성 0.3이면 값이 평년보다 20% 넘게 높다. ② 정부 양곡을 3%로 올린다. 지금 값은 내려가고, 대여 방식이면 반납하는 때(평년 물량에서 3%를 정부 창고로 되가져감)의 값이 그만큼 올라간다. ③ '판매'로 바꾼다. 반납이 없으니 나중 값은 흔들리지 않지만 정부 창고는 그만큼 빈다. 비축은 다음 흉년에 쓸 완충이다. (교육용 모형: 탄력성 0.3인 수요, 단기 공급은 수직. 평년 물량과 값을 100으로 둔다. 반납 시점의 시장 물량은 평년 수준이라고 가정한다. 실제 정부양곡의 규모와 시장 물량의 비율을 나타내지 않는다.)</div>
+    </div>
+
+    <p>대여는 값을 시간 축 위에서 고르게 펴는 장치다. 출하가 늦어져 일시적으로 모자랄 때 빌려주고, 물량이 넉넉한 수확기 이후에 돌려받으면 값이 덜 출렁인다. 2025년 10월 수확기 대책이 대여 반납분 5.5만 톤을 시장격리 물량으로 셈한 것도 이 구조 위에 있다. 반납받는 쌀은 수확기의 넘치는 물량을 시장에서 빼내는 효과를 낸다. 물론 반납 시점에 다시 물량이 모자라면 그때 값을 밀어 올린다. 어느 쪽이 될지는 그때의 작황과 소비가 정한다.</p>
+  </section>
+
+  <section id="ceiling">
+    <h2>값을 묶으면: 가격 상한과 품귀</h2>
+    <p>값이 너무 오르면 "아예 값을 묶으면 되지 않느냐"는 목소리가 나온다. 정부가 넘지 못하게 정한 최고 가격이 <span class="term">가격 상한</span><span class="en">(Price ceiling)</span>이다. 임대료 상한, 공공요금 동결, 위기 때 생필품 최고가격제가 그 예다. 상한이 균형 가격보다 높으면 아무 효과가 없다. 균형보다 낮을 때 문제가 생긴다. 그 값에서는 사려는 사람이 많고 팔려는 사람이 적어 물건이 모자란다. 아래에서 상한선을 끌어 내려 본다.</p>
+
+    <div class="sim" id="sim-ceiling">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>가격 상한을 끌어내리면: 품귀, 줄, 암시장</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ce-cv"></canvas><span class="hint">상한선을 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="ce-d"><button data-value="0.5">수요 탄력적</button><button data-value="0.8" class="on">보통</button><button data-value="1.6">비탄력적</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">상한 가격</span><span class="v" id="ce-o-p">—</span></div>
+        <div class="stat"><span class="k">사려는 양 · 실제 팔린 양</span><span class="v" id="ce-o-q">—</span></div>
+        <div class="stat"><span class="k">모자라는 양</span><span class="v" id="ce-o-s">—</span></div>
+        <div class="stat"><span class="k">마지막 한 개에 낼 용의(암시장 값)</span><span class="v" id="ce-o-b">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 상한선을 균형(50) 위에 둔다. 아무 일도 일어나지 않는다. 묶지 않은 것과 같다. ② 40으로 내린다. 값은 싸졌지만 팔리는 양이 줄고 줄 선 사람(점)이 생긴다. 마지막 한 개를 사려는 사람은 상한보다 훨씬 비싼 값을 낼 용의가 있다. 암시장과 웃돈이 생기는 이유다. ③ 상한을 15 근처까지 끌어내린다. 생산자가 거의 팔지 않아 시장이 사라지다시피 하고, 빨간 사중손실이 대부분을 차지한다. 싸게 사게 하려던 정책이 아무도 사지 못하게 만든다. (교육용 모형: 선형 수요·공급, 공급 P = 10 + 0.8Q. 물건은 가장 원하는 사람부터 돌아간다고 가정해 잉여를 계산했다. 실제로는 줄 서기·추첨으로 나눠 손실이 더 크다.)</div>
+    </div>
+
+    <p>상한이 낮을수록 소비자에게 이득일 것 같지만, 그림은 반대를 말한다. 상한을 내리면 처음에는 운 좋게 물건을 산 사람의 이득(파란 면)이 커지기도 하지만, 곧 팔리는 양 자체가 줄어 그 이득도 줄어든다. 생산자는 덜 만들고, 품질을 낮추거나, 규제가 없는 다른 시장으로 옮긴다. 그래서 대부분의 나라는 값을 직접 묶기보다 공급을 늘리거나(비축 방출, 수입 확대, 할인 지원) 어려운 가구에 돈을 직접 주는 쪽을 택한다. 반대편 근거도 있다. 위기 때 아주 짧은 기간 투기적 사재기를 막거나, 독점 공급자의 값을 규제하는 데에는 상한이 쓰인다. 문제는 기간과 수준이다.</p>
+  </section>
+
+  <section id="tax">
+    <h2>세금은 누가 내는가</h2>
+    <p>정부가 쌀 한 포대에 1,000원의 세금을 매긴다고 하자. 법에는 파는 사람이 낸다고 적어도, 실제로 그 1,000원을 누가 부담하는지는 법이 아니라 곡선이 정한다. 파는 사람은 세금만큼 값을 올리고 싶지만, 값을 올리면 덜 팔린다. 사는 사람이 쉽게 등을 돌리지 못하는 물건(수요가 비탄력적)이라면 세금 대부분을 값에 얹을 수 있다. 사는 사람이 쉽게 다른 것으로 옮겨 간다면 파는 사람이 떠안는다. 이것을 <span class="term">조세 귀착</span><span class="en">(Tax incidence)</span>이라고 한다.</p>
+    <div class="formula">$$\text{소비자 부담 비율} = \frac{\varepsilon_S}{\varepsilon_S + \varepsilon_D},\qquad \text{생산자 부담 비율} = \frac{\varepsilon_D}{\varepsilon_S + \varepsilon_D}$$<div class="where">\(\varepsilon_D\) 수요의 가격 탄력성, \(\varepsilon_S\) 공급의 가격 탄력성(균형점에서). 덜 탄력적인 쪽, 곧 피하기 어려운 쪽이 더 많이 낸다.</div></div>
+    <p>원가가 오를 때도 같은 그림이다. 밀가루 값이 오르면 과자 회사의 공급 곡선이 그만큼 위로 올라간다. 세금과 다른 점은 정부가 그 돈을 걷지 않는다는 것뿐이다. 오른 원가 가운데 얼마가 과자 값으로 넘어가는지(가격 전가율)는 과자를 사는 사람들이 얼마나 쉽게 다른 간식으로 옮겨 가는지에 달려 있다.</p>
+
+    <div class="sim" id="sim-tax">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>세금·원가 상승의 귀착: 누가 얼마를 내나</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="tx-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>단위당 세금(원가 상승) <output id="tx-t-out"></output></span><input type="range" id="tx-t" min="0" max="40" step="1" value="12"></label>
+          <div class="seg" id="tx-d"><button data-value="2">수요 비탄력</button><button data-value="0.8" class="on">수요 보통</button><button data-value="0.3">수요 탄력</button></div>
+          <div class="seg" id="tx-s"><button data-value="2">공급 비탄력</button><button data-value="0.8" class="on">공급 보통</button><button data-value="0.3">공급 탄력</button></div>
+          <div class="seg" id="tx-m"><button data-value="tax" class="on">세금</button><button data-value="cost">원가 상승</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">소비자가 내는 값</span><span class="v" id="tx-o-b">—</span></div>
+        <div class="stat"><span class="k">생산자가 받는 값</span><span class="v" id="tx-o-s">—</span></div>
+        <div class="stat"><span class="k">소비자 부담 비율</span><span class="v" id="tx-o-r">—</span></div>
+        <div class="stat"><span class="k">세수(또는 늘어난 원가) · 사중손실</span><span class="v" id="tx-o-w">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 수요 비탄력, 공급 탄력. 세금 대부분(90% 가까이)이 소비자 값으로 넘어간다. 쌀·담배·기름처럼 피하기 어려운 물건의 세금이 대개 이렇다. ② 수요 탄력, 공급 비탄력으로 바꾼다. 이번에는 생산자가 대부분을 떠안는다. ③ 세금을 40까지 올린다. 거래량이 크게 줄고 빨간 사중손실이 커진다. 탄력적인 시장일수록 세금이 거래를 많이 없앤다. '원가 상승'으로 바꾸면 같은 그림이 지우의 회사가 원가를 과자 값에 얼마나 넘길 수 있는지를 보여 준다. (교육용 모형: 선형 수요·공급, 처음 균형을 가격 50, 거래량 50에 맞췄다. 세금은 생산자에게 매긴다고 두었지만, 소비자에게 매겨도 결과는 같다.)</div>
+    </div>
+
+    <p>마지막 문장이 중요하다. 세금을 파는 사람에게 매기든 사는 사람에게 매기든 결과는 같다. 누가 서류에 서명하는지가 아니라 누가 피하기 어려운지가 부담을 정한다. 기사에서 "세금 인상분은 업계가 흡수하기로", "원가 상승분을 가격에 반영"이라는 말을 보면, 그 시장의 수요가 얼마나 탄력적인지부터 떠올린다.</p>
+
+    <div class="callout link"><strong>물가 전체로 이어지는 길</strong>한 품목의 값이 오르는 것과 물가 전체가 오르는 것은 다르다. 쌀값이 올라도 다른 것이 내리면 물가는 그대로일 수 있다. 장바구니 전체의 값이 지속적으로 오르는 인플레이션과 그것이 월급의 구매력을 깎는 원리는 이 책 <a href="inflation.html">6장 물가</a>와 MoneyBook <a href="https://moneybook.euiyun.com/chapters/inflation.html">물가와 구매력</a>에서 이어진다.</div>
+  </section>
+
+  <section id="board">
+    <h2>시장 종합판: 곡선을 끌고, 정책을 얹고</h2>
+    <p>이제 한 판 위에 모두 올린다. 두 곡선을 직접 끌어 옮기고, 기울기(탄력성)를 바꾸고, 세금과 가격 상한과 정부 비축 방출을 얹는다. 칠해진 면적은 거래에서 생기는 이득이다. 파란 면은 <span class="term">소비자 잉여</span><span class="en">(Consumer surplus)</span>, 곧 낼 용의가 있던 값과 실제로 낸 값의 차이를 모두 더한 것이다. 초록 면은 <span class="term">생산자 잉여</span><span class="en">(Producer surplus)</span>, 받은 값과 만드는 데 든 비용의 차이다. 노란 면은 세수, 빨간 면은 아무에게도 돌아가지 않고 사라진 이득인 <span class="term">사중손실</span><span class="en">(Deadweight loss)</span>이다.</p>
+
+    <div class="sim" id="sim-market">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>시장 종합판: 수요·공급·탄력성·세금·상한·비축 방출</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="mk-cv"></canvas><span class="hint">곡선을 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>수요 기울기(클수록 비탄력) <output id="mk-b-out"></output></span><input type="range" id="mk-b" min="0.3" max="2.5" step="0.1" value="0.8"></label>
+          <label class="ctrl"><span>공급 기울기(클수록 비탄력) <output id="mk-d-out"></output></span><input type="range" id="mk-d" min="0.3" max="2.5" step="0.1" value="0.8"></label>
+          <label class="ctrl"><span>단위당 세금 <output id="mk-t-out"></output></span><input type="range" id="mk-t" min="0" max="40" step="1" value="0"></label>
+          <label class="ctrl"><span>정부 비축 방출(수량) <output id="mk-r-out"></output></span><input type="range" id="mk-r" min="0" max="25" step="1" value="0"></label>
+          <label class="check"><input type="checkbox" id="mk-c"> 가격 상한</label>
+          <label class="ctrl"><span>상한 가격 <output id="mk-p-out"></output></span><input type="range" id="mk-p" min="5" max="100" step="1" value="40"></label>
+          <div class="btn-row"><button class="btn" id="mk-rice">2025 가을 쌀 시장처럼</button><button class="btn" id="mk-re">처음으로</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">소비자 가격 · 생산자 가격</span><span class="v" id="mk-o-p">—</span></div>
+        <div class="stat"><span class="k">거래량 (모자라는 양)</span><span class="v" id="mk-o-q">—</span></div>
+        <div class="stat"><span class="k">소비자 잉여 · 생산자 잉여</span><span class="v" id="mk-o-s">—</span></div>
+        <div class="stat"><span class="k">세수 · 사중손실</span><span class="v" id="mk-o-w">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① '2025 가을 쌀 시장처럼'을 누른다. 수요와 단기 공급이 모두 가파르고 공급이 왼쪽으로 옮겨 값이 높다. 비축 방출을 10까지 올리면 공급 곡선이 오른쪽으로 옮겨 값이 크게 내려간다. 가파른 시장에서는 작은 물량이 값을 크게 움직인다. ② 같은 상태에서 가격 상한을 켜고 50 근처에 둔다. 값은 묶였지만 모자라는 양(빨간 막대)이 생긴다. 상한을 끄고 방출로 값을 낮춘 경우와 비교한다. ③ '처음으로'를 누르고 세금을 40까지 올린 뒤 두 기울기를 0.3으로 낮춘다. 거래가 거의 사라지고 사중손실이 세수보다 커진다. 세금과 상한을 함께 켜면 상한은 소비자가 내는 값에 걸린다. (교육용 모형: 선형 수요 P = a − bQ, 공급 P = c + d(Q − 방출량). 곡선을 끌면 절편이 바뀐다. 잉여는 가격 0 아래를 셈하지 않도록 수치 적분했다. 상한 아래에서는 물건이 가장 원하는 사람부터 돌아간다고 가정했다. 전망이 아니다.)</div>
+    </div>
+
+    <p>종합판을 이리저리 움직이면 이 장의 결론이 한눈에 보인다. 값은 두 곡선이 함께 정하고, 곡선이 가파를수록(탄력성이 작을수록) 같은 충격에 값이 크게 흔들린다. 값을 직접 묶으면 모자람이 생기고, 세금은 피하기 어려운 쪽이 더 많이 내며, 거래를 줄인 만큼 사라지는 이득(사중손실)이 생긴다. 반대로 공급을 옮기는 정책(비축 방출, 수입)은 모자람 없이 값을 낮추지만, 창고의 물량과 나라의 돈이라는 비용을 치른다.</p>
+
+    <div class="callout warn"><strong>숫자는 기준 시점의 값, 시뮬레이터는 교육용</strong>이 장의 쌀값과 생산량은 2025년 10~11월에 발표된 값이며, 산지 쌀값은 조사 시점마다 바뀐다. 시뮬레이터의 곡선과 탄력성은 원리를 보이기 위해 고른 교육용 값이고, 실제 쌀 시장의 탄력성을 추정한 것이 아니다. 실제 쌀값에는 재고, 수입, 정부 수매와 방출의 시기, 유통 마진, 소비 추세가 함께 작용한다. 어떤 품목의 앞날 가격도 전망하지 않는다.</div>
+  </section>
+
+  <div class="casefile">
+    <div class="tag"><b>CASE 지우</b><span>헤드라인 노트 · 2025년 11월</span></div>
+    <div class="headline">10월 소비자물가 2.4% 상승… 쌀은 1년 전보다 21.3% 올라<small>근거: 국가데이터처 「2025년 10월 소비자물가동향」(2025-11-04). 찹쌀 45.5%, 사과 21.6% 상승</small></div>
+    <h4>"쌀값 기사를 곡선으로 다시 그리면, 우리 회사 과자 값은?"</h4>
+    <p>지우는 두 번째 노트 장에 곡선 두 개를 손으로 그렸다. 삼촌의 세 질문부터 적었다. 언제 기준인가: 2025년 10월분, 11월 4일 발표. 무엇과 비교했나: 1년 전 10월(전년동월비). 낮았던 작년 값의 기저가 섞여 있다. 누가 쟀나: 국가데이터처 소비자물가 조사, 소비자 단계의 값. 산지 쌀값은 다른 통계다. 그리고 그림으로 옮겼다. 쌀 소비가 갑자기 늘지 않았으니 수요 곡선은 그대로, 출하 지연과 빠듯한 재고로 공급 곡선이 왼쪽으로. 두 곡선 모두 가파르니 값이 크게 뛰었다. 정부가 8~9월에 빌려준 양곡은 공급 곡선을 잠시 오른쪽으로 되돌리려는 것이었다.</p>
+    <p id="case-calc">—</p>
+    <div class="clue">
+      <div><b>헤드라인이 말한 것</b>쌀값 1년 새 21.3% 상승. 물가 2.4%로 1년 3개월 만에 가장 높다.</div>
+      <div><b>숫자를 다시 보니</b>전년동월비이고 작년 값이 낮았다. 단기 공급이 수직에 가깝고 수요가 비탄력적이라 작은 공급 변화가 큰 값 변화가 된다.</div>
+      <div><b>내 생활에는</b><span id="case-life">—</span></div>
+    </div>
+  </div>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>값은 사려는 쪽(수요)과 팔려는 쪽(공급)이 함께 정한다. 균형보다 비싸면 물건이 남아 값이 내리고, 싸면 모자라 값이 오른다.</li>
+      <li>그 물건의 값이 바뀌면 곡선 위를 움직이고, 소득·대체재 값·날씨·원가·비축 같은 다른 조건이 바뀌면 곡선 자체가 움직인다. 값과 거래량이 같은 방향이면 수요가, 반대 방향이면 공급이 움직였을 가능성이 크다.</li>
+      <li>탄력성이 작은 필수품, 그리고 단기 공급이 고정된 농산물은 작은 충격에도 값이 크게 흔들린다. 수요 탄력성이 1보다 작으면 풍년에 농가 총수입이 준다(풍년의 역설).</li>
+      <li>균형보다 낮은 가격 상한은 품귀와 줄 서기, 암시장을 만든다. 세금과 원가 상승은 덜 탄력적인 쪽, 곧 피하기 어려운 쪽이 더 많이 떠안고, 거래를 줄인 만큼 사중손실이 생긴다.</li>
+      <li>정부 양곡 방출은 공급 곡선을 오른쪽으로, 시장격리는 왼쪽으로 옮긴다. 대여 방식은 지금의 공급을 늘리는 대신 반납 때의 공급을 줄여 값을 시간 위에서 고르게 편다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q"><p>1. 어떤 과일의 값이 올랐는데 거래량은 줄었다. 가장 그럴듯한 원인은?</p>
+        <div class="opts"><button class="opt">소득이 늘어 수요 곡선이 오른쪽으로 옮겼다</button><button class="opt" data-correct>작황이 나빠 공급 곡선이 왼쪽으로 옮겼다</button><button class="opt">대체재 값이 올라 수요 곡선이 오른쪽으로 옮겼다</button><button class="opt">정부가 비축 물량을 풀었다</button></div>
+        <div class="quiz-exp">값이 오르고 거래량이 줄었다면 공급 곡선이 왼쪽으로 옮기고 소비자가 수요 곡선을 따라 올라가며 덜 산 경우다. 수요가 늘었다면 값과 거래량이 함께 오른다. 비축 방출은 값을 내린다.</div></div>
+      <div class="quiz-q"><p>2. 쌀 수요의 가격 탄력성이 0.25라고 하자. 수확이 끝난 뒤 시장에 나올 물량이 5% 줄면 쌀값은 대략 얼마나 오르겠는가?</p>
+        <div class="opts"><button class="opt">약 1.25%</button><button class="opt">약 5%</button><button class="opt" data-correct>약 20%</button><button class="opt">값은 변하지 않는다</button></div>
+        <div class="quiz-exp">공급이 고정되어 있으면 수요량이 5% 줄어야 시장이 맞는다. 탄력성이 0.25이면 값이 5% ÷ 0.25 = 20% 올라야 수요량이 5% 준다(근사). 탄력성이 작을수록 같은 공급 변화에 값이 크게 움직인다.</div></div>
+      <div class="quiz-q"><p>3. 정부가 어떤 생필품 값을 균형 가격보다 크게 낮은 수준에서 묶었다. 그 결과로 가장 알맞은 것은?</p>
+        <div class="opts"><button class="opt" data-correct>사려는 양이 팔려는 양보다 많아 품귀와 줄 서기, 웃돈 거래가 생긴다</button><button class="opt">물건이 남아돌아 재고가 쌓인다</button><button class="opt">거래량이 늘고 모두가 이득을 본다</button><button class="opt">균형 가격보다 낮으면 아무 효과가 없다</button></div>
+        <div class="quiz-exp">균형보다 낮은 상한에서는 수요량이 공급량보다 많다. 실제로 팔리는 양은 공급량으로 줄어들고, 물건을 구하지 못한 사람이 웃돈을 내려 해 암시장이 생긴다. 상한이 균형보다 높을 때만 효과가 없다.</div></div>
+      <div class="quiz-q"><p>4. 담배처럼 수요가 매우 비탄력적이고 공급은 탄력적인 물건에 세금을 올렸다. 세금 부담에 대한 설명으로 알맞은 것은?</p>
+        <div class="opts"><button class="opt">법에 납세자로 적힌 생산자가 대부분을 낸다</button><button class="opt">소비자와 생산자가 반씩 나눈다</button><button class="opt">세금은 정부가 걷으므로 아무도 부담하지 않는다</button><button class="opt" data-correct>대부분이 소비자 가격으로 넘어간다</button></div>
+        <div class="quiz-exp">부담은 덜 탄력적인 쪽, 곧 피하기 어려운 쪽이 더 많이 진다. 소비자 부담 비율은 공급 탄력성 ÷ (공급 탄력성 + 수요 탄력성)이다. 수요가 비탄력적이면 이 비율이 1에 가깝다. 누구에게 매기는지는 결과를 바꾸지 않는다.</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var C = EC.CASE;
+  var f1 = function (x) { return (Math.round(x * 10) / 10).toFixed(1); };
+  var f0 = function (x) { return Math.round(x).toLocaleString("ko-KR"); };
+  var sgn = function (x, d) { d = d == null ? 1 : d; return (x > 0.0005 ? "+" : x < -0.0005 ? "−" : "") + Math.abs(x * 100).toFixed(d) + "%"; };
+  var BOX = function (w, h) { return { x: 48, y: 14, w: w - 62, h: h - 52 }; };
+  function axes(ctx, w, h, o) {
+    o = o || {};
+    return EB.chart(ctx, BOX(w, h), {
+      x: [0, 100], y: [0, 100], xTicks: [0, 20, 40, 60, 80, 100], yTicks: [0, 20, 40, 60, 80, 100],
+      xLabel: o.xl || "수량", yLabel: o.yl || "가격", series: o.series || [], hlines: o.hlines, vlines: o.vlines,
+    });
+  }
+  function poly(ctx, c, pts, fill) {
+    ctx.save(); ctx.beginPath(); ctx.rect(c.box.x, c.box.y, c.box.w, c.box.h); ctx.clip();
+    ctx.beginPath(); pts.forEach(function (p, i) { var x = c.X(p[0]), y = c.Y(Math.max(0, p[1])); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); });
+    ctx.closePath(); ctx.fillStyle = fill; ctx.fill(); ctx.restore();
+  }
+  function dot(ctx, c, q, p, col, r) { ctx.beginPath(); ctx.arc(c.X(q), c.Y(p), r || 5, 0, Math.PI * 2); ctx.fillStyle = col; ctx.fill(); }
+  function label(ctx, x, y, txt, col, align) { ctx.font = EB.font(12, false, 700); ctx.fillStyle = col; ctx.textAlign = align || "left"; ctx.fillText(txt, x, y); }
+  function handle(ctx, x, y, col) {
+    ctx.beginPath(); ctx.arc(x, y, 8, 0, Math.PI * 2); ctx.fillStyle = col; ctx.fill();
+    ctx.lineWidth = 2; ctx.strokeStyle = EB.color("canvas-bg"); ctx.stroke();
+  }
+
+  /* ---------------- sim-price ---------------- */
+  (function () {
+    var a = 90, b = 0.8, c0 = 10, d = 0.8, p = 70, box = null, run = false;
+    var gK = EB.range("pr-k", function (v) { return "× " + v.toFixed(1); });
+    var cv = EB.canvas("#pr-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      var c = axes(ctx, w, h, { series: [
+        { data: [[0, a], [100, a - 100 * b]], color: P.accent, width: 2.6 },
+        { data: [[0, c0], [100, c0 + 100 * d]], color: P.accent2, width: 2.6 },
+      ] });
+      box = c;
+      var qd = EB.clamp((a - p) / b, 0, 100), qs = EB.clamp((p - c0) / d, 0, 100);
+      var y = c.Y(p);
+      ctx.save(); ctx.strokeStyle = P.text; ctx.globalAlpha = 0.5; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(c.box.x, y); ctx.lineTo(c.box.x + c.box.w, y); ctx.stroke(); ctx.restore();
+      var gap = qd - qs, col = gap > 0.5 ? P.bad : gap < -0.5 ? P.warn : P.ok;
+      if (Math.abs(gap) > 0.5) {
+        ctx.strokeStyle = col; ctx.lineWidth = 7; ctx.globalAlpha = 0.75; ctx.beginPath(); ctx.moveTo(c.X(Math.min(qd, qs)), y); ctx.lineTo(c.X(Math.max(qd, qs)), y); ctx.stroke(); ctx.globalAlpha = 1;
+        label(ctx, c.X((qd + qs) / 2), y + (gap > 0 ? 20 : -10), gap > 0 ? "모자람 " + f0(gap) : "남음 " + f0(-gap), col, "center");
+        // 값이 움직일 방향
+        var ax = c.box.x + c.box.w - 24, dir = gap > 0 ? -1 : 1;
+        ctx.strokeStyle = col; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(ax, y); ctx.lineTo(ax, y + dir * 26); ctx.stroke();
+        ctx.fillStyle = col; ctx.beginPath(); ctx.moveTo(ax, y + dir * 32); ctx.lineTo(ax - 6, y + dir * 22); ctx.lineTo(ax + 6, y + dir * 22); ctx.closePath(); ctx.fill();
+      }
+      dot(ctx, c, qd, p, P.accent, 5); dot(ctx, c, qs, p, P.accent2, 5);
+      dot(ctx, c, 50, 50, P.text, 3);
+      ctx.font = EB.font(12, false, 700); ctx.fillStyle = P.accent; ctx.textAlign = "left"; ctx.fillText("수요 D", c.X(4), c.Y(a - 4 * b) - 8);
+      ctx.fillStyle = P.accent2; ctx.fillText("공급 S", c.X(4), c.Y(c0 + 4 * d) - 8);
+      handle(ctx, c.box.x, y, P.text);
+      EB.stat("pr-o-p", f1(p));
+      EB.stat("pr-o-d", f1(qd));
+      EB.stat("pr-o-s", f1(qs));
+      EB.stat("pr-o-x", gap > 0.5 ? '<span class="bad-t">초과수요(품귀)</span>' : gap < -0.5 ? '<span class="warn-t">초과공급(재고)</span>' : '<span class="ok-t">균형</span>');
+    }, { aspect: 0.66, minHeight: 270, maxHeight: 420 });
+    EB.drag(cv.canvas, { start: function () { run = false; }, move: function (x, y) { if (!box) return; p = EB.clamp(EB.map(y, box.box.y + box.box.h, box.box.y, 0, 100), 2, 98); cv.redraw(); } });
+    document.getElementById("pr-go").addEventListener("click", function () { run = true; });
+    document.getElementById("pr-re").addEventListener("click", function () { run = false; p = 70; cv.redraw(); });
+    EB.loop(document.getElementById("sim-price"), function (dt) {
+      if (!run) return;
+      var qd = EB.clamp((a - p) / b, 0, 100), qs = EB.clamp((p - c0) / d, 0, 100);
+      p += (qd - qs) * 0.12 * gK() * dt * 10 * 0.25;
+      if (Math.abs(qd - qs) < 0.05) { p = 50; run = false; }
+      cv.redraw();
+    });
+  })();
+
+  /* ---------------- sim-shift ---------------- */
+  (function () {
+    var b = 0.8, d = 0.8, A0 = 90, C0 = 10, a = A0, c = C0, box = null, which = null;
+    var EV = { base: [90, 10], income: [104, 10], subst: [102, 10], diet: [78, 10], rain: [90, 24], bumper: [90, -4], cost: [90, 22] };
+    var tA = a, tC = c;
+    var gE = EB.seg("sh-ev", function (v) { tA = EV[v][0]; tC = EV[v][1]; });
+    var cv = EB.canvas("#sh-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      var q0 = (A0 - C0) / (b + d), p0 = A0 - b * q0, q = (a - c) / (b + d), p = a - b * q;
+      var k = axes(ctx, w, h, { series: [
+        { data: [[0, A0], [100, A0 - 100 * b]], color: P.faint, width: 1.4, dash: [5, 4] },
+        { data: [[0, C0], [100, C0 + 100 * d]], color: P.faint, width: 1.4, dash: [5, 4] },
+        { data: [[0, a], [100, a - 100 * b]], color: P.accent, width: which === "D" ? 3.6 : 2.6 },
+        { data: [[0, c], [100, c + 100 * d]], color: P.accent2, width: which === "S" ? 3.6 : 2.6 },
+      ] });
+      box = k;
+      ctx.save(); ctx.strokeStyle = P.faint; ctx.setLineDash([3, 3]); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(k.X(q), k.Y(p)); ctx.lineTo(k.X(q), k.Y(0)); ctx.moveTo(k.X(q), k.Y(p)); ctx.lineTo(k.X(0), k.Y(p)); ctx.stroke(); ctx.restore();
+      if (Math.abs(q - q0) + Math.abs(p - p0) > 0.3) {
+        ctx.strokeStyle = P.text; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(k.X(q0), k.Y(p0)); ctx.lineTo(k.X(q), k.Y(p)); ctx.stroke();
+      }
+      dot(ctx, k, q0, p0, P.faint, 4.5); dot(ctx, k, q, p, P.text, 6);
+      // 손잡이: 각 곡선 위
+      var hq = 82, hd = a - b * hq, hs = c + d * 18;
+      handle(ctx, k.X(hq), k.Y(hd), P.accent); handle(ctx, k.X(18), k.Y(hs), P.accent2);
+      ctx.font = EB.font(12, false, 700); ctx.textAlign = "left";
+      ctx.fillStyle = P.accent; ctx.fillText("D", k.X(hq) + 11, k.Y(hd) + 4);
+      ctx.fillStyle = P.accent2; ctx.fillText("S", k.X(18) + 11, k.Y(hs) + 4);
+      var dA = a - A0, dC = c - C0, txt;
+      if (Math.abs(dA) < 0.5 && Math.abs(dC) < 0.5) txt = "변화 없음";
+      else if (Math.abs(dC) < 0.5) txt = "수요 곡선 " + (dA > 0 ? "오른쪽" : "왼쪽") + " 이동 → 공급 곡선 위 이동";
+      else if (Math.abs(dA) < 0.5) txt = "공급 곡선 " + (dC < 0 ? "오른쪽" : "왼쪽") + " 이동 → 수요 곡선 위 이동";
+      else txt = "두 곡선 모두 이동";
+      EB.stat("sh-o-w", txt);
+      EB.stat("sh-o-p", f1(p0) + " → " + f1(p) + " (" + sgn(p / p0 - 1, 0) + ")");
+      EB.stat("sh-o-q", f1(q0) + " → " + f1(q) + " (" + sgn(q / q0 - 1, 0) + ")");
+    }, { aspect: 0.66, minHeight: 270, maxHeight: 420 });
+    EB.drag(cv.canvas, {
+      start: function (x, y) {
+        if (!box) return;
+        var Q = EB.map(x, box.box.x, box.box.x + box.box.w, 0, 100), Pp = EB.map(y, box.box.y + box.box.h, box.box.y, 0, 100);
+        var dd = Math.abs(Pp - (a - b * Q)), ds = Math.abs(Pp - (c + d * Q));
+        which = dd <= ds ? "D" : "S";
+      },
+      move: function (x, y) {
+        if (!box || !which) return;
+        var Q = EB.map(x, box.box.x, box.box.x + box.box.w, 0, 100), Pp = EB.map(y, box.box.y + box.box.h, box.box.y, 0, 100);
+        if (which === "D") { a = tA = EB.clamp(Pp + b * Q, 55, 125); } else { c = tC = EB.clamp(Pp - d * Q, -25, 45); }
+        cv.redraw();
+      },
+      end: function () { which = null; cv.redraw(); },
+    });
+    EB.loop(document.getElementById("sim-shift"), function (dt) {
+      if (which) return;
+      var na = a + (tA - a) * Math.min(1, dt * 6), nc = c + (tC - c) * Math.min(1, dt * 6);
+      if (Math.abs(na - a) + Math.abs(nc - c) > 1e-3) { a = na; c = nc; cv.redraw(); } else if (a !== tA || c !== tC) { a = tA; c = tC; cv.redraw(); }
+    });
+  })();
+
+  /* ---------------- sim-harvest ---------------- */
+  (function () {
+    var gE = EB.range("hv-e", function (v) { return v.toFixed(2); }, draw);
+    var gH = EB.range("hv-h", function (v) { return (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%"; }, draw);
+    var cv = EB.canvas("#hv-cv", function (ctx, w, h) {
+      var P = EB.palette(), e = gE(), H = 100 * (1 + gH() / 100);
+      var price = function (q) { return 100 * Math.pow(q / 100, -1 / e); };
+      var p1 = price(H), rev0 = 100 * 100, rev1 = p1 * H;
+      var pts = []; for (var q = 70; q <= 130.01; q += 0.5) pts.push([q, Math.min(400, price(q))]);
+      var yTop = Math.max(160, Math.min(400, p1 * 1.15));
+      var bw = w > 520 ? 150 : 0;
+      var c = EB.chart(ctx, { x: 48, y: 14, w: w - 62 - bw, h: h - 52 }, {
+        x: [70, 130], y: [0, yTop], xTicks: [70, 80, 90, 100, 110, 120, 130], xLabel: "수량(평년 = 100)", yLabel: "가격(평년 = 100)",
+        series: [{ data: pts, color: P.accent, width: 2.6 }],
+        vlines: [{ x: 100, color: P.faint, label: "평년" }],
+      });
+      // 올해 공급(수직선)
+      ctx.strokeStyle = P.accent2; ctx.lineWidth = 2.6; ctx.beginPath(); ctx.moveTo(c.X(H), c.box.y); ctx.lineTo(c.X(H), c.box.y + c.box.h); ctx.stroke();
+      ctx.font = EB.font(12, false, 700); ctx.fillStyle = P.accent2; ctx.textAlign = "left"; ctx.fillText("올해 수확", c.X(H) + 5, c.box.y + 28);
+      // 수입 사각형
+      poly(ctx, c, [[70, 0], [H, 0], [H, Math.min(p1, yTop)], [70, Math.min(p1, yTop)]], EB.color("accent-2-soft"));
+      ctx.strokeStyle = P.faint; ctx.setLineDash([4, 3]); ctx.lineWidth = 1; ctx.strokeRect(c.X(70), c.Y(100), c.X(100) - c.X(70), c.Y(0) - c.Y(100)); ctx.setLineDash([]);
+      dot(ctx, c, 100, 100, P.faint, 4); if (p1 <= yTop) dot(ctx, c, H, p1, P.text, 6);
+      ctx.fillStyle = P.dim; ctx.font = EB.font(11); ctx.textAlign = "left"; ctx.fillText("칠한 면적 = 값 × 양 = 농가 총수입", c.box.x + 6, c.box.y + c.box.h - 8);
+      if (p1 > yTop) { ctx.fillStyle = P.bad; ctx.font = EB.font(12, false, 700); ctx.fillText("값이 그래프 위로: " + (p1 / 100).toFixed(1) + "배", c.X(H) + 5, c.box.y + 46); }
+      // 오른쪽 막대
+      var r = rev1 / rev0;
+      if (bw) {
+        var x0 = w - bw + 6, by = c.box.y + 10, bh = c.box.h - 30, mx = Math.max(1.6, r * 1.1);
+        ctx.fillStyle = P.dim; ctx.font = EB.font(11.5, false, 600); ctx.textAlign = "center"; ctx.fillText("농가 총수입", x0 + bw / 2 - 8, by);
+        [[1, "평년", P.faint], [r, "올해", r < 1 ? P.bad : P.ok]].forEach(function (it, i) {
+          var hh = Math.min(bh - 20, (it[0] / mx) * (bh - 20)), xx = x0 + 18 + i * 62;
+          ctx.fillStyle = it[2]; ctx.fillRect(xx, by + bh - hh, 40, hh);
+          ctx.fillStyle = P.text; ctx.font = EB.font(11.5, true); ctx.fillText(Math.round(it[0] * 100), xx + 20, by + bh - hh - 5);
+          ctx.fillStyle = P.dim; ctx.font = EB.font(11.5); ctx.fillText(it[1], xx + 20, by + bh + 14);
+        });
+      }
+      EB.stat("hv-o-p", p1 / 100 > 3 ? (p1 / 100).toFixed(1) + "배" : sgn(p1 / 100 - 1, 1));
+      EB.stat("hv-o-q", sgn(H / 100 - 1, 0));
+      EB.stat("hv-o-r", '<span class="' + (r < 0.995 ? "bad-t" : r > 1.005 ? "ok-t" : "") + '">' + (r > 3 ? r.toFixed(1) + "배" : sgn(r - 1, 1)) + "</span>");
+    }, { aspect: 0.6, minHeight: 270, maxHeight: 400 });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-stock ---------------- */
+  (function () {
+    var E = 0.3;
+    var gS = EB.range("st-s", function (v) { return (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%"; }, draw);
+    var gR = EB.range("st-r", function (v) { return v.toFixed(1) + "%"; }, draw);
+    var gM = EB.seg("st-m", draw);
+    var price = function (q) { return 100 * Math.pow(q / 100, -1 / E); };
+    var cv = EB.canvas("#st-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      var Q0 = 100 + gS(), R = gR(), lend = gM() === "lend";
+      var nowBefore = price(Q0), nowAfter = price(Q0 + R), later = price(100 - (lend ? R : 0));
+      var two = w > 460, pw = two ? (w - 20) / 2 : w, ph = two ? h : h / 2;
+      function panel(ox, oy, title, qA, qB, pA, pB, colB) {
+        var pts = []; for (var q = 80; q <= 115.01; q += 0.5) pts.push([q, price(q)]);
+        var c = EB.chart(ctx, { x: ox + 44, y: oy + 26, w: pw - 58, h: ph - 64 }, {
+          x: [80, 115], y: [40, 220], xTicks: [80, 90, 100, 110], yTicks: [50, 100, 150, 200], xLabel: "시장 물량", yLabel: two ? "값(평년 = 100)" : "",
+          series: [{ data: pts, color: P.accent, width: 2.4 }], hlines: [{ y: 100, color: P.faint }],
+        });
+        ctx.fillStyle = P.text; ctx.font = EB.font(12.5, false, 700); ctx.textAlign = "left"; ctx.fillText(title, ox + 48, oy + 16);
+        ctx.strokeStyle = P.faint; ctx.setLineDash([4, 3]); ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(c.X(qA), c.box.y); ctx.lineTo(c.X(qA), c.box.y + c.box.h); ctx.stroke(); ctx.setLineDash([]);
+        ctx.strokeStyle = colB; ctx.lineWidth = 2.6; ctx.beginPath(); ctx.moveTo(c.X(qB), c.box.y); ctx.lineTo(c.X(qB), c.box.y + c.box.h); ctx.stroke();
+        dot(ctx, c, qA, Math.min(220, pA), P.faint, 4.5); dot(ctx, c, qB, Math.min(220, pB), P.text, 6);
+        if (Math.abs(qB - qA) > 0.3) {
+          var yy = c.box.y + 14; ctx.strokeStyle = colB; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(c.X(qA), yy); ctx.lineTo(c.X(qB), yy); ctx.stroke();
+          var dir = qB > qA ? 1 : -1; ctx.fillStyle = colB; ctx.beginPath(); ctx.moveTo(c.X(qB), yy); ctx.lineTo(c.X(qB) - dir * 7, yy - 4); ctx.lineTo(c.X(qB) - dir * 7, yy + 4); ctx.closePath(); ctx.fill();
+        }
+        ctx.fillStyle = P.text; ctx.font = EB.font(12, true, 600); ctx.textAlign = "left";
+        ctx.fillText(f0(pA) + " → " + f0(pB), c.X(qB) + 8, c.Y(Math.min(210, pB)) + 4);
+      }
+      panel(0, 0, "지금(햅쌀 출하 전)", Q0, Q0 + R, nowBefore, nowAfter, P.ok);
+      panel(two ? pw + 20 : 0, two ? 0 : ph, lend ? "반납하는 때(수확 뒤)" : "나중(반납 없음)", 100, 100 - (lend ? R : 0), 100, later, lend ? P.bad : P.faint);
+      EB.stat("st-o-n", f0(nowBefore) + " → " + f0(nowAfter) + " (" + sgn(nowAfter / nowBefore - 1, 0) + ")");
+      EB.stat("st-o-l", f0(later) + (lend && R > 0 ? " (평년보다 " + sgn(later / 100 - 1, 0) + ")" : " (평년)"));
+      EB.stat("st-o-g", lend ? "빌려준 만큼 나중에 돌아옴" : "방출한 " + R.toFixed(1) + "%만큼 줄어듦");
+    }, { aspect: 0.5, minHeight: 300, maxHeight: 400 });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-ceiling ---------------- */
+  (function () {
+    var c0 = 10, d = 0.8, pc = 40, box = null;
+    var gD = EB.seg("ce-d", draw);
+    var cv = EB.canvas("#ce-cv", function (ctx, w, h) {
+      var P = EB.palette(), b = +gD(), a = 50 + 50 * b;   // 균형을 (50, 50)에 맞춘다
+      var r = EC.market({ a: a, b: b, c: c0, d: d, ceiling: pc });
+      var k = axes(ctx, w, h, { series: [
+        { data: [[0, a], [100, a - 100 * b]], color: P.accent, width: 2.6 },
+        { data: [[0, c0], [100, c0 + 100 * d]], color: P.accent2, width: 2.6 },
+      ] });
+      box = k;
+      var q = r.q, binding = r.shortage > 0 || pc < 50;
+      // 잉여 면적
+      poly(ctx, k, [[0, a], [q, a - b * q], [q, r.pBuyer], [0, r.pBuyer]], EB.color("accent-soft"));
+      poly(ctx, k, [[0, c0], [q, c0 + d * q], [q, r.pSeller], [0, r.pSeller]], EB.color("ok-soft"));
+      if (binding && q < 50) poly(ctx, k, [[q, a - b * q], [50, 50], [q, c0 + d * q]], EB.color("bad-soft"));
+      // 상한선
+      var y = k.Y(pc);
+      ctx.strokeStyle = binding ? P.bad : P.faint; ctx.lineWidth = 2; ctx.setLineDash([6, 4]); ctx.beginPath(); ctx.moveTo(k.box.x, y); ctx.lineTo(k.box.x + k.box.w, y); ctx.stroke(); ctx.setLineDash([]);
+      label(ctx, k.box.x + k.box.w - 4, y - 6, "가격 상한 " + f0(pc), binding ? P.bad : P.dim, "right");
+      handle(ctx, k.box.x, y, P.bad);
+      if (r.shortage > 0.3) {
+        ctx.strokeStyle = P.bad; ctx.lineWidth = 6; ctx.globalAlpha = 0.8; ctx.beginPath(); ctx.moveTo(k.X(r.qs), y + 10); ctx.lineTo(k.X(r.qd), y + 10); ctx.stroke(); ctx.globalAlpha = 1;
+        label(ctx, k.X((r.qs + r.qd) / 2), y + 28, "모자람 " + f0(r.shortage), P.bad, "center");
+        // 줄 선 사람
+        var n = Math.min(24, Math.round(r.shortage / 3)); ctx.fillStyle = P.dim;
+        var qy = k.box.y + k.box.h - 12;
+        for (var i = 0; i < n; i++) { ctx.beginPath(); ctx.arc(k.box.x + k.box.w - 10 - (i % 12) * 10, qy - Math.floor(i / 12) * 11, 3.2, 0, Math.PI * 2); ctx.fill(); }
+        if (n) { ctx.font = EB.font(11); ctx.textAlign = "right"; ctx.fillText("줄 선 사람", k.box.x + k.box.w - 10, qy - 26); }
+        var bm = a - b * r.qs;
+        dot(ctx, k, r.qs, bm, P.warn, 5);
+        ctx.strokeStyle = P.warn; ctx.setLineDash([3, 3]); ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(k.X(r.qs), k.Y(bm)); ctx.lineTo(k.X(r.qs), y); ctx.stroke(); ctx.setLineDash([]);
+        label(ctx, k.X(r.qs) + 8, k.Y(bm) - 4, "암시장 " + f0(bm), P.warn);
+      }
+      dot(ctx, k, 50, 50, P.faint, 3.5);
+      EB.stat("ce-o-p", f0(pc) + (binding ? "" : " (효과 없음)"));
+      EB.stat("ce-o-q", f1(r.qd) + " · " + f1(r.q));
+      EB.stat("ce-o-s", r.shortage > 0 ? '<span class="bad-t">' + f1(r.shortage) + "</span>" : "0");
+      EB.stat("ce-o-b", r.shortage > 0 ? f0(a - b * r.qs) + " (상한의 " + ((a - b * r.qs) / pc).toFixed(1) + "배)" : "—");
+    }, { aspect: 0.66, minHeight: 270, maxHeight: 420 });
+    EB.drag(cv.canvas, { move: function (x, y) { if (!box) return; pc = Math.round(EB.clamp(EB.map(y, box.box.y + box.box.h, box.box.y, 0, 100), 11, 95)); cv.redraw(); } });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-tax ---------------- */
+  (function () {
+    var gT = EB.range("tx-t", function (v) { return f0(v); }, draw);
+    var gD = EB.seg("tx-d", draw), gS = EB.seg("tx-s", draw), gM = EB.seg("tx-m", draw);
+    var cv = EB.canvas("#tx-cv", function (ctx, w, h) {
+      var P = EB.palette(), b = +gD(), d = +gS(), t = gT(), cost = gM() === "cost";
+      var a = 50 + 50 * b, c0 = 50 - 50 * d;
+      var r = EC.market({ a: a, b: b, c: c0, d: d, tax: t });
+      var k = axes(ctx, w, h, { series: [
+        { data: [[0, a], [100, a - 100 * b]], color: P.accent, width: 2.6 },
+        { data: [[0, c0], [100, c0 + 100 * d]], color: P.accent2, width: 2.6 },
+        { data: [[0, c0 + t], [100, c0 + t + 100 * d]], color: P.accent2, width: 1.8, dash: [6, 4] },
+      ] });
+      var q = r.q;
+      poly(ctx, k, [[0, r.pSeller], [q, r.pSeller], [q, r.pBuyer], [0, r.pBuyer]], EB.color("warn-soft"));
+      poly(ctx, k, [[q, r.pBuyer], [50, 50], [q, r.pSeller]], EB.color("bad-soft"));
+      ctx.strokeStyle = P.text; ctx.lineWidth = 1; ctx.setLineDash([3, 3]);
+      ctx.beginPath(); ctx.moveTo(k.X(0), k.Y(50)); ctx.lineTo(k.X(50), k.Y(50)); ctx.stroke(); ctx.setLineDash([]);
+      dot(ctx, k, q, r.pBuyer, P.accent, 5.5); dot(ctx, k, q, r.pSeller, P.accent2, 5.5); dot(ctx, k, 50, 50, P.faint, 3.5);
+      // 부담 막대(왼쪽 축 옆)
+      var bx = k.X(0) + 6;
+      ctx.fillStyle = P.accent; ctx.globalAlpha = 0.85; ctx.fillRect(bx, k.Y(r.pBuyer), 10, k.Y(50) - k.Y(r.pBuyer));
+      ctx.fillStyle = P.accent2; ctx.fillRect(bx, k.Y(50), 10, k.Y(r.pSeller) - k.Y(50)); ctx.globalAlpha = 1;
+      if (k.Y(50) - k.Y(r.pBuyer) > 13) label(ctx, bx + 16, (k.Y(r.pBuyer) + k.Y(50)) / 2 + 4, "소비자 몫", P.accent);
+      if (k.Y(r.pSeller) - k.Y(50) > 13) label(ctx, bx + 16, (k.Y(50) + k.Y(r.pSeller)) / 2 + 4, "생산자 몫", P.accent2);
+      if (t > 0 && q > 0) label(ctx, k.X(q) + 8, k.Y(r.pBuyer) - 8, cost ? "늘어난 원가(노란 면)" : "세수(노란 면)", P.warn);
+      ctx.font = EB.font(11.5, false, 600); ctx.fillStyle = P.accent2; ctx.textAlign = "right";
+      ctx.fillText(cost ? "원가가 오른 공급" : "세금을 얹은 공급", k.box.x + k.box.w - 4, Math.max(k.box.y + 12, k.Y(Math.min(98, c0 + t + 100 * d)) + 14));
+      var share = t > 0 && r.q > 0 ? (r.pBuyer - 50) / t : b / (b + d);
+      EB.stat("tx-o-b", f1(r.pBuyer) + " (" + (r.pBuyer >= 50 ? "+" : "") + f1(r.pBuyer - 50) + ")");
+      EB.stat("tx-o-s", f1(r.pSeller) + " (" + (r.pSeller >= 50 ? "+" : "−") + f1(Math.abs(r.pSeller - 50)) + ")");
+      EB.stat("tx-o-r", Math.round(share * 100) + "%");
+      EB.stat("tx-o-w", f0(r.taxRevenue) + " · " + '<span class="bad-t">' + f0(r.dwl) + "</span>");
+    }, { aspect: 0.66, minHeight: 270, maxHeight: 420 });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-market (대표) ---------------- */
+  (function () {
+    var sD = 0, sS = 0, box = null, which = null;
+    var gB = EB.range("mk-b", function (v) { return v.toFixed(1); }, draw);
+    var gDd = EB.range("mk-d", function (v) { return v.toFixed(1); }, draw);
+    var gT = EB.range("mk-t", function (v) { return f0(v); }, draw);
+    var gR = EB.range("mk-r", function (v) { return f0(v); }, draw);
+    var gP = EB.range("mk-p", function (v) { return f0(v); }, draw);
+    var chk = document.getElementById("mk-c");
+    chk.addEventListener("change", draw);
+    function params() {
+      var b = gB(), d = gDd(), R = gR();
+      var a = 50 + b * (50 + sD);            // 수요는 (50 + sD, 50)을 지난다
+      var c = 50 - d * (50 + sS);            // 공급은 (50 + sS, 50)을 지난다
+      return { a: a, b: b, c: c, d: d, R: R, cE: c - d * R, tax: gT(), ceil: chk.checked ? gP() : null };
+    }
+    function solve(m) {
+      var MV = function (x) { return Math.max(0, m.a - m.b * x); }, MC = function (x) { return Math.max(0, m.cE + m.d * x); };
+      var q0 = EB.clamp((m.a - m.cE) / (m.b + m.d), 0, 200);
+      var q = EB.clamp((m.a - m.cE - m.tax) / (m.b + m.d), 0, 200), pB = m.a - m.b * q, pS = pB - m.tax, qd = q, qs = q, short = 0;
+      if (m.ceil != null && m.ceil < pB) {
+        pB = m.ceil; pS = m.ceil - m.tax; qd = Math.max(0, (m.a - pB) / m.b); qs = Math.max(0, (pS - m.cE) / m.d); q = Math.min(qd, qs); short = Math.max(0, qd - qs);
+      }
+      function integ(f, x1) { var n = 300, s = 0, dx = x1 / n; for (var i = 0; i < n; i++) s += f((i + 0.5) * dx) * dx; return s; }
+      var total0 = integ(function (x) { return MV(x) - MC(x); }, q0);
+      var cs = integ(function (x) { return MV(x) - pB; }, q), ps = integ(function (x) { return pS - MC(x); }, q), tr = m.tax * q;
+      return { q0: q0, q: q, pB: pB, pS: pS, qd: qd, qs: qs, short: short, cs: cs, ps: ps, tr: tr, dwl: Math.max(0, total0 - cs - ps - tr), MC: MC };
+    }
+    var cv = EB.canvas("#mk-cv", function (ctx, w, h) {
+      var P = EB.palette(), m = params(), r = solve(m);
+      var series = [
+        { data: [[0, m.a], [100, m.a - 100 * m.b]], color: P.accent, width: which === "D" ? 3.6 : 2.6 },
+        { data: [[0, m.cE], [100, m.cE + 100 * m.d]], color: P.accent2, width: which === "S" ? 3.6 : 2.6 },
+      ];
+      if (m.R > 0) series.push({ data: [[0, m.c], [100, m.c + 100 * m.d]], color: P.accent2, width: 1.4, dash: [5, 4] });
+      if (m.tax > 0) series.push({ data: [[0, m.cE + m.tax], [100, m.cE + m.tax + 100 * m.d]], color: P.warn, width: 1.6, dash: [6, 4] });
+      var k = axes(ctx, w, h, { series: series });
+      box = k;
+      var q = r.q;
+      // 면적(수치로 그린 다각형)
+      var csPts = [[0, r.pB]], psPts = [[0, r.pS]], n = 40, i, x;
+      for (i = 0; i <= n; i++) { x = q * i / n; csPts.push([x, Math.max(r.pB, m.a - m.b * x)]); }
+      csPts.push([q, r.pB]);
+      for (i = 0; i <= n; i++) { x = q * i / n; psPts.push([x, Math.min(r.pS, r.MC(x))]); }
+      psPts.push([q, r.pS]);
+      poly(ctx, k, csPts, EB.color("accent-soft"));
+      poly(ctx, k, psPts, EB.color("ok-soft"));
+      if (m.tax > 0) poly(ctx, k, [[0, r.pS], [q, r.pS], [q, r.pB], [0, r.pB]], EB.color("warn-soft"));
+      if (r.q0 - q > 0.3) {
+        var dw = [];
+        for (i = 0; i <= n; i++) { x = q + (r.q0 - q) * i / n; dw.push([x, m.a - m.b * x]); }
+        for (i = n; i >= 0; i--) { x = q + (r.q0 - q) * i / n; dw.push([x, r.MC(x)]); }
+        poly(ctx, k, dw, EB.color("bad-soft"));
+      }
+      if (m.ceil != null) {
+        var y = k.Y(m.ceil), bind = r.short > 0 || m.ceil < r.pB + 1e-9;
+        ctx.strokeStyle = P.bad; ctx.lineWidth = 1.8; ctx.setLineDash([6, 4]); ctx.beginPath(); ctx.moveTo(k.box.x, y); ctx.lineTo(k.box.x + k.box.w, y); ctx.stroke(); ctx.setLineDash([]);
+        label(ctx, k.box.x + k.box.w - 4, y - 6, "상한 " + f0(m.ceil), P.bad, "right");
+        if (r.short > 0.3) {
+          ctx.strokeStyle = P.bad; ctx.lineWidth = 6; ctx.globalAlpha = 0.8; ctx.beginPath(); ctx.moveTo(k.X(Math.min(100, r.qs)), y + 9); ctx.lineTo(k.X(Math.min(100, r.qd)), y + 9); ctx.stroke(); ctx.globalAlpha = 1;
+        }
+      }
+      dot(ctx, k, q, r.pB, P.text, 5.5);
+      if (m.tax > 0) dot(ctx, k, q, r.pS, P.accent2, 4.5);
+      // 손잡이
+      var hq = 84, hd = m.a - m.b * hq, hs = m.cE + m.d * 14;
+      if (hd > 2 && hd < 98) handle(ctx, k.X(hq), k.Y(hd), P.accent);
+      if (hs > 2 && hs < 98) handle(ctx, k.X(14), k.Y(hs), P.accent2);
+      ctx.font = EB.font(11); ctx.textAlign = "left";
+      var lg = [["소비자 잉여", "accent-soft"], ["생산자 잉여", "ok-soft"], ["세수", "warn-soft"], ["사중손실", "bad-soft"]], lx = k.box.x + 8, ly = k.box.y + 8;
+      lg.forEach(function (l, j) { ctx.fillStyle = EB.color(l[1]); ctx.fillRect(lx + (j % 2) * 84, ly + Math.floor(j / 2) * 15, 10, 10); ctx.fillStyle = P.dim; ctx.fillText(l[0], lx + 14 + (j % 2) * 84, ly + 9 + Math.floor(j / 2) * 15); });
+      EB.stat("mk-o-p", f1(r.pB) + " · " + f1(r.pS));
+      EB.stat("mk-o-q", f1(q) + (r.short > 0.05 ? ' <span class="bad-t">(' + f1(r.short) + ")</span>" : ""));
+      EB.stat("mk-o-s", f0(r.cs) + " · " + f0(r.ps));
+      EB.stat("mk-o-w", f0(r.tr) + " · " + '<span class="bad-t">' + f0(r.dwl) + "</span>");
+    }, { aspect: 0.72, minHeight: 300, maxHeight: 480 });
+    EB.drag(cv.canvas, {
+      start: function (x, y) {
+        if (!box) return; var m = params();
+        var Q = EB.map(x, box.box.x, box.box.x + box.box.w, 0, 100), Pp = EB.map(y, box.box.y + box.box.h, box.box.y, 0, 100);
+        which = Math.abs(Pp - (m.a - m.b * Q)) <= Math.abs(Pp - (m.cE + m.d * Q)) ? "D" : "S";
+      },
+      move: function (x, y) {
+        if (!box || !which) return; var m = params();
+        var Q = EB.map(x, box.box.x, box.box.x + box.box.w, 0, 100), Pp = EB.map(y, box.box.y + box.box.h, box.box.y, 0, 100);
+        if (which === "D") sD = EB.clamp(Q + (Pp - 50) / m.b - 50, -35, 35);
+        else sS = EB.clamp(Q - (Pp - 50) / m.d - 50 - m.R, -35, 35);
+        cv.redraw();
+      },
+      end: function () { which = null; cv.redraw(); },
+    });
+    document.getElementById("mk-rice").addEventListener("click", function () { sD = 0; sS = -8; chk.checked = false; gB.set(2.2); gDd.set(2.5); gT.set(0); gR.set(0); gP.set(50); });
+    document.getElementById("mk-re").addEventListener("click", function () { sD = 0; sS = 0; chk.checked = false; gB.set(0.8); gDd.set(0.8); gT.set(0); gR.set(0); gP.set(40); });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- 케이스 ---------------- */
+  (function () {
+    // 교육용 가정: 쌀에 쓰던 돈, 원가 구성
+    var riceSpend = 30000, riceUp = 0.213;
+    var wheatShare = 0.2, wheatUp = 0.10, costUp = wheatShare * wheatUp;     // 원가의 20%가 밀, 밀값 10% 상승 → 원가 2%
+    var shareInel = 0.8 / (0.8 + 0.3), shareEl = 0.3 / (0.3 + 2.0);           // sim-tax의 탄력성 조합으로 계산한 소비자 몫
+    document.getElementById("case-calc").innerHTML = "그다음은 일이었다. 지우의 회사는 밀가루와 설탕을 사서 과자와 빵을 만든다. 원가표의 숫자로 가정해 보았다. 원가에서 밀이 차지하는 몫을 " + Math.round(wheatShare * 100) + "%라고 하면, 밀값이 " + Math.round(wheatUp * 100) + "% 오를 때 원가는 " + (costUp * 100).toFixed(0) + "% 오른다. 이 가운데 얼마를 과자 값에 얹을 수 있는가는 이 장의 귀착 공식이 답한다. 이 책의 시뮬레이터 기울기로 계산하면, 손님이 쉽게 다른 간식으로 옮기지 않는 스테디셀러(수요 보통·공급 탄력)라면 원가 상승분의 약 <b>" + Math.round(shareInel * 100) + "%</b>를, 비슷한 제품이 많은 신제품(수요 탄력·공급 비탄력)이라면 약 <b>" + Math.round(shareEl * 100) + "%</b>만 값에 넘길 수 있다. 나머지는 회사의 이익이 깎인다. 영업팀이 제품마다 다른 인상률을 내미는 이유를 처음으로 이해했다. (모든 수치는 교육용 가정이다.)";
+    document.getElementById("case-life").textContent = "한 달에 쌀값으로 " + EB.won(riceSpend) + "을 쓴다고 가정하면 21.3% 상승은 월 약 " + EB.won(riceSpend * riceUp) + "이다. 월 저축 여력 " + EB.won(C.monthlySaving) + "에 비하면 작지만, 회사 원가에서는 같은 원리가 훨씬 큰 숫자가 된다.";
+  })();
+})();
+</script>
+</body>
+</html>

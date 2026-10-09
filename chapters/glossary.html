@@ -1,0 +1,291 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and EconomicsBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "GDP·산출 갭·근원물가·수익률 곡선·테일러 준칙·경상수지·관리재정수지·DSR까지, 경제 기사에 자주 나오는 용어를 한국어·영어·초성으로 검색하고 여섯 부로 걸러 본다. 헤드라인 해독 연습과 20문항 종합 퀴즈로 책 전체를 점검한다."}-->
+<!--head:end-->
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"3d6151a0abc94ede89285d462527fa80"}'></script>
+<!-- End Cloudflare Web Analytics -->
+<style>
+  .jump { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 16px; font-size: 15px; }
+  .gl-tools { display: grid; gap: 10px; margin-bottom: 14px; }
+  .gl-tools .row { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+  .gl-tools .cap { font-size: 13px; color: var(--text-dim); }
+  .gl-tools .seg { flex-wrap: wrap; }
+  .gl-tools .seg button { font-size: 12.5px; padding: 4px 9px; }
+  .gl-search { margin-bottom: 0 !important; width: 100%; box-sizing: border-box; }
+  .gl-count { font-size: 13px; color: var(--text-faint); margin-left: auto; font-family: var(--mono); }
+  .gl-cho { display: flex; flex-wrap: wrap; gap: 4px; }
+  .gl-cho button { font: inherit; font-size: 13px; min-width: 30px; height: 30px; padding: 0 6px; border-radius: 7px; border: 1px solid var(--border); background: var(--bg-elev); color: var(--text); cursor: pointer; }
+  .gl-cho button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .gl-cho button:disabled { opacity: .3; cursor: default; }
+  #gl-list { max-height: min(76vh, 960px); overflow-y: auto; overscroll-behavior: contain; padding: 2px 6px 2px 2px; border-radius: 12px; }
+  .gl-group { position: sticky; top: 0; z-index: 1; background: var(--bg); font-weight: 700; font-size: 13px; color: var(--accent); letter-spacing: .04em; margin: 14px 0 0; padding: 4px 0; border-bottom: 1px solid var(--border); }
+  .gl-group:first-child { margin-top: 0; }
+  .gl-item h4 { overflow-wrap: anywhere; }
+  .gl-item .cat { font-size: 11.5px; padding: 1px 8px; border-radius: 999px; background: var(--surface); color: var(--text-dim); margin-right: 10px; }
+  .gl-item mark { background: color-mix(in srgb, var(--warn) 35%, transparent); color: inherit; border-radius: 3px; padding: 0 1px; }
+  .gl-empty { padding: 24px; text-align: center; color: var(--text-dim); border: 1px dashed var(--border); border-radius: 12px; }
+  .fq-status { position: sticky; top: calc(var(--nav-h) + 6px); z-index: 3; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; padding: 10px 16px; margin-bottom: 16px; border-radius: 12px; background: color-mix(in srgb, var(--bg-elev) 92%, transparent); border: 1px solid var(--border); box-shadow: var(--shadow); backdrop-filter: blur(8px); font-size: 14px; color: var(--text-dim); }
+  .fq-status b { font-family: var(--mono); color: var(--text); }
+  .fq-bar { flex: 1 1 120px; height: 6px; background: var(--surface-2, var(--surface)); border-radius: 3px; overflow: hidden; }
+  .fq-bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width .3s ease; }
+  .quiz-q .qch { display: block; font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: .03em; margin-bottom: 4px; }
+  .quiz-q .quiz-exp a { font-weight: 600; }
+  .quiz-q .hl-ex { display: block; font-size: 17px; font-weight: 800; margin: 6px 0 4px; line-height: 1.45; }
+  .quiz-q .hl-ex small { display: block; font-size: 12px; font-weight: 500; color: var(--text-faint); margin-top: 2px; }
+  .fq-result { margin-top: 20px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px 20px; text-align: center; }
+  .fq-rank { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; color: var(--text-faint); font-weight: 700; }
+  .fq-title { font-size: clamp(22px, 5vw, 30px); font-weight: 800; letter-spacing: -0.02em; margin: 4px 0; color: var(--accent); }
+  .fq-big { font-family: var(--mono); font-size: 40px; font-weight: 700; }
+  .fq-big small { font-size: 18px; color: var(--text-dim); }
+  .fq-dots { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; margin: 14px 0; }
+  .fq-dots a { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--text); border: 1px solid var(--border); text-decoration: none; }
+  .fq-dots a.ok { background: color-mix(in srgb, var(--ok) 22%, transparent); border-color: var(--ok); }
+  .fq-dots a.bad { background: color-mix(in srgb, var(--bad) 18%, transparent); border-color: var(--bad); }
+  .fq-weak { text-align: left; display: grid; gap: 6px; margin: 0 0 16px; padding: 0; list-style: none; }
+  .fq-weak li { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; padding: 8px 12px; border-radius: 8px; background: var(--surface); font-size: 14px; margin: 0 !important; }
+  .fq-weak li a { font-weight: 700; }
+  .fq-weak li span { color: var(--text-dim); }
+  .dc-score { font-size: 14px; color: var(--text-dim); margin: 0 0 12px; }
+  .dc-score b { font-family: var(--mono); color: var(--text); }
+  .after-list { display: grid; gap: 8px; padding: 0; list-style: none; }
+  .after-list li { padding: 10px 14px; border-radius: 10px; background: var(--surface); margin: 0 !important; }
+  .after-list li b { color: var(--accent); }
+</style>
+</head>
+<body data-chapter="glossary">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 15</div>
+    <h1>용어집 &amp; 종합 퀴즈</h1>
+    <p class="lead">경제 기사는 짧은 말에 많은 뜻을 싣는다. 전기 대비, 연율, 속보치, 산출 갭, 근원물가, 수익률 곡선, 매파, 빅스텝, 관리재정수지, 본원소득수지, DSR. 단어 하나를 잘못 읽으면 숫자 전체를 거꾸로 읽게 된다. 이 장은 1장부터 14장까지 흩어진 용어를 한곳에 모은 사전이고, 헤드라인을 해독하는 연습이고, 책 전체를 점검하는 종합 퀴즈다.</p>
+    <ul class="objectives">
+      <li>한국어·영어·초성 어느 쪽으로든 경제 용어를 찾아 뜻을 읽고, 그 용어를 풀어 쓴 장으로 바로 이동한다.</li>
+      <li>시장·경기·돈과 금리·바깥 세계·정부·위기 여섯 부로 용어를 걸러 보며 책의 큰 그림을 다시 그린다.</li>
+      <li>헤드라인에서 빠진 기준 시점·비교 기준·출처를 찾아내는 연습을 한다.</li>
+      <li>20문항 종합 퀴즈(계산 문제 포함)로 스스로를 점검하고, 틀린 문제의 장을 다시 본다.</li>
+    </ul>
+    <p class="jump"><a href="#glossary">→ 용어집</a><a href="#decode">→ 헤드라인 해독</a><a href="#quiz">→ 종합 퀴즈</a><a href="#after">→ 이 책을 다 읽은 뒤</a></p>
+  </header>
+
+  <section id="glossary">
+    <h2>용어집</h2>
+    <p>검색창에 한국어(예: <code>근원물가</code>), 영어(예: <code>output gap</code>), 또는 초성(예: <code>ㅅㅊㄱ</code> → 산출 갭)을 넣으면 바로 걸러진다. 부분만 맞아도 찾고, 정의 본문도 검색한다. 이름이 맞는 용어가 먼저 나오고, 정의에서만 찾은 용어는 그 아래에 따로 모인다. 분야 버튼으로 책의 여섯 부별로 걸러 볼 수 있다. 분야는 그 용어를 풀어 쓴 장의 부를 따르고, 부가 없는 1장과 14장의 용어는 내용에 맞는 부에 넣었다. 각 용어의 장 링크를 누르면 그 용어를 처음 풀어 쓴 장으로 간다.</p>
+    <div class="gl-tools">
+      <input type="search" class="gl-search" id="gl-q" placeholder="용어 검색: 예) 연율, yield curve, ㄱㅊㄹ" autocomplete="off" aria-label="용어 검색">
+      <div class="row">
+        <span class="cap">분야</span>
+        <div class="seg" id="gl-cat">
+          <button data-value="all" class="on">전체</button>
+          <button data-value="m">시장</button>
+          <button data-value="e">경기</button>
+          <button data-value="r">돈과 금리</button>
+          <button data-value="w">바깥 세계</button>
+          <button data-value="s">정부</button>
+          <button data-value="c">위기</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="cap">정렬</span>
+        <div class="seg" id="gl-sort"><button data-value="kor" class="on">가나다순</button><button data-value="ch">장 순서</button></div>
+        <span class="gl-count" id="gl-count"></span>
+      </div>
+      <div class="gl-cho" id="gl-cho" aria-label="초성으로 건너뛰기"></div>
+    </div>
+    <div class="gl-list" id="gl-list" aria-live="polite"></div>
+    <div class="callout warn"><strong>정의는 바뀌지 않아도 숫자와 제도는 바뀐다</strong>용어의 뜻은 오래 가지만, 그 용어로 발표되는 숫자는 기준 시점의 값이고 수정된다. GDP는 속보치에서 잠정치·확정치로 고쳐지고, 기준년이 바뀌면 과거 시계열까지 다시 계산된다. 물가지수의 장바구니와 가중치는 몇 년마다 개편되고, 대출 규제(LTV·DSR)와 예금자보호 한도 같은 제도의 수치는 법령과 감독 규정으로 바뀐다. 2025년 정부조직 개편으로 통계청은 국가데이터처, 기획재정부는 재정경제부(예산은 기획예산처)가 되었다. 기사를 읽을 때는 용어집의 정의와 함께 그 숫자를 낸 기관의 최신 발표를 확인한다.</div>
+  </section>
+
+  <section id="decode">
+    <h2>헤드라인 해독</h2>
+    <p>백정호의 세 질문을 마지막으로 연습한다. 아래 여섯 문장은 이 책이 공식 발표의 숫자를 가지고 일부러 한 가지씩 빼먹고 쓴 예시 헤드라인이다. 실제 기사 제목이 아니다. 각 문장에서 빠진 것이 기준 시점(언제)인지, 비교 기준(무엇과)인지, 출처와 성격(누가, 실적인지 전망인지)인지 고른다. 숫자의 출처와 기준 시점은 해설에 적었다.</p>
+    <p class="dc-score" id="dc-score">맞힌 수 <b>0</b> / <b>6</b></p>
+    <div class="quiz" id="dc">
+      <div class="quiz-q">
+        <p><span class="qch">예시 1 · 이 책이 만든 문장</span>다음 헤드라인에서 가장 먼저 채워야 할 것은?<span class="hl-ex">"수출 1,209억 달러, 사상 최대"<small>예시 헤드라인(실제 기사 아님)</small></span></p>
+        <div class="opts"><button class="opt" data-correct>기준 시점: 어느 기간의 수출인가</button><button class="opt">비교 기준: 무엇과 비교했나</button><button class="opt">출처: 누가 쟀나, 실적인가 전망인가</button><button class="opt">빠진 것이 없다</button></div>
+        <div class="quiz-exp">1,209억 달러는 1년치가 아니라 2026년 9월 한 달의 수출이다(산업통상부 「2026년 9월 수출입 동향」, 2026-10-01). "사상 최대"도 월간 기준이다. 한 해 수출은 7,000억 달러대이므로, 기간이 빠지면 숫자의 크기를 전혀 가늠할 수 없다. <a href="trade.html">→ 11장 복습</a></div>
+      </div>
+      <div class="quiz-q">
+        <p><span class="qch">예시 2 · 이 책이 만든 문장</span>다음 헤드라인에서 가장 먼저 채워야 할 것은?<span class="hl-ex">"9월 소비자물가 2.9% 올라"<small>예시 헤드라인(실제 기사 아님)</small></span></p>
+        <div class="opts"><button class="opt">기준 시점: 어느 기간의 물가인가</button><button class="opt">출처: 누가 쟀나</button><button class="opt" data-correct>비교 기준: 전월 대비인가, 전년 같은 달 대비인가</button><button class="opt">빠진 것이 없다</button></div>
+        <div class="quiz-exp">2.9%는 2025년 9월과 비교한 전년동월비다. 같은 발표에서 8월 대비(전월비) 상승률은 0.3%였다(국가데이터처 「2026년 9월 소비자물가동향」, 2026-10-02). 비교 기준이 빠지면 한 달 새 2.9%가 올랐다고 오해할 수 있다. <a href="inflation.html">→ 6장 복습</a></div>
+      </div>
+      <div class="quiz-q">
+        <p><span class="qch">예시 3 · 이 책이 만든 문장</span>다음 헤드라인에서 가장 먼저 채워야 할 것은?<span class="hl-ex">"2026년 국가채무비율 51.6%, 처음 50% 넘어"<small>예시 헤드라인(실제 기사 아님)</small></span></p>
+        <div class="opts"><button class="opt">기준 시점: 언제의 비율인가</button><button class="opt" data-correct>출처와 성격: 결산 실적인가, 예산의 전망치인가</button><button class="opt">비교 기준: 무엇과 비교했나</button><button class="opt">빠진 것이 없다</button></div>
+        <div class="quiz-exp">51.6%는 2026년 본예산을 짜며 정부가 전망한 2026년 말 비율이다. 실제로 확인된 최신 결산은 2025년 49.0%(재정경제부 「2025회계연도 국가결산」, 2026-04-06)다. "넘어"라는 과거형 동사 때문에 실적처럼 읽히지만, 누가 어떤 근거로 계산한 숫자인지가 빠졌다. <a href="fiscal.html">→ 12장 복습</a></div>
+      </div>
+      <div class="quiz-q">
+        <p><span class="qch">예시 4 · 이 책이 만든 문장</span>다음 헤드라인에서 가장 먼저 채워야 할 것은?<span class="hl-ex">"2분기 경제성장률 3.7%"<small>예시 헤드라인(실제 기사 아님)</small></span></p>
+        <div class="opts"><button class="opt">출처: 누가 쟀나</button><button class="opt">기준 시점: 어느 분기인가</button><button class="opt">빠진 것이 없다</button><button class="opt" data-correct>비교 기준: 전기 대비인가, 전년 동기 대비인가</button></div>
+        <div class="quiz-exp">3.7%는 2025년 2분기와 비교한 전년동기비다. 한국은행이 성장률로 먼저 발표하는 전기비(계절조정, 1분기 대비)는 0.6%였다(한국은행 「2026년 2/4분기 국민소득(잠정)」, 2026-09-08). 같은 분기의 같은 GDP가 비교 기준에 따라 0.6%도 되고 3.7%도 된다. <a href="gdp.html">→ 3장 복습</a></div>
+      </div>
+      <div class="quiz-q">
+        <p><span class="qch">예시 5 · 이 책이 만든 문장</span>다음 헤드라인에서 가장 먼저 채워야 할 것은?<span class="hl-ex">"실업률 2.0%… 1년 전과 같아"<small>예시 헤드라인(실제 기사 아님)</small></span></p>
+        <div class="opts"><button class="opt" data-correct>기준 시점: 어느 달의 실업률인가(그리고 계절조정 전인가)</button><button class="opt">비교 기준: 무엇과 비교했나</button><button class="opt">출처: 누가 쟀나</button><button class="opt">빠진 것이 없다</button></div>
+        <div class="quiz-exp">2.0%는 2026년 8월의 원계열(계절조정 전) 실업률이다(국가데이터처 「2026년 8월 고용동향」, 2026-09-09). 비교 대상(1년 전)은 적혀 있지만 어느 달인지가 없다. 실업률은 계절에 따라 크게 달라서, 몇 월의 원계열 값인지 모르면 다른 달과 견줄 수 없다. <a href="jobs.html">→ 5장 복습</a></div>
+      </div>
+      <div class="quiz-q">
+        <p><span class="qch">예시 6 · 이 책이 만든 문장</span>다음 헤드라인에서 가장 먼저 채워야 할 것은?<span class="hl-ex">"내년 물가, 목표 2% 웃돈다"<small>예시 헤드라인(실제 기사 아님)</small></span></p>
+        <div class="opts"><button class="opt">기준 시점: 언제의 물가인가</button><button class="opt">비교 기준: 무엇과 비교했나</button><button class="opt">빠진 것이 없다</button><button class="opt" data-correct>출처: 누구의 전망인가, 어떤 가정을 깔았나</button></div>
+        <div class="quiz-exp">"내년"과 "목표 2%"는 적혀 있다. 빠진 것은 주어다. 미래의 물가는 아직 아무도 재지 않았으므로 이 문장은 누군가의 모형이 낸 전망이다. 한국은행, 정부, 국제기구, 민간 연구소의 전망은 가정(유가, 환율, 성장)이 달라 서로 다르고, 시간이 지나면 고쳐진다. <a href="lab.html">→ 14장 복습</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>종합 퀴즈</h2>
+    <p>1장 경제 뉴스의 지도에서 14장 실험실까지, 여섯 부에서 고르게 낸 20문항이다. 그중 여러 문항은 직접 계산하는 문제다. 보기를 하나 고르면 정답과 해설, 그 장으로 가는 링크가 나온다. 20문항을 모두 풀면 아래에 점수와 다시 볼 장이 나타난다.</p>
+    <div class="fq-status" id="fq-status" aria-live="polite">
+      <span>푼 문항 <b id="fq-n">0</b> / <b id="fq-total">20</b></span>
+      <span>정답 <b id="fq-s">0</b></span>
+      <span class="fq-bar"><i id="fq-fill"></i></span>
+    </div>
+    <div class="quiz" id="fq">
+      <div class="quiz-q" data-ch="overview">
+        <p><span class="qch">01 경제 뉴스의 지도</span>경제의 순환도에서 가계가 기업으로부터 받는 임금·이자·배당은 무엇의 대가인가?</p>
+        <div class="opts"><button class="opt">정부에 낸 세금</button><button class="opt" data-correct>가계가 기업에 제공한 노동·자본 같은 생산요소</button><button class="opt">가계가 산 상품과 서비스</button><button class="opt">해외에서 들어온 송금</button></div>
+        <div class="quiz-exp">가계는 생산요소 시장에서 노동과 자본을 내주고 그 대가로 소득을 받으며, 그 소득으로 상품 시장에서 기업의 물건을 산다. 같은 돈이 생산·분배·지출로 한 바퀴 돌기 때문에 GDP를 세 방향에서 잴 수 있다. <a href="overview.html">→ 1장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="market">
+        <p><span class="qch">02 수요와 공급</span>쌀처럼 가격이 올라도 사는 양이 별로 줄지 않는(수요가 비탄력적인) 품목의 공급이 흉작으로 조금 줄었다. 가장 그럴듯한 결과는?</p>
+        <div class="opts"><button class="opt">가격이 조금 내리고 거래량이 크게 준다</button><button class="opt">가격과 거래량 모두 변하지 않는다</button><button class="opt" data-correct>가격이 크게 오르고 거래량은 조금 준다</button><button class="opt">가격이 내리고 거래량이 늘어난다</button></div>
+        <div class="quiz-exp">수요 곡선이 가파르면(비탄력적) 공급 곡선이 왼쪽으로 조금만 움직여도 새 균형에서 가격이 크게 뛴다. 사는 양은 별로 줄지 않으므로 농산물 가격 기사는 작황 변화보다 가격 변화가 훨씬 크게 나온다. <a href="market.html">→ 2장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="market">
+        <p><span class="qch">02 수요와 공급</span>정부가 어떤 물건의 가격 상한을 시장 균형가격보다 낮게 정하면 어떤 일이 생기는가?</p>
+        <div class="opts"><button class="opt" data-correct>사려는 양이 팔려는 양보다 많아져 품귀(초과수요)가 생긴다</button><button class="opt">팔려는 양이 사려는 양보다 많아져 재고가 쌓인다</button><button class="opt">아무 변화가 없다</button><button class="opt">가격이 균형가격으로 다시 올라간다</button></div>
+        <div class="quiz-exp">상한이 균형보다 낮으면 그 가격에서 수요량은 늘고 공급량은 준다. 줄 서기, 암시장, 품질 저하가 뒤따르기 쉽다. 상한이 균형보다 높으면 아무 효과가 없다. <a href="market.html">→ 2장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="gdp">
+        <p><span class="qch">03 GDP</span>실질 GDP가 전 분기보다 0.6% 늘었다. 이 속도가 1년 동안 이어진다고 가정한 연율은 대략 얼마인가?</p>
+        <div class="opts"><button class="opt">0.6%</button><button class="opt">1.2%</button><button class="opt" data-correct>약 2.4%</button><button class="opt">약 7.2%</button></div>
+        <div class="quiz-exp">연율은 (1 + 0.006)<sup>4</sup> − 1 ≈ 2.4%다. 한국은 전기비를 주로 쓰고 미국은 연율을 주로 쓰므로, 두 나라 성장률을 비교할 때는 같은 기준으로 바꿔야 한다. 전년 동기 대비는 또 다른 기준이다. <a href="gdp.html">→ 3장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="gdp">
+        <p><span class="qch">03 GDP</span>명목 GDP가 5% 늘고 GDP 디플레이터가 3% 올랐다. 실질 GDP 성장률은 대략?</p>
+        <div class="opts"><button class="opt">8%</button><button class="opt" data-correct>약 2%</button><button class="opt">5%</button><button class="opt">약 −2%</button></div>
+        <div class="quiz-exp">실질 = 명목 ÷ 디플레이터이므로 1.05 ÷ 1.03 − 1 ≈ 1.9%, 대략 2%다. 명목 성장 가운데 값이 오른 몫을 빼고 남은 양의 증가가 실질 성장이다. <a href="gdp.html">→ 3장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="cycle">
+        <p><span class="qch">04 경기 순환과 경기 지표</span>산출 갭이 +1%라는 말의 뜻으로 가장 알맞은 것은?</p>
+        <div class="opts"><button class="opt">경제성장률이 1%다</button><button class="opt">실업률이 1%p 올랐다</button><button class="opt">잠재성장률이 1%다</button><button class="opt" data-correct>실제 GDP가 잠재 GDP보다 1% 많아 경기가 과열 쪽에 있고 물가 압력이 생기기 쉽다</button></div>
+        <div class="quiz-exp">산출 갭은 성장률이 아니라 수준의 차이다. 실제 생산이 무리 없이 낼 수 있는 수준을 넘으면 일손과 설비가 빠듯해져 임금과 물가가 오르기 쉽다. 잠재 GDP는 관측되지 않는 추정치라 산출 갭도 추정 방법에 따라 다르다. <a href="cycle.html">→ 4장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="cycle">
+        <p><span class="qch">04 경기 순환과 경기 지표</span>통계청(국가데이터처)의 경기종합지수 가운데 경기 전환점을 미리 알려 주려고 만든 지표는?</p>
+        <div class="opts"><button class="opt" data-correct>선행종합지수(와 그 순환변동치)</button><button class="opt">동행종합지수</button><button class="opt">후행종합지수</button><button class="opt">소비자물가지수</button></div>
+        <div class="quiz-exp">선행지수는 경기보다 먼저 움직이는 지표를 모아 만들고, 동행지수는 지금의 경기를, 후행지수는 뒤따라 확인하는 지표를 모은다. 추세를 걷어 낸 순환변동치가 100보다 위인지, 오르는 중인지를 함께 본다. <a href="cycle.html">→ 4장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="jobs">
+        <p><span class="qch">05 고용</span>15세 이상 인구 4,500만명 가운데 경제활동인구가 3,000만명, 실업자가 90만명이다. 실업률은?</p>
+        <div class="opts"><button class="opt">2.0%</button><button class="opt" data-correct>3.0%</button><button class="opt">6.0%</button><button class="opt">66.7%</button></div>
+        <div class="quiz-exp">실업률은 15세 이상 인구가 아니라 경제활동인구(취업자 + 실업자)에 대한 비율이다. 90만 ÷ 3,000만 = 3.0%. 일할 뜻을 접은 사람은 비경제활동인구로 빠지므로, 실업률만 보지 말고 고용률(취업자 ÷ 15세 이상 인구)도 함께 본다. <a href="jobs.html">→ 5장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="inflation">
+        <p><span class="qch">06 물가</span>한국의 대표적인 근원물가 지표(농산물 및 석유류 제외 지수)가 빼는 품목의 공통점은?</p>
+        <div class="opts"><button class="opt">값이 가장 비싼 품목이다</button><button class="opt" data-correct>날씨나 국제 유가 같은 일시적 공급 요인으로 값이 크게 출렁인다</button><button class="opt">정부가 값을 정하는 품목이다</button><button class="opt">수입하는 품목이다</button></div>
+        <div class="quiz-exp">근원물가는 변동이 큰 품목을 빼고 물가의 기조적 흐름을 보려는 지표다. 한국은 '농산물 및 석유류 제외'와 OECD 기준 '식료품 및 에너지 제외' 두 가지를 함께 발표한다. 빠진 품목이 덜 중요하다는 뜻은 아니다. <a href="inflation.html">→ 6장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="inflation">
+        <p><span class="qch">06 물가</span>작년 같은 달에 물가가 유난히 낮았다면, 올해 같은 달의 전년동월비 상승률에 대한 설명으로 가장 알맞은 것은?</p>
+        <div class="opts"><button class="opt">작년 값과 상관없이 정해진다</button><button class="opt">반드시 낮게 나온다</button><button class="opt" data-correct>비교 대상이 낮아 실제 흐름보다 높게 나오기 쉽다(기저효과)</button><button class="opt">0%가 된다</button></div>
+        <div class="quiz-exp">전년동월비는 1년 전 값을 분모로 쓴다. 분모가 낮으면 같은 수준이라도 상승률이 크게 나온다. 기저효과를 걸러 보려면 전월비나 2년 전과의 비교, 계절조정 전월비를 함께 본다. <a href="inflation.html">→ 6장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="rates">
+        <p><span class="qch">07 금리</span>수정 듀레이션이 5인 채권을 갖고 있다. 시장금리가 1%p 오르면 채권 가격은 대략 어떻게 되는가?</p>
+        <div class="opts"><button class="opt">약 5% 오른다</button><button class="opt">약 1% 내린다</button><button class="opt">변하지 않는다</button><button class="opt" data-correct>약 5% 내린다</button></div>
+        <div class="quiz-exp">채권 가격과 금리는 시소처럼 반대로 움직이고, 가격 변화율 ≈ −수정 듀레이션 × 금리 변화다. −5 × 1%p ≈ −5%. 만기가 길수록 듀레이션이 커져 금리에 더 민감하다. <a href="rates.html">→ 7장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="rates">
+        <p><span class="qch">07 금리</span>예금 금리가 연 3%이고 앞으로 1년 물가 상승률을 3.5%로 예상한다. 이 예금의 기대 실질금리는 대략?</p>
+        <div class="opts"><button class="opt" data-correct>약 −0.5%</button><button class="opt">3%</button><button class="opt">6.5%</button><button class="opt">0.5%</button></div>
+        <div class="quiz-exp">피셔 방정식으로 실질금리 ≈ 명목금리 − 기대 인플레이션 = 3% − 3.5% = −0.5%. 이자를 받아도 1년 뒤 그 돈으로 살 수 있는 물건이 조금 줄어든다는 뜻이다. <a href="rates.html">→ 7장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="bok">
+        <p><span class="qch">08 중앙은행과 통화정책</span>테일러 준칙에서 물가 상승률 계수가 1보다 커야 한다(테일러 원칙)는 이유는?</p>
+        <div class="opts"><button class="opt">금리를 자주 바꾸기 위해</button><button class="opt" data-correct>물가가 오를 때 실질금리가 올라야 수요를 누를 수 있기 때문</button><button class="opt">환율을 고정하기 위해</button><button class="opt">정부의 이자 부담을 줄이기 위해</button></div>
+        <div class="quiz-exp">물가가 1%p 오를 때 명목금리를 1%p보다 덜 올리면 실질금리는 오히려 내려 경기를 데운다. 1.5%p 올리면 실질금리가 0.5%p 올라 수요를 누른다. <a href="bok.html">→ 8장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="bok">
+        <p><span class="qch">08 중앙은행과 통화정책</span>은행이 예금의 10%만 지급준비금으로 남기고 나머지를 모두 대출하며, 대출금이 모두 다시 예금으로 돌아온다고 가정하자. 본원통화 100이 만들 수 있는 예금 통화의 이론적 최대치는?</p>
+        <div class="opts"><button class="opt">110</button><button class="opt">190</button><button class="opt" data-correct>1,000</button><button class="opt">10,000</button></div>
+        <div class="quiz-exp">단순 신용창조 모형에서 통화승수의 상한은 1 ÷ 지급준비율 = 10이다. 실제로는 사람들이 현금을 쥐고, 은행이 대출을 다 하지 않고, 대출 수요와 규제가 있어 승수는 훨씬 작다. <a href="bok.html">→ 8장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="transmission">
+        <p><span class="qch">09 기준금리가 퍼지는 길</span>기준금리가 오른 날 가장 먼저, 가장 크게 반응하기 쉬운 것은?</p>
+        <div class="opts"><button class="opt">소비자물가</button><button class="opt">고용</button><button class="opt" data-correct>국고채 금리·주가·환율 같은 금융시장 가격(예상과 달랐던 만큼)</button><button class="opt">실질 GDP</button></div>
+        <div class="quiz-exp">금융시장 가격은 발표 당일에 움직이고, 그 크기는 결정 자체보다 시장 예상과의 차이에 달려 있다. 대출금리는 몇 달, 성장은 1년 안팎, 물가는 1~2년에 걸쳐 따라온다. <a href="transmission.html">→ 9장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="fx">
+        <p><span class="qch">10 환율</span>원/달러 환율이 1,300원에서 1,400원이 되었다. 옳은 설명은?</p>
+        <div class="opts"><button class="opt">원화 가치가 올랐다(원화 강세)</button><button class="opt">달러로 값을 매긴 수입품의 원화 값이 내린다</button><button class="opt" data-correct>원화 가치가 내렸고(원화 약세), 달러 자산의 원화 평가액은 커진다</button><button class="opt">해외 여행 경비가 줄어든다</button></div>
+        <div class="quiz-exp">1달러를 사는 데 원화가 더 많이 필요해졌으니 원화 가치가 내렸다. 수입품과 해외 결제는 비싸지고, 달러로 가진 자산의 원화 평가액은 커진다. 같은 환율 변화가 지출 쪽과 자산 쪽에 반대로 작용한다. <a href="fx.html">→ 10장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="trade">
+        <p><span class="qch">11 무역과 경상수지</span>해외 주식에서 받은 배당과 해외 근로자의 임금 같은 소득이 기록되는 경상수지 항목은?</p>
+        <div class="opts"><button class="opt">상품수지</button><button class="opt">서비스수지</button><button class="opt" data-correct>본원소득수지</button><button class="opt">자본수지</button></div>
+        <div class="quiz-exp">경상수지는 상품수지, 서비스수지, 본원소득수지(임금·배당·이자), 이전소득수지(대가 없는 송금·원조) 넷으로 나뉜다. 해외 투자가 쌓일수록 본원소득수지의 배당·이자 수입이 커진다. <a href="trade.html">→ 11장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="fiscal">
+        <p><span class="qch">12 재정과 국가부채</span>정부 부채 이자율(r)이 명목 성장률(g)보다 높고, 이자를 뺀 재정수지(기초재정수지)가 0이라면 GDP 대비 부채 비율은?</p>
+        <div class="opts"><button class="opt" data-correct>계속 오른다</button><button class="opt">그대로다</button><button class="opt">계속 내린다</button><button class="opt">0으로 수렴한다</button></div>
+        <div class="quiz-exp">부채는 이자만큼 (1 + r)배로, GDP는 (1 + g)배로 커진다. r > g면 기초수지가 흑자가 아닌 한 비율이 끝없이 오른다. 반대로 g > r이면 적자가 조금 있어도 비율이 안정될 수 있다. <a href="fiscal.html">→ 12장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="crisis">
+        <p><span class="qch">13 금융위기</span>자산 100 가운데 자기자본이 5인(레버리지 20배) 금융회사가 있다. 자산 가치가 5% 떨어지면?</p>
+        <div class="opts"><button class="opt">자기자본이 5% 준다</button><button class="opt">자기자본이 0.25 준다</button><button class="opt">자기자본이 늘어난다</button><button class="opt" data-correct>자기자본 5가 모두 사라진다</button></div>
+        <div class="quiz-exp">손실 5는 먼저 자기자본이 떠안는다. 레버리지가 높을수록 작은 자산 손실이 자본 전체를 지운다. 여기에 짧게 빌려 길게 빌려준 만기 불일치가 겹치면, 돈을 빌려준 쪽이 한꺼번에 회수하는 뱅크런으로 번진다. <a href="crisis.html">→ 13장 복습</a></div>
+      </div>
+      <div class="quiz-q" data-ch="lab">
+        <p><span class="qch">14 경제 뉴스 실험실</span>국제 유가가 급등해 물가가 오르고 경기는 식는 공급 충격에서 중앙은행이 금리를 크게 올리면 이 책의 모형에서 나타나는 모습은?</p>
+        <div class="opts"><button class="opt">물가와 경기가 함께 빨리 좋아진다</button><button class="opt" data-correct>물가는 더 빨리 목표로 돌아오지만 경기는 더 깊이 식는다</button><button class="opt">물가가 더 오른다</button><button class="opt">아무 변화가 없다</button></div>
+        <div class="quiz-exp">수요 충격과 달리 공급 충격에서는 물가 안정과 경기 안정이 부딪친다. 일시적인 유가 충격이라면 지켜보는 선택에도 근거가 있지만, 기대 인플레이션이 따라 오르면 대응이 필요해진다. <a href="lab.html">→ 14장 복습</a></div>
+      </div>
+    </div>
+
+    <div class="fq-result" id="fq-result" hidden>
+      <div class="fq-rank">RESULT</div>
+      <div class="fq-title" id="fq-title"></div>
+      <div class="fq-big" id="fq-big"></div>
+      <p id="fq-msg"></p>
+      <div class="fq-dots" id="fq-dots"></div>
+      <ul class="fq-weak" id="fq-weak"></ul>
+      <button class="btn primary" id="fq-retry">다시 풀기</button>
+    </div>
+  </section>
+
+  <section id="after">
+    <h2>이 책을 다 읽은 뒤</h2>
+    <p>이 책은 경기·금리·환율을 맞히는 법을 가르치지 않았다. 숫자 하나가 무엇을 잰 것인지 묻고, 그 변화가 어디서 와서 어디로 번지는지 그리고, 내 가계부의 어느 줄에 닿는지 계산하는 법을 다뤘다. 책을 덮은 뒤에는 아래 순서로 다시 쓰면 된다.</p>
+    <ul class="after-list">
+      <li><b>표부터 본다.</b> 헤드라인보다 원자료의 표를 먼저 본다. 한국은행 ECOS의 100대 통계지표, 국가데이터처 KOSIS, 기관의 보도자료에서 최신값과 기준 시점을 확인한다(<a href="overview.html">1장</a>).</li>
+      <li><b>세 질문을 붙인다.</b> 언제 기준인가(월·분기·연, 속보치인지), 무엇과 비교했나(전기·전년 동기·연율·목표), 누가 쟀나(공식 통계인지, 누구의 전망인지).</li>
+      <li><b>한 숫자는 한 귀퉁이다.</b> 성장·물가·고용·금리·환율·재정은 서로 이어져 있다. 한 숫자가 크게 움직이면 <a href="lab.html">14장 실험실</a>의 여섯 칸처럼 어떤 숫자가 뒤따를지 순서를 그려 본다.</li>
+      <li><b>내 가계부로 옮긴다.</b> 대출 이자(재산정 주기), 달러 지출과 자산(환율), 월급의 실질 가치(물가), 일자리(경기)로 번역한다. 내 돈의 결정은 <a href="https://moneybook.euiyun.com/">MoneyBook</a>, 주식은 <a href="https://stockbook.euiyun.com/">StockBook</a>, 집은 <a href="https://estatebook.euiyun.com/">EstateBook</a>에서 이어진다.</li>
+      <li><b>전망 대신 기준을 세운다.</b> 금리와 집값을 맞히려 하지 말고, 나쁜 시나리오에서도 버틸 수 있는지 계산하고, 결정할 날짜와 기준을 미리 정한다.</li>
+    </ul>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>경제 숫자에는 언제나 기준 시점, 비교 기준, 출처가 붙어 있다. 셋 중 하나가 빠지면 같은 숫자를 전혀 다르게 읽게 된다.</li>
+      <li>성장률은 전기비·전년동기비·연율, 물가는 전월비·전년동월비, 고용은 원계열·계절조정처럼 같은 지표에도 여러 비교 기준이 있다. 속보치와 잠정치는 수정된다.</li>
+      <li>기준금리는 시장금리·대출금리·자산 가격·환율을 거쳐 성장과 물가로 번지며, 경로마다 시차가 다르다. 환율과 재정, 바깥 세계의 충격도 같은 그물 안에서 움직인다.</li>
+      <li>레버리지와 만기 불일치는 작은 손실을 위기로 키운다. 최종대부자, 예금자보호, 거시건전성 정책은 그 연쇄를 끊기 위한 장치다.</li>
+      <li>실적과 전망을 구분하고, 경제 뉴스를 내 가계부의 숫자로 옮기되, 큰 결정은 예측이 아니라 내 숫자와 나쁜 시나리오와 미리 정한 기준으로 한다.</li>
+    </ol>
+  </section>
+</main>
+
+<script>
+/*SCRIPT*/
+</script>
+</body>
+</html>

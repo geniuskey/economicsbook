@@ -1,0 +1,790 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and EconomicsBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "가계·기업·정부·해외가 주고받는 돈의 순환도 위에 헤드라인 한 줄을 올려놓는 법. 숫자 하나에 붙는 기준 시점·비교 기준·출처를 읽고, 전월비와 전년동월비, 조원과 1인당, 통계가 공표되는 시차를 직접 움직여 본다. 1년치 헤드라인 달력과 경제 순환도 시뮬레이터로 책 전체의 지도를 그린다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>경제 뉴스의 지도 · EconomicsBook</title>
+<meta name="description" content="가계·기업·정부·해외가 주고받는 돈의 순환도 위에 헤드라인 한 줄을 올려놓는 법. 숫자 하나에 붙는 기준 시점·비교 기준·출처를 읽고, 전월비와 전년동월비, 조원과 1인당, 통계가 공표되는 시차를 직접 움직여 본다. 1년치 헤드라인 달력과 경제 순환도 시뮬레이터로 책 전체의 지도를 그린다.">
+<link rel="canonical" href="https://economicsbook.euiyun.com/chapters/overview.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#4338ca">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="EconomicsBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="경제 뉴스의 지도 · EconomicsBook">
+<meta property="og:description" content="가계·기업·정부·해외가 주고받는 돈의 순환도 위에 헤드라인 한 줄을 올려놓는 법. 숫자 하나에 붙는 기준 시점·비교 기준·출처를 읽고, 전월비와 전년동월비, 조원과 1인당, 통계가 공표되는 시차를 직접 움직여 본다. 1년치 헤드라인 달력과 경제 순환도 시뮬레이터로 책 전체의 지도를 그린다.">
+<meta property="og:url" content="https://economicsbook.euiyun.com/chapters/overview.html">
+<meta property="og:image" content="https://economicsbook.euiyun.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://economicsbook.euiyun.com/chapters/overview.html#chapter","name":"경제 뉴스의 지도","headline":"경제 뉴스의 지도 · EconomicsBook","description":"가계·기업·정부·해외가 주고받는 돈의 순환도 위에 헤드라인 한 줄을 올려놓는 법. 숫자 하나에 붙는 기준 시점·비교 기준·출처를 읽고, 전월비와 전년동월비, 조원과 1인당, 통계가 공표되는 시차를 직접 움직여 본다. 1년치 헤드라인 달력과 경제 순환도 시뮬레이터로 책 전체의 지도를 그린다.","url":"https://economicsbook.euiyun.com/chapters/overview.html","position":1,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://economicsbook.euiyun.com/og.png","dateModified":"2026-10-09","isPartOf":{"@type":"Book","@id":"https://economicsbook.euiyun.com/#book","name":"EconomicsBook · 경제 뉴스 읽는 교과서","url":"https://economicsbook.euiyun.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"EconomicsBook","item":"https://economicsbook.euiyun.com/"},{"@type":"ListItem","position":2,"name":"1. 경제 뉴스의 지도","item":"https://economicsbook.euiyun.com/chapters/overview.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/econ.js"></script>
+<!--head:end-->
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"3d6151a0abc94ede89285d462527fa80"}'></script>
+<!-- End Cloudflare Web Analytics -->
+<style>
+  .callout.stat { display: block; } /* .stat(시뮬레이터 수치 칸)의 grid 규칙이 .callout.stat에도 걸려 굵은 글씨·링크가 줄을 나누는 것을 막는다 */
+  .numboard { display: grid; gap: 1px; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; margin: 18px 0; }
+  @media (max-width: 620px) { .numboard { grid-template-columns: repeat(2, minmax(0, 1fr)); } .numboard .v { font-size: 17px; } .numboard > a { padding: 10px 11px 9px; } }
+  .numboard > a { display: block; background: var(--bg-elev); padding: 12px 14px 10px; min-width: 0; color: inherit; text-decoration: none; }
+  .numboard > a:hover { background: var(--surface); }
+  .numboard .k { display: block; font-size: 13px; color: var(--text-dim); }
+  .numboard .v { display: block; font-family: var(--mono); font-size: 21px; font-weight: 700; margin: 3px 0 2px; color: var(--text); }
+  .numboard .cmp { display: block; font-size: 12.5px; color: var(--text-dim); line-height: 1.4; }
+  .numboard .who { display: block; font-size: 11.5px; color: var(--text-faint); line-height: 1.4; margin-top: 4px; }
+  .numboard .ch { display: inline-block; margin-top: 6px; font-size: 11.5px; font-weight: 600; color: var(--accent); }
+  .flow-map { border-top: 1px solid var(--border); padding: 10px 14px; font-size: 14px; line-height: 1.55; background: var(--bg-elev); }
+  .flow-map b { color: var(--accent); }
+  .cal-panel { border-top: 1px solid var(--border); padding: 12px 16px; background: var(--bg-elev); }
+  .cal-panel .cal-hl { font-size: 17px; font-weight: 800; line-height: 1.45; }
+  .cal-panel .cal-meta { margin-top: 6px; font-size: 13px; color: var(--text-dim); line-height: 1.5; }
+  .cal-panel .cal-why { margin-top: 8px; font-size: 14px; line-height: 1.6; }
+</style>
+</head>
+<body data-chapter="overview">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 01</div>
+    <h1>경제 뉴스의 지도</h1>
+    <p class="lead">경제 기사의 숫자는 혼자 서 있지 않다. 성장률 0.6%는 지난 분기와, 물가 2.9%는 작년 같은 달과, 국가채무 1,304.5조원은 나라 경제의 크기와 견줘야 뜻이 생긴다. 이 장은 숫자 하나에 붙어 있는 기준 시점·비교 기준·출처를 읽는 법을 익히고, 가계·기업·정부·해외가 돈을 주고받는 순환도 위에 1년치 헤드라인을 올려 책 전체의 지도를 그린다.</p>
+    <ul class="objectives">
+      <li>헤드라인의 숫자를 보고 "언제 기준인가, 무엇과 비교했나, 누가 쟀나"를 찾아낼 수 있다.</li>
+      <li>같은 자료에서 나온 전월비·전년동월비가 왜 다르게 움직이는지, 기저효과가 무엇인지 설명할 수 있다.</li>
+      <li>조원·억 달러 같은 큰 숫자를 1인당이나 내 연봉 같은 감각의 단위로 옮길 수 있다.</li>
+      <li>경제 순환도에서 소비·투자·세금·수출입이 서로 어떻게 이어지는지 그리고, 기사 한 줄이 순환도의 어디를 건드리는지 짚을 수 있다.</li>
+    </ul>
+  </header>
+
+  <div class="headline" id="hl-top">한국은행, 기준금리 연 2.50%로 동결<small>지우의 헤드라인 노트가 시작된 달 · 2025년 10월 · 근거: 한국은행 「통화정책방향」(2025-10-23). 7월·8월에 이은 세 번째 동결</small></div>
+
+  <section id="notebook">
+    <h2>헤드라인 노트를 시작하며</h2>
+    <p>서지우는 서른한 살, 식품 제조사(이 책이 지어낸 D식품)의 원료구매팀 대리 6년 차다. 회사는 빵과 과자, 소스를 만들고, 지우는 그 재료인 수입 밀·원당·대두유를 달러로 계약한다. 국제 곡물값이 오르거나 원/달러 환율이 오르면 지우의 원가표가 가장 먼저 붉어진다. 일 때문에 날마다 경제 기사를 읽지만, 솔직히 말하면 숫자를 읽는 것이 아니라 제목을 읽어 왔다.</p>
+    <p>2025년 10월, 지우의 전세대출 금리가 다시 정해졌다. 경기 F시 투룸 빌라 전세 2억원 가운데 1억 4,000만원이 대출이고, 6개월마다 금리가 바뀐다. 새 금리는 연 3.9%. 같은 달 한국은행은 기준금리를 연 2.50%로 묶었다. 기사들은 "집값·환율 불안에 인하 멈춤"이라고 썼다. 지우는 기준금리가 2.50%인데 왜 자기 금리는 3.9%인지, 금리가 내리면 언제 자기 이자가 줄어드는지, 3년 안에 집을 살 수 있을지 알고 싶었다. 질문은 많은데 어디서부터 읽어야 할지 몰랐다.</p>
+    <p>그래서 외삼촌 백정호에게 전화했다. 경제신문 기자로 32년을 일하고 은퇴한 사람이다. 삼촌의 대답은 짧았다. "헤드라인보다 표를 먼저 봐라. 숫자를 보면 세 가지만 물어. <strong>언제 기준인가, 무엇과 비교했나, 누가 쟀나.</strong>" 그리고 숙제를 하나 냈다. 1년 동안 매달 헤드라인 하나를 골라 노트에 적고, 그 숫자를 세 질문으로 해부해 보라는 것이다. 이 책은 그 노트를 따라간다. 노트는 2025년 10월부터 2026년 9월까지 날짜순으로 쓰였고, 책은 그것을 주제순으로 엮었다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 440 236" role="img" aria-label="헤드라인 숫자 2.9%에 붙은 세 가지 꼬리표: 언제 기준인가, 무엇과 비교했나, 누가 쟀나">
+        <defs><marker id="ov-ar1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="150" y="84" width="140" height="66" rx="10" class="f-acc-soft"/>
+        <text x="220" y="112" text-anchor="middle" class="lbl-dim">소비자물가</text>
+        <text x="220" y="138" text-anchor="middle" class="lbl-b" style="font-size:24px">2.9%</text>
+        <rect x="10" y="12" width="170" height="56" rx="8" class="f-surface"/>
+        <text x="22" y="34" class="lbl-acc">① 언제 기준인가</text>
+        <text x="22" y="56" class="lbl-dim">2026년 9월분, 10월 2일 발표</text>
+        <rect x="260" y="12" width="170" height="56" rx="8" class="f-surface"/>
+        <text x="272" y="34" class="lbl-acc">② 무엇과 비교했나</text>
+        <text x="272" y="56" class="lbl-dim">작년 9월(전년동월비)</text>
+        <rect x="120" y="170" width="200" height="56" rx="8" class="f-surface"/>
+        <text x="132" y="192" class="lbl-acc">③ 누가 쟀나</text>
+        <text x="132" y="214" class="lbl-dim">국가데이터처, 458개 품목</text>
+        <g class="s-line" marker-end="url(#ov-ar1)">
+          <path d="M165 84L120 70"/><path d="M275 84L320 70"/><path d="M220 150V168"/>
+        </g>
+      </svg>
+      <figcaption><b>그림 1. 숫자 하나에 붙은 세 꼬리표.</b> 헤드라인은 꼬리표를 떼고 숫자만 보여 준다. 꼬리표를 다시 붙이면 같은 2.9%가 "지난달보다 2.9% 올랐다"가 아니라 "작년 9월보다 2.9% 높다"는 뜻이라는 것, 그리고 어느 기관의 어떤 조사인지가 드러난다. <span class="src">(국가데이터처, 「2026년 9월 소비자물가동향」, 2026-10-02 발표)</span></figcaption>
+    </figure>
+
+    <p>세 질문은 단순하지만 대부분의 오독을 걸러 낸다. <strong>언제 기준인가</strong>는 숫자가 가리키는 기간과 발표된 날이 다르다는 사실에서 출발한다. 10월에 읽은 "고용 호조" 기사는 대개 8월이나 9월의 고용 이야기다. <strong>무엇과 비교했나</strong>는 지난달, 지난 분기, 작년 같은 때, 혹은 사상 최고치 가운데 무엇을 기준으로 한 변화인지를 묻는다. 기준이 바뀌면 같은 자료에서 정반대의 제목이 나오기도 한다. <strong>누가 쟀나</strong>는 조사 기관과 방법을 묻는다. 정부 통계인지, 민간 조사인지, 표본이 몇이고 무엇을 뺐는지에 따라 숫자의 무게가 달라진다.</p>
+
+    <div class="callout news"><strong>제목은 숫자에서 꼬리표를 뗀다</strong>백정호가 신입 기자 시절 가장 많이 들은 지적은 "제목에 기준을 넣으라"였다고 한다. 지면은 좁고 제목은 짧아야 하니 "물가 2.9% 상승"에서 '작년 같은 달보다'가, "성장률 0.6%"에서 '지난 분기보다, 계절조정, 속보치'가 떨어져 나간다. 그래서 같은 날 한 신문은 "성장 둔화"를, 다른 신문은 "성장 지속"을 쓸 수 있다. 하나는 전기비가 1분기보다 낮아진 것을, 다른 하나는 전년동기비가 높다는 것을 본 것이다. 백정호의 습관은 기사 본문 끝에서 '전기 대비', '전년 동월 대비', '속보치' 같은 단어를 찾아 제목 옆에 적어 넣는 것이었다.</div>
+  </section>
+
+  <section id="flow-intro">
+    <h2>경제 순환도: 돈은 원을 그리며 돈다</h2>
+    <p>경제 기사가 다루는 세계는 넓지만, 등장인물은 넷뿐이다. 일하고 소비하는 <span class="term">가계</span><span class="en">(Households)</span>, 물건과 서비스를 만드는 <span class="term">기업</span><span class="en">(Firms)</span>, 세금을 걷어 쓰는 <span class="term">정부</span><span class="en">(Government)</span>, 그리고 우리와 물건과 돈을 주고받는 <span class="term">해외</span><span class="en">(Rest of the world)</span>. 여기에 가계의 저축을 기업의 투자로 이어 주는 <span class="term">금융시장</span><span class="en">(Financial markets)</span>이 가운데에 놓인다. 이 다섯이 주고받는 돈의 흐름을 그린 것이 <span class="term">경제 순환도</span><span class="en">(Circular flow diagram)</span>다.</p>
+    <p>원은 이렇게 돈다. 가계는 기업에서 일하고 임금과 이윤을 받는다(소득). 그 소득에서 세금을 내고, 나머지로 물건을 사고(소비), 남는 것은 저축한다. 기업은 판 돈으로 다시 임금을 주고, 금융시장에서 빌린 돈으로 공장과 기계를 산다(투자). 정부는 세금으로 도로를 놓고 공무원 월급을 주며 기업의 물건을 산다(정부지출). 해외는 우리 물건을 사 가고(수출), 우리는 해외의 물건을 사 온다(수입). 한 사람의 지출은 다른 사람의 소득이다. 이 단순한 문장이 거시경제학의 출발점이다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 330" role="img" aria-label="가계, 기업, 정부, 해외, 금융시장이 소비, 소득, 세금, 정부지출, 저축, 투자, 수출, 수입으로 연결된 경제 순환도와 각 부분을 다루는 장 번호">
+        <defs><marker id="ov-ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="175" y="10" width="110" height="46" rx="10" class="f-acc2-soft"/>
+        <text x="230" y="32" text-anchor="middle" class="lbl-b">정부</text>
+        <text x="230" y="49" text-anchor="middle" class="lbl-dim">12장</text>
+        <rect x="14" y="140" width="104" height="52" rx="10" class="f-acc-soft"/>
+        <text x="66" y="163" text-anchor="middle" class="lbl-b">가계</text>
+        <text x="66" y="181" text-anchor="middle" class="lbl-dim">5·6·7장</text>
+        <rect x="342" y="140" width="104" height="52" rx="10" class="f-acc-soft"/>
+        <text x="394" y="163" text-anchor="middle" class="lbl-b">기업</text>
+        <text x="394" y="181" text-anchor="middle" class="lbl-dim">2·3·4장</text>
+        <rect x="178" y="142" width="104" height="48" rx="10" class="f-surface"/>
+        <text x="230" y="163" text-anchor="middle" class="lbl">금융시장</text>
+        <text x="230" y="180" text-anchor="middle" class="lbl-dim">7·8·9·13장</text>
+        <rect x="175" y="272" width="110" height="46" rx="10" class="f-ok-soft"/>
+        <text x="230" y="294" text-anchor="middle" class="lbl-b">해외</text>
+        <text x="230" y="311" text-anchor="middle" class="lbl-dim">10·11장</text>
+        <g class="s-acc" marker-end="url(#ov-ar2)">
+          <path d="M100 138Q230 70 360 138"/>
+        </g>
+        <g class="s-acc2" marker-end="url(#ov-ar2)">
+          <path d="M360 194Q230 262 100 194"/>
+        </g>
+        <g class="s-line" marker-end="url(#ov-ar2)">
+          <path d="M80 138L182 58"/><path d="M278 58L380 138"/>
+          <path d="M120 166H176"/><path d="M284 166H340"/>
+          <path d="M287 296Q404 296 414 196"/><path d="M374 196Q352 262 288 276"/>
+        </g>
+        <text x="230" y="84" text-anchor="middle" class="lbl-acc">소비</text>
+        <text x="230" y="258" text-anchor="middle" class="lbl-acc2">소득(임금·이윤)</text>
+        <text x="116" y="90" text-anchor="end" class="lbl-dim">세금</text>
+        <text x="344" y="90" class="lbl-dim">정부지출</text>
+        <text x="128" y="158" class="lbl-dim">저축</text>
+        <text x="290" y="158" class="lbl-dim">투자</text>
+        <text x="408" y="292" class="lbl-dim">수출</text>
+        <text x="318" y="246" class="lbl-dim">수입</text>
+      </svg>
+      <figcaption><b>그림 2. 경제 순환도와 이 책의 장.</b> 화살표는 돈이 흐르는 방향이다(물건과 노동은 반대 방향으로 흐른다). 소비와 소득의 큰 원 위에 세금과 정부지출, 저축과 투자, 수출과 수입이라는 세 쌍의 샛길이 붙어 있다. 각 상자 아래 숫자는 그 부분을 주로 다루는 이 책의 장이다. 이 그림은 단순화한 것이며 실제로는 정부가 가계에 이전지출을 주고, 가계도 수입품을 사고, 해외 자본이 금융시장을 드나든다.</figcaption>
+    </figure>
+
+    <p>이 그림이 쓸모 있는 이유는 기사 한 줄을 어디에 놓아야 할지 알려 주기 때문이다. "소비 심리 위축"은 가계에서 기업으로 가는 위쪽 화살표가 가늘어진다는 뜻이고, "수출 사상 최대"는 해외에서 기업으로 들어오는 화살표가 굵어진다는 뜻이다. "국가채무 증가"는 정부가 세금으로 걷은 것보다 많이 썼고, 그 차이를 금융시장에서 빌렸다는 뜻이다. 그리고 화살표는 이어져 있다. 위쪽 화살표가 가늘어지면 기업의 매출이 줄고, 곧 아래쪽 소득 화살표도 가늘어진다. 원 전체가 작아지는 것, 그것이 경기 둔화다. 이 장의 마지막 쪽에서 이 원을 직접 움직여 본다.</p>
+
+    <div class="callout deep"><strong>한 나라의 소득은 세 번 잴 수 있다</strong>원의 어느 지점에서 재든 1년 동안 지나간 돈의 양은 같아야 한다. 기업이 만든 부가가치의 합(생산), 가계·기업·정부·해외가 쓴 돈의 합(지출), 노동과 자본이 나눠 가진 소득의 합(분배)이 원칙적으로 같다는 것이 <span class="term">국민소득 3면 등가</span>다. 지출 쪽에서 재면 \(Y = C + I + G + (X - M)\)이다. 국내총생산(GDP)이 이 식에서 나온다. 자세한 계산은 <a href="gdp.html">3장</a>에서 한다.</div>
+  </section>
+
+  <section id="compare">
+    <h2>같은 숫자, 다른 비교 기준</h2>
+    <p>세 질문 가운데 기사에서 가장 자주 사라지는 것이 "무엇과 비교했나"다. 경제 통계는 대개 <span class="term">수준</span><span class="en">(Level)</span>, 곧 지수나 금액 자체보다 변화율로 보도된다. 그런데 변화율을 만드는 방법이 여럿이다.</p>
+    <ul>
+      <li><span class="term">전월비</span><span class="en">(Month-on-month)</span>·<span class="term">전기비</span><span class="en">(Quarter-on-quarter)</span>: 바로 앞 달, 앞 분기와 비교한다. 가장 최근의 움직임을 빨리 보여 주지만, 계절에 따라 들쭉날쭉한 자료(설 명절, 김장철, 여름 휴가)는 계절조정을 해야 읽을 수 있다. 한국은행의 분기 성장률 헤드라인이 계절조정 전기비다.</li>
+      <li><span class="term">전년동월비</span><span class="en">(Year-on-year)</span>·전년동기비: 1년 전 같은 달, 같은 분기와 비교한다. 계절이 같으니 계절조정 없이도 비교할 수 있다. 소비자물가와 고용 헤드라인이 이것이다. 대신 1년 동안 쌓인 변화를 한꺼번에 담아서 방향이 바뀐 것을 늦게 알려 주고, <strong>1년 전 값이 유난히 낮거나 높았으면 지금 아무 일이 없어도 크게 움직인다.</strong> 이것이 <span class="term">기저효과</span><span class="en">(Base effect)</span>다.</li>
+      <li><span class="term">연율</span><span class="en">(Annualized rate)</span>: 전기비를 1년으로 늘려 환산한다. 미국 GDP 헤드라인이 연율이라, 한국 기사와 나란히 놓으면 숫자가 네 배쯤 커 보인다.</li>
+    </ul>
+    <p>실제 예를 보자. 2026년 2분기 실질 GDP는 전기비 0.6%, 전년동기비 3.7% 늘었다 <span class="src">(한국은행, 2026년 2/4분기 국민소득(잠정), 2026-09-08)</span>. 둘 다 맞는 숫자다. 전년동기비는 지난 1년 동안 네 분기의 성장이 쌓인 값이라 훨씬 크다. 특히 바로 앞 분기인 2026년 1분기의 전기비가 1.8%로 컸다. "성장률 0.6%로 둔화"와 "작년보다 3.7% 성장"은 같은 표에서 나온 다른 비교다.</p>
+
+    <p>아래 시뮬레이터는 <strong>교육용 가상 데이터</strong>로 만든 어떤 가격지수 2년치다. 세로선을 끌어 달을 고르고, 보기 단추로 수준·전월비·전년동월비를 바꿔 본다. '작년 6월 일시 충격'을 움직이면 기저효과가 생긴다.</p>
+
+    <div class="sim" id="sim-base">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>수준, 전월비, 전년동월비: 같은 자료의 세 얼굴</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="base-cv"></canvas><span class="hint">세로선을 끌어 달을 고른다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="base-view"><button data-value="level">수준</button><button data-value="mom">전월비</button><button data-value="yoy" class="on">전년동월비</button></div>
+          <label class="ctrl"><span>추세 상승률(연) <output id="base-g-out"></output></span><input type="range" id="base-g" min="0" max="6" step="0.5" value="2"></label>
+          <label class="ctrl"><span>작년 6월 일시 충격 <output id="base-s-out"></output></span><input type="range" id="base-s" min="-10" max="10" step="1" value="-6"></label>
+          <label class="check"><input type="checkbox" id="base-sea" checked> 계절 변동(여름에 오르고 겨울에 내림)</label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 달</span><span class="v" id="base-o-m">—</span></div>
+        <div class="stat"><span class="k">지수 수준</span><span class="v" id="base-o-l">—</span></div>
+        <div class="stat"><span class="k">전월비</span><span class="v" id="base-o-mm">—</span></div>
+        <div class="stat"><span class="k">전년동월비</span><span class="v" id="base-o-yy">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 전년동월비 보기에서 세로선을 올해 6월과 7월에 놓는다. 올해 6월에는 아무 일도 없었는데 전년동월비가 크게 뛰고, 7월에는 원래대로 돌아온다. 작년 6월이 낮았던 기저효과다. ② 전월비 보기로 바꾸고 계절 변동을 켠다. 여름마다 오르고 겨울마다 내리는 물결이 진짜 변화를 가린다. 계절조정이 필요한 이유다. 계절 변동을 끄면 물결이 사라진다. ③ 충격을 +10%로 올린다. 이번에는 올해 6월의 전년동월비가 갑자기 낮아진다. "물가 상승률 급락"이라는 제목이 나올 수 있지만, 지금 가격은 내리지 않았다. (교육용 가상 데이터: 지수 = 100 × 추세 × 계절 요인 × 일시 충격. 실제 통계가 아니다.)</div>
+    </div>
+
+    <p>올해 6월의 지수 수준을 보면 매달 비슷하게 오르고 있었을 뿐이다. 그런데 전년동월비는 한 달 동안 뛰었다가 내려앉는다. 이런 달에 "물가 상승률 급등"이라는 제목이 붙는다면, 다음 달 "상승률 급락"도 예고된 셈이다. 기저효과를 알면 다음 달 헤드라인을 미리 짐작할 수 있다. 2026년 9월 소비자물가의 OECD 기준 근원물가가 8월 3.4%에서 2.8%로 내려앉은 데에도 작년 통신요금의 기저효과가 작용했다는 설명이 붙었다 <span class="src">(국가데이터처, 「2026년 9월 소비자물가동향」)</span>.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 440 178" role="img" aria-label="통계의 수정: 속보치, 잠정치, 확정치로 이어지는 시간표와 2026년 1분기 성장률이 1.7%에서 1.8%로 수정된 예">
+        <defs><marker id="ov-ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <line x1="20" y1="70" x2="420" y2="70" class="s-axis" marker-end="url(#ov-ar3)"/>
+        <circle cx="40" cy="70" r="6" class="f-surface"/>
+        <text x="40" y="50" text-anchor="middle" class="lbl-dim">분기 끝</text>
+        <circle cx="130" cy="70" r="8" class="f-acc"/>
+        <text x="130" y="50" text-anchor="middle" class="lbl-acc">속보치</text>
+        <text x="130" y="96" text-anchor="middle" class="lbl-dim">약 4주 뒤</text>
+        <circle cx="250" cy="70" r="8" class="f-acc2"/>
+        <text x="250" y="50" text-anchor="middle" class="lbl-acc2">잠정치</text>
+        <text x="250" y="96" text-anchor="middle" class="lbl-dim">약 10주 뒤</text>
+        <circle cx="380" cy="70" r="8" class="f-ok"/>
+        <text x="380" y="50" text-anchor="middle" class="lbl">확정치</text>
+        <text x="380" y="96" text-anchor="middle" class="lbl-dim">1~2년 뒤</text>
+        <rect x="70" y="118" width="300" height="46" rx="8" class="f-surface"/>
+        <text x="220" y="137" text-anchor="middle" class="lbl">예: 2026년 1분기 실질 GDP 전기비</text>
+        <text x="220" y="156" text-anchor="middle" class="lbl-dim">속보 1.7% (4월 23일) → 이후 1.8%로 수정</text>
+      </svg>
+      <figcaption><b>그림 3. 숫자는 고쳐진다.</b> GDP는 분기가 끝나고 약 4주 뒤 속보치, 약 10주 뒤 잠정치가 나오고, 더 많은 자료가 모이면 몇 해에 걸쳐 확정된다. 계절조정을 다시 추정하면 지난 분기 값도 바뀐다. 헤드라인의 숫자는 그날 기준의 값이다. <span class="src">(한국은행 국민소득 발표. 2026년 1분기 수정은 보도 기준, SOURCES.md '대체로 확인')</span></figcaption>
+    </figure>
+  </section>
+
+  <section id="units">
+    <h2>단위 감각: 조원을 내 연봉으로</h2>
+    <p>경제 기사의 두 번째 함정은 단위다. 국가채무 1,304.5조원, 명목 GDP 약 2,676.7조원, 경상수지 1,230.5억 달러. 모두 너무 커서 머릿속에서 "아주 많다"라는 한 칸에 들어가 버린다. 1조는 1억의 1만 배이고, 1억은 1만원의 1만 배다. 지우의 연봉 4,600만원을 기준으로 하면 1조원은 연봉 약 2만 2천 년치다. 이런 숫자는 그대로 비교하지 말고 <strong>나눠서</strong> 읽는다.</p>
+    <ul>
+      <li><strong>나라 경제의 크기로 나누기</strong>: 국가채무 1,304.5조원은 GDP 대비 49.0%다 <span class="src">(재정경제부, 2025회계연도 국가결산, 2026-04-06)</span>. 같은 금액도 경제가 크면 가볍다. 국가 간 비교는 대부분 이 비율로 한다(<a href="fiscal.html">12장</a>).</li>
+      <li><strong>사람 수로 나누기</strong>: 2025년 말 주민등록 인구는 5,111만 7,378명이다 <span class="src">(행정안전부, 2025년 주민등록 인구통계, 2026년 1월 발표)</span>. 국가채무를 이것으로 나누면 1인당 약 2,552만원이다.</li>
+      <li><strong>환율로 바꾸기</strong>: 무역과 국제수지는 달러로 집계된다. 1,230.5억 달러를 원화로 바꾸려면 어느 날의 환율을 쓸지 정해야 한다. 2025년 평균 환율(1,421.97원)로는 약 175조원, 2026년 10월 8일 환율(1,338.5원)로는 약 165조원이다.</li>
+    </ul>
+
+    <div class="sim" id="sim-units">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>큰 숫자 자: 조원·억 달러를 1인당과 내 연봉으로</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="units-cv"></canvas></div>
+        <div class="sim-controls">
+          <div class="seg" id="units-item"><button data-value="debt" class="on">국가채무</button><button data-value="gdp">명목 GDP</button><button data-value="budget">2026 예산</button><button data-value="hh">가계신용</button><button data-value="ca">경상수지</button></div>
+          <div class="seg" id="units-div"><button data-value="all">나라 전체</button><button data-value="pc" class="on">1인당</button><button data-value="jw">지우 연봉으로</button></div>
+          <label class="ctrl"><span>원/달러 환율(달러 항목) <output id="units-fx-out"></output></span><input type="range" id="units-fx" min="1000" max="2000" step="10" value="1340"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">총액</span><span class="v" id="units-o-t">—</span></div>
+        <div class="stat"><span class="k">1인당</span><span class="v" id="units-o-p">—</span></div>
+        <div class="stat"><span class="k">지우 연봉(4,600만원)으로</span><span class="v" id="units-o-j">—</span></div>
+        <div class="stat"><span class="k">기준·출처</span><span class="v" id="units-o-s" style="font-size:12.5px;font-family:var(--font)">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 국가채무에서 '나라 전체'와 '1인당'을 번갈아 누른다. 자 위의 점이 여덟 칸(1억 배)쯤 왼쪽으로 옮겨 지우의 연봉 근처에 내려앉는다. ② 경상수지를 고르고 환율을 1,000원에서 2,000원까지 민다. 달러로는 같은 흑자가 원화로는 두 배까지 달라진다. 달러 숫자를 원화로 옮길 때는 어느 날 환율인지 꼭 적는다. ③ 가계신용과 국가채무를 1인당으로 비교한다. 1인당 가계 빚이 1인당 나랏빚보다 많다. (1인당 = 금액 ÷ 2025년 말 주민등록 인구 5,111만 7,378명. 주민등록 인구는 외국인을 빼므로 통계청 추계인구와 조금 다르다. 가계신용 2,019.8조원은 2026년 2분기 말 값이다.)</div>
+    </div>
+
+    <p>자는 한 칸이 10배인 로그 눈금이다. 만원에서 경(京)원까지 열두 칸이 한 줄에 들어간다. 1인당 국가채무 약 2,552만원은 지우의 연봉 반년치를 조금 넘는다. 그렇다고 "국민 한 사람이 2,552만원씩 빚을 졌다"고 읽으면 반만 맞다. 국가채무에는 외환시장 안정용 국채처럼 달러 자산이라는 짝이 있는 빚(금융성 채무)도 들어 있고, 정부는 사람처럼 은퇴하지 않으며 빚을 차환한다. 1인당 숫자는 감각을 잡는 데 쓰고, 판단은 GDP 대비 비율과 이자 부담으로 한다(<a href="fiscal.html">12장</a>).</p>
+
+    <div class="callout stat"><strong>1인당 숫자의 분모를 확인한다</strong>1인당 숫자에 쓰는 인구는 여러 가지다. 행정안전부의 <strong>주민등록 인구</strong>는 주민등록을 한 내국인 수로 매달 발표된다. 국가데이터처의 <strong>추계인구</strong>(장래인구추계)는 외국인 상주인구까지 포함한 추정치로, 한국은행이 1인당 국민총소득(GNI)을 계산할 때 쓴다. 그래서 이 장에서 GDP를 주민등록 인구로 나눈 값(약 5,236만원)과 한국은행의 2025년 1인당 GNI(약 5,257만원, 36,963달러)는 정의도 분모도 달라 정확히 맞지 않는다. 기사의 1인당 숫자를 다시 계산할 때는 분모가 무엇인지부터 본다.</div>
+  </section>
+
+  <section id="release">
+    <h2>언제 기준인가: 통계가 공표되는 시차</h2>
+    <p>오늘은 2026년 10월 9일이다. 그런데 오늘 볼 수 있는 최신 고용 통계는 8월분이고, 최신 GDP는 2분기(4~6월)다. 통계는 기간이 끝나고 조사·집계·검증을 거쳐 나오기 때문이다. 그래서 같은 날 읽은 기사들이 서로 다른 달을 이야기한다. 수출입 동향은 그달이 끝난 다음 날(1일) 나오고, 소비자물가는 다음 달 초, 고용동향은 다음 달 중순, 국제수지는 한 달 남짓 뒤, GDP 속보치는 분기가 끝나고 4주쯤 뒤에 나온다.</p>
+    <p>아래 시뮬레이터에서 "오늘" 세로선을 끌어 날짜를 바꿔 본다. 각 줄의 칸은 통계가 가리키는 기간이고, 색이 찬 칸은 그날까지 이미 공표된 것이다.</p>
+
+    <div class="sim" id="sim-release">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>오늘 볼 수 있는 가장 최근 숫자는 몇 월분인가</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="rel-cv"></canvas><span class="hint">'오늘' 선을 끌어 날짜를 바꾼다</span></div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">오늘</span><span class="v" id="rel-o-d">—</span></div>
+        <div class="stat"><span class="k">최신 소비자물가</span><span class="v" id="rel-o-c">—</span></div>
+        <div class="stat"><span class="k">최신 고용동향</span><span class="v" id="rel-o-j">—</span></div>
+        <div class="stat"><span class="k">최신 GDP</span><span class="v" id="rel-o-g">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① '오늘'을 2026년 10월 9일에 둔다. 수출과 물가는 9월분, 고용과 국제수지는 8월분, GDP와 가계신용은 2분기가 최신이다. ② 선을 10월 1일에서 10월 10일 사이로 천천히 끈다. 하루 이틀 사이에 수출, 물가, 외환보유액의 9월분이 차례로 나온다. ③ 7월 하순으로 옮겨 GDP 속보치가 나오는 날을 찾는다. 같은 분기의 잠정치는 그로부터 6주쯤 뒤다. (시차는 2026년 실제 발표일 몇 건에서 잰 대략값이다. 실제 발표일은 기관이 연초에 공지하는 공표 일정을 따르며 달마다 하루 이틀 다르다.)</div>
+    </div>
+
+    <p>이 시차 때문에 경제 정책은 늘 조금 늦은 사진을 보고 결정된다. 한국은행 금통위가 10월에 금리를 정할 때 손에 쥔 GDP는 2분기 것이고, 3분기 속보치는 회의 뒤에 나온다. 그래서 중앙은행과 기자들은 늦게 나오는 공식 통계 사이를 수출(매달 1일)이나 카드 승인액, 기업 심리 조사 같은 빠른 지표로 메운다(<a href="cycle.html">4장</a>).</p>
+
+    <div class="callout stat"><strong>원자료는 어디서, 언제 나오나</strong>헤드라인의 원자료는 거의 모두 공짜로 공개된다. <strong>한국은행 경제통계시스템(ECOS)</strong>의 '100대 통계지표'는 기준금리, 성장률, 물가, 실업률, 환율, 경상수지, 국가채무 같은 핵심 지표를 한 쪽에 모아 최신값과 기준 시점을 함께 보여 준다. <strong>국가통계포털(KOSIS)</strong>은 국가데이터처와 각 부처의 통계 원표(소비자물가 품목별 지수, 고용동향 연령별 표)를 내려받는 곳이다. 각 기관 누리집의 <strong>보도자료</strong>에는 표와 정의, 작성 방법이 붙어 있고, 기관들은 해마다 <strong>통계 공표 일정</strong>을 미리 알린다. 기사를 읽고 숫자가 궁금하면 ① 기사 끝의 기관명과 자료명을 찾고 ② 그 기관의 보도자료 원문 첫 쪽의 표를 보고 ③ 필요하면 ECOS·KOSIS에서 시계열을 내려받는다.</div>
+  </section>
+
+  <section id="board">
+    <h2>지금 한국 경제 숫자판</h2>
+    <p>지도를 펼쳤으니 현재 위치를 찍는다. 아래는 2026년 10월 9일 기준으로 확인한 주요 숫자 열두 개다. 칸마다 기준 시점, 비교 기준, 출처를 붙였고, 칸을 누르면 그 숫자를 다루는 장으로 간다. 이 책의 모든 장은 이 숫자들(<code>EC.KR</code>)을 함께 쓴다.</p>
+    <div class="numboard" id="nb"></div>
+    <p>숫자판을 순환도에 겹쳐 보면 지금의 모습이 그려진다. 해외에서 들어오는 화살표(수출, 경상수지)가 유난히 굵고, 가계와 기업이 내는 돈값(기준금리 3.00%)은 두 달 연속 올랐다. 물가는 목표(2%)보다 높은 2%대 후반이고, 실업률은 낮다. 정부의 빚은 GDP의 절반 가까이다. 각 장은 이 숫자 하나하나가 어떻게 만들어지고 서로 어떻게 움직이는지를 다룬다.</p>
+
+    <div class="callout warn"><strong>숫자는 기준 시점의 값이며 바뀐다</strong>이 숫자판은 2026년 10월 9일에 확인한 값이다. 이 날 작업 환경에서는 정부·한국은행 누리집 원문을 직접 열지 못해, 공식 발표를 인용한 보도 여러 건을 대조해 확인했다(SOURCES.md). GDP는 속보치에서 잠정치·확정치로, 고용과 물가는 계절조정 재추정으로 고쳐지고, 환율은 매일 바뀐다. 이 책의 시뮬레이터는 개념을 보여 주는 교육용 모형이며 어떤 숫자의 앞날도 전망하지 않는다.</div>
+
+    <div class="callout link"><strong>내 돈의 결정은 시리즈의 다른 책에서</strong>이 책은 경제 전체의 흐름을 읽는다. 금리·환율·경기가 내 저축과 대출에 닿는 길은 MoneyBook <a href="https://moneybook.euiyun.com/chapters/economy.html">금리·환율·경기</a>, 물가가 월급의 실질 가치를 깎는 원리는 MoneyBook <a href="https://moneybook.euiyun.com/chapters/inflation.html">물가와 구매력</a>, 주가와 경기는 StockBook <a href="https://stockbook.euiyun.com/chapters/macro.html">금리·경기·주식</a>, 집값과 금리는 EstateBook <a href="https://estatebook.euiyun.com/chapters/value.html">집값과 금리</a>에서 이어진다.</div>
+  </section>
+
+  <section id="calendar">
+    <h2>1년 헤드라인 달력</h2>
+    <p>지우는 노트를 열두 달 동안 채웠다. 한 달에 한 장, 그달에 가장 오래 붙잡고 있던 헤드라인 하나다. 헤드라인은 정부와 한국은행의 공식 발표를 이 책이 다시 쓴 문장이다. 달력을 끌어 달을 옮기면 그 달의 헤드라인, 그것을 다루는 장, 순환도에서 건드리는 곳이 함께 바뀐다. 마지막 칸은 1년을 결산하는 2026년 10월이다.</p>
+
+    <div class="sim" id="sim-calendar">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>지우의 1년: 달을 끌어 헤드라인과 순환도를 본다</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="cal-cv"></canvas><span class="hint">달력 위를 끈다</span></div>
+      </div>
+      <div class="cal-panel" id="cal-panel" aria-live="polite"></div>
+      <div class="sim-note">해볼 것: ① 2025년 10월에서 2026년 9월까지 천천히 끈다. 순환도에서 불이 들어오는 곳이 기업(성장)에서 가계(물가·고용), 해외(경상수지), 정부(국가채무), 금융시장(금리)으로 옮겨 간다. ② 2026년 5월과 8월을 비교한다. 같은 기준금리 이야기지만 하나는 동결, 하나는 인상이다. ③ 칸 아래의 장 번호를 눌러 그 장으로 간다. 수치가 적히지 않은 달은 해당 장에서 숫자를 확인해 적는다. (헤드라인은 공식 발표를 바탕으로 이 책이 다시 쓴 문장이며 특정 언론사의 기사 제목이 아니다.)</div>
+    </div>
+
+    <p>달력을 한 바퀴 돌리면 한 가지가 보인다. 1년 동안의 헤드라인은 서로 따로 놀지 않았다. 수출이 늘어 경상수지 흑자가 커지고, 물가가 목표보다 높아지고, 한국은행이 금리를 올리고, 미국도 금리를 올리고, 환율이 움직였다. 순환도의 한 곳에서 시작한 움직임이 다른 곳으로 번진 것이다. 이 책은 그 번짐을 장마다 하나씩 따라간다.</p>
+  </section>
+
+  <section id="flow">
+    <h2>순환도를 움직이면</h2>
+    <p>이제 순환도를 직접 움직여 본다. 아래 그림의 점 하나하나는 돈이다. 화살표가 굵을수록 많은 돈이 흐른다. 크기는 2025년 한국의 명목 GDP(약 2,676.7조원)에 맞춰 두었지만, 각 흐름의 비율과 반응은 교육용으로 단순하게 정한 값이다. 슬라이더로 가계의 소비 심리, 수출, 정부지출을 바꾸면 한 곳의 변화가 원 전체로 퍼진다. 상자를 누르면 그 부분을 다루는 장이 아래에 나온다.</p>
+
+    <div class="formula">$$Y = C + I + G + X - M,\qquad C = C_0 + c\,(1-t)\,Y,\qquad M = m\,Y$$<div class="where">\(Y\) 국내총생산(= 가계의 소득), \(C\) 소비, \(I\) 투자, \(G\) 정부지출, \(X\) 수출, \(M\) 수입, \(C_0\) 소득과 무관한 소비(소비 심리), \(c\) 한계소비성향, \(t\) 세율, \(m\) 수입성향. 정리하면 \(Y = (C_0 + I + G + X) / (1 - c(1-t) + m)\).</div></div>
+
+    <div class="sim" id="sim-flow">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>경제 순환도: 소비·수출·정부지출을 바꾸면 원 전체가 움직인다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="flow-cv"></canvas><span class="hint">상자를 누르면 관련 장이 나온다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>가계 소비 심리 <output id="flow-c-out"></output></span><input type="range" id="flow-c" min="-300" max="150" step="10" value="0"></label>
+          <label class="ctrl"><span>수출 변화 <output id="flow-x-out"></output></span><input type="range" id="flow-x" min="-50" max="30" step="1" value="0"></label>
+          <label class="ctrl"><span>정부지출 변화 <output id="flow-g-out"></output></span><input type="range" id="flow-g" min="-150" max="250" step="10" value="0"></label>
+          <label class="ctrl"><span>한계소비성향 <output id="flow-mpc-out"></output></span><input type="range" id="flow-mpc" min="0.3" max="0.8" step="0.05" value="0.55"></label>
+          <div class="seg" id="flow-pre"><button data-value="base" class="on">기준</button><button data-value="slump">소비 위축</button><button data-value="boom">수출 호황</button><button data-value="crash">수출 급감</button><button data-value="fiscal">재정 확대</button></div>
+        </div>
+      </div>
+      <div class="flow-map" id="flow-map">상자(가계·기업·정부·해외·금융시장)를 누르면 그 부분을 다루는 장이 여기에 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">GDP(= 소득)</span><span class="v" id="flow-o-y">—</span></div>
+        <div class="stat"><span class="k">소비</span><span class="v" id="flow-o-c">—</span></div>
+        <div class="stat"><span class="k">재정수지(세금 − 정부지출)</span><span class="v" id="flow-o-f">—</span></div>
+        <div class="stat"><span class="k">순수출(수출 − 수입)</span><span class="v" id="flow-o-n">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① '소비 위축'을 누른다. 가계가 소비를 줄이면 기업 매출이 줄고 소득 화살표가 가늘어져 소비가 한 번 더 준다. 세금이 덜 걷혀 재정수지도 나빠진다. ② '수출 급감'을 누르고 수출을 −50%까지 민다. 해외에서 들어오는 화살표가 가늘어지면 원 전체가 쪼그라들고 재정수지는 적자로 돌아선다. 수출 의존도가 큰 경제가 세계 경기에 흔들리는 모습이다. ③ 수출 급감 상태에서 정부지출을 +250조원까지 올린다. GDP는 일부 회복되지만 재정적자는 커진다. 한계소비성향을 0.8로 올리면 같은 충격이 더 크게 번진다(승수). (교육용 모형: 투자 800조원 고정, 세율 20%, 수입성향 0.414. 가격·금리·환율은 고정이고, 한 번에 새 균형으로 옮겨 간다. 실제 경제는 몇 분기에 걸쳐 조정되며 금리와 환율도 함께 움직인다. 전망이 아니다.)</div>
+    </div>
+
+    <p>몇 번 움직여 보면 순환도의 성질 세 가지가 보인다. 첫째, <strong>한 사람의 지출은 다른 사람의 소득</strong>이라 지출 충격은 원을 따라 증폭된다. 다만 수입과 세금, 저축으로 새어 나가는 몫이 있어 무한히 커지지는 않는다. 한국처럼 수입이 많은 경제는 새는 몫이 커서 승수가 작다. 둘째, <strong>정부의 재정수지는 경기를 따라 저절로 움직인다.</strong> 경기가 나빠지면 세금이 덜 걷혀 적자가 커지고, 좋아지면 줄어든다(<a href="fiscal.html">12장</a>). 셋째, 원의 수지는 반드시 맞는다. 가계의 저축에서 기업의 투자를 뺀 것은 정부의 적자와 순수출의 합과 같다. 경상수지 흑자가 큰 나라는 국내 저축이 국내 투자보다 많은 나라다(<a href="trade.html">11장</a>).</p>
+    <p>이 모형에는 가격과 금리가 없다. 실제 경제에서는 수요가 줄면 값이 내리고(<a href="market.html">2장</a>), 한국은행이 금리를 바꾸고(<a href="bok.html">8장</a>), 환율이 움직여 수출입이 다시 바뀐다(<a href="fx.html">10장</a>). 그 길들은 각 장에서 하나씩 더하고, <a href="lab.html">14장 실험실</a>에서 다시 한 판에 모은다.</p>
+  </section>
+
+  <div class="casefile">
+    <div class="tag"><b>CASE 지우</b><span>헤드라인 노트 · 2025년 10월</span></div>
+    <div class="headline">3분기 성장률 반등<small>근거: 한국은행 「2025년 3/4분기 실질 국내총생산(속보)」(2025년 10월 말). 숫자의 해부는 <a href="cycle.html">4장</a>에서</small></div>
+    <h4>노트 첫 장: 내 가계부부터 순환도에 올려놓기</h4>
+    <p>삼촌의 첫 숙제는 헤드라인이 아니라 지우 자신의 숫자였다. "남의 숫자를 읽기 전에 네 숫자를 같은 방식으로 적어 봐라. 언제 기준인지, 무엇과 비교할지." 지우는 노트 첫 장에 2025년 10월 기준 가계부를 적었다.</p>
+    <div class="slip" id="case-slip"></div>
+    <p id="case-calc">—</p>
+    <p>그달 노트에 붙인 헤드라인은 월말에 나온 3분기 성장률 속보였다. 지우는 세 질문을 그대로 적었다. 언제 기준인가: 7~9월, 속보치(나중에 고쳐진다). 무엇과 비교했나: 직전 분기(계절조정 전기비). 누가 쟀나: 한국은행. 그리고 순환도에서 이 숫자가 원 전체의 크기라는 것을 확인했다. 원이 커지면 회사 매출이 늘고, 회사 매출이 늘면 내 연봉 협상도 달라진다. 반대로 원을 키운 것이 소비인지 수출인지에 따라 회사가 사는 밀과 원당의 값, 환율이 다르게 움직인다. 숫자를 확인하는 일은 <a href="cycle.html">4장</a>으로 넘겼다.</p>
+    <div class="clue">
+      <div><b>헤드라인이 말한 것</b>기준금리 2.50% 동결. 3분기 성장률 반등.</div>
+      <div><b>숫자를 다시 보니</b>동결은 지난 회의와 비교한 말이다. 1년 전(2024년 10월 23일, 3.25%)보다는 0.75%p 낮다. 성장률은 속보치이고 전기비다.</div>
+      <div><b>내 생활에는</b><span id="case-life">—</span></div>
+    </div>
+  </div>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>경제 숫자에는 세 꼬리표가 붙어 있다. 언제 기준인가(기간과 발표일, 속보·잠정·확정), 무엇과 비교했나(전월비·전기비·전년동월비·연율), 누가 쟀나(기관과 조사 방법). 헤드라인은 이 꼬리표를 떼고 숫자만 보여 준다.</li>
+      <li>전년동월비는 계절 영향 없이 비교할 수 있지만 1년 전 값에 따라 크게 움직인다(기저효과). 전월비·전기비는 최근 변화를 빨리 보여 주지만 계절조정이 필요하다.</li>
+      <li>조원·억 달러 같은 큰 숫자는 GDP 대비 비율, 1인당, 내 연봉처럼 나눠서 읽는다. 1인당은 분모(주민등록 인구인지 추계인구인지)를, 달러 숫자는 어느 날 환율인지 확인한다.</li>
+      <li>통계는 기간이 끝나고 며칠에서 몇 달 뒤에 나온다. 같은 날 읽은 기사도 서로 다른 달을 이야기한다. 원자료는 ECOS 100대 통계지표, KOSIS, 기관 보도자료에서 찾는다.</li>
+      <li>가계·기업·정부·해외·금융시장은 소비·소득·세금·정부지출·저축·투자·수출입으로 이어진 원이다. 한 사람의 지출이 다른 사람의 소득이어서 한 곳의 변화가 원 전체로 번지고, 저축 − 투자 = 재정적자 + 순수출이라는 수지가 늘 맞는다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q"><p>1. "9월 소비자물가 2.9% 상승"이라는 헤드라인에서 2.9%는 무엇과 비교한 값인가?</p>
+        <div class="opts"><button class="opt">2026년 8월의 물가</button><button class="opt" data-correct>2025년 9월의 물가</button><button class="opt">한국은행의 물가안정목표 2%</button><button class="opt">2020년의 물가(지수 기준연도)</button></div>
+        <div class="quiz-exp">소비자물가 헤드라인은 전년동월비다. 작년 같은 달과 비교하므로 계절 영향이 없지만, 작년 같은 달의 값이 유난히 낮았거나 높았으면 기저효과가 생긴다. 2020년은 지수를 100으로 둔 기준연도이고, 2%는 비교 기준이 아니라 목표다.</div></div>
+      <div class="quiz-q"><p>2. 어떤 품목의 가격이 작년 6월에만 일시적으로 크게 내렸다가 7월에 원래대로 돌아왔다. 올해 가격이 매달 꾸준히 조금씩 올랐다면 올해 6월의 전년동월비는 어떻게 보이겠는가?</p>
+        <div class="opts"><button class="opt">다른 달과 비슷하다</button><button class="opt">크게 낮아 보인다</button><button class="opt" data-correct>크게 높아 보인다</button><button class="opt">계산할 수 없다</button></div>
+        <div class="quiz-exp">비교 기준인 작년 6월이 낮았으므로 올해 6월에 아무 일이 없어도 전년동월비가 크게 높게 나온다. 이것이 기저효과다. 7월에는 기준이 정상으로 돌아와 상승률이 '급락'한 것처럼 보인다.</div></div>
+      <div class="quiz-q"><p>3. 2025년 말 국가채무 1,304.5조원을 주민등록 인구 약 5,111.7만명으로 나눈 1인당 국가채무에 가장 가까운 것은?</p>
+        <div class="opts"><button class="opt" data-correct>약 2,550만원</button><button class="opt">약 255만원</button><button class="opt">약 2억 5,500만원</button><button class="opt">약 25만원</button></div>
+        <div class="quiz-exp">1,304.5조원 ÷ 5,111.7만명 ≒ 2,552만원이다. 조(10의 12제곱)를 만(10의 4제곱)으로 나누면 억(10의 8제곱) 단위가 남는다는 것을 기억하면 자릿수를 틀리지 않는다. 다만 1인당 숫자는 감각을 잡는 용도이고, 나랏빚의 부담은 GDP 대비 비율과 이자로 판단한다.</div></div>
+      <div class="quiz-q"><p>4. 경제 순환도에서 가계가 소비를 크게 줄였다. 다른 조건이 같다면 가장 먼저 이어지는 변화로 알맞은 것은?</p>
+        <div class="opts"><button class="opt">정부의 세금 수입이 늘어난다</button><button class="opt">수출이 자동으로 늘어난다</button><button class="opt">가계의 소득이 그대로이므로 아무 일도 없다</button><button class="opt" data-correct>기업의 매출이 줄고, 그만큼 가계에 돌아가는 소득도 줄어든다</button></div>
+        <div class="quiz-exp">한 사람의 지출은 다른 사람의 소득이다. 소비가 줄면 기업 매출이 줄고, 임금과 이윤으로 가계에 돌아가는 소득이 줄어 소비가 한 번 더 준다. 소득이 줄면 세금도 덜 걷혀 재정수지가 나빠진다.</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var K = EC.KR, C = EC.CASE;
+  var POP = 51117378;   // 행정안전부 주민등록 인구, 2025-12-31
+  var sgnPct = function (x, d) { d = d == null ? 1 : d; return (x > 0.00001 ? "+" : x < -0.00001 ? "−" : "") + Math.abs(x * 100).toFixed(d) + "%"; };
+  var jo = function (x) { return (x < 0 ? "−" : "") + Math.abs(x).toLocaleString("ko-KR", { maximumFractionDigits: 0 }) + "조원"; };
+  var joS = function (x) { return (x > 0.5 ? "+" : x < -0.5 ? "−" : "±") + Math.abs(x).toLocaleString("ko-KR", { maximumFractionDigits: 0 }) + "조원"; };
+
+  /* ---------------- sim-base: 수준·전월비·전년동월비 ---------------- */
+  (function () {
+    var month = 17, box = null;   // 0..23: 작년 1월 ~ 올해 12월
+    var gV = EB.seg("base-view", draw);
+    var gG = EB.range("base-g", function (v) { return v.toFixed(1) + "%"; }, draw);
+    var gS = EB.range("base-s", function (v) { return (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%"; }, draw);
+    var sea = document.getElementById("base-sea");
+    sea.addEventListener("change", draw);
+    function label(i) { return (i < 12 ? "작년 " : "올해 ") + (i % 12 + 1) + "월"; }
+    function series() {
+      var g = Math.pow(1 + gG() / 100, 1 / 12), out = [];
+      for (var i = 0; i < 24; i++) {
+        var s = sea.checked ? 1 + 0.012 * Math.sin(2 * Math.PI * ((i % 12) - 2) / 12) : 1;
+        var shock = i === 5 ? 1 + gS() / 100 : 1;
+        out.push(100 * Math.pow(g, i) * s * shock);
+      }
+      return out;
+    }
+    var cv = EB.canvas("#base-cv", function (ctx, w, h) {
+      var P = EB.palette(), L = series(), view = gV();
+      var mom = L.map(function (v, i) { return i ? (v / L[i - 1] - 1) * 100 : NaN; });
+      var yoy = L.map(function (v, i) { return i >= 12 ? (v / L[i - 12] - 1) * 100 : NaN; });
+      var data, yr, fmt;
+      if (view === "level") { var lo = Math.min.apply(null, L), hi = Math.max.apply(null, L); data = L; yr = [Math.floor(lo - 2), Math.ceil(hi + 2)]; fmt = function (v) { return v.toFixed(0); }; }
+      else { data = view === "mom" ? mom : yoy; var vals = data.filter(isFinite), m = Math.max(3, Math.max.apply(null, vals.map(Math.abs)) * 1.15); yr = [-m, m]; fmt = function (v) { return (v > 0 ? "+" : "") + v.toFixed(0) + "%"; }; }
+      var c = EB.chart(ctx, { x: 50, y: 18, w: w - 64, h: h - 58 }, {
+        x: [-0.5, 23.5], y: yr, xTicks: [0, 5, 12, 17, 23], xFmt: function (v) { return (v < 12 ? "작년" : "올해") + (v % 12 + 1) + "월"; }, yFmt: fmt,
+        bands: [{ x0: 4.5, x1: 5.5, color: EB.color("warn-soft") }, { x0: 11.5, x1: 23.5, color: EB.color("accent-soft") }],
+        hlines: view === "level" ? [] : [{ y: 0, color: P.axis, dash: [] }],
+        series: [{ data: data.map(function (v, i) { return [i, v]; }), color: view === "level" ? P.accent : view === "mom" ? P.accent2 : P.bad, width: 2.4 }],
+        points: data.map(function (v, i) { return isFinite(v) ? { x: i, y: v, r: i === month ? 5.5 : 2.6, color: i === month ? P.text : (view === "level" ? P.accent : view === "mom" ? P.accent2 : P.bad) } : null; }).filter(Boolean),
+      });
+      box = c;
+      var x = c.X(month);
+      ctx.save(); ctx.strokeStyle = P.text; ctx.globalAlpha = 0.55; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(x, c.box.y); ctx.lineTo(x, c.box.y + c.box.h); ctx.stroke(); ctx.restore();
+      ctx.beginPath(); ctx.arc(x, c.box.y + c.box.h, 7, 0, Math.PI * 2); ctx.fillStyle = P.text; ctx.fill();
+      ctx.font = EB.font(11); ctx.fillStyle = P.dim; ctx.textAlign = "left";
+      ctx.fillText(view === "level" ? "지수 수준(교육용 가상 데이터)" : view === "mom" ? "전월비(%)" : "전년동월비(%) — 올해만 계산된다", c.box.x + 6, c.box.y + 12);
+      ctx.fillStyle = P.warn; ctx.fillText("작년 6월", c.X(5) - 18, c.box.y + c.box.h - 6);
+      var i = month;
+      EB.stat("base-o-m", label(i));
+      EB.stat("base-o-l", L[i].toFixed(1));
+      EB.stat("base-o-mm", i ? sgnPct(mom[i] / 100, 1) : "—");
+      EB.stat("base-o-yy", i >= 12 ? sgnPct(yoy[i] / 100, 1) : "계산 불가(1년 전 없음)");
+    }, { aspect: 0.56, minHeight: 250, maxHeight: 380 });
+    EB.drag(cv.canvas, { move: function (x) { if (!box) return; month = EB.clamp(Math.round(EB.map(x, box.box.x, box.box.x + box.box.w, -0.5, 23.5)), 0, 23); cv.redraw(); } });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-units: 큰 숫자 자 ---------------- */
+  (function () {
+    var ITEMS = {
+      debt: { name: "국가채무(D1)", v: K.debt2025, src: "재정경제부 2025회계연도 국가결산(2025년 말, 중앙+지방)" },
+      gdp: { name: "명목 GDP", v: K.nominalGdp2025, src: "한국은행 국민소득, 2025년 연간(약 2,676.7조원)" },
+      budget: { name: "2026년 본예산 총지출", v: K.budget2026, src: "2026년 본예산(2025-12-02 국회 통과)" },
+      hh: { name: "가계신용", v: K.householdCredit, src: "한국은행 가계신용, 2026년 2분기 말" },
+      ca: { name: "경상수지 흑자", usd: K.currentAccount2025, src: "한국은행 국제수지, 2025년 연간(1,230.5억 달러)" },
+    };
+    var gI = EB.seg("units-item", draw), gD = EB.seg("units-div", draw);
+    var gFx = EB.range("units-fx", function (v) { return v.toLocaleString("ko-KR") + "원"; }, draw);
+    var cv = EB.canvas("#units-cv", function (ctx, w, h) {
+      var P = EB.palette(), it = ITEMS[gI()], div = gD();
+      var total = it.usd ? it.usd * gFx() : it.v, pc = total / POP, jw = total / C.jiwoo.salary;
+      var lo = 4, hi = 16, x0 = 22, x1 = w - 22, y = h * 0.52;
+      var X = function (v) { return x0 + (Math.log10(Math.max(v, 1e4)) - lo) / (hi - lo) * (x1 - x0); };
+      // 눈금
+      ctx.strokeStyle = P.axis; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke();
+      var names = { 4: "1만", 8: "1억", 12: "1조", 16: "1경" };
+      for (var e = lo; e <= hi; e++) {
+        var px = X(Math.pow(10, e)), big = names[e];
+        ctx.strokeStyle = big ? P.text : P.faint; ctx.lineWidth = big ? 2 : 1;
+        ctx.beginPath(); ctx.moveTo(px, y - (big ? 10 : 5)); ctx.lineTo(px, y + (big ? 10 : 5)); ctx.stroke();
+        if (big) { ctx.fillStyle = P.text; ctx.font = EB.font(12, false, 700); ctx.textAlign = "center"; ctx.fillText(big + "원", px, y + 26); }
+      }
+      // 기준 표식(지우)
+      var refs = [[C.jiwoo.monthlyNet, "월 실수령"], [C.jiwoo.salary, "연봉"], [C.home.deposit, "전세 보증금"]];
+      ctx.font = EB.font(10.5); ctx.textAlign = "center";
+      refs.forEach(function (r, k) {
+        var px = X(r[0]); ctx.fillStyle = P.accent2; ctx.beginPath(); ctx.arc(px, y, 4, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = P.dim; ctx.fillText(r[1], px, y + 42 + (k % 2) * 13);
+      });
+      // 총액과 1인당
+      function marker(v, label, col, up, on) {
+        var px = X(v), ty = up ? y - 52 : y - 30;
+        ctx.globalAlpha = on ? 1 : 0.35;
+        ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(px, y - 6); ctx.lineTo(px, ty + 6); ctx.stroke();
+        ctx.fillStyle = col; ctx.beginPath(); ctx.arc(px, y, on ? 7 : 5, 0, Math.PI * 2); ctx.fill();
+        ctx.font = EB.font(12, false, 700); ctx.textAlign = px > w * 0.75 ? "right" : px < w * 0.25 ? "left" : "center";
+        ctx.fillText(label, EB.clamp(px, 10, w - 10), ty);
+        ctx.globalAlpha = 1;
+      }
+      marker(total, it.name + " " + EB.wonAxis(total), P.bad, true, div === "all");
+      marker(pc, "1인당 " + EB.won(pc), P.accent, false, div === "pc");
+      if (div === "jw") {
+        ctx.fillStyle = P.text; ctx.font = EB.font(13, false, 700); ctx.textAlign = "center";
+        ctx.fillText("지우 연봉 " + (jw >= 1e4 ? Math.round(jw / 1e4).toLocaleString("ko-KR") + "만" : Math.round(jw).toLocaleString("ko-KR")) + " 년치", w / 2, h * 0.16);
+      }
+      // 칸 사이 배수 표시
+      ctx.fillStyle = P.faint; ctx.font = EB.font(10.5); ctx.textAlign = "center";
+      ctx.fillText("한 칸 = 10배 (로그 눈금)", w / 2, h - 8);
+      EB.stat("units-o-t", it.usd ? (it.usd / 1e8).toLocaleString("ko-KR", { maximumFractionDigits: 1 }) + "억 달러 ≒ " + EB.wonAxis(total) + "원" : EB.wonAxis(total) + "원");
+      EB.stat("units-o-p", EB.won(pc));
+      EB.stat("units-o-j", (jw >= 1e4 ? (jw / 1e4).toLocaleString("ko-KR", { maximumFractionDigits: 0 }) + "만 년치" : Math.round(jw).toLocaleString("ko-KR") + "년치") + " · 1인당은 " + (pc / C.jiwoo.salary).toFixed(2) + "년치");
+      EB.stat("units-o-s", it.src);
+    }, { aspect: 0.42, minHeight: 210, maxHeight: 300 });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-release: 공표 시차 ---------------- */
+  (function () {
+    var DAY = 864e5;
+    var T0 = Date.UTC(2025, 9, 1), T1 = Date.UTC(2026, 10, 30), TODAY = Date.UTC(2026, 9, 9);
+    var today = TODAY, box = null;
+    // lag: 기간 끝 다음 날부터 공표일까지 대략의 일수(2026년 실제 발표 몇 건에서 잰 값)
+    var ROWS = [
+      { name: "수출입 동향", per: "m", lag: 1 },
+      { name: "소비자물가", per: "m", lag: 2 },
+      { name: "외환보유액", per: "m", lag: 6 },
+      { name: "고용동향", per: "m", lag: 12 },
+      { name: "국제수지", per: "m", lag: 38 },
+      { name: "GDP 속보", per: "q", lag: 23 },
+      { name: "GDP 잠정", per: "q", lag: 70 },
+      { name: "가계신용", per: "q", lag: 50 },
+    ];
+    function periods(r) {
+      var out = [];
+      for (var y = 2025, mo = 6; y < 2027; ) {
+        var start = Date.UTC(y, mo, 1), len = r.per === "m" ? 1 : 3;
+        var end = Date.UTC(y, mo + len, 1);
+        out.push({ start: start, end: end, rel: end + (r.lag - 1) * DAY, label: r.per === "m" ? (y % 100) + "." + (mo + 1) : (y % 100) + "년 " + (Math.floor(mo / 3) + 1) + "분기" });
+        mo += len; if (mo >= 12) { mo -= 12; y++; }
+        if (start > T1) break;
+      }
+      return out;
+    }
+    var P_ = ROWS.map(periods);
+    function latest(k) { var ps = P_[k], best = null; ps.forEach(function (p) { if (p.rel <= today) best = p; }); return best; }
+    function fmtDate(t) { var d = new Date(t); return d.getUTCFullYear() + "년 " + (d.getUTCMonth() + 1) + "월 " + d.getUTCDate() + "일"; }
+    function perName(k, p) { if (!p) return "—"; var d = new Date(p.start); return ROWS[k].per === "m" ? d.getUTCFullYear() + "년 " + (d.getUTCMonth() + 1) + "월분" : d.getUTCFullYear() + "년 " + (Math.floor(d.getUTCMonth() / 3) + 1) + "분기"; }
+    var cv = EB.canvas("#rel-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      var lw = w < 520 ? 74 : 96, bx = lw, bw = w - lw - 12, top = 30, rh = (h - top - 30) / ROWS.length;
+      var X = function (t) { return bx + (t - T0) / (T1 - T0) * bw; };
+      box = { X: X, bx: bx, bw: bw };
+      // 월 눈금
+      ctx.font = EB.font(10.5, true); ctx.textAlign = "center"; ctx.fillStyle = P.dim;
+      for (var y = 2025, mo = 9; y < 2027; ) {
+        var t = Date.UTC(y, mo, 1); if (t > T1) break;
+        ctx.strokeStyle = P.grid; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(X(t), top - 4); ctx.lineTo(X(t), h - 26); ctx.stroke();
+        if (bw > 420 || mo % 2 === 1) ctx.fillText((mo === 0 || (y === 2025 && mo === 9) ? (y % 100) + "." : "") + (mo + 1), X(t) + bw / 14 / 2, h - 12);
+        mo++; if (mo >= 12) { mo = 0; y++; }
+      }
+      ctx.save(); ctx.beginPath(); ctx.rect(bx, 0, bw, h); ctx.clip();
+      ROWS.forEach(function (r, k) {
+        var yy = top + k * rh, ps = P_[k], last = latest(k);
+        ps.forEach(function (p) {
+          var done = p.rel <= today, x0 = X(p.start) + 1, x1 = X(p.end) - 1;
+          if (x1 < bx - 40 || x0 > bx + bw + 40) return;
+          ctx.fillStyle = done ? (p === last ? P.accent : EB.color("accent-soft")) : "transparent";
+          ctx.fillRect(x0, yy + rh * 0.22, Math.max(1, x1 - x0), rh * 0.5);
+          ctx.strokeStyle = done ? P.accent : P.faint; ctx.lineWidth = 1; ctx.strokeRect(x0, yy + rh * 0.22, Math.max(1, x1 - x0), rh * 0.5);
+          // 공표일 점
+          var rx = X(p.rel);
+          ctx.fillStyle = done ? P.accent2 : P.faint;
+          ctx.beginPath(); ctx.arc(rx, yy + rh * 0.47, done ? 3 : 2.2, 0, Math.PI * 2); ctx.fill();
+        });
+        if (last) {
+          ctx.strokeStyle = P.accent2; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(X(last.end), yy + rh * 0.47); ctx.lineTo(X(last.rel), yy + rh * 0.47); ctx.stroke();
+        }
+      });
+      ctx.restore();
+      ROWS.forEach(function (r, k) { var yy = top + k * rh; ctx.fillStyle = P.text; ctx.font = EB.font(w < 520 ? 11 : 12); ctx.textAlign = "left"; ctx.fillText(r.name, 6, yy + rh * 0.47 + 4); });
+      // 오늘 선
+      var tx = X(today);
+      ctx.strokeStyle = P.bad; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(tx, top - 4); ctx.lineTo(tx, h - 26); ctx.stroke();
+      ctx.fillStyle = P.bad; ctx.beginPath(); ctx.arc(tx, h - 24, 7, 0, Math.PI * 2); ctx.fill();
+      ctx.font = EB.font(11, false, 700); ctx.textAlign = tx > w - 80 ? "right" : "left";
+      ctx.fillStyle = EB.color("canvas-bg"); ctx.fillRect(tx + (tx > w - 80 ? -44 : 10), h - 36, 34, 16);
+      ctx.fillStyle = P.bad; ctx.fillText("오늘", tx + (tx > w - 80 ? -12 : 12), h - 24);
+      ctx.fillStyle = P.dim; ctx.font = EB.font(10.5); ctx.textAlign = "left";
+      ctx.fillText("칸 = 통계가 가리키는 기간, 점 = 공표일", bx, 12);
+      EB.stat("rel-o-d", fmtDate(today));
+      EB.stat("rel-o-c", perName(1, latest(1)));
+      EB.stat("rel-o-j", perName(3, latest(3)));
+      var g1 = latest(5), g2 = latest(6);
+      EB.stat("rel-o-g", g1 ? perName(5, g1) + (g2 && g2.start === g1.start ? " 잠정" : " 속보") : "—");
+    }, { aspect: 0.5, minHeight: 300, maxHeight: 400 });
+    EB.drag(cv.canvas, { move: function (x) { if (!box) return; var t = T0 + (x - box.bx) / box.bw * (T1 - T0); today = EB.clamp(Math.round(t / DAY) * DAY, Date.UTC(2025, 10, 1), Date.UTC(2026, 10, 30)); cv.redraw(); } });
+  })();
+
+  /* ---------------- 숫자판 ---------------- */
+  (function () {
+    var tiles = [
+      { k: "기준금리", v: (K.baseRate * 100).toFixed(2) + "%", cmp: "2026-08-27 결정, 0.25%p 인상(2회 연속). 다음 회의 10-22", who: "한국은행 「통화정책방향」", href: "bok.html", ch: "8장 · 9장" },
+      { k: "소비자물가 상승률", v: (K.cpi * 100).toFixed(1) + "%", cmp: "2026년 9월, 전년동월비. 8월 3.1%, 근원 2.7%", who: "국가데이터처 「소비자물가동향」 10-02", href: "inflation.html", ch: "6장" },
+      { k: "실질 GDP 성장률", v: (K.gdpQoQ * 100).toFixed(1) + "% / " + (K.gdpYoY * 100).toFixed(1) + "%", cmp: "2026년 2분기, 전기비(계절조정) / 전년동기비. 잠정치", who: "한국은행 「국민소득(잠정)」 09-08", href: "gdp.html", ch: "3장 · 4장" },
+      { k: "실업률", v: (K.unemployment * 100).toFixed(1) + "%", cmp: "2026년 8월, 원계열. 취업자 +18.4만명(전년동월비)", who: "국가데이터처 「고용동향」 09-09", href: "jobs.html", ch: "5장" },
+      { k: "원/달러 환율", v: K.usdkrw.toLocaleString("ko-KR", { minimumFractionDigits: 1 }) + "원", cmp: "2026-10-08 주간거래 종가. 2025년 평균 1,421.97원", who: "서울외환시장", href: "fx.html", ch: "10장" },
+      { k: "경상수지", v: (K.currentAccountAug / 1e8).toLocaleString("ko-KR", { maximumFractionDigits: 1 }) + "억 달러", cmp: "2026년 8월 흑자, 40개월 연속. 2025년 연간 1,230.5억 달러", who: "한국은행 「국제수지(잠정)」 10-08", href: "trade.html", ch: "11장" },
+      { k: "국가채무 비율(D1)", v: (K.debtRatio2025 * 100).toFixed(1) + "%", cmp: "2025년 말, GDP 대비. 1,304.5조원(중앙+지방)", who: "재정경제부 「국가결산」 2026-04-06", href: "fiscal.html", ch: "12장" },
+      { k: "가계신용", v: (K.householdCredit / 1e12).toLocaleString("ko-KR", { maximumFractionDigits: 1 }) + "조원", cmp: "2026년 2분기 말 잔액. 처음 2,000조원 넘음", who: "한국은행 「가계신용(잠정)」 08-19", href: "crisis.html", ch: "13장" },
+      { k: "고용률(15~64세)", v: (K.employmentRate1564 * 100).toFixed(1) + "%", cmp: "2026년 8월, OECD 비교기준. 8월 기준 역대 최고", who: "국가데이터처 「고용동향」 09-09", href: "jobs.html", ch: "5장" },
+      { k: "국고채 3년 금리", v: (K.bond3y * 100).toFixed(3) + "%", cmp: "2026-10-07 장 마감. 10년물 " + (K.bond10y * 100).toFixed(3) + "%", who: "서울 채권시장(금융투자협회 최종호가)", href: "rates.html", ch: "7장" },
+      { k: "외환보유액", v: (K.fxReserves / 1e8).toLocaleString("ko-KR", { maximumFractionDigits: 1 }) + "억 달러", cmp: "2026년 9월 말. 전월 대비 17.2억 달러 감소", who: "한국은행 「외환보유액」 10-06", href: "fx.html", ch: "10장 · 13장" },
+      { k: "수출", v: (K.exportsSep / 1e8).toLocaleString("ko-KR", { maximumFractionDigits: 1 }) + "억 달러", cmp: "2026년 9월, 전년동월비 +" + (K.exportsSepYoY * 100).toFixed(1) + "%. 반도체 비중 " + (K.chipShareSep * 100).toFixed(1) + "%", who: "산업통상부 「수출입 동향」 10-01", href: "trade.html", ch: "11장" },
+    ];
+    document.getElementById("nb").innerHTML = tiles.map(function (t) {
+      return '<a href="' + t.href + '"><span class="k">' + t.k + '</span><span class="v">' + t.v + '</span><span class="cmp">' + t.cmp + '</span><span class="who">' + t.who + '</span><span class="ch">' + t.ch + ' →</span></a>';
+    }).join("");
+  })();
+
+  /* ---------------- 순환도 공통 배치 ---------------- */
+  var NODES = {
+    hh: { name: "가계", fx: 0.13, fy: 0.5, chap: '<b>가계</b>: 일하고 소득을 받아 소비·저축한다. 일자리는 <a href="jobs.html">5장 고용</a>, 월급의 실질 가치는 <a href="inflation.html">6장 물가</a>, 대출 이자는 <a href="rates.html">7장 금리</a>.' },
+    fm: { name: "기업", fx: 0.87, fy: 0.5, chap: '<b>기업</b>: 물건값과 생산량을 정한다. 가격은 <a href="market.html">2장 수요와 공급</a>, 나라 전체의 생산은 <a href="gdp.html">3장 GDP</a>, 오르내림은 <a href="cycle.html">4장 경기 순환</a>.' },
+    gv: { name: "정부", fx: 0.5, fy: 0.12, chap: '<b>정부</b>: 세금을 걷고 쓴다. 예산·재정수지·국가채무는 <a href="fiscal.html">12장 재정과 국가부채</a>.' },
+    rw: { name: "해외", fx: 0.5, fy: 0.88, chap: '<b>해외</b>: 우리 물건을 사 가고 우리에게 판다. 원/달러 환율은 <a href="fx.html">10장 환율</a>, 수출입과 경상수지는 <a href="trade.html">11장 무역과 경상수지</a>.' },
+    fi: { name: "금융시장", fx: 0.5, fy: 0.5, chap: '<b>금융시장</b>: 저축을 투자로 잇는다. 돈의 값은 <a href="rates.html">7장 금리</a>, 그 기준점은 <a href="bok.html">8장 중앙은행</a>과 <a href="transmission.html">9장 기준금리가 퍼지는 길</a>, 무너질 때는 <a href="crisis.html">13장 금융위기</a>.' },
+  };
+  // 흐름: from, to, 곡률(control 점 오프셋), 이름
+  var FLOWS = [
+    { key: "C", from: "hh", to: "fm", bend: -0.3, name: "소비" },
+    { key: "Y", from: "fm", to: "hh", bend: -0.3, name: "소득" },
+    { key: "T", from: "hh", to: "gv", bend: -0.2, name: "세금" },
+    { key: "G", from: "gv", to: "fm", bend: -0.2, name: "정부지출" },
+    { key: "S", from: "hh", to: "fi", bend: 0.0, name: "저축" },
+    { key: "I", from: "fi", to: "fm", bend: 0.0, name: "투자" },
+    { key: "X", from: "rw", to: "fm", bend: 0.24, name: "수출" },
+    { key: "M", from: "fm", to: "rw", bend: 0.02, name: "수입" },
+  ];
+  function nodeBox(n, w, h) { var bw = Math.max(58, Math.min(104, w * 0.17)), bh = Math.max(34, Math.min(46, h * 0.11)); return { x: n.fx * w - bw / 2, y: n.fy * h - bh / 2, w: bw, h: bh, cx: n.fx * w, cy: n.fy * h }; }
+  function edgePoint(b, tx, ty) { // 상자 가장자리에서 목표 쪽으로
+    var dx = tx - b.cx, dy = ty - b.cy, sx = Math.abs(dx) > 1e-6 ? (b.w / 2) / Math.abs(dx) : Infinity, sy = Math.abs(dy) > 1e-6 ? (b.h / 2) / Math.abs(dy) : Infinity, s = Math.min(sx, sy);
+    return [b.cx + dx * s, b.cy + dy * s];
+  }
+  function flowPath(f, w, h) {
+    var A = nodeBox(NODES[f.from], w, h), B = nodeBox(NODES[f.to], w, h);
+    var mx = (A.cx + B.cx) / 2, my = (A.cy + B.cy) / 2, dx = B.cx - A.cx, dy = B.cy - A.cy, len = Math.hypot(dx, dy);
+    var nx = -dy / len, ny = dx / len, off = f.bend * len * Math.min(1, h / (w * 0.62));
+    var cx = mx + nx * off, cy = my + ny * off;
+    var p0 = edgePoint(A, cx, cy), p2 = edgePoint(B, cx, cy);
+    return { p0: p0, c: [cx, cy], p2: p2, at: function (t) { var u = 1 - t; return [u * u * this.p0[0] + 2 * u * t * this.c[0] + t * t * this.p2[0], u * u * this.p0[1] + 2 * u * t * this.c[1] + t * t * this.p2[1]]; } };
+  }
+  function drawNodes(ctx, w, h, P, lit, sel) {
+    Object.keys(NODES).forEach(function (k) {
+      var n = NODES[k], b = nodeBox(n, w, h), on = lit ? lit.indexOf(k) >= 0 : false;
+      ctx.fillStyle = on ? P.accent : (k === sel ? EB.color("accent-2-soft") : EB.color("surface"));
+      ctx.strokeStyle = on ? P.accent : (k === sel ? P.accent2 : P.border); ctx.lineWidth = on || k === sel ? 2 : 1;
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(b.x, b.y, b.w, b.h, 9); else ctx.rect(b.x, b.y, b.w, b.h);
+      ctx.fill(); ctx.stroke();
+      ctx.fillStyle = on ? EB.color("on-accent") : P.text; ctx.font = EB.font(w < 420 ? 12 : 13.5, false, 700); ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText(n.name, b.cx, b.cy + 1);
+      ctx.textBaseline = "alphabetic";
+    });
+  }
+
+  /* ---------------- sim-calendar: 1년 헤드라인 달력 ---------------- */
+  (function () {
+    var MONTHS = [
+      { m: "2025.10", ch: "04", slug: "cycle", t: "경기 순환과 경기 지표", hl: "3분기 성장률 반등", src: "한국은행 「2025년 3/4분기 실질 국내총생산(속보)」", lit: ["fm", "hh"], why: "원 전체의 크기(GDP)가 지난 분기보다 커졌다는 소식이다. 무엇이 원을 키웠는지(소비·투자·수출)와 숫자는 4장에서 확인한다." },
+      { m: "2025.11", ch: "02", slug: "market", t: "수요와 공급", hl: "10월 소비자물가 2.4% 상승, 쌀은 21.3% 올라", src: "국가데이터처 「2025년 10월 소비자물가동향」(2025-11-04)", lit: ["hh", "fm"], why: "가계와 기업 사이, 한 품목의 시장에서 수요와 공급이 값을 정한다. 수확이 늦어지고 재고가 줄면 쌀값이 크게 흔들린다." },
+      { m: "2025.12", ch: "06", slug: "inflation", t: "물가", hl: "2025년 소비자물가 2.1% 상승", src: "국가데이터처 「2025년 12월 및 연간 소비자물가동향」(2025-12-31)", lit: ["hh"], why: "가계가 사는 장바구니 전체의 값. 월급이 같아도 물가가 오르면 소비 화살표의 실질 크기가 준다." },
+      { m: "2026.01", ch: "05", slug: "jobs", t: "고용", hl: "2025년 취업자 19.3만명 증가, 실업률 2.8%", src: "국가데이터처 「2025년 12월 및 연간 고용동향」(2026-01-14)", lit: ["hh", "fm"], why: "기업에서 가계로 가는 소득 화살표의 뿌리, 일자리 이야기다." },
+      { m: "2026.02", ch: "11", slug: "trade", t: "무역과 경상수지", hl: "2025년 경상수지 1,230억 달러, 사상 최대 흑자", src: "한국은행 「2025년 12월 국제수지(잠정)」(2026년 2월 초)", lit: ["rw", "fm"], why: "해외에서 들어온 돈이 나간 돈보다 많았다. 순환도의 수지로 보면 국내 저축이 국내 투자보다 많았다는 뜻이기도 하다." },
+      { m: "2026.03", ch: "03", slug: "gdp", t: "GDP: 나라 경제의 성적표", hl: "2025년 성장률 1.0%, 1인당 GNI 3만 6천 달러대", src: "한국은행 「2025년 4/4분기 및 연간 국민소득(잠정)」", lit: ["hh", "fm", "gv", "rw"], why: "원 전체를 1년 동안 잰 성적표. 생산·지출·분배 세 갈래로 같은 숫자를 잰다." },
+      { m: "2026.04", ch: "12", slug: "fiscal", t: "재정과 국가부채", hl: "2025년 국가채무 1,304.5조원, GDP 대비 49.0%", src: "재정경제부 「2025회계연도 국가결산」(2026-04-06)", lit: ["gv", "fi"], why: "정부가 세금보다 많이 쓴 차이를 금융시장에서 빌려 쌓인 것이 국가채무다." },
+      { m: "2026.05", ch: "08", slug: "bok", t: "중앙은행과 통화정책", hl: "기준금리 2.50% 동결, 새 총재의 첫 회의", src: "한국은행 「통화정책방향」(2026-05-28)", lit: ["fi"], why: "금융시장 한가운데의 기준점, 기준금리를 누가 어떻게 정하는가." },
+      { m: "2026.06", ch: "13", slug: "crisis", t: "금융위기", hl: "금융안정 점검", src: "한국은행 「금융안정보고서」(2026년 6월)", lit: ["fi", "hh"], why: "가계부채와 금융기관의 건전성. 금융시장의 고리가 끊어지면 원 전체가 멈춘다." },
+      { m: "2026.07", ch: "07", slug: "rates", t: "금리: 돈의 가격", hl: "주택담보대출 금리 4%대 중반으로 상승", src: "한국은행 「2026년 6월 금융기관 가중평균금리」", lit: ["fi", "hh"], why: "저축과 대출이 만나는 곳의 값. 가계가 내는 이자가 늘면 소비 화살표가 가늘어진다." },
+      { m: "2026.08", ch: "09", slug: "transmission", t: "기준금리가 퍼지는 길", hl: "기준금리 0.25%p 인상, 연 3.00%", src: "한국은행 「통화정책방향」(2026-08-27)", lit: ["fi", "hh", "fm", "rw"], why: "금융시장에서 시작한 신호가 대출, 자산 가격, 환율을 거쳐 원 전체로 번지는 길." },
+      { m: "2026.09", ch: "10", slug: "fx", t: "환율", hl: "미국 연준 금리 인상에도 원/달러 환율 1,300원대", src: "FOMC 성명(2026-09-16), 서울외환시장", lit: ["rw", "fi"], why: "해외와 우리를 잇는 값. 두 나라의 금리 차와 무역의 흐름이 함께 움직인다." },
+      { m: "2026.10", ch: "14", slug: "lab", t: "경제 뉴스 실험실", hl: "1년 결산", src: "위 모든 자료와 2026년 9월 수출입 동향·소비자물가", lit: ["hh", "fm", "gv", "rw", "fi"], why: "열두 장의 헤드라인을 작은 경제 모형 위에 다시 올려 1년을 돌려 본다." },
+    ];
+    var sel = 0, layout = null, t0 = 0, CT = 34;
+    var panel = document.getElementById("cal-panel");
+    function render() {
+      var d = MONTHS[sel], parts = d.m.split(".");
+      panel.innerHTML = '<div class="cal-hl">' + d.hl + '</div><div class="cal-meta">' + parts[0] + "년 " + (+parts[1]) + "월 · " + '<a href="' + d.slug + '.html">' + (+d.ch) + "장 " + d.t + "</a> · 근거: " + d.src + '</div><div class="cal-why">순환도에서: ' + d.lit.map(function (k) { return NODES[k].name; }).join(", ") + ". " + d.why + "</div>";
+    }
+    var cv = EB.canvas("#cal-cv", function (ctx, w, h) {
+      var P = EB.palette(), n = MONTHS.length;
+      var rows = w < 560 ? 2 : 1, per = Math.ceil(n / rows), gap = 4, tw = (w - 20 - gap * (per - 1)) / per, th = 50;
+      layout = { rows: rows, per: per, tw: tw, th: th, gap: gap };
+      for (var i = 0; i < n; i++) {
+        var r = Math.floor(i / per), c = i % per, x = 10 + c * (tw + gap), y = CT + r * (th + gap), d = MONTHS[i], on = i === sel;
+        ctx.fillStyle = on ? P.accent : i === n - 1 ? EB.color("accent-2-soft") : EB.color("surface");
+        ctx.strokeStyle = on ? P.accent : P.border; ctx.lineWidth = 1;
+        ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(x, y, tw, th, 7); else ctx.rect(x, y, tw, th); ctx.fill(); ctx.stroke();
+        var p = d.m.split(".");
+        ctx.fillStyle = on ? EB.color("on-accent") : P.dim; ctx.font = EB.font(10, true); ctx.textAlign = "center";
+        ctx.fillText(p[0].slice(2) + "년", x + tw / 2, y + 14);
+        ctx.fillStyle = on ? EB.color("on-accent") : P.text; ctx.font = EB.font(14, false, 800);
+        ctx.fillText((+p[1]) + "월", x + tw / 2, y + 31);
+        ctx.fillStyle = on ? EB.color("on-accent") : P.accent; ctx.font = EB.font(10.5, true, 600);
+        ctx.fillText(d.ch + "장", x + tw / 2, y + 45);
+      }
+      // 아래: 순환도 미니
+      var top = CT + rows * (th + gap) + 8, fh = h - top - 6, fw = w;
+      ctx.save(); ctx.translate(0, top);
+      var lit = MONTHS[sel].lit;
+      FLOWS.forEach(function (f) {
+        var path = flowPath(f, fw, fh), on = lit.indexOf(f.from) >= 0 && lit.indexOf(f.to) >= 0;
+        ctx.strokeStyle = on ? P.accent2 : P.grid; ctx.lineWidth = on ? 2.4 : 1.4;
+        ctx.beginPath(); ctx.moveTo(path.p0[0], path.p0[1]); ctx.quadraticCurveTo(path.c[0], path.c[1], path.p2[0], path.p2[1]); ctx.stroke();
+        if (on) { for (var k = 0; k < 4; k++) { var q = path.at((t0 * 0.3 + k / 4) % 1); ctx.fillStyle = P.accent2; ctx.beginPath(); ctx.arc(q[0], q[1], 3, 0, Math.PI * 2); ctx.fill(); } }
+      });
+      drawNodes(ctx, fw, fh, P, lit, null);
+      ctx.restore();
+    }, { aspect: 0.62, minHeight: 330, maxHeight: 440 });
+    function pick(x, y) {
+      if (!layout) return;
+      var c = EB.clamp(Math.floor((x - 10) / (layout.tw + layout.gap)), 0, layout.per - 1);
+      var r = layout.rows === 2 ? (y > CT + layout.th + layout.gap / 2 ? 1 : 0) : 0;
+      var i = EB.clamp(r * layout.per + c, 0, MONTHS.length - 1);
+      if (i !== sel) { sel = i; render(); cv.redraw(); }
+    }
+    var startY = 0;
+    EB.drag(cv.canvas, { start: function (x, y) { startY = y; }, move: function (x, y) { if (layout && startY < CT + layout.rows * (layout.th + layout.gap)) pick(x, Math.min(y, CT + layout.rows * (layout.th + layout.gap) - 1)); } });
+    render();
+    EB.loop(document.getElementById("sim-calendar"), function (dt) { t0 += dt; cv.redraw(); });
+  })();
+
+  /* ---------------- sim-flow: 경제 순환도(대표) ---------------- */
+  (function () {
+    var BASE = { C0: 107, I: 800, G: 520, X: 1180, t: 0.2, m: 0.414 };
+    var sel = null, t0 = 0, Ydisp = null;
+    var gC = EB.range("flow-c", function (v) { return joS(v); }, draw);
+    var gX = EB.range("flow-x", function (v) { return (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%"; }, draw);
+    var gG = EB.range("flow-g", function (v) { return joS(v); }, draw);
+    var gM = EB.range("flow-mpc", function (v) { return v.toFixed(2); }, draw);
+    var PRE = { base: [0, 0, 0], slump: [-150, 0, 0], boom: [0, 20, 0], crash: [0, -40, 0], fiscal: [0, 0, 150] };
+    var gP = EB.seg("flow-pre", function (v) { var p = PRE[v]; gC.set(p[0]); gX.set(p[1]); gG.set(p[2]); });
+    function solve(c0, xg, gg, mpc) {
+      var B = BASE, C0 = B.C0 + c0, X = B.X * (1 + xg / 100), G = B.G + gg;
+      var mult = 1 / (1 - mpc * (1 - B.t) + B.m);
+      var Y = Math.max(0, (C0 + B.I + G + X) * mult);
+      var T = B.t * Y, C = C0 + mpc * (Y - T), M = B.m * Y, S = Y - T - C;
+      return { Y: Y, C: C, T: T, G: G, X: X, M: M, I: B.I, S: S, mult: mult };
+    }
+    var base0 = solve(0, 0, 0, 0.55);
+    function state() { return solve(gC(), gX(), gG(), gM()); }
+    var cv = EB.canvas("#flow-cv", function (ctx, w, h) {
+      var P = EB.palette(), s = state(), b = base0;
+      if (Ydisp == null) Ydisp = s.Y;
+      FLOWS.forEach(function (f) {
+        var v = Math.max(0, s[f.key]), v0 = b[f.key], path = flowPath(f, w, h);
+        var width = 1 + Math.sqrt(v / 2700) * 9, up = v > v0 * 1.01, dn = v < v0 * 0.99;
+        var col = f.key === "C" || f.key === "Y" ? P.accent : f.key === "X" || f.key === "M" ? P.ok : f.key === "T" || f.key === "G" ? P.accent2 : P.dim;
+        ctx.strokeStyle = col; ctx.globalAlpha = 0.22; ctx.lineWidth = width; ctx.lineCap = "round";
+        ctx.beginPath(); ctx.moveTo(path.p0[0], path.p0[1]); ctx.quadraticCurveTo(path.c[0], path.c[1], path.p2[0], path.p2[1]); ctx.stroke();
+        ctx.globalAlpha = 1;
+        // 화살표 머리
+        var e1 = path.at(0.97), e0 = path.at(0.9), ang = Math.atan2(e1[1] - e0[1], e1[0] - e0[0]);
+        ctx.fillStyle = col; ctx.beginPath(); ctx.moveTo(path.p2[0], path.p2[1]); ctx.lineTo(path.p2[0] - 9 * Math.cos(ang - 0.45), path.p2[1] - 9 * Math.sin(ang - 0.45)); ctx.lineTo(path.p2[0] - 9 * Math.cos(ang + 0.45), path.p2[1] - 9 * Math.sin(ang + 0.45)); ctx.closePath(); ctx.fill();
+        // 돈 점
+        var nDots = Math.max(1, Math.round(v / 110)), sp = 0.16;
+        for (var k = 0; k < nDots; k++) {
+          var q = path.at((t0 * sp + k / nDots) % 1);
+          ctx.fillStyle = col; ctx.beginPath(); ctx.arc(q[0], q[1], Math.min(3.4, 1.6 + width * 0.18), 0, Math.PI * 2); ctx.fill();
+        }
+        // 값 라벨
+        var mid = path.at(0.5), lx = mid[0], ly = mid[1];
+        if (f.key === "S" || f.key === "I") ly -= 12;
+        if (f.key === "X") { lx += 10; ly += 8; } if (f.key === "M") { lx -= 22; ly -= 4; }
+        if (f.key === "T") lx -= 22; if (f.key === "G") lx += 22;
+        ctx.font = EB.font(w < 420 ? 10.5 : 11.5, false, 600); ctx.textAlign = "center";
+        var txt = f.name + " " + Math.round(v).toLocaleString("ko-KR");
+        var tw = ctx.measureText(txt).width + 8;
+        ctx.fillStyle = EB.color("canvas-bg"); ctx.globalAlpha = 0.85; ctx.fillRect(lx - tw / 2, ly - 11, tw, 15); ctx.globalAlpha = 1;
+        ctx.fillStyle = up ? P.ok : dn ? P.bad : P.text; ctx.fillText(txt, lx, ly);
+      });
+      drawNodes(ctx, w, h, P, null, sel);
+      // 원의 크기 표시
+      ctx.fillStyle = P.dim; ctx.font = EB.font(11); ctx.textAlign = "left";
+      ctx.fillText("단위: 조원(교육용 모형) · 초록 = 기준보다 큼, 빨강 = 작음", 8, h - 8);
+      var dY = s.Y / b.Y - 1, bal = s.T - s.G, nx = s.X - s.M;
+      EB.stat("flow-o-y", Math.round(s.Y).toLocaleString("ko-KR") + "조원 (" + sgnPct(dY, 1) + ")");
+      EB.stat("flow-o-c", Math.round(s.C).toLocaleString("ko-KR") + "조원 (" + sgnPct(s.C / b.C - 1, 1) + ")");
+      EB.stat("flow-o-f", '<span class="' + (bal < 0 ? "bad-t" : "ok-t") + '">' + jo(bal) + "</span> (GDP 대비 " + sgnPct(bal / s.Y, 1) + ")");
+      EB.stat("flow-o-n", '<span class="' + (nx < 0 ? "bad-t" : "ok-t") + '">' + jo(nx) + "</span> · 승수 " + s.mult.toFixed(2));
+    }, { aspect: 0.66, minHeight: 390, maxHeight: 460 });
+    var mapEl = document.getElementById("flow-map");
+    EB.drag(cv.canvas, { start: function (x, y) {
+      var w = cv.w, h = cv.h, hit = null;
+      Object.keys(NODES).forEach(function (k) { var b = nodeBox(NODES[k], w, h); if (x >= b.x - 4 && x <= b.x + b.w + 4 && y >= b.y - 4 && y <= b.y + b.h + 4) hit = k; });
+      if (hit) { sel = hit; mapEl.innerHTML = NODES[hit].chap; cv.redraw(); }
+    } });
+    EB.loop(document.getElementById("sim-flow"), function (dt) { t0 += dt; cv.redraw(); });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- 케이스 ---------------- */
+  (function () {
+    var man1 = function (x) { return (x / 1e4).toLocaleString("ko-KR", { maximumFractionDigits: 1 }) + "만원"; };
+    var net = C.jiwoo.monthlyNet, live = C.livingCost, intr = C.monthlyInterest, save = C.monthlySaving, etf = C.etf.monthly;
+    document.getElementById("case-slip").innerHTML =
+      '<div class="row"><span>월 실수령</span><span>' + EB.won(net) + "</span></div>" +
+      '<div class="row"><span>월 생활비(전세대출 이자 포함)</span><span>−' + EB.won(live) + "</span></div>" +
+      '<div class="row"><span>　그중 전세대출 이자(1억 4,000만원 × 연 3.9% ÷ 12)</span><span>' + man1(intr) + "</span></div>" +
+      '<div class="row"><span>　그중 ETF 적립</span><span>' + EB.won(etf) + "</span></div>" +
+      '<div class="row total"><span>월 저축 여력(ETF 적립 포함)</span><span>' + EB.won(save) + "</span></div>";
+    document.getElementById("case-calc").innerHTML = "자산 쪽에는 전세 보증금 2억원(그중 대출 1억 4,000만원), 정기예금 " + EB.won(C.savings) + ", ETF 평가액 " + EB.won(C.etf.value) + "을 적었다. 빚을 빼면 순자산은 <b>" + EB.won(C.netWorth) + "</b>이다. 삼촌은 이 표를 순환도 위에 올려 보라고 했다. 월급은 기업에서 오는 소득 화살표, 생활비는 소비 화살표, 대출 이자는 금융시장으로 가는 화살표, 저축과 ETF는 금융시장을 거쳐 기업의 투자로 가는 화살표다. 목표는 하나, <b>" + C.goal + "</b>. 월 " + EB.won(save) + "씩 3년을 모으면 약 " + EB.won(save * 36) + "이다(이자와 투자 수익 제외). 그 돈이 충분한지는 금리, 집값, 물가, 월급이 앞으로 어떻게 움직이느냐에 달려 있고, 그것을 읽는 법을 1년 동안 배우기로 했다.";
+    document.getElementById("case-life").textContent = "전세대출 금리는 10월에 연 3.9%로 정해졌다. 다음 재산정은 6개월 뒤인 2026년 4월. 월 이자 " + man1(intr) + "는 월 실수령의 약 " + Math.round(intr / net * 100) + "%다.";
+  })();
+})();
+</script>
+</body>
+</html>

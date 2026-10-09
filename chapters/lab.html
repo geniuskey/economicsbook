@@ -1,0 +1,1074 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and EconomicsBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "유가 급등, 수출 호황, 세계 금융 불안, 재정 확대, 미국 금리 인상, 국내 수요 위축을 작은 경제 모형에 넣고 기준금리를 준칙이나 직접 그린 경로로 정해 3년 동안의 성장·물가·환율·실업·집값을 돌려 본다. 모형이 만든 가상 헤드라인을 세 가지 질문으로 읽고, 결과를 내 가계부로 옮기고, 지우의 1년 헤드라인 노트를 결산한다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>경제 뉴스 실험실 · EconomicsBook</title>
+<meta name="description" content="유가 급등, 수출 호황, 세계 금융 불안, 재정 확대, 미국 금리 인상, 국내 수요 위축을 작은 경제 모형에 넣고 기준금리를 준칙이나 직접 그린 경로로 정해 3년 동안의 성장·물가·환율·실업·집값을 돌려 본다. 모형이 만든 가상 헤드라인을 세 가지 질문으로 읽고, 결과를 내 가계부로 옮기고, 지우의 1년 헤드라인 노트를 결산한다.">
+<link rel="canonical" href="https://economicsbook.euiyun.com/chapters/lab.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#4338ca">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="EconomicsBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="경제 뉴스 실험실 · EconomicsBook">
+<meta property="og:description" content="유가 급등, 수출 호황, 세계 금융 불안, 재정 확대, 미국 금리 인상, 국내 수요 위축을 작은 경제 모형에 넣고 기준금리를 준칙이나 직접 그린 경로로 정해 3년 동안의 성장·물가·환율·실업·집값을 돌려 본다. 모형이 만든 가상 헤드라인을 세 가지 질문으로 읽고, 결과를 내 가계부로 옮기고, 지우의 1년 헤드라인 노트를 결산한다.">
+<meta property="og:url" content="https://economicsbook.euiyun.com/chapters/lab.html">
+<meta property="og:image" content="https://economicsbook.euiyun.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://economicsbook.euiyun.com/chapters/lab.html#chapter","name":"경제 뉴스 실험실","headline":"경제 뉴스 실험실 · EconomicsBook","description":"유가 급등, 수출 호황, 세계 금융 불안, 재정 확대, 미국 금리 인상, 국내 수요 위축을 작은 경제 모형에 넣고 기준금리를 준칙이나 직접 그린 경로로 정해 3년 동안의 성장·물가·환율·실업·집값을 돌려 본다. 모형이 만든 가상 헤드라인을 세 가지 질문으로 읽고, 결과를 내 가계부로 옮기고, 지우의 1년 헤드라인 노트를 결산한다.","url":"https://economicsbook.euiyun.com/chapters/lab.html","position":14,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://economicsbook.euiyun.com/og.png","dateModified":"2026-10-09","isPartOf":{"@type":"Book","@id":"https://economicsbook.euiyun.com/#book","name":"EconomicsBook · 경제 뉴스 읽는 교과서","url":"https://economicsbook.euiyun.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"EconomicsBook","item":"https://economicsbook.euiyun.com/"},{"@type":"ListItem","position":2,"name":"14. 경제 뉴스 실험실","item":"https://economicsbook.euiyun.com/chapters/lab.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/econ.js"></script>
+<!--head:end-->
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"3d6151a0abc94ede89285d462527fa80"}'></script>
+<!-- End Cloudflare Web Analytics -->
+<style>
+  .lab-bar { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--border); background: var(--surface); }
+  .lab-bar .cap { font-size: 12px; font-weight: 700; color: var(--text-faint); letter-spacing: .04em; }
+  .lab-bar .seg { flex-wrap: wrap; }
+  .lab-bar .seg button { font-size: 12.5px; padding: 5px 10px; }
+  .eco-grid { display: grid; gap: 1px; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--border); border-top: 1px solid var(--border); }
+  @media (max-width: 620px) { .eco-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .eco-grid > div { background: var(--bg-elev); padding: 8px 10px 6px; min-width: 0; }
+  .eco-grid .k { display: block; font-size: 12.5px; color: var(--text-dim); }
+  .eco-grid .v { display: block; font-family: var(--mono); font-size: 16px; font-weight: 600; margin: 1px 0 2px; }
+  .eco-grid canvas { display: block; width: 100%; cursor: crosshair; }
+  .eco-warn { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; padding: 10px 16px; border-top: 1px solid var(--border); background: var(--bg-elev); font-size: 13.5px; min-height: 44px; }
+  .eco-warn .cap { font-size: 12px; font-weight: 700; color: var(--text-faint); letter-spacing: .04em; margin-right: 4px; }
+  .eco-warn .lamp { padding: 2px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--text-dim); }
+  .eco-warn .lamp.on-bad { border-color: var(--bad); color: var(--bad); background: color-mix(in srgb, var(--bad) 10%, transparent); font-weight: 600; }
+  .eco-warn .lamp.on-warn { border-color: var(--warn); color: var(--text); background: color-mix(in srgb, var(--warn) 16%, transparent); font-weight: 600; }
+  .eco-warn .lamp.calm { border-style: dashed; }
+  .hq-list { display: grid; gap: 1px; background: var(--border); border-top: 1px solid var(--border); }
+  .hq-card { background: var(--bg-elev); padding: 14px 16px; }
+  .hq-card .lab { font-size: 11.5px; font-weight: 700; color: var(--text-faint); letter-spacing: .03em; }
+  .hq-card .hl { font-size: 17px; font-weight: 700; line-height: 1.45; margin: 4px 0 10px; }
+  .hq-card .hl .no { color: var(--accent); margin-right: 6px; font-family: var(--mono); }
+  .hq-opts { display: flex; flex-wrap: wrap; gap: 6px; }
+  .hq-opts button { font: inherit; font-size: 14px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; }
+  .hq-opts button:hover:not(:disabled) { border-color: var(--accent); }
+  .hq-opts button.right { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 15%, transparent); font-weight: 600; }
+  .hq-opts button.wrong { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 12%, transparent); }
+  .hq-opts button:disabled { cursor: default; }
+  .hq-exp { display: none; margin-top: 10px; font-size: 14.5px; color: var(--text-dim); padding: 9px 12px; border-radius: 8px; background: var(--surface); line-height: 1.55; }
+  .hq-card.done .hq-exp { display: block; }
+  .hq-exp b { color: var(--text); }
+  .tl { list-style: none; padding: 0; margin: 18px 0; position: relative; }
+  .tl::before { content: ""; position: absolute; left: 66px; top: 6px; bottom: 6px; width: 2px; background: var(--border); }
+  .tl li { position: relative; display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 0 30px; margin: 0 0 14px !important; }
+  .tl li::before { content: ""; position: absolute; left: 61px; top: 7px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); }
+  .tl li.now::before { background: var(--accent-2); }
+  .tl .m { font-family: var(--mono); font-size: 12.5px; font-weight: 700; color: var(--text-dim); line-height: 1.3; padding-top: 3px; text-align: right; }
+  .tl .m small { display: block; font-weight: 500; color: var(--text-faint); }
+  .tl .b { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; min-width: 0; }
+  .tl .b .h { font-weight: 700; line-height: 1.45; }
+  .tl .b .ch { font-size: 12.5px; font-weight: 600; margin-left: 4px; white-space: nowrap; }
+  .tl .b p { margin: 4px 0 0 !important; font-size: 14.5px; color: var(--text-dim); line-height: 1.55; }
+  @media (max-width: 520px) {
+    .tl::before { left: 6px; }
+    .tl li { grid-template-columns: minmax(0, 1fr); padding-left: 22px; }
+    .tl li::before { left: 1px; }
+    .tl .m { text-align: left; padding: 0 0 4px; }
+    .tl .m small { display: inline; margin-left: 6px; }
+  }
+  .exp-list { display: grid; gap: 10px; margin: 18px 0; padding: 0; list-style: none; counter-reset: exp; }
+  .exp-list li { position: relative; padding: 12px 16px 12px 52px; border: 1px solid var(--border); border-radius: var(--radius-sm, 10px); background: var(--bg-elev); margin: 0 !important; }
+  .exp-list li::before { counter-increment: exp; content: counter(exp, decimal-leading-zero); position: absolute; left: 14px; top: 12px; font-family: var(--mono); font-weight: 700; color: var(--accent); }
+  .exp-list b { display: block; }
+  .exp-list span { color: var(--text-dim); font-size: 15px; }
+</style>
+</head>
+<body data-chapter="lab">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 14</div>
+    <h1>경제 뉴스 실험실</h1>
+    <p class="lead">1년 동안 지우는 매달 헤드라인 하나를 골라 숫자의 뜻을 따졌다. 성장률, 물가, 고용, 경상수지, 국가채무, 기준금리, 환율. 하나씩 읽을 때는 따로 놀던 숫자들이 사실은 한 경제 안에서 서로 밀고 당긴다. 이 장은 그 숫자들을 작은 경제 모형 하나에 묶어 직접 충격을 넣고 금리를 정해 보는 실험실이다. 실험이 끝나면 모형이 만든 가상 헤드라인을 읽고, 결과를 내 가계부로 옮기고, 지우의 1년 노트를 덮는다.</p>
+    <ul class="objectives">
+      <li>유가·수출·세계 금융·재정·미국 금리·국내 수요 충격이 성장·물가·금리·환율·실업·집값으로 번지는 순서와 크기를 모형으로 비교할 수 있다.</li>
+      <li>테일러 준칙으로 정한 금리와 내가 직접 그린 금리 경로가 어떤 결과의 차이를 만드는지, 수요 충격과 공급 충격에서 왜 처방이 달라지는지 설명할 수 있다.</li>
+      <li>숫자로 된 헤드라인을 "언제 기준인가, 무엇과 비교했나, 누가 쟀나"로 읽고, 빠진 정보를 찾아낼 수 있다.</li>
+      <li>경제 전체의 움직임을 내 대출 이자·ETF·달러 지출·구매력의 숫자로 옮기고, 전망 대신 판단 기준을 세울 수 있다.</li>
+    </ul>
+  </header>
+
+  <div class="headline" id="hl-top">9월 수출 1,209억 달러로 월간 최대(전년 같은 달보다 83.5% 증가)… 소비자물가는 2.9% 상승<small>지우의 헤드라인 노트 · 2026년 10월 · 근거: 산업통상부 「2026년 9월 수출입 동향」(2026-10-01), 국가데이터처 「2026년 9월 소비자물가동향」(2026-10-02)</small></div>
+
+  <section id="year">
+    <h2>1년 뒤, 다시 첫 장</h2>
+    <p>2025년 10월, 지우는 "3분기 성장률 반등"이라는 기사 한 줄을 노트에 붙이며 시작했다. 그때 외삼촌 백정호가 건넨 질문은 셋이었다. <strong>언제 기준인가, 무엇과 비교했나, 누가 쟀나.</strong> 1년이 지난 2026년 10월, 노트에는 열두 개의 헤드라인과 그 숫자를 다시 계산한 메모가 쌓였다. 마지막 장을 펴며 지우가 적은 질문은 이것이다. "따로따로 읽은 숫자들을 한 그림에 놓으면 어떻게 움직일까. 그리고 그 그림으로 3년 안에 집을 살지 말지를 정할 수 있을까."</p>
+    <p>앞의 열세 장은 숫자를 하나씩 해부했다. <a href="gdp.html">3장</a>은 성장률을, <a href="inflation.html">6장</a>은 물가를, <a href="transmission.html">9장</a>은 기준금리가 퍼지는 길을, <a href="fx.html">10장</a>은 환율을 다뤘다. 실제 경제에서는 이 숫자들이 동시에 움직인다. 유가가 오르면 물가가 오르고, 한국은행이 금리를 올리고, 원화가 강해지고, 집값이 눌리고, 몇 분기 뒤에는 일자리가 줄어든다. 어느 하나만 보고 쓴 기사는 그림의 한 귀퉁이만 보여 준다.</p>
+    <p>이 장의 순서는 이렇다. 먼저 2026년 10월 현재 손에 쥔 숫자들을 계기판에 올리고, 숫자마다 기준 시점이 얼마나 다른지 본다. 다음에 작은 경제 모형의 설계도를 읽고, 충격 하나를 넣어 보는 작은 실험을 한 뒤, 여섯 가지 충격과 두 가지 금리 결정 방식을 마음대로 섞는 큰 실험실로 들어간다. 실험 결과로 가상 헤드라인을 만들어 읽고, 내 가계부로 옮기고, 마지막으로 1년 노트를 결산한다.</p>
+    <div class="callout warn"><strong>이 실험실의 숫자는 전망이 아니다</strong>이 장의 모형은 원리를 보여 주려고 일부러 작게 만든 교육용 모형이다. 계수는 연구가 보고하는 방향과 시차를 따르도록 고른 가정이며(맨 아래 '모형의 가정' 표), 실제 한국 경제를 추정한 값이 아니다. 시뮬레이터가 그리는 금리·물가·환율·집값의 경로는 "이런 충격이 오면 이런 순서로 번진다"는 모양을 보기 위한 것이지 앞으로 일어날 일을 말하지 않는다. 계기판의 실제 통계도 기준 시점의 값이며, 성장률처럼 속보치 → 잠정치 → 확정치로 수정되는 숫자가 많다.</div>
+  </section>
+
+  <section id="board">
+    <h2>2026년 10월의 계기판</h2>
+    <p>실험 전에 출발점을 확인한다. 아래 표는 2026년 10월 9일 기준으로 지우가 손에 쥔 최신 숫자다. 같은 "최신"이라도 숫자마다 잰 기간이 다르다. 환율과 주가는 어제 하루의 값이고, 물가와 수출은 지난달, 고용과 경상수지는 두 달 전, 성장률은 석 달 넘게 지난 2분기, 국가채무는 작년 한 해의 값이다.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>지표</th><th>최신값</th><th>무엇과 비교했나</th><th>잰 기간 · 발표</th></tr></thead>
+      <tbody>
+        <tr><td>기준금리</td><td class="num">연 3.00%</td><td>수준(7월 2.50→2.75%, 8월 2.75→3.00%)</td><td>2026-08-27 결정 · 한국은행 금융통화위원회. 다음 회의 10-22 예정</td></tr>
+        <tr><td>소비자물가 상승률</td><td class="num">2.9%</td><td>전년 같은 달 대비(8월 3.1%). 근원물가(농산물·석유류 제외) 2.7%</td><td>2026년 9월 · 국가데이터처, 10-02 발표</td></tr>
+        <tr><td>실질 GDP 성장률</td><td class="num">0.6% / 3.7%</td><td>전 분기 대비 / 전년 같은 분기 대비</td><td>2026년 2분기 · 한국은행, 잠정 09-08(속보 07-23과 같음)</td></tr>
+        <tr><td>실업률</td><td class="num">2.0%</td><td>원계열(계절조정 전), 전년 같은 달과 같음. 고용률(15~64세) 70.4%</td><td>2026년 8월 · 국가데이터처, 09-09 발표</td></tr>
+        <tr><td>원/달러 환율</td><td class="num">1,338.5원</td><td>주간거래 종가(전날보다 1.9원 하락)</td><td>2026-10-08 · 서울외환시장(10-09 휴장)</td></tr>
+        <tr><td>수출</td><td class="num">1,209.4억 달러</td><td>전년 같은 달 대비 +83.5%. 반도체가 49.9%</td><td>2026년 9월 · 산업통상부, 10-01 발표</td></tr>
+        <tr><td>경상수지</td><td class="num">461.1억 달러 흑자</td><td>월간 금액(역대 2위, 40개월 연속 흑자)</td><td>2026년 8월 · 한국은행, 10-08 발표</td></tr>
+        <tr><td>국가채무(D1)</td><td class="num">GDP 대비 49.0%</td><td>1,304.5조원, 중앙+지방. 2026년 본예산 기준 전망은 51.6%</td><td>2025 회계연도 · 재정경제부 국가결산, 2026-04-06</td></tr>
+        <tr><td>외환보유액</td><td class="num">4,405.6억 달러</td><td>전월 말 대비 −17.2억 달러</td><td>2026년 9월 말 · 한국은행, 10-06 발표</td></tr>
+        <tr><td>KOSPI(시장 데이터)</td><td class="num">6,625.93</td><td>종가, 전날보다 −2.62%</td><td>2026-10-08 · 한국거래소. 매일 바뀐다</td></tr>
+      </tbody>
+    </table></div>
+    <p class="src">(출처: 표의 각 기관 발표. 공식 발표를 인용한 보도로 교차 확인한 값이며 원자료 대조는 출판 전에 다시 한다. 확인일 2026-10-09)</p>
+
+    <p>표의 오른쪽 칸을 한 줄로 늘어놓으면 숫자의 나이가 보인다. 아래 그림에서 막대는 그 숫자가 잰 기간, 점은 발표일이다. 막대 끝에서 점까지의 거리가 "재고 나서 알려지기까지" 걸린 시간이다. 세로선 '오늘'을 왼쪽으로 끌어 과거의 어느 날로 돌아가 본다. 그날 지우가 알 수 있었던 숫자와 아직 몰랐던 숫자가 갈린다.</p>
+
+    <div class="sim" id="sim-clock">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>숫자의 나이: 잰 기간과 발표일</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="clk-cv"></canvas><span class="hint" style="right:auto;left:10px">'오늘' 선을 끈다</span></div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 날</span><span class="v" id="clk-o-d">—</span></div>
+        <div class="stat"><span class="k">이미 발표된 숫자</span><span class="v" id="clk-o-n">—</span></div>
+        <div class="stat"><span class="k">기간 끝 → 발표 (중앙값)</span><span class="v" id="clk-o-l">—</span></div>
+        <div class="stat"><span class="k">가장 오래된 기준 기간</span><span class="v" id="clk-o-o">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① '오늘'을 9월 10일 근처로 끈다. 9월 소비자물가와 9월 수출은 아직 없다. 그날 지우가 본 "최신 물가"는 8월 숫자(3.1%)였다. ② 7월 말로 끈다. 2분기 GDP 속보치는 나와 있지만 9월의 잠정치는 아직이다. 속보치와 잠정치가 같은 숫자일 때도 있고 다를 때도 있다. ③ 오늘(10월 9일)로 돌아와 기준금리 줄을 본다. 기준금리는 8월 27일에 정해진 수준이 지금까지 이어지는 값이고, 10월 22일 회의가 다음 갈림길이다. (그림의 날짜는 표의 발표일이다. 기준금리 줄의 빈 동그라미는 10월 22일 금통위다. 국가채무 막대는 2025년 한 해 전체를 잰 값이라 왼쪽이 잘려 있다.)</div>
+    </div>
+
+    <p>숫자마다 기준 시점이 이렇게 다르기 때문에, 같은 날 신문에 실린 "성장률"과 "물가"와 "환율"은 서로 다른 달의 경제를 말한다. 2026년 10월 9일에 우리가 아는 성장률은 4~6월의 것이고, 7~9월의 성장률은 10월 하순 한국은행 속보치가 나와야 안다. 그사이 환율과 주가는 매일 바뀌었다. 경제를 운전하는 사람이 보는 계기판은 대부분 몇 달 늦은 계기판이고, 그래서 중앙은행은 지금의 숫자가 아니라 앞으로의 숫자를 짐작하며 결정한다(<a href="bok.html">8장</a>).</p>
+
+    <div class="callout stat"><strong>최신 숫자를 직접 확인하는 곳</strong>한국은행 경제통계시스템(ECOS)의 '100대 통계지표'는 기준금리·GDP·물가·실업률·환율·경상수지·외환보유액을 한 화면에 모아 최신값과 기준 시점을 함께 보여 준다. 소비자물가와 고용동향은 국가데이터처가 보통 매월 초와 중순에, 수출입 동향은 산업통상부가 매월 1일에, 국제수지는 한국은행이 두 달 뒤 초순에 발표한다(정확한 날짜는 기관의 공표 일정표를 본다). 국가채무는 재정경제부의 국가결산(4월 초)과 e-나라지표에서 찾는다. 기사 속 숫자 옆에 기준 시점이 없으면 이 표들에서 먼저 확인한다.</div>
+  </section>
+
+  <section id="model">
+    <h2>작은 경제의 설계도</h2>
+    <p>실험실의 모형은 분기마다 여섯 개의 숫자를 함께 굴린다. <span class="term">산출 갭</span><span class="en">(Output gap)</span>은 실제 생산이 무리 없이 낼 수 있는 수준(잠재 GDP)보다 몇 % 많거나 적은지다(<a href="cycle.html">4장</a>). 양수면 경기가 과열 쪽, 음수면 침체 쪽이다. 여기에 물가 상승률, 기준금리, 원/달러 환율, 실업률, 집값 상승률이 붙는다. 그림 1은 이 숫자들이 서로 어떻게 이어져 있는지 그린 설계도다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 330" role="img" aria-label="충격이 산출 갭과 물가로 들어가고, 금리 준칙이 금리를 정하며, 금리가 환율과 산출 갭과 집값으로 되먹이는 작은 경제 모형의 구조">
+        <defs><marker id="lab-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="10" y="10" width="440" height="44" rx="8" class="f-surface"/>
+        <text x="230" y="28" text-anchor="middle" class="lbl-b">바깥에서 오는 충격</text>
+        <text x="230" y="45" text-anchor="middle" class="lbl-dim">유가 · 수출(수요) · 세계 불안 · 재정 · 미국 금리 · 국내 수요</text>
+        <rect x="30" y="100" width="130" height="44" rx="8" class="f-acc-soft"/>
+        <text x="95" y="120" text-anchor="middle" class="lbl-b">산출 갭</text><text x="95" y="136" text-anchor="middle" class="lbl-dim">경기의 온도</text>
+        <rect x="300" y="100" width="130" height="44" rx="8" class="f-acc2-soft"/>
+        <text x="365" y="120" text-anchor="middle" class="lbl-b">물가 상승률</text><text x="365" y="136" text-anchor="middle" class="lbl-dim">목표 2%</text>
+        <rect x="165" y="185" width="130" height="44" rx="8" class="f-elev"/>
+        <text x="230" y="205" text-anchor="middle" class="lbl-b">기준금리</text><text x="230" y="221" text-anchor="middle" class="lbl-dim">준칙 또는 직접</text>
+        <rect x="10" y="270" width="130" height="44" rx="8" class="f-surface"/>
+        <text x="75" y="290" text-anchor="middle" class="lbl">실업률</text><text x="75" y="306" text-anchor="middle" class="lbl-dim">오쿤의 법칙</text>
+        <rect x="165" y="270" width="130" height="44" rx="8" class="f-surface"/>
+        <text x="230" y="290" text-anchor="middle" class="lbl">집값 상승률</text><text x="230" y="306" text-anchor="middle" class="lbl-dim">금리·경기</text>
+        <rect x="320" y="270" width="130" height="44" rx="8" class="f-surface"/>
+        <text x="385" y="290" text-anchor="middle" class="lbl">원/달러 환율</text><text x="385" y="306" text-anchor="middle" class="lbl-dim">한·미 금리 차</text>
+        <g class="s-line" marker-end="url(#lab-ar)">
+          <path d="M120 54L100 100"/><path d="M340 54L360 100"/>
+          <path d="M160 116H300"/>
+          <path d="M95 144L180 185"/><path d="M365 144L280 185"/>
+          <path d="M75 144V270"/><path d="M230 229V270"/><path d="M280 229L370 270"/>
+          <path d="M140 156L115 156"/>
+        </g>
+        <g class="s-acc2" marker-end="url(#lab-ar)">
+          <path d="M175 205C120 200 100 170 100 146"/>
+          <path d="M400 270C420 220 410 170 395 146"/>
+          <path d="M330 270C250 250 150 210 110 146"/>
+        </g>
+        <text x="230" y="108" text-anchor="middle" class="lbl-dim">필립스 곡선</text>
+        <text x="122" y="178" text-anchor="end" class="lbl-acc2">실질금리</text>
+        <text x="448" y="240" text-anchor="end" class="lbl-acc2">수입물가</text>
+        <text x="300" y="252" text-anchor="middle" class="lbl-acc2">순수출</text>
+      </svg>
+      <figcaption><b>그림 1. 작은 경제의 설계도.</b> 검은 화살표는 충격이 들어가는 길과 금리가 결정되는 길, 주황 화살표는 금리와 환율이 다시 경기와 물가로 돌아오는 되먹임이다. 금리를 올리면 실질금리가 올라 산출 갭을 누르고, 원화를 강하게 해 수입물가를 낮춘다. 그 결과가 다음 분기의 금리 결정에 다시 들어간다.</figcaption>
+    </figure>
+
+    <p>모형의 핵심은 식 세 개다. 첫째, 경기의 온도는 지난 분기의 온도를 상당 부분 이어받고, 실질금리가 중립 수준보다 높으면 식는다. 재정 지출과 수요 충격은 데우고, 원화 약세는 수출을 거쳐 조금 데운다.</p>
+    <div class="formula">$$y_t = 0.7\,y_{t-1} - 0.25\,\big[(i_t - \pi_{t-1}) - r^*\big] + 0.6\,g_t + 0.01\,e_t + d_t$$<div class="where">\(y\): 산출 갭(%), \(i\): 기준금리, \(\pi\): 물가 상승률, \(r^*\): 중립 실질금리(이 모형에서 0.25%), \(g\): 재정 충격(GDP 대비 %), \(e\): 원/달러 환율의 누적 변화(%, + 원화 약세), \(d\): 수요 충격. 유가는 여기서 아주 작게(10% 상승에 −0.01%p) 직접 들어가고, 주로 물가를 거쳐 작용한다.</div></div>
+    <p>둘째, 물가는 관성이 있어 지난 분기를 따라가면서도 목표(2%) 쪽으로 끌려간다. 경기가 뜨거우면 오르고, 원화가 약해지거나 유가가 오르면 그 분기에 바로 오른다. 이것이 <span class="term">필립스 곡선</span><span class="en">(Phillips curve)</span>이다.</p>
+    <div class="formula">$$\pi_t = 0.6\,\pi_{t-1} + 0.4 \times 2 + 0.2\,y_t + 0.05\,\Delta e_t + 0.02\,\text{oil}_t$$<div class="where">\(\Delta e\): 이번 분기 환율 변화(%), oil: 이번 분기 유가 변화(%)</div></div>
+    <p>셋째, 금리는 <span class="term">테일러 준칙</span><span class="en">(Taylor rule)</span>을 따라 정해진다. 물가가 목표보다 1%p 높으면 금리를 1.5%p, 산출 갭이 1%p면 0.5%p 높이는 것이 '준칙 금리'이고, 실제 금리는 한 번에 그곳으로 뛰지 않고 매 분기 거리의 30%씩 다가간다(금리 평활화). 직접 경로 모드에서는 이 식 대신 독자가 그린 금리가 쓰인다.</p>
+    <div class="formula">$$i^{\text{준칙}}_t = 2.25 + 1.5\,(\pi_{t-1} - 2) + 0.5\,y_{t-1}, \qquad i_t = 0.7\,i_{t-1} + 0.3\,i^{\text{준칙}}_t$$<div class="where">2.25%는 이 모형이 가정한 중립 명목금리(중립 실질금리 0.25% + 물가 목표 2%). 실제 중립금리는 관측되지 않으며 추정치마다 다르다.</div></div>
+    <p>나머지는 이 셋에 매달린다. 환율은 한국 금리가 미국보다 더 오르면 원화 강세 쪽으로(1%p에 1.5%), 세계가 불안하면 원화 약세 쪽으로 움직인다. 실업률은 산출 갭 1%p에 0.4%p씩 반대로 움직이고(<span class="term">오쿤의 법칙</span><span class="en">(Okun's law)</span>, <a href="jobs.html">5장</a>), 집값 상승률은 경기가 좋으면 오르고 금리가 오르면 내린다.</p>
+
+    <p>준칙이 어떤 금리를 내놓는지 먼저 손으로 확인한다. 아래 그래프의 점을 좌우로 끌어 물가 상승률을 바꾸고, 산출 갭과 중립금리 가정을 바꿔 본다.</p>
+
+    <div class="sim" id="sim-taylor">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>테일러 준칙 계산판: 물가와 경기로 정하는 금리</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ty-cv"></canvas><span class="hint">점을 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>산출 갭 <output id="ty-g-out"></output></span><input type="range" id="ty-g" min="-4" max="4" step="0.25" value="0"></label>
+          <label class="ctrl"><span>중립 명목금리 가정 <output id="ty-n-out"></output></span><input type="range" id="ty-n" min="1.5" max="3.5" step="0.25" value="2.25"></label>
+          <label class="check"><input type="checkbox" id="ty-now" checked> 2026년 10월의 실제 값 표시</label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">물가 상승률</span><span class="v" id="ty-o-p">—</span></div>
+        <div class="stat"><span class="k">준칙 금리</span><span class="v" id="ty-o-i">—</span></div>
+        <div class="stat"><span class="k">실질금리(금리 − 물가)</span><span class="v" id="ty-o-r">—</span></div>
+        <div class="stat"><span class="k">물가 +1%p면 금리</span><span class="v" id="ty-o-s">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 점을 물가 2%에 놓는다. 산출 갭 0이면 준칙 금리는 중립금리 그대로다. ② 물가를 2%에서 4%로 끈다. 금리는 2%p가 아니라 3%p 오른다. 금리가 물가보다 더 크게 움직여야 실질금리가 올라 경기를 식힌다(점선은 실질금리 0의 선). ③ 물가를 0.5%로, 산출 갭을 −4로 내린다. 준칙은 0%보다 낮은 금리를 요구하지만 기준금리는 0% 아래로 거의 내릴 수 없다. 금리라는 도구가 바닥에 닿는 '제로 금리 하한'이다. ④ 중립금리를 1.75%와 2.75%로 바꿔 본다. 같은 물가와 경기에서도 준칙 금리가 1%p 차이 난다. (모형: 준칙 금리 = 중립금리 + 1.5×(물가 − 2) + 0.5×산출 갭. 2026년 10월 표시는 9월 소비자물가 2.9%와 현재 기준금리 3.00%다. 산출 갭과 중립금리는 관측되지 않으므로 이 그래프로 한국은행의 결정이 옳고 그름을 판단하지 않는다.)</div>
+    </div>
+
+    <p>준칙에서 기억할 것은 기울기 1.5다. 물가가 1%p 오를 때 금리를 1%p만 올리면 실질금리는 그대로라 경기를 식히지 못하고, 1%p보다 덜 올리면 오히려 실질금리가 내려 경기를 데운다. 그래서 물가 상승률보다 금리를 더 크게 움직여야 한다는 원칙을 <span class="term">테일러 원칙</span><span class="en">(Taylor principle)</span>이라고 부른다. 그러나 준칙의 재료 가운데 산출 갭과 중립금리는 아무도 정확히 모른다. 위의 중립금리 슬라이더를 0.5%p만 움직여도 권고 금리가 같은 폭으로 움직인다. 중앙은행이 준칙을 참고하되 기계적으로 따르지 않는 이유다.</p>
+
+    <div class="callout deep"><strong>왜 1.5와 0.5인가</strong>존 테일러(John Taylor)는 1993년 논문에서 미국 연준의 1987~1992년 결정이 "중립 실질금리 2% + 물가 + 0.5×(물가 − 목표 2%) + 0.5×산출 갭"으로 잘 설명된다고 보였다. 물가 항을 정리하면 물가 계수가 1.5가 된다. 이 장의 모형은 같은 모양을 쓰되 중립금리를 낮게(명목 2.25%) 잡았다. 한국은행을 비롯한 중앙은행들은 준칙 금리를 참고 지표로 계산해 보지만, 실제 결정은 금융안정, 환율, 성장 전망의 불확실성까지 함께 따진다(<a href="bok.html">8장</a>).</div>
+  </section>
+
+  <section id="shock">
+    <h2>같은 물가 상승, 다른 처방: 수요 충격과 공급 충격</h2>
+    <p>큰 실험실로 가기 전에 충격 하나만 넣어 본다. 물가를 끌어올리는 충격에는 두 종류가 있다. 사람들이 더 많이 사려고 해서 오르는 <span class="term">수요 충격</span><span class="en">(Demand shock)</span>과, 원유처럼 생산비가 올라서 오르는 <span class="term">공급 충격</span><span class="en">(Supply shock)</span>이다. 수요 충격에서는 경기도 뜨겁고 물가도 높으니 금리를 올리면 둘 다 진정된다. 공급 충격에서는 물가는 높은데 경기는 식는다. 금리를 올리면 물가는 잡히지만 경기가 더 식는다. 경기 침체와 물가 상승이 겹친 상태가 <span class="term">스태그플레이션</span><span class="en">(Stagflation)</span>이고, 중앙은행이 가장 곤란해하는 자리다.</p>
+    <p>아래 그래프는 가로축에 산출 갭, 세로축에 물가 상승률을 놓고 12분기 동안 경제가 지나간 길을 그린다. 가운데 십자(산출 갭 0, 물가 2%)가 목표 지점이다. 실선은 테일러 준칙으로 금리를 정했을 때, 점선은 금리를 그대로 두었을 때의 길이다. 아래 시간 막대를 끌어 분기를 옮긴다.</p>
+
+    <div class="sim" id="sim-phase">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>경기와 물가의 길: 금리를 움직일 때와 그대로 둘 때</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ph-cv"></canvas><span class="hint">아래 시간 막대를 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="ph-k"><button data-value="demand" class="on">수요 충격(소비 증가)</button><button data-value="oil">공급 충격(유가 급등)</button></div>
+          <label class="ctrl"><span>충격 크기 <output id="ph-s-out"></output></span><input type="range" id="ph-s" min="0.5" max="3" step="0.25" value="1"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 분기</span><span class="v" id="ph-o-t">—</span></div>
+        <div class="stat"><span class="k">물가 (준칙 / 그대로)</span><span class="v" id="ph-o-p">—</span></div>
+        <div class="stat"><span class="k">산출 갭 (준칙 / 그대로)</span><span class="v" id="ph-o-y">—</span></div>
+        <div class="stat"><span class="k">그 분기 기준금리(준칙)</span><span class="v" id="ph-o-i">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 수요 충격에서 시간 막대를 끝까지 끈다. 준칙의 길(실선)은 오른쪽 위로 나갔다가 점선보다 빨리 십자로 돌아온다. 금리를 올리는 것이 경기와 물가를 함께 식힌다. ② 공급 충격으로 바꾼다. 경제가 위로(물가) 튀어 오른 뒤 금리를 올린 실선은 왼쪽(침체 쪽)으로 휜다. 물가를 빨리 내리는 값으로 경기를 내준다. ③ 충격 크기를 3으로 올린다. 유가가 한 분기에 90% 뛰는 극단이다. 물가가 목표의 두 배 가까이 튀고, 금리 대응이 클수록 경기의 골도 깊다. (모형: 이 장의 <code>EC.economy</code>. 수요 충격은 산출 갭 +1%p, +0.6%p, +0.3%p를 세 분기에 걸쳐, 유가는 30%, 10%를 두 분기에 걸쳐 넣는다. 교육용 가정이다.)</div>
+    </div>
+
+    <p>두 충격의 차이는 그래프의 모양으로 남는다. 수요 충격의 길은 오른쪽 위에서 십자로 대각선을 그리며 돌아오고, 금리 대응은 그 거리를 줄인다. 공급 충격의 길은 위로 튄 뒤 왼쪽으로 휘는 고리를 그리고, 금리 대응은 위아래 거리를 줄이는 대신 좌우 거리를 늘린다. 유가가 크게 오른 해의 금리 결정 기사가 유독 "딜레마"라는 말을 많이 쓰는 이유가 이 고리에 있다. 이 모형에서 유가 충격은 한두 분기 지나면 사라지므로, 중앙은행이 일시적인 유가 상승을 "지켜보는" 선택에도 근거가 있다. 다만 사람들의 기대 인플레이션이 따라 오르기 시작하면 이야기가 달라진다(<a href="inflation.html">6장</a>).</p>
+  </section>
+
+  <section id="lab">
+    <h2>실험실: 작은 경제를 돌린다</h2>
+    <p>이제 모든 손잡이를 한꺼번에 준다. 위쪽 띠에서 충격을 하나 고르고 크기를 정한다. 금리 결정 방식은 두 가지다. <strong>준칙 자동</strong>은 앞에서 본 테일러 준칙이 분기마다 금리를 정한다. <strong>직접 경로</strong>는 독자가 금리위원이 되어 큰 그래프의 점을 위아래로 끌어 분기마다 금리를 정한다. 아래 여섯 칸은 같은 시간축 위의 산출 갭, 물가, 실질금리, 환율, 실업률, 집값 상승률이다. 어느 그래프 위에서든 손가락이나 마우스를 옮기면 모든 칸의 세로선이 같은 분기로 따라온다.</p>
+    <p>출발점은 모형의 균형이다. 산출 갭 0, 물가 2%, 기준금리 2.25%(이 모형의 중립금리)에서 시작해 충격 하나의 효과만 떼어 본다. 실제 2026년 10월의 기준금리(3.00%)나 물가(2.9%)에서 출발하지 않는 이유는, 그렇게 하면 모형이 "앞으로 금리는 이렇게 간다"는 전망처럼 읽히기 때문이다. 환율 칸만은 읽기 쉽게 2026년 10월 8일 종가 1,338.5원을 출발값으로 두고 모형의 % 변화를 곱했다.</p>
+
+    <div class="sim" id="sim-economy">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>작은 경제 실험실: 충격 × 금리 결정 → 3년</h3></div>
+      <div class="lab-bar">
+        <span class="cap">충격</span>
+        <div class="seg" id="eco-k"><button data-value="none">충격 없음</button><button data-value="oil" class="on">유가 급등</button><button data-value="export">수출 호황</button><button data-value="risk">세계 금융 불안</button><button data-value="fiscal">재정 확대</button><button data-value="us">미국 금리 인상</button><button data-value="slump">국내 수요 위축</button></div>
+      </div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="eco-cv"></canvas><span class="hint" id="eco-hint">세로선을 끌어 분기를 고른다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>충격 크기 <output id="eco-s-out"></output></span><input type="range" id="eco-s" min="0" max="3" step="0.25" value="1"></label>
+          <div class="seg" id="eco-p"><button data-value="rule" class="on">준칙 자동</button><button data-value="path">직접 경로</button></div>
+          <label class="ctrl"><span>금리를 옮기는 속도(준칙) <output id="eco-m-out"></output></span><input type="range" id="eco-m" min="0.1" max="0.9" step="0.1" value="0.3"></label>
+          <div class="seg" id="eco-q"><button data-value="8">8분기</button><button data-value="12" class="on">12분기</button></div>
+          <div class="btn-row"><button class="btn" id="eco-copy">준칙 경로를 복사</button><button class="btn" id="eco-hold">금리 동결</button></div>
+          <div class="btn-row"><button class="btn primary" id="eco-play">분기 재생</button></div>
+        </div>
+      </div>
+      <div class="eco-grid" id="eco-grid"></div>
+      <div class="eco-warn" id="eco-warn"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 분기</span><span class="v" id="eco-o-t">—</span></div>
+        <div class="stat"><span class="k">기준금리</span><span class="v" id="eco-o-i">—</span></div>
+        <div class="stat"><span class="k">물가 상승률</span><span class="v" id="eco-o-p">—</span></div>
+        <div class="stat"><span class="k">산출 갭 · 실업률</span><span class="v" id="eco-o-y">—</span></div>
+        <div class="stat"><span class="k">원/달러(모형)</span><span class="v" id="eco-o-e">—</span></div>
+        <div class="stat"><span class="k">집값 상승률(전년 대비)</span><span class="v" id="eco-o-h">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① '유가 급등' + 준칙 자동. 물가가 첫 분기에 튀고, 금리가 한 분기 늦게 오르고, 원화가 강해지고, 집값 상승률이 꺾인다. 흐린 선은 금리를 그대로 두었을 때다. ② '세계 금융 불안'을 고른다. 경기는 식는데 원화가 크게 약해져 물가가 오른다. 준칙은 금리를 올린다. 경기를 보면 내리고 싶고 물가를 보면 올려야 하는 신흥국 중앙은행의 고민이다. ③ '직접 경로'로 바꾸고 점을 모두 6% 근처로 끌어올린다. 몇 분기 뒤 경기가 깊이 가라앉고, 실업률이 오르고, 집값이 크게 내리고, 물가가 0% 밑으로 떨어지는 디플레이션 경고등이 켜진다. ④ '국내 수요 위축'의 크기를 3으로 올리고 준칙으로 둔다. 준칙 금리가 0%에 닿아 더 내려가지 못하는 동안 경기의 골이 깊어진다. ⑤ '재정 확대'에서 금리를 옮기는 속도를 0.9와 0.1로 바꿔 본다. (모형: <code>EC.economy</code>, 분기 단위. 계수는 아래 '모형의 가정'. 충격은 한 번 들어오고 모형의 관성으로 사라진다. 출발점은 균형이며 실제 경제의 전망이 아니다.)</div>
+    </div>
+
+    <p>여러 번 돌려 보면 세 가지가 눈에 들어온다. 첫째, <strong>순서</strong>다. 환율과 금리는 충격이 온 분기에, 물가와 산출 갭은 그다음 한두 분기에, 실업률과 집값은 그 뒤를 따라 움직인다. 9장의 월별 연결판과 같은 순서가 분기 단위에서도 보인다. 둘째, <strong>되먹임</strong>이다. 금리가 오르면 환율이 내리고(원화 강세), 그것이 수입물가를 낮춰 다음 분기의 금리를 덜 올리게 한다. 충격이 사라지는 속도는 충격 자체보다 경제의 관성과 정책 대응이 정한다. 셋째, <strong>한계</strong>다. 금리는 0% 아래로 거의 내려가지 못하고, 너무 높게 오래 두면 물가를 잡는 대신 경기와 집값과 일자리를 함께 무너뜨린다. 직접 경로로 극단을 그려 본 독자는 금리위원의 결정이 왜 0.25%p 단위로 조심스러운지 몸으로 느꼈을 것이다.</p>
+
+    <p>실험을 더 해 보고 싶다면 아래 목록을 차례로 돌려 본다. 각 실험은 앞 장의 한 질문에 답한다.</p>
+    <ul class="exp-list">
+      <li><b>미국 금리 인상, 준칙 자동</b><span>한국 경기에는 큰 변화가 없는데 원화가 약해지고 물가가 오른다. 준칙은 금리를 조금 올린다. 2026년 9월 연준의 인상 뒤 원/달러가 오히려 1,300원대로 내려온 실제와는 다르다. 현실에서는 수출 호조와 위험 선호 같은 다른 힘이 함께 움직였다(<a href="fx.html">10장</a>).</span></li>
+      <li><b>수출 호황 vs 재정 확대</b><span>둘 다 경기를 데우지만 수출 호황은 원화 강세를 함께 가져와 물가 압력이 덜하다. 같은 크기의 경기 부양이라도 어디서 왔는지에 따라 금리의 몫이 다르다(<a href="trade.html">11장</a>, <a href="fiscal.html">12장</a>).</span></li>
+      <li><b>재정 확대 + 직접 경로로 금리 동결</b><span>금리가 따라 오르지 않으면 재정의 효과가 더 크고 길다. 재정 승수가 통화정책의 대응에 달려 있다는 뜻이다(<a href="fiscal.html">12장</a>).</span></li>
+      <li><b>세계 금융 불안, 크기 3</b><span>환율이 20% 가까이 뛴다. 1997년과 2008년처럼 외화가 빠져나갈 때의 모습을 아주 단순하게 흉내 낸 것이다. 실제 위기에서는 이 모형에 없는 신용 경색과 뱅크런이 더해진다(<a href="crisis.html">13장</a>).</span></li>
+      <li><b>유가 급등, 금리 동결 vs 준칙</b><span>금리를 그대로 두면 물가가 목표 위에 더 오래 머물지만 경기는 덜 식는다. 위의 수요·공급 충격 그래프에서 본 고리를 여섯 칸에서 다시 본다(<a href="inflation.html">6장</a>).</span></li>
+      <li><b>충격 없음 + 직접 경로로 금리 1%p 인상 후 유지</b><span>9장의 '기준금리 1%p 인상'을 분기 모형으로 다시 돌린 셈이다. 물가가 가장 늦게, 가장 천천히 내려온다(<a href="transmission.html">9장</a>).</span></li>
+    </ul>
+  </section>
+
+  <section id="headlines">
+    <h2>헤드라인 생성기: 모형이 쓴 기사를 읽는다</h2>
+    <p>실험이 끝나면 숫자가 남는다. 숫자가 남으면 누군가 헤드라인을 쓴다. 아래 생성기는 방금 돌린 실험의 숫자에서 가장 크게 움직인 네 개를 골라 기사 제목을 만든다. 모두 <strong>이 책의 모형이 만든 가상 헤드라인</strong>이며 실제 기사나 실제 통계가 아니다. 그런데 일부러 한 가지씩 빼먹고 썼다. 백정호의 세 질문 가운데 어느 것에 답하지 못하는 제목인지 고른다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 250" role="img" aria-label="헤드라인 한 줄을 언제 기준인가, 무엇과 비교했나, 누가 쟀나의 세 질문으로 나누어 읽는 그림">
+        <defs><marker id="lab-ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="10" y="20" width="440" height="56" rx="10" class="f-elev"/>
+        <text x="230" y="44" text-anchor="middle" class="lbl-b">"9월 수출 1,209억 달러, 83.5% 늘어"</text>
+        <text x="230" y="64" text-anchor="middle" class="lbl-dim">(산업통상부 「9월 수출입 동향」)</text>
+        <g class="s-acc" marker-end="url(#lab-ar2)"><path d="M70 76L70 130"/><path d="M230 76L230 130"/><path d="M390 76L390 130"/></g>
+        <rect x="10" y="132" width="130" height="104" rx="10" class="f-acc-soft"/>
+        <text x="75" y="156" text-anchor="middle" class="lbl-b">언제 기준인가</text>
+        <text x="75" y="180" text-anchor="middle" class="lbl">2026년 9월 한 달</text>
+        <text x="75" y="200" text-anchor="middle" class="lbl-dim">발표 10월 1일</text>
+        <text x="75" y="220" text-anchor="middle" class="lbl-dim">통관 기준 잠정</text>
+        <rect x="165" y="132" width="130" height="104" rx="10" class="f-acc2-soft"/>
+        <text x="230" y="156" text-anchor="middle" class="lbl-b">무엇과 비교했나</text>
+        <text x="230" y="180" text-anchor="middle" class="lbl">전년 같은 달</text>
+        <text x="230" y="200" text-anchor="middle" class="lbl-dim">작년 9월이 낮았나?</text>
+        <text x="230" y="220" text-anchor="middle" class="lbl-dim">(기저효과)</text>
+        <rect x="320" y="132" width="130" height="104" rx="10" class="f-ok-soft"/>
+        <text x="385" y="156" text-anchor="middle" class="lbl-b">누가 쟀나</text>
+        <text x="385" y="180" text-anchor="middle" class="lbl">정부 공식 통계</text>
+        <text x="385" y="200" text-anchor="middle" class="lbl-dim">전망·모형·설문이면</text>
+        <text x="385" y="220" text-anchor="middle" class="lbl-dim">값의 성격이 다르다</text>
+      </svg>
+      <figcaption><b>그림 2. 헤드라인을 세 질문으로 나누어 읽는다.</b> 이 장의 헤드라인을 예로 들었다. 83.5%라는 증가율은 전년 같은 달과의 비교이므로, 작년 9월의 수출이 얼마였는지(그리고 반도체 값이 얼마나 올랐는지)를 함께 봐야 크기를 가늠할 수 있다. 같은 숫자라도 정부 통계인지, 기관의 전망인지, 모형의 계산인지에 따라 믿는 방법이 다르다.</figcaption>
+    </figure>
+
+    <div class="sim" id="sim-headline">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>모형이 만든 가상 헤드라인: 빠진 것을 찾아라</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="hq-cv"></canvas></div>
+        <div class="sim-controls">
+          <p style="margin:0;font-size:14px;color:var(--text-dim)" id="hq-src">—</p>
+          <div class="btn-row"><button class="btn primary" id="hq-new">이 실험으로 새로 만들기</button></div>
+          <p style="margin:0;font-size:13px;color:var(--text-faint)">헤드라인은 위 실험실의 설정이 바뀔 때마다 새로 만들어진다. 왼쪽 그래프의 번호는 각 헤드라인의 숫자가 나온 분기다.</p>
+        </div>
+      </div>
+      <div class="hq-list" id="hq-list"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">맞힌 수</span><span class="v" id="hq-o-s">—</span></div>
+        <div class="stat"><span class="k">이번 세트의 빈칸</span><span class="v" id="hq-o-m">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 네 제목에서 빠진 것을 하나씩 고른다. 고르면 빠진 정보를 채운 원래 문장이 나온다. ② 실험실로 올라가 충격을 '세계 금융 불안'으로 바꾸고 돌아온다. 헤드라인의 주인공이 환율로 바뀐다. 가장 크게 움직인 숫자가 제목이 된다는 것도 기사 쓰는 쪽의 사정이다. ③ 크기를 0으로 두고 만든다. 아무 일도 없는 경제에서도 "보합", "제자리" 같은 제목이 나온다. 숫자가 작아도 기준 시점과 비교 대상은 여전히 필요하다. (생성 규칙: 균형에서 가장 멀어진 지표 네 개를 골라, 각 제목에서 기준 시점·비교 대상·출처 가운데 하나를 뺀다. 출처는 언제나 "이 책의 모형 계산"이다.)</div>
+    </div>
+
+    <p>생성기가 일부러 빼먹은 세 가지는 실제 기사에서도 자주 빠진다. 제목은 짧아야 하므로 "전년 동월 대비"나 "속보치"는 본문으로 밀려나고, 출처는 기사 끝에 붙는다. 가장 위험한 것은 세 번째 질문이다. 위의 제목들은 모형의 계산인데, 출처를 빼면 실제 통계처럼 읽힌다. 경제 기사에는 실적(이미 일어난 일을 잰 숫자)과 전망(누군가의 모형이 계산한 숫자)이 함께 실린다. "내년 성장률 ○%"는 실적이 아니라 어느 기관의 모형이 낸 값이고, 기관마다 다르며, 시간이 지나면 고쳐진다.</p>
+
+    <div class="callout news"><strong>"~할 전망"이라는 말 뒤에는 모형이 있다</strong>백정호는 전망 기사를 읽을 때 숫자보다 주어를 먼저 찾으라고 했다. "성장률 1%대 전망"이라면 누구의 전망인가. 한국은행, 정부, 국제기구, 증권사 리서치센터는 서로 다른 모형과 가정을 쓰고, 발표 시점도 다르다. 같은 날 신문에 서로 다른 전망치가 실려도 이상한 일이 아니다. 기자 시절 그가 가장 경계한 제목은 주어가 빠진 전망이었다. "물가 3% 넘는다"라는 문장은 누가 계산했는지, 어떤 가정(유가, 환율)을 깔았는지 밝히기 전에는 실적처럼 읽히기 쉽다. 이 장의 생성기가 모든 제목에 "모형 계산"을 붙이는 이유도 같다.</div>
+  </section>
+
+  <section id="wallet">
+    <h2>내 가계부에 옮기기</h2>
+    <p>경제 전체의 숫자는 결국 가계부의 숫자로 내려온다. 아래 계산판은 위 실험실에서 마지막으로 돌린 경로를 받아, 대출 금액과 금리 재산정 주기, ETF 평가액과 그 가운데 달러 자산의 비중, 한 달 달러 지출을 넣으면 분기마다 무엇이 바뀌는지 보여 준다. 처음 값은 지우의 숫자다. 전세대출 1억 4,000만원(6개월마다 금리 재산정), 지수 ETF 평가액 1,200만원, 월 실수령 320만원. 독자의 숫자로 바꿔 넣어도 된다.</p>
+    <p>계산은 세 갈래다. 대출 이자는 기준금리 변화의 90%가 재산정일에 내 금리로 옮겨 온다고 본다(<a href="transmission.html">9장</a>의 가정). ETF는 국내 지수 부분과 달러 자산 부분을 나눈다. 국내 지수는 금리가 1%p 오르면 3% 내리고 산출 갭 1%p에 2% 오른다고 가정하고(교육용), 달러 자산은 달러 값이 그대로일 때 환율 변화만큼 원화 평가액이 바뀐다고 본다. 구매력은 모형의 물가 상승률로 월 실수령액의 실질 가치를 계산한다(월급은 그대로라고 가정).</p>
+
+    <div class="sim" id="sim-wallet">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>실험실의 경로를 내 가계부로: 이자 · ETF · 달러 지출 · 구매력</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="wl-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>변동금리 대출 <output id="wl-l-out"></output></span><input type="range" id="wl-l" min="0" max="40000" step="500" value="14000"></label>
+          <div class="seg" id="wl-r"><button data-value="3">3개월 재산정</button><button data-value="6" class="on">6개월</button><button data-value="12">12개월</button></div>
+          <label class="ctrl"><span>ETF 평가액 <output id="wl-e-out"></output></span><input type="range" id="wl-e" min="0" max="10000" step="100" value="1200"></label>
+          <label class="ctrl"><span>달러 자산 비중 <output id="wl-f-out"></output></span><input type="range" id="wl-f" min="0" max="100" step="10" value="50"></label>
+          <label class="ctrl"><span>한 달 달러 지출 <output id="wl-d-out"></output></span><input type="range" id="wl-d" min="0" max="2000" step="50" value="150"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">월 대출 이자(마지막 분기)</span><span class="v" id="wl-o-i">—</span></div>
+        <div class="stat"><span class="k">ETF 평가액(마지막 분기)</span><span class="v" id="wl-o-e">—</span></div>
+        <div class="stat"><span class="k">달러 지출의 원화 값(월)</span><span class="v" id="wl-o-d">—</span></div>
+        <div class="stat"><span class="k">월 실수령 320만원의 구매력</span><span class="v" id="wl-o-p">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 실험실에서 '유가 급등' + 준칙으로 두고 온다. 금리가 오르는 만큼 이자가 재산정일에 계단처럼 오른다. 12개월 재산정으로 바꾸면 같은 인상이 늦게, 하지만 같은 크기로 온다. ② 실험실을 '세계 금융 불안'으로 바꾼다. 원화가 약해져 달러 자산 비중이 큰 ETF의 원화 평가액은 오히려 오르고, 해외 결제액은 늘어난다. 같은 환율이 자산 쪽에서는 이익, 지출 쪽에서는 비용이다. ③ 실험실의 직접 경로로 금리를 6%까지 올리고 돌아온다. 이자는 크게 늘고 국내 주식 부분은 내리며, 물가가 결국 내려가 구매력은 조금 나아진다. 모든 숫자가 한 방향으로 움직이지 않는다. (가정: 이자만 내는 변동금리 대출, 출발 금리는 2026년 10월 재산정 뒤 지우의 금리를 9장 방식으로 계산한 약 4.35%. ETF는 추가 적립 없이 평가액만, 미국 지수의 달러 값은 그대로. 교육용 단순화이며 투자 판단의 근거가 아니다.)</div>
+    </div>
+
+    <p>계산판에서 가장 크게 움직이는 것은 무엇이었나. 대부분의 실험에서 월 이자의 변화는 몇만 원 단위로 작고 확실하며 재산정일에 맞춰 온다. ETF 평가액의 변화는 그보다 훨씬 크고 불확실하며 매일 온다. 달러 지출은 환율이 움직이는 만큼 바로 움직인다. 구매력은 가장 조용하지만 가장 오래 쌓인다. 지우가 1년 동안 배운 것도 이 차이였다. 기준금리 기사는 이자 칸을, 환율 기사는 회사 원가와 해외 결제 칸을, 물가 기사는 월급의 실질 가치를 바꾼다. 같은 날의 경제 뉴스가 가계부의 다른 줄을 건드린다.</p>
+
+    <div class="callout link"><strong>내 돈의 결정은 MoneyBook 실험실에서</strong>이 계산판은 경제의 흐름이 가계부의 어느 줄에 닿는지만 보여 준다. 소득·지출·저축·투자·대출을 함께 넣고 수십 년의 순자산 경로를 시나리오로 돌리는 일은 MoneyBook <a href="https://moneybook.euiyun.com/chapters/lab.html">실험실</a>에서, 대출 상환 방식과 금리 재산정은 <a href="https://moneybook.euiyun.com/chapters/loan.html">대출 상환의 구조</a>에서, 해외 자산의 환율 위험은 StockBook <a href="https://stockbook.euiyun.com/chapters/global.html">해외 주식과 환율</a>에서 이어진다.</div>
+  </section>
+
+  <section id="note">
+    <h2>1년 노트 결산</h2>
+    <p>지우의 노트는 날짜순으로 쓰였고, 이 책은 그것을 주제순으로 엮었다. 아래는 노트를 다시 날짜순으로 펼친 것이다. 각 줄의 헤드라인은 공식 발표를 바탕으로 이 책이 다시 쓴 문장이고, 그 아래는 지우가 그 달에 얻은 질문이다. 장 이름을 누르면 그 달의 해석으로 돌아간다.</p>
+    <ol class="tl">
+      <li><div class="m">2025<small>10월</small></div><div class="b"><span class="h">3분기 실질 GDP 전 분기보다 1.2% 성장(속보치), 반등</span><a class="ch" href="cycle.html">4장 경기 순환</a><p>한 분기의 반등을 경기 국면의 전환으로 단정하지 않는다. 전기 대비인지 전년 동기 대비인지, 속보치인지부터 본다. 이 숫자는 12월 잠정치에서 1.3%로 고쳐졌다. <span class="src">(한국은행, 2025년 3분기 실질 GDP 속보 2025-10-28, 잠정 2025-12-03)</span></p></div></li>
+      <li><div class="m">2025<small>11월</small></div><div class="b"><span class="h">10월 소비자물가 2.4% 상승, 쌀은 1년 전보다 21.3% 올라</span><a class="ch" href="market.html">2장 수요와 공급</a><p>출하가 늦어진 쌀의 값은 공급 곡선의 이동으로 읽는다. 수요가 값에 덜 민감한 품목은 공급이 조금만 줄어도 값이 크게 뛴다. <span class="src">(국가데이터처, 2025년 10월 소비자물가동향 2025-11-04)</span></p></div></li>
+      <li><div class="m">2025<small>12월</small></div><div class="b"><span class="h">2025년 소비자물가 2.1% 상승</span><a class="ch" href="inflation.html">6장 물가</a><p>연간 상승률은 열두 달 지수의 평균을 전년 평균과 비교한 값이다. 장바구니의 가중치와 내 소비가 다르면 체감과 통계가 어긋난다. <span class="src">(국가데이터처, 2025-12-31)</span></p></div></li>
+      <li><div class="m">2026<small>1월</small></div><div class="b"><span class="h">2025년 취업자 19.3만명 증가, 실업률 2.8%</span><a class="ch" href="jobs.html">5장 고용</a><p>취업자 증감은 1년 전 같은 달과의 비교이고, 실업률은 일할 뜻이 있는 사람 가운데의 비율이다. 고용률과 확장실업률을 함께 본다. <span class="src">(국가데이터처, 2026-01-14)</span></p></div></li>
+      <li><div class="m">2026<small>2월</small></div><div class="b"><span class="h">2025년 경상수지 1,230억 달러, 사상 최대 흑자</span><a class="ch" href="trade.html">11장 무역과 경상수지</a><p>"사상 최대"는 명목 달러 금액의 비교다. 흑자가 상품·서비스·본원소득·이전소득 가운데 어디서 왔는지 나눠 본다. <span class="src">(한국은행, 2025년 12월 국제수지(잠정) 2026년 2월 초)</span></p></div></li>
+      <li><div class="m">2026<small>3월</small></div><div class="b"><span class="h">2025년 성장률 1.0%, 1인당 GNI 3만 6,855달러</span><a class="ch" href="gdp.html">3장 GDP</a><p>잠정치는 고쳐진다. 7월 연간 국민계정에서 성장률은 1.1%, 1인당 GNI는 3만 6,963달러로 수정되었다고 보도되었다. 달러로 잰 소득은 환율에도 흔들린다. <span class="src">(한국은행, 2025년 4분기 및 연간 국민소득(잠정) 2026년 3월)</span></p></div></li>
+      <li><div class="m">2026<small>4월</small></div><div class="b"><span class="h">2025년 국가채무 1,304.5조원, GDP 대비 49.0%</span><a class="ch" href="fiscal.html">12장 재정과 국가부채</a><p>금액보다 GDP 대비 비율을, 비율보다 그 길을 본다. 금리와 성장률의 차이, 기초재정수지가 부채 비율의 방향을 정한다. <span class="src">(재정경제부, 2025회계연도 국가결산 2026-04-06)</span></p></div></li>
+      <li><div class="m">2026<small>5월</small></div><div class="b"><span class="h">기준금리 연 2.50% 동결, 새 총재의 첫 회의</span><a class="ch" href="bok.html">8장 중앙은행과 통화정책</a><p>동결도 결정이다. 결정 그 자체보다 소수의견과 앞으로의 방향에 대한 말(포워드 가이던스)이 시장을 움직인다. <span class="src">(한국은행, 통화정책방향 2026-05-28)</span></p></div></li>
+      <li><div class="m">2026<small>6월</small></div><div class="b"><span class="h">한국은행, 6월 금융안정보고서로 금융 불균형 점검</span><a class="ch" href="crisis.html">13장 금융위기</a><p>위기는 숫자 하나가 아니라 구조에서 온다. 레버리지, 만기 불일치, 서로 얽힌 빚을 본다. 평온한 때의 점검이 위기 때의 방파제다. <span class="src">(한국은행, 금융안정보고서 2026년 6월)</span></p></div></li>
+      <li><div class="m">2026<small>7월</small></div><div class="b"><span class="h">주택담보대출 금리 4%대 중반으로 상승(6월 신규취급액 4.36%)</span><a class="ch" href="rates.html">7장 금리</a><p>신규취급액 금리와 잔액 금리는 다르다. 내 대출금리는 기준이 되는 금리(코픽스 등)에 가산금리를 더해 정해진다. <span class="src">(한국은행, 2026년 6월 금융기관 가중평균금리)</span></p></div></li>
+      <li><div class="m">2026<small>8월</small></div><div class="b"><span class="h">기준금리 0.25%p 인상, 연 3.00%</span><a class="ch" href="transmission.html">9장 기준금리가 퍼지는 길</a><p>채권과 환율은 그날, 대출금리는 몇 달, 내 이자는 재산정일(10월), 물가는 1~2년 뒤에 반응한다. <span class="src">(한국은행, 통화정책방향 2026-08-27)</span></p></div></li>
+      <li><div class="m">2026<small>9월</small></div><div class="b"><span class="h">미국 연준 금리 인상(3.75~4.00%)에도 원/달러 환율 1,300원대</span><a class="ch" href="fx.html">10장 환율</a><p>환율은 금리 차 하나로 움직이지 않는다. 수출로 들어오는 달러, 세계의 위험 선호, 기대가 함께 값을 정한다. <span class="src">(미국 연준 FOMC 성명 2026-09-16, 서울외환시장)</span></p></div></li>
+      <li class="now"><div class="m">2026<small>10월</small></div><div class="b"><span class="h">9월 수출 1,209억 달러로 월간 최대, 소비자물가 2.9%</span><a class="ch" href="#lab">14장 실험실</a><p>숫자들을 한 모형에 묶어 돌려 보면, 하나의 헤드라인은 큰 그림의 한 귀퉁이다. 무엇이 무엇을 움직이는지, 언제 내 가계부에 닿는지 순서를 그린다. <span class="src">(산업통상부 2026-10-01, 국가데이터처 2026-10-02)</span></p></div></li>
+    </ol>
+    <p class="src">(각 줄의 숫자는 괄호 안 기관의 공식 발표를 인용한 보도로 확인한 값이다. 2025년 3분기 성장률과 2025년 성장률·1인당 GNI는 이후 수정되었으며 수정 내역을 함께 적었다.)</p>
+
+    <h3>3년 안에 집을 살 수 있을까: 지우가 정한 판단법</h3>
+    <p>1년 전 노트 첫 장의 질문으로 돌아온다. 지우는 이 질문에 "예" 또는 "아니오"로 답하지 않기로 했다. 1년 동안 배운 것은, 금리와 집값을 맞히는 사람은 없고 기사 속 전망도 누군가의 모형이라는 사실이었다. 대신 지우는 <strong>무엇을 보고, 언제, 어떤 기준으로 정할지</strong>를 적었다. 그림 3이 그 순서다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 330" role="img" aria-label="내 숫자로 감당 가능한 가격을 계산하고, 나쁜 시나리오에서 버티는지 확인하고, 매달 지표를 점검해 전세 만기 때 결정하는 순서">
+        <defs><marker id="lab-ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="20" y="10" width="420" height="50" rx="10" class="f-acc-soft"/>
+        <text x="230" y="31" text-anchor="middle" class="lbl-b">① 내 숫자로 감당 가능한 가격을 거꾸로 계산</text>
+        <text x="230" y="49" text-anchor="middle" class="lbl-dim">소득 · 저축 속도 · 대출 한도(DSR) · 금리 여러 개</text>
+        <rect x="20" y="85" width="420" height="50" rx="10" class="f-acc2-soft"/>
+        <text x="230" y="106" text-anchor="middle" class="lbl-b">② 나쁜 시나리오에서도 버티는가</text>
+        <text x="230" y="124" text-anchor="middle" class="lbl-dim">금리 +1~2%p · 집값 하락 · 소득 정체 · 비상금 6개월</text>
+        <rect x="20" y="160" width="420" height="50" rx="10" class="f-surface"/>
+        <text x="230" y="181" text-anchor="middle" class="lbl-b">③ 매달 같은 표를 본다</text>
+        <text x="230" y="199" text-anchor="middle" class="lbl-dim">금통위 결정 · 주담대 신규취급액 금리 · 물가 · 고용 · 실거래</text>
+        <rect x="20" y="235" width="200" height="80" rx="10" class="f-ok-soft"/>
+        <text x="120" y="262" text-anchor="middle" class="lbl-b">④ 결정하는 날을 정한다</text>
+        <text x="120" y="282" text-anchor="middle" class="lbl">전세 만기 2027년 3월</text>
+        <text x="120" y="300" text-anchor="middle" class="lbl-dim">그 전 6개월이 점검 기간</text>
+        <rect x="240" y="235" width="200" height="80" rx="10" class="f-warn-soft"/>
+        <text x="340" y="262" text-anchor="middle" class="lbl-b">기준을 못 넘으면</text>
+        <text x="340" y="282" text-anchor="middle" class="lbl">전세 연장 + 저축 계속</text>
+        <text x="340" y="300" text-anchor="middle" class="lbl-dim">1년 뒤 같은 표로 다시</text>
+        <g class="s-line" marker-end="url(#lab-ar3)"><path d="M230 60V85"/><path d="M230 135V160"/><path d="M150 210L130 235"/><path d="M310 210L330 235"/></g>
+      </svg>
+      <figcaption><b>그림 3. 지우의 판단 순서.</b> 집값이나 금리의 방향을 맞히는 대신, 내 숫자에서 출발해 나쁜 경우를 견디는지 확인하고, 정해 둔 날에 정해 둔 기준으로 결정한다. 매달 보는 지표는 신호일 뿐 예언이 아니다.</figcaption>
+    </figure>
+
+    <p>첫 단계는 감당할 수 있는 가격을 거꾸로 계산하는 일이다. 지우의 월 저축 여력은 실수령 320만원에서 생활비 210만원을 뺀 약 110만원이고, 10월 재산정으로 이자가 늘면 그만큼 준다. 대출 한도는 소득과 금리와 DSR 규제가 정한다(<a href="transmission.html">9장</a>에서 본 대로 금리가 오르면 한도가 준다). 둘째 단계는 실험실에서 했던 일을 내 숫자로 하는 것이다. 금리가 1~2%p 더 오르는 경우, 집값이 내리는 경우, 소득이 몇 년 제자리인 경우에도 이자를 내고 비상금을 지킬 수 있는가. 셋째, 매달 같은 표를 본다. 금통위 결정, 주택담보대출 신규취급액 금리, 물가와 고용, 사려는 동네의 실거래가. 표가 바뀌면 계산을 다시 하지만, 기사 제목 하나에 계획을 바꾸지는 않는다. 넷째, 결정하는 날을 정해 둔다. 지우의 전세 만기는 2027년 3월이다. 그 전 6개월 동안 위의 계산을 다시 하고, 기준을 넘으면 집을 알아보고, 넘지 못하면 전세를 연장하고 1년 뒤 같은 표로 다시 본다.</p>
+    <p>이 판단법에는 "3년 안에 집값이 오를까"라는 질문이 없다. 그 질문에 답할 수 있는 숫자는 이 책 어디에도 없었다. 대신 "어떤 경우에도 감당할 수 있는 가격은 얼마인가", "그 가격의 집을 언제, 어떤 조건이면 사는가"라는 질문은 지우의 숫자로 답할 수 있다.</p>
+
+    <div class="callout link"><strong>내 집 마련의 계산은 EstateBook에서</strong>감당 가능한 집값을 소득·저축·대출 한도로 거꾸로 계산하고 비상금을 먼저 떼어 두는 방법은 EstateBook <a href="https://estatebook.euiyun.com/chapters/plan.html">내 집 마련 계획</a>에서, 금리와 집값 시나리오를 바꿔 매매·전세·월세의 30년 경로와 나쁜 경우의 생존을 돌려 보는 일은 EstateBook <a href="https://estatebook.euiyun.com/chapters/lab.html">실험실</a>에서 이어진다. 저축과 투자를 함께 넣은 가계 전체의 계획은 MoneyBook <a href="https://moneybook.euiyun.com/chapters/lab.html">실험실</a>이 맡는다. 집값 통계를 읽는 법은 EstateBook <a href="https://estatebook.euiyun.com/chapters/data.html">집값 통계 읽기</a>에 있다.</div>
+  </section>
+
+  <section id="assume">
+    <h2>모형의 가정</h2>
+    <p>실험실의 모든 숫자는 아래 계수에서 나온다. 계수는 <code>EC.ECONOMY</code>에 모여 있고 이 장의 모든 시뮬레이터가 같은 값을 쓴다. 표의 계수 칸은 엔진에서 직접 읽어 채운다. 공식 통계가 아니라 교육용 가정이며, 방향과 대략의 크기가 연구 결과와 어긋나지 않도록 골랐을 뿐 한국 경제를 추정한 값이 아니다.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>이름</th><th>계수</th><th>뜻</th><th>읽는 법과 한계</th></tr></thead>
+      <tbody id="as-body">
+        <tr><td>산출 갭의 관성</td><td class="num" data-k="rho">0.7</td><td>이번 분기 산출 갭 중 지난 분기에서 이어지는 몫</td><td>클수록 충격이 오래 간다</td></tr>
+        <tr><td>금리의 경기 효과</td><td class="num" data-k="sigma">0.25</td><td>실질금리가 중립보다 1%p 높을 때 산출 갭 감소(%p)</td><td>가계부채가 많을수록 실제로는 더 클 수 있다</td></tr>
+        <tr><td>재정 승수(첫 분기)</td><td class="num" data-k="fiscalMult">0.6</td><td>GDP 대비 1%의 재정 지출 증가가 산출 갭에 주는 효과</td><td>재정 충격은 분기마다 40%씩 사라진다. 실제 승수는 경기 상황과 금리 대응에 따라 다르다(<a href="fiscal.html">12장</a>)</td></tr>
+        <tr><td>원화 약세의 수출 효과</td><td class="num" data-k="fxExportEff">0.01</td><td>환율 1% 상승이 산출 갭에 주는 효과(%p)</td><td>엔진 계수 0.04에 0.25를 곱해 쓴다</td></tr>
+        <tr><td>유가의 직접 경기 효과</td><td class="num" data-k="oilEff">0.001</td><td>유가 1% 상승이 산출 갭을 낮추는 크기(%p)</td><td>엔진 계수 0.01에 0.1을 곱해 쓴다. 아주 작게 잡았고, 유가의 영향은 주로 물가와 금리를 거쳐 나온다</td></tr>
+        <tr><td>물가의 관성</td><td class="num" data-k="piPersist">0.6</td><td>물가 상승률 중 지난 분기에서 이어지는 몫</td><td>나머지는 목표(2%)로 끌린다. 기대가 목표에 묶여 있다는 가정이다</td></tr>
+        <tr><td>필립스 곡선 기울기</td><td class="num" data-k="kappa">0.2</td><td>산출 갭 1%p가 물가 상승률을 올리는 크기(%p)</td><td>실제 기울기는 시기마다 다르고, 최근 연구들은 평평해졌다고 보는 편이다</td></tr>
+        <tr><td>환율 전가율</td><td class="num" data-k="fxPass">0.05</td><td>그 분기 환율 1% 변화가 물가 상승률에 주는 영향(%p)</td><td>수입물가를 거친 빠른 경로(<a href="fx.html">10장</a>)</td></tr>
+        <tr><td>유가 전가율</td><td class="num" data-k="oilPass">0.02</td><td>그 분기 유가 1% 변화가 물가 상승률에 주는 영향(%p)</td><td>석유류의 소비자물가 비중과 간접 효과를 뭉뚱그린 값</td></tr>
+        <tr><td>물가 목표</td><td class="num" data-k="target">2.0</td><td>%</td><td>한국은행 물가안정목표(소비자물가 상승률 2%)와 같다</td></tr>
+        <tr><td>중립 명목금리</td><td class="num" data-k="neutral">2.25</td><td>%</td><td>관측되지 않는 값. 추정치는 연구마다 다르다</td></tr>
+        <tr><td>금리 평활화</td><td class="num" data-k="smooth">0.7</td><td>지난 분기 금리를 유지하는 몫(1 − 옮기는 속도)</td><td>실험실의 '옮기는 속도' 슬라이더가 이 값을 바꾼다</td></tr>
+        <tr><td>준칙의 물가·갭 계수</td><td class="num">1.5 · 0.5</td><td>물가 1%p, 산출 갭 1%p에 대한 준칙 금리 반응</td><td>테일러(1993)의 모양</td></tr>
+        <tr><td>금리 차의 환율 효과</td><td class="num" data-k="uip">1.5</td><td>한·미 금리 차 1%p 확대에 대한 원화 강세(%)</td><td>위험 회피가 커지면 금리 차보다 안전 선호가 앞선다</td></tr>
+        <tr><td>오쿤 계수</td><td class="num" data-k="okun">0.4</td><td>산출 갭 1%p당 실업률 변화(%p, 반대 방향)</td><td>한국의 실업률은 경기에 덜 민감한 편이다(<a href="jobs.html">5장</a>)</td></tr>
+        <tr><td>자연실업률</td><td class="num" data-k="uStar">3.0</td><td>%</td><td>실업률 칸의 출발점. 2026년 8월 실제 실업률(원계열 2.0%)과 직접 비교하지 않는다</td></tr>
+        <tr><td>금리의 집값 효과</td><td class="num" data-k="houseRate">3.0</td><td>금리 1%p 상승이 집값 상승률을 낮추는 크기(%p)</td><td>공급·대출 규제·기대가 더 큰 힘일 수 있다</td></tr>
+        <tr><td>경기의 집값 효과</td><td class="num" data-k="houseGap">1.5</td><td>산출 갭 1%p가 집값 상승률을 높이는 크기(%p)</td><td>집값 칸의 출발점은 2%(가정)</td></tr>
+      </tbody>
+    </table></div>
+    <p>이 모형에는 없는 것도 많다. 은행이 대출을 갑자기 조이는 신용 경색, 사람들의 기대 인플레이션이 목표에서 떨어져 나가는 일, 정부 부채가 금리를 밀어 올리는 일, 반도체처럼 한 산업이 수출의 절반을 차지하는 구조, 집의 공급이 몇 년 늦게 반응하는 시차. 실제 경제 분석에서는 이런 요소를 넣은 훨씬 큰 모형과 여러 모형의 비교를 쓴다. 작은 모형의 쓸모는 숫자를 맞히는 데 있지 않고, 기사 한 줄이 그림의 어느 귀퉁이를 비추는지 알게 해 주는 데 있다.</p>
+    <div class="callout stat"><strong>실제 숫자로 모형을 돌리고 싶다면</strong>분기별 실질 GDP(계절조정, 전기비)와 소비자물가, 기준금리, 원/달러 환율, 실업률(계절조정)은 모두 ECOS에서 같은 화면에 내려받을 수 있다. 산출 갭과 중립금리는 통계가 아니라 추정치라 한국은행의 「통화신용정책보고서」나 연구 보고서에 실린 범위를 참고한다. 집값은 한국부동산원과 KB의 지수가 서로 다르게 계산되므로 어느 지수인지 함께 적는다. 실제 값을 넣어 돌린 결과도 여전히 모형의 계산이라는 점은 그대로다.</div>
+  </section>
+
+  <div class="casefile">
+    <div class="tag"><b>CASE 지우</b><span>헤드라인 노트 · 2026년 10월</span></div>
+    <div class="headline">9월 수출 1,209억 달러로 월간 최대, 소비자물가 2.9%<small>근거: 산업통상부 「2026년 9월 수출입 동향」(2026-10-01), 국가데이터처 「2026년 9월 소비자물가동향」(2026-10-02). 함께 본 숫자: 기준금리 3.00%(8-27), 2분기 GDP 0.6%(잠정), 8월 실업률 2.0%, 원/달러 1,338.5원(10-08), 8월 경상수지 461.1억 달러</small></div>
+    <h4>"1년 동안 모은 숫자를 한 장에 놓으면"</h4>
+    <p>10월 첫 주에 숫자가 한꺼번에 쏟아졌다. 1일에 9월 수출, 2일에 9월 물가, 6일에 외환보유액, 8일에 8월 경상수지. 지우는 이번 달 헤드라인을 고르지 못하다가 삼촌에게 물었다. 백정호는 "고르지 말고 표를 만들어라"라고 했다. 지우는 이 장의 계기판처럼 지표마다 최신값, 비교 기준, 잰 기간, 발표일을 한 줄씩 적었다. 수출 83.5% 증가는 전년 같은 달과의 비교이고 그 절반이 반도체라는 것, 물가 2.9%는 8월(3.1%)보다 낮아졌지만 3월부터 7개월째 목표 2%를 넘는다는 것, 성장률은 아직 2분기 숫자라는 것이 한 장에 보였다.</p>
+    <p id="lab-case-calc">—</p>
+    <div class="clue">
+      <div><b>헤드라인이 말한 것</b>수출 월간 사상 최대, 물가 2.9%. 좋은 소식과 부담이 함께 있다.</div>
+      <div><b>숫자를 다시 보니</b>증가율은 전년 동월 대비, 수출의 절반은 반도체. 성장률·고용·경상수지는 한두 달 이전의 숫자다. 서로 다른 달의 경제를 한 장에 놓고 읽어야 한다.</div>
+      <div><b>내 생활에는</b><span id="lab-case-life">—</span></div>
+    </div>
+  </div>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>같은 날의 "최신" 숫자도 잰 기간이 다르다. 환율·주가는 어제, 물가·수출은 지난달, 고용·경상수지는 두 달 전, 성장률은 지난 분기, 국가채무는 지난해의 값이다. 숫자마다 기준 시점과 발표일을 붙여 읽는다.</li>
+      <li>작은 경제 모형은 산출 갭(필립스 곡선으로 물가와 연결), 금리 준칙, 환율, 오쿤의 법칙, 집값을 한데 묶는다. 충격은 환율·금리 → 물가·경기 → 실업·집값의 순서로 번지고, 금리와 환율의 되먹임이 크기를 줄인다.</li>
+      <li>테일러 준칙은 물가가 1%p 오를 때 금리를 1%p보다 크게(1.5%p) 올리라고 한다. 그러나 산출 갭과 중립금리는 관측되지 않아 준칙 금리는 넓은 범위로만 알 수 있다. 금리는 0% 아래로 거의 내려가지 못하고, 너무 높으면 경기와 일자리와 집값이 함께 무너진다.</li>
+      <li>수요 충격에는 금리 인상이 경기와 물가를 함께 진정시키지만, 유가 같은 공급 충격에서는 물가를 잡는 대신 경기를 내준다. 같은 물가 상승이라도 원인에 따라 처방이 다르다.</li>
+      <li>헤드라인은 "언제 기준인가, 무엇과 비교했나, 누가 쟀나"를 채워 읽는다. 전망과 모형의 숫자는 실적이 아니다. 경제 뉴스는 가계부의 다른 줄(이자, 자산, 달러 지출, 구매력)을 다른 속도로 건드리며, 큰 결정은 예측이 아니라 내 숫자와 나쁜 시나리오와 정해 둔 날짜로 한다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q"><p>1. 2026년 10월 9일 아침 신문에 성장률, 소비자물가, 원/달러 환율이 함께 실렸다. 이 세 숫자에 대한 설명으로 가장 알맞은 것은?</p>
+        <div class="opts"><button class="opt">모두 같은 날 발표되었으므로 같은 기간의 경제를 말한다</button><button class="opt" data-correct>성장률은 2분기, 물가는 9월, 환율은 전날의 값처럼 서로 다른 기간을 잰 숫자다</button><button class="opt">환율이 가장 오래된 숫자다</button><button class="opt">성장률은 이미 3분기 확정치가 나와 있다</button></div>
+        <div class="quiz-exp">숫자마다 잰 기간과 발표일이 다르다. 2026년 10월 9일 현재 성장률은 2분기(4~6월) 잠정치, 소비자물가는 9월, 환율은 10월 8일 종가가 최신이다. 3분기 성장률은 10월 하순 속보치가 나와야 안다.</div></div>
+      <div class="quiz-q"><p>2. 테일러 준칙(준칙 금리 = 중립금리 + 1.5×(물가 − 2) + 0.5×산출 갭)에서 물가 상승률이 2%에서 3%로 오르고 산출 갭은 0으로 그대로라면, 준칙 금리와 실질금리는 어떻게 되는가?</p>
+        <div class="opts"><button class="opt">준칙 금리 +1%p, 실질금리 그대로</button><button class="opt">준칙 금리 +0.5%p, 실질금리 하락</button><button class="opt">준칙 금리 그대로, 실질금리 하락</button><button class="opt" data-correct>준칙 금리 +1.5%p, 실질금리 +0.5%p</button></div>
+        <div class="quiz-exp">물가 1%p 상승에 금리를 1.5%p 올리면 실질금리(금리 − 물가)가 0.5%p 오른다. 물가보다 금리를 더 크게 움직여야 실질금리가 올라 경기를 식히고 물가를 누른다. 이것이 테일러 원칙이다.</div></div>
+      <div class="quiz-q"><p>3. 국제 유가가 크게 올라 물가가 뛰었다. 이때 중앙은행이 금리를 크게 올리면 이 장의 모형에서 나타나는 모습으로 가장 알맞은 것은?</p>
+        <div class="opts"><button class="opt" data-correct>물가는 더 빨리 목표로 돌아오지만 산출 갭은 더 깊이 음수로 내려간다</button><button class="opt">물가와 경기가 모두 더 빨리 좋아진다</button><button class="opt">유가 충격은 금리와 아무 관계가 없다</button><button class="opt">물가는 더 오르고 경기는 좋아진다</button></div>
+        <div class="quiz-exp">공급 충격은 물가를 올리면서 경기를 식힌다. 금리를 올리면 물가는 빨리 잡히지만 경기가 더 식는다. 수요 충격과 달리 두 목표가 서로 부딪치는 자리이며, 일시적인 유가 상승은 지켜보는 선택에도 근거가 있다.</div></div>
+      <div class="quiz-q"><p>4. "물가 3%대로 치솟아… 기준금리 4%까지 오른다"라는 제목이 있다. 백정호의 세 질문 가운데 '누가 쟀나'와 가장 관련이 깊은 확인은?</p>
+        <div class="opts"><button class="opt">몇 월의 물가인지 확인한다</button><button class="opt">전년 같은 달과 비교했는지 확인한다</button><button class="opt" data-correct>실적 통계인지, 어느 기관이나 모형이 낸 전망인지 확인한다</button><button class="opt">제목의 글자 수를 센다</button></div>
+        <div class="quiz-exp">"오른다"는 미래의 일이므로 누군가의 전망이다. 국가데이터처가 잰 실적인지, 어느 기관의 모형이 어떤 가정으로 계산한 값인지에 따라 숫자의 성격이 완전히 다르다. 기준 시점(①)과 비교 대상(②)도 함께 확인해야 하지만, 이 질문의 답은 출처다.</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var K = EC.KR, C = EC.CASE, EP = EC.ECONOMY;
+  var FX0 = K.usdkrw || 1338.5, I0 = EP.neutral, PI0 = EP.target;
+  var abs1 = function (x, d) { return Math.abs(x).toFixed(d == null ? 1 : d); };
+  var num = function (x, d) { d = d == null ? 1 : d; return (x < -Math.pow(10, -d) / 2 ? "−" : "") + abs1(x, d); };
+  var sg = function (x, d) { d = d == null ? 1 : d; var e = Math.pow(10, -d) / 2; return (x >= e ? "+" : x <= -e ? "−" : "") + abs1(x, d); };
+  var pc = function (x, d) { return num(x, d == null ? 1 : d) + "%"; };
+  var wonInt = function (x) { return Math.round(x).toLocaleString("ko-KR") + "원"; };
+  var esc = function (s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); };
+  function vline(ctx, P, x, y0, y1) { ctx.save(); ctx.strokeStyle = P.text; ctx.globalAlpha = 0.55; ctx.setLineDash([3, 3]); ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(x, y0); ctx.lineTo(x, y1); ctx.stroke(); ctx.restore(); }
+  function handle(ctx, P, x, y, r) { ctx.beginPath(); ctx.arc(x, y, r || 7, 0, Math.PI * 2); ctx.fillStyle = P.text; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = P.bg; ctx.stroke(); }
+  function range(vals, minSpan, pad) {
+    var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals);
+    if (hi - lo < minSpan) { var m = (hi + lo) / 2; lo = m - minSpan / 2; hi = m + minSpan / 2; }
+    var p = (hi - lo) * (pad == null ? 0.12 : pad); return [lo - p, hi + p];
+  }
+
+  /* =============================================================== sim-clock */
+  (function () {
+    var D = function (s) { var p = s.split("-"); return Date.UTC(+p[0], +p[1] - 1, +p[2]) / 864e5; };
+    var fmtD = function (d) { var t = new Date(d * 864e5); return t.getUTCFullYear() + "-" + String(t.getUTCMonth() + 1).padStart(2, "0") + "-" + String(t.getUTCDate()).padStart(2, "0"); };
+    var X0 = D("2026-03-01"), X1 = D("2026-11-05"), TODAY = D("2026-10-09");
+    var ROWS = [
+      { n: "기준금리", v: "3.00%", s: "2026-08-27", e: "2026-10-09", pub: ["2026-08-27"], level: true, next: "2026-10-22", per: "8-27 결정 이후" },
+      { n: "소비자물가", v: "2.9%", s: "2026-09-01", e: "2026-09-30", pub: ["2026-10-02"], per: "2026년 9월" },
+      { n: "GDP", v: "0.6%", s: "2026-04-01", e: "2026-06-30", pub: ["2026-07-23", "2026-09-08"], per: "2026년 2분기" },
+      { n: "실업률", v: "2.0%", s: "2026-08-01", e: "2026-08-31", pub: ["2026-09-09"], per: "2026년 8월" },
+      { n: "수출", v: "+83.5%", s: "2026-09-01", e: "2026-09-30", pub: ["2026-10-01"], per: "2026년 9월" },
+      { n: "경상수지", v: "461.1억$", s: "2026-08-01", e: "2026-08-31", pub: ["2026-10-08"], per: "2026년 8월" },
+      { n: "외환보유액", v: "4,405.6억$", s: "2026-09-30", e: "2026-09-30", pub: ["2026-10-06"], per: "2026년 9월 말" },
+      { n: "원/달러", v: "1,338.5원", s: "2026-10-08", e: "2026-10-08", pub: ["2026-10-08"], per: "2026-10-08" },
+      { n: "KOSPI", v: "6,625.93", s: "2026-10-08", e: "2026-10-08", pub: ["2026-10-08"], per: "2026-10-08" },
+      { n: "국가채무", v: "49.0%", s: "2025-01-01", e: "2025-12-31", pub: ["2026-04-06"], per: "2025년" },
+    ];
+    ROWS.forEach(function (r) { r.S = D(r.s); r.E = D(r.e); r.P = r.pub.map(D); if (r.next) r.N = D(r.next); });
+    var today = TODAY, geo = null;
+    var cv = EB.canvas("#clk-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      ctx.font = EB.font(w < 420 ? 11 : 12, false, 600); var lw = 12 + Math.max.apply(null, ROWS.map(function (r) { return ctx.measureText(r.n).width; })), top = 50, right = 12, bx = lw, bw = w - lw - right;
+      var rh = (h - top - 10) / ROWS.length;
+      var X = function (d) { return bx + (EB.clamp(d, X0, X1) - X0) / (X1 - X0) * bw; };
+      geo = { bx: bx, bw: bw, top: top };
+      // month grid
+      ctx.font = EB.font(11); ctx.textAlign = "center"; ctx.textBaseline = "alphabetic";
+      for (var m = 3; m <= 11; m++) {
+        var d = D("2026-" + String(m).padStart(2, "0") + "-01"), x = X(d);
+        ctx.strokeStyle = P.grid; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(x, top - 4); ctx.lineTo(x, h - 6); ctx.stroke();
+        if (m <= 10 && (bw > 300 || m % 2 === 1)) { ctx.fillStyle = P.dim; ctx.fillText(m + "월", x + (X(d + 30) - x) / 2, top - 10); }
+      }
+      var known = 0;
+      ROWS.forEach(function (r, i) {
+        var y = top + i * rh, cy = y + rh / 2, pub = r.P[0] <= today;
+        if (pub) known++;
+        ctx.globalAlpha = pub ? 1 : 0.38;
+        ctx.fillStyle = P.text; ctx.font = EB.font(w < 420 ? 11 : 12, false, 600); ctx.textAlign = "right"; ctx.textBaseline = "middle";
+        ctx.fillText(r.n, lw - 6, cy);
+        // period bar
+        var x0 = X(r.S), x1 = r.level ? X(Math.min(today, X1)) : X(r.E);
+        ctx.fillStyle = r.level ? EB.color("ok-soft") : EB.color("accent-soft");
+        var bh = Math.max(6, rh * 0.38);
+        ctx.fillRect(x0, cy - bh / 2, Math.max(3, x1 - x0), bh);
+        if (r.S < X0) { ctx.fillStyle = P.dim; ctx.font = EB.font(10.5); ctx.textAlign = "left"; ctx.fillText("← 2025년", bx + 3, cy - bh / 2 - 6); }
+        // lag connector and publish dots
+        r.P.forEach(function (pd, k) {
+          var px = X(pd);
+          if (!r.level) { ctx.strokeStyle = P.faint; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(X(r.E), cy); ctx.lineTo(px, cy); ctx.stroke(); ctx.setLineDash([]); }
+          ctx.beginPath(); ctx.arc(px, cy, k === 0 ? 4.5 : 3.5, 0, Math.PI * 2);
+          ctx.fillStyle = pd <= today ? P.accent2 : P.faint; ctx.fill();
+        });
+        if (r.N) { var nx = X(r.N); ctx.strokeStyle = P.accent; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(nx, cy, 4.5, 0, Math.PI * 2); ctx.stroke(); }
+        // value label
+        var lastPub = r.P.filter(function (pd) { return pd <= today; }).pop();
+        var txt = pub ? r.v : "발표 전";
+        ctx.font = pub ? EB.font(11, /[0-9]/.test(txt[0]) || txt[0] === "+", 600) : EB.font(11);
+        var tx = (lastPub != null ? X(lastPub) : X(r.P[0])) + 8, tw = ctx.measureText(txt).width;
+        if (tx + tw > w - 4) { tx = Math.min(x0, X(r.P[0])) - 8 - tw; }
+        ctx.textAlign = "left"; ctx.fillStyle = pub ? P.text : P.dim;
+        ctx.fillText(txt, tx, cy);
+        ctx.globalAlpha = 1;
+      });
+      // today line
+      var tx2 = X(today);
+      ctx.strokeStyle = P.bad; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(tx2, top - 4); ctx.lineTo(tx2, h - 6); ctx.stroke();
+      handle(ctx, P, tx2, top - 4, 6);
+      ctx.fillStyle = P.bad; ctx.font = EB.font(11, false, 700); ctx.textAlign = tx2 > w - 70 ? "right" : "left"; ctx.textBaseline = "alphabetic";
+      ctx.fillText("오늘", tx2 + (tx2 > w - 70 ? -9 : 9), top - 22);
+      // readouts
+      EB.stat("clk-o-d", fmtD(today));
+      EB.stat("clk-o-n", known + " / " + ROWS.length);
+      var lags = ROWS.filter(function (r) { return r.P[0] <= today && !r.level; }).map(function (r) { return r.P[0] - r.E; }).sort(function (a, b) { return a - b; });
+      EB.stat("clk-o-l", lags.length ? Math.round(lags[Math.floor(lags.length / 2)]) + "일" : "—");
+      var old = ROWS.filter(function (r) { return r.P[0] <= today; }).sort(function (a, b) { return a.E - b.E; })[0];
+      EB.stat("clk-o-o", old ? old.n + " · " + old.per : "—");
+    }, { aspect: 0.56, minHeight: 350, maxHeight: 420 });
+    EB.drag(cv.canvas, {
+      move: function (x) { if (!geo) return; today = Math.round(EB.clamp(X0 + (x - geo.bx) / geo.bw * (X1 - X0), D("2026-03-05"), D("2026-10-31"))); cv.redraw(); },
+    });
+  })();
+
+  /* =============================================================== sim-taylor */
+  (function () {
+    var pi = 2.9, box = null;
+    var gG = EB.range("ty-g", function (v) { return sg(v, 2) + "%p"; }, draw);
+    var gN = EB.range("ty-n", function (v) { return v.toFixed(2) + "%"; }, draw);
+    var now = document.getElementById("ty-now"); now.addEventListener("change", draw);
+    var rule = function (p, n, g) { return n + 1.5 * (p - 2) + 0.5 * g; };
+    var cv = EB.canvas("#ty-cv", function (ctx, w, h) {
+      var P = EB.palette(), g = gG(), n = gN();
+      var c = EB.chart(ctx, { x: 44, y: 14, w: w - 58, h: h - 52 }, {
+        x: [0, 6], y: [-4, 10], xTicks: [0, 1, 2, 3, 4, 5, 6], yTicks: [-4, -2, 0, 2, 4, 6, 8, 10],
+        xFmt: function (v) { return v + "%"; }, yFmt: function (v) { return v + "%"; }, xLabel: "물가 상승률",
+        series: [], hlines: [{ y: 0, color: P.axis }],
+      });
+      box = c;
+      var B = c.box;
+      // zero lower bound zone
+      ctx.fillStyle = EB.color("bad-soft"); ctx.fillRect(B.x, c.Y(0), B.w, c.Y(-4) - c.Y(0));
+      ctx.fillStyle = P.bad; ctx.font = EB.font(11); ctx.textAlign = "right"; ctx.textBaseline = "bottom";
+      ctx.fillText("0% 아래: 기준금리로 갈 수 없는 영역", B.x + B.w - 6, c.Y(-4) - 4);
+      // neutral band
+      ctx.save(); ctx.beginPath(); ctx.rect(B.x, B.y, B.w, B.h); ctx.clip();
+      ctx.beginPath();
+      ctx.moveTo(c.X(0), c.Y(rule(0, n + 0.5, g))); ctx.lineTo(c.X(6), c.Y(rule(6, n + 0.5, g)));
+      ctx.lineTo(c.X(6), c.Y(rule(6, n - 0.5, g))); ctx.lineTo(c.X(0), c.Y(rule(0, n - 0.5, g))); ctx.closePath();
+      ctx.fillStyle = EB.color("accent-soft"); ctx.fill();
+      // real rate zero line
+      ctx.strokeStyle = P.faint; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.3; ctx.beginPath(); ctx.moveTo(c.X(0), c.Y(0)); ctx.lineTo(c.X(6), c.Y(6)); ctx.stroke(); ctx.setLineDash([]);
+      // rule line
+      ctx.strokeStyle = P.accent; ctx.lineWidth = 2.6; ctx.beginPath(); ctx.moveTo(c.X(0), c.Y(rule(0, n, g))); ctx.lineTo(c.X(6), c.Y(rule(6, n, g))); ctx.stroke();
+      ctx.restore();
+      ctx.font = EB.font(11); ctx.textBaseline = "alphabetic"; ctx.textAlign = "left";
+      ctx.fillStyle = P.faint; ctx.fillText("실질금리 0 (금리 = 물가)", c.X(4.1), c.Y(4.1) + 16);
+      ctx.fillStyle = P.accent; ctx.fillText("준칙 금리 (띠: 중립금리 ±0.5%p)", B.x + 8, B.y + 14);
+      // actual Oct 2026 point
+      if (now.checked) {
+        var ax = c.X(K.cpi * 100), ay = c.Y(K.baseRate * 100);
+        ctx.fillStyle = P.accent2; ctx.beginPath(); ctx.moveTo(ax, ay - 7); ctx.lineTo(ax + 7, ay); ctx.lineTo(ax, ay + 7); ctx.lineTo(ax - 7, ay); ctx.closePath(); ctx.fill();
+        ctx.fillStyle = P.accent2; ctx.textAlign = "left"; ctx.fillText("2026-10 실제", ax + 10, ay + 14);
+      }
+      // dragged point
+      var ir = rule(pi, n, g), irc = Math.max(0, ir), px = c.X(pi);
+      vline(ctx, P, px, B.y, B.y + B.h);
+      if (ir < 0) { ctx.strokeStyle = P.bad; ctx.setLineDash([2, 3]); ctx.beginPath(); ctx.moveTo(px, c.Y(ir)); ctx.lineTo(px, c.Y(0)); ctx.stroke(); ctx.setLineDash([]); ctx.beginPath(); ctx.arc(px, c.Y(Math.max(-4, ir)), 4, 0, Math.PI * 2); ctx.fillStyle = P.bad; ctx.fill(); }
+      ctx.beginPath(); ctx.arc(px, c.Y(irc), 7, 0, Math.PI * 2); ctx.fillStyle = P.accent; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = P.bg; ctx.stroke();
+      handle(ctx, P, px, B.y + B.h, 7);
+      EB.stat("ty-o-p", pc(pi, 1));
+      EB.stat("ty-o-i", ir < 0 ? "0% <small>(준칙은 " + pc(ir, 2) + ")</small>" : pc(ir, 2));
+      EB.stat("ty-o-r", sg(irc - pi, 2) + "%p");
+      EB.stat("ty-o-s", "+1.50%p");
+    }, { aspect: 0.66, minHeight: 280, maxHeight: 420 });
+    EB.drag(cv.canvas, { move: function (x) { if (!box) return; pi = EB.clamp(Math.round(EB.map(x, box.box.x, box.box.x + box.box.w, 0, 6) * 10) / 10, 0, 6); cv.redraw(); } });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* =============================================================== sim-phase */
+  (function () {
+    var t = 12, geo = null;
+    var gK = EB.seg("ph-k", draw);
+    var gS = EB.range("ph-s", function (v) { return "× " + v.toFixed(2); }, draw);
+    function runs() {
+      var s = gS(), sh = gK() === "demand" ? { demand: [0, 1 * s, 0.6 * s, 0.3 * s] } : { oil: [0, 30 * s, 10 * s] };
+      return { rule: EC.economy({ quarters: 12, rule: true, shocks: sh }).rows, hold: EC.economy({ quarters: 12, rule: false, ratePath: [], shocks: sh }).rows };
+    }
+    var cv = EB.canvas("#ph-cv", function (ctx, w, h) {
+      var P = EB.palette(), R = runs();
+      var all = R.rule.concat(R.hold);
+      var xr = range(all.map(function (r) { return r.y; }).concat([0]), 2, 0.15), yr = range(all.map(function (r) { return r.pi; }).concat([2]), 2, 0.15);
+      var B = { x: 60, y: 14, w: w - 74, h: h - 14 - 78 };
+      var c = EB.chart(ctx, B, { x: xr, y: yr, xFmt: function (v) { return sg(v, 1); }, yFmt: function (v) { return v.toFixed(1) + "%"; }, vlines: [{ x: 0, color: P.axis, dash: [] }], hlines: [{ y: 2, color: P.axis, dash: [] }] });
+      ctx.font = EB.font(11); ctx.fillStyle = P.faint; ctx.textBaseline = "alphabetic";
+      ctx.textAlign = "left"; ctx.fillText("스태그플레이션 쪽(침체 + 고물가)", B.x + 6, B.y + 14);
+      ctx.textAlign = "right"; ctx.fillText("과열 쪽", B.x + B.w - 6, B.y + 14);
+      ctx.textAlign = "left"; ctx.fillText("침체 · 저물가 쪽", B.x + 6, B.y + B.h - 8);
+      ctx.textAlign = "right"; ctx.fillStyle = P.dim; ctx.fillText("산출 갭(%) →", B.x + B.w, B.y + B.h + 30);
+      ctx.save(); ctx.translate(14, B.y + B.h / 2); ctx.rotate(-Math.PI / 2); ctx.textAlign = "center"; ctx.fillText("물가 상승률", 0, 0); ctx.restore();
+      function path(rows, col, dash, wd) {
+        ctx.save(); ctx.beginPath(); ctx.rect(B.x, B.y, B.w, B.h); ctx.clip();
+        ctx.strokeStyle = col; ctx.lineWidth = wd; ctx.setLineDash(dash);
+        ctx.beginPath(); rows.forEach(function (r, k) { var x = c.X(r.y), y = c.Y(r.pi); k ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }); ctx.stroke(); ctx.setLineDash([]);
+        rows.forEach(function (r, k) { ctx.beginPath(); ctx.arc(c.X(r.y), c.Y(r.pi), k <= t ? 2.6 : 1.6, 0, Math.PI * 2); ctx.fillStyle = col; ctx.globalAlpha = k <= t ? 1 : 0.35; ctx.fill(); ctx.globalAlpha = 1; });
+        ctx.restore();
+      }
+      path(R.hold, P.accent2, [5, 4], 1.8);
+      path(R.rule, P.accent, [], 2.4);
+      // target cross
+      ctx.strokeStyle = P.ok; ctx.lineWidth = 2; var tx = c.X(0), ty = c.Y(2);
+      ctx.beginPath(); ctx.moveTo(tx - 7, ty); ctx.lineTo(tx + 7, ty); ctx.moveTo(tx, ty - 7); ctx.lineTo(tx, ty + 7); ctx.stroke();
+      var a = R.rule[t], b = R.hold[t];
+      [[b, P.accent2, "그대로"], [a, P.accent, "준칙"]].forEach(function (p) {
+        var x = c.X(p[0].y), y = c.Y(p[0].pi);
+        ctx.beginPath(); ctx.arc(x, y, 6.5, 0, Math.PI * 2); ctx.fillStyle = p[1]; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = P.bg; ctx.stroke();
+        ctx.fillStyle = p[1]; ctx.font = EB.font(11, false, 700); ctx.textAlign = x > B.x + B.w - 50 ? "right" : "left"; ctx.fillText(p[2], x + (x > B.x + B.w - 50 ? -10 : 10), y - 8);
+      });
+      // time scrubber
+      var sy = B.y + B.h + 52, X = function (k) { return B.x + k / 12 * B.w; };
+      geo = { x0: B.x, w: B.w };
+      ctx.strokeStyle = P.axis; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(X(0), sy); ctx.lineTo(X(12), sy); ctx.stroke();
+      ctx.strokeStyle = P.accent; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(X(0), sy); ctx.lineTo(X(t), sy); ctx.stroke();
+      ctx.font = EB.font(10.5); ctx.fillStyle = P.dim; ctx.textAlign = "center";
+      for (var k = 0; k <= 12; k++) { ctx.fillRect(X(k) - 0.5, sy - 4, 1, 8); if (k % 2 === 0 || w > 480) ctx.fillText(k === 0 ? "충격" : k, X(k), sy + 18); }
+      handle(ctx, P, X(t), sy, 8);
+      EB.stat("ph-o-t", t + "분기 뒤");
+      EB.stat("ph-o-p", pc(a.pi, 2) + " / " + pc(b.pi, 2));
+      EB.stat("ph-o-y", sg(a.y, 2) + " / " + sg(b.y, 2));
+      EB.stat("ph-o-i", pc(a.i, 2));
+    }, { aspect: 0.72, minHeight: 330, maxHeight: 460 });
+    EB.drag(cv.canvas, { move: function (x) { if (!geo) return; t = EB.clamp(Math.round((x - geo.x0) / geo.w * 12), 0, 12); cv.redraw(); } });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* =============================================================== sim-economy (대표) */
+  var LAB = { R: null, G: null, Q: 12, kind: "oil", size: 1, policy: "rule", listeners: [] };
+  (function () {
+    var SH = {
+      none: { n: "충격 없음", make: function () { return {}; } },
+      oil: { n: "유가 급등", make: function (s) { return { oil: [0, 30 * s, 10 * s] }; } },
+      export: { n: "수출 호황", make: function (s) { return { demand: [0, 0.8 * s, 0.5 * s, 0.3 * s], risk: [0, -2 * s, -1 * s] }; } },
+      risk: { n: "세계 금융 불안", make: function (s) { return { risk: [0, 6 * s, 2 * s], demand: [0, -0.4 * s, -0.3 * s] }; } },
+      fiscal: { n: "재정 확대", make: function (s) { return { fiscal: [0, 1 * s, 0.5 * s] }; } },
+      us: { n: "미국 금리 인상", make: function (s) { return { us: [0, 0.5 * s, 0.5 * s] }; } },
+      slump: { n: "국내 수요 위축", make: function (s) { return { demand: [0, -0.8 * s, -0.6 * s, -0.3 * s] }; } },
+    };
+    var L = []; for (var q = 0; q <= 12; q++) L.push(I0);
+    var touched = false, cur = 4, playing = false, drag = 0, geo = null, RULE = null;
+    var gK = EB.seg("eco-k", update);
+    var gS = EB.range("eco-s", function (v) { return "× " + v.toFixed(2); }, update);
+    var gM = EB.range("eco-m", function (v) { return Math.round(v * 100) + "%/분기"; }, update);
+    var gQ = EB.seg("eco-q", function () { cur = Math.min(cur, +gQ()); update(); });
+    var gP = EB.seg("eco-p", function (v) { if (v === "path" && !touched) copyRule(); update(); });
+    function compute() {
+      var Q = +gQ(), sh = SH[gK()].make(gS()), par = { smooth: 1 - gM() };
+      var rp = [0]; for (var t = 1; t <= 12; t++) rp.push(L[t] - L[t - 1]);
+      RULE = EC.economy({ quarters: Q, rule: true, shocks: sh, params: par }).rows;
+      var path = EC.economy({ quarters: Q, rule: false, ratePath: rp, shocks: sh, params: par }).rows;
+      var hold = EC.economy({ quarters: Q, rule: false, ratePath: [], shocks: sh, params: par }).rows;
+      var pol = gP();
+      LAB.R = pol === "rule" ? RULE : path; LAB.G = pol === "rule" ? hold : RULE;
+      LAB.GL = pol === "rule" ? "흐린 선: 금리를 그대로 두었다면" : "흐린 선: 준칙이었다면";
+      LAB.Q = Q; LAB.kind = gK(); LAB.kindName = SH[gK()].n; LAB.size = gS(); LAB.policy = pol;
+    }
+    function copyRule() {
+      var r = EC.economy({ quarters: 12, rule: true, shocks: SH[gK()].make(gS()), params: { smooth: 1 - gM() } }).rows;
+      for (var t = 0; t <= 12; t++) L[t] = t === 0 ? I0 : Math.round(r[t].i * 20) / 20;
+      touched = true;
+    }
+    compute();
+    var PANELS = [
+      { k: "y", n: "산출 갭", get: function (r) { return r.y; }, ref: 0, f: function (v) { return sg(v, 2) + "%"; } },
+      { k: "pi", n: "물가 상승률", get: function (r) { return r.pi; }, ref: PI0, f: function (v) { return pc(v, 2); }, refL: "목표 2%" },
+      { k: "real", n: "실질금리(금리 − 물가)", get: function (r) { return r.i - r.pi; }, ref: I0 - PI0, f: function (v) { return sg(v, 2) + "%p"; } },
+      { k: "fx", n: "원/달러 환율(모형)", get: function (r) { return FX0 * (1 + r.e / 100); }, ref: FX0, f: function (v) { return wonInt(v); }, span: 30 },
+      { k: "u", n: "실업률(모형)", get: function (r) { return r.u; }, ref: EP.uStar, f: function (v) { return pc(v, 2); } },
+      { k: "h", n: "집값 상승률(전년 대비)", get: function (r) { return r.h; }, ref: 2, f: function (v) { return pc(v, 1); } },
+    ];
+    var grid = document.getElementById("eco-grid");
+    grid.innerHTML = PANELS.map(function (p) { return '<div><span class="k">' + p.n + '</span><span class="v" id="eco-v-' + p.k + '">—</span><canvas id="eco-sp-' + p.k + '"></canvas></div>'; }).join("");
+    var boxes = {};
+    var panels = PANELS.map(function (p) {
+      var c = EB.canvas("#eco-sp-" + p.k, function (ctx, w, h) {
+        var P = EB.palette(), R = LAB.R, G = LAB.G, Q = LAB.Q;
+        var vals = R.map(p.get).concat(G.map(p.get)).concat([p.ref]);
+        var yr = range(vals, p.span || 1, 0.1);
+        var fmtY = p.k === "fx" ? function (v) { return Math.round(v).toLocaleString("en-US"); } : function (v) { return +v.toFixed(1) + ""; };
+        var ch = EB.chart(ctx, { x: p.k === "fx" ? 42 : 32, y: 6, w: w - (p.k === "fx" ? 48 : 38), h: h - 24 }, {
+          x: [0, Q], y: yr, xTicks: Q === 12 ? [0, 4, 8, 12] : [0, 4, 8], yTicks: null, xFmt: function (v) { return v + ""; }, yFmt: fmtY,
+          series: [
+            { data: G.map(function (r) { return [r.t, p.get(r)]; }), color: P.faint, width: 1.4, dash: [4, 3] },
+            { data: R.map(function (r) { return [r.t, p.get(r)]; }), color: p.k === "pi" ? P.accent2 : P.accent, width: 2.2 },
+          ],
+          hlines: [{ y: p.ref, color: P.axis, dash: [2, 3] }],
+        });
+        boxes[p.k] = ch;
+        vline(ctx, P, ch.X(cur), ch.box.y, ch.box.y + ch.box.h);
+        var v = p.get(R[Math.min(cur, Q)]);
+        ctx.beginPath(); ctx.arc(ch.X(cur), ch.Y(v), 3.6, 0, Math.PI * 2); ctx.fillStyle = p.k === "pi" ? P.accent2 : P.accent; ctx.fill();
+      }, { aspect: 0.5, minHeight: 110, maxHeight: 150 });
+      var hov = function (e) { var b = boxes[p.k]; if (!b) return; var r = c.canvas.getBoundingClientRect(); var x = e.clientX - r.left; setCur(Math.round(EB.map(x, b.box.x, b.box.x + b.box.w, 0, LAB.Q))); };
+      c.canvas.addEventListener("pointermove", hov); c.canvas.addEventListener("pointerdown", hov);
+      return c;
+    });
+    var cv = EB.canvas("#eco-cv", function (ctx, w, h) {
+      var P = EB.palette(), R = LAB.R, G = LAB.G, Q = LAB.Q, pol = LAB.policy;
+      var lo = Math.min(-0.5, Math.min.apply(null, R.map(function (r) { return r.pi; }).concat(G.map(function (r) { return r.pi; }))) - 0.4);
+      var hi = pol === "path" ? 8.5 : Math.max(5, Math.max.apply(null, R.map(function (r) { return Math.max(r.i, r.pi); }).concat(G.map(function (r) { return r.i; }))) + 0.6);
+      var c = EB.chart(ctx, { x: 44, y: 32, w: w - 56, h: h - 76 }, {
+        x: [0, Q], y: [lo, hi], xTicks: Q === 12 ? [0, 2, 4, 6, 8, 10, 12] : [0, 1, 2, 3, 4, 5, 6, 7, 8], xFmt: function (v) { return v === 0 ? "출발" : v + ""; }, yFmt: function (v) { return v + "%"; },
+        xLabel: "분기",
+        series: [
+          { data: G.map(function (r) { return [r.t, r.i]; }), color: P.faint, width: 1.6, dash: [5, 4] },
+          { data: R.map(function (r) { return [r.t, r.pi]; }), color: P.accent2, width: 2.2 },
+          { data: R.map(function (r) { return [r.t, r.i]; }), color: P.accent, width: 3 },
+        ],
+        hlines: [{ y: PI0, color: P.ok }, { y: 0, color: P.axis, dash: [] }],
+      });
+      geo = c;
+      var B = c.box;
+      if (lo < 0) { ctx.fillStyle = EB.color("bad-soft"); ctx.fillRect(B.x, c.Y(0), B.w, c.Y(lo) - c.Y(0)); }
+      vline(ctx, P, c.X(cur), B.y, B.y + B.h);
+      R.forEach(function (r) {
+        if (r.t === 0) return;
+        var x = c.X(r.t), y = c.Y(r.i);
+        if (pol === "path") { ctx.beginPath(); ctx.arc(x, y, drag === r.t ? 8 : 6.5, 0, Math.PI * 2); ctx.fillStyle = P.accent; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = P.bg; ctx.stroke(); }
+        else { ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2); ctx.fillStyle = P.accent; ctx.fill(); }
+      });
+      handle(ctx, P, c.X(cur), B.y + B.h, 6.5);
+      // legend
+      ctx.font = EB.font(11); ctx.textAlign = "left"; ctx.textBaseline = "middle";
+      var lg = [["기준금리" + (pol === "path" ? "(직접)" : "(준칙)"), P.accent, 3], ["물가 상승률", P.accent2, 2], [LAB.GL.replace("흐린 선: ", "") + "의 금리", P.faint, 1.6], ["물가 목표 2%(점선)", P.ok, 1.6]];
+      var lx = B.x + 8, ly = B.y + 10;
+      lg.forEach(function (l, i) { ctx.fillStyle = l[1]; ctx.fillRect(lx, ly + i * 15 - 1, 14, l[2]); ctx.fillStyle = P.dim; ctx.fillText(l[0], lx + 20, ly + i * 15); });
+    }, { aspect: 0.5, minHeight: 300, maxHeight: 420 });
+    EB.drag(cv.canvas, {
+      start: function (x, y) {
+        playing = false; drag = 0;
+        if (!geo || LAB.policy !== "path") return;
+        var best = 0, bd = 1e9;
+        for (var t = 1; t <= LAB.Q; t++) { var d = Math.abs(geo.X(t) - x); if (d < bd) { bd = d; best = t; } }
+        if (bd < 24 && Math.abs(geo.Y(L[best]) - y) < 48) drag = best;
+      },
+      move: function (x, y) {
+        if (!geo) return;
+        if (drag) {
+          var yv = yInv(y);
+          L[drag] = EB.clamp(Math.round(yv * 4) / 4, 0, 8); touched = true; cur = drag; update();
+        } else setCur(Math.round(EB.map(x, geo.box.x, geo.box.x + geo.box.w, 0, LAB.Q)));
+      },
+      end: function () { drag = 0; cv.redraw(); },
+    });
+    function yInv(py) { var y0 = geo.Y(0), y1 = geo.Y(1); return (py - y0) / (y1 - y0); }
+    function setCur(t) { t = EB.clamp(t, 0, LAB.Q); if (t === cur) return; cur = t; redrawAll(); }
+    document.getElementById("eco-copy").addEventListener("click", function () { copyRule(); gP.set("path"); });
+    document.getElementById("eco-hold").addEventListener("click", function () { for (var t = 0; t <= 12; t++) L[t] = I0; touched = true; gP.set("path"); });
+    var playBtn = document.getElementById("eco-play"), acc = 0;
+    playBtn.addEventListener("click", function () { playing = !playing; if (playing && cur >= LAB.Q) cur = 0; playBtn.textContent = playing ? "멈춤" : "분기 재생"; redrawAll(); });
+    EB.loop(document.getElementById("sim-economy"), function (dt) {
+      if (!playing) return;
+      acc += dt; if (acc < 0.45) return; acc = 0;
+      if (cur >= LAB.Q) { playing = false; playBtn.textContent = "분기 재생"; return; }
+      cur++; redrawAll();
+    });
+    function lamps() {
+      var R = LAB.R.slice(1), mx = function (f) { return Math.max.apply(null, R.map(f)); }, mn = function (f) { return Math.min.apply(null, R.map(f)); };
+      var out = [];
+      var piMax = mx(function (r) { return r.pi; }), piMin = mn(function (r) { return r.pi; }), yMin = mn(function (r) { return r.y; }), yMax = mx(function (r) { return r.y; });
+      var iMin = mn(function (r) { return r.i; }), eMax = mx(function (r) { return r.e; }), uMax = mx(function (r) { return r.u; }), hMin = mn(function (r) { return r.h; }), hMax = mx(function (r) { return r.h; });
+      if (piMax > 3.5) out.push(["bad", "물가 " + pc(piMax) + "까지"]); else if (piMax > 2.7) out.push(["warn", "물가 목표 위 " + pc(piMax)]);
+      if (piMin < 0) out.push(["bad", "디플레이션(물가 " + pc(piMin) + ")"]); else if (piMin < 1.2) out.push(["warn", "저물가 " + pc(piMin)]);
+      if (yMin < -2) out.push(["bad", "깊은 침체(산출 갭 " + sg(yMin) + "%)"]); else if (yMin < -0.7) out.push(["warn", "경기 둔화(" + sg(yMin) + "%)"]);
+      if (yMax > 1.5) out.push(["warn", "과열(산출 갭 " + sg(yMax) + "%)"]);
+      if (iMin < 0.05) out.push(["bad", "금리 0%에 닿음"]);
+      if (eMax > 10) out.push(["bad", "원화 급락(환율 " + sg(eMax) + "%)"]); else if (eMax > 4) out.push(["warn", "원화 약세(" + sg(eMax) + "%)"]);
+      if (uMax > 4) out.push(["bad", "실업률 " + pc(uMax) + "까지"]); else if (uMax > 3.4) out.push(["warn", "실업률 상승 " + pc(uMax)]);
+      if (hMin < -5) out.push(["bad", "집값 급락(" + pc(hMin) + ")"]); else if (hMin < 0) out.push(["warn", "집값 하락(" + pc(hMin) + ")"]);
+      if (hMax > 6) out.push(["warn", "집값 급등(" + pc(hMax) + ")"]);
+      var el = document.getElementById("eco-warn");
+      el.innerHTML = '<span class="cap">경고등(3년 동안 한 번이라도)</span>' + (out.length ? out.map(function (o) { return '<span class="lamp on-' + o[0] + '">' + o[1] + "</span>"; }).join("") : '<span class="lamp calm">모두 평온: 충격이 작거나 정책이 잘 흡수했다</span>');
+    }
+    function readouts() {
+      var r = LAB.R[Math.min(cur, LAB.Q)], r0 = LAB.R[0];
+      EB.stat("eco-o-t", cur === 0 ? "출발" : cur + "분기 뒤");
+      EB.stat("eco-o-i", pc(r.i, 2) + " <small>" + sg(r.i - r0.i, 2) + "%p</small>");
+      EB.stat("eco-o-p", pc(r.pi, 2));
+      EB.stat("eco-o-y", sg(r.y, 2) + "% · " + pc(r.u, 2));
+      EB.stat("eco-o-e", wonInt(FX0 * (1 + r.e / 100)) + " <small>" + sg(r.e, 1) + "%</small>");
+      EB.stat("eco-o-h", pc(r.h, 1));
+      PANELS.forEach(function (p) { var v = p.get(r); EB.stat("eco-v-" + p.k, p.f(v)); });
+      document.getElementById("eco-hint").textContent = LAB.policy === "path" ? "점을 위아래로 끌어 금리를 정한다" : "세로선을 끌어 분기를 고른다";
+    }
+    function redrawAll() { cv.redraw(); panels.forEach(function (p) { p.redraw(); }); readouts(); }
+    var notify = EB.debounce(function () { LAB.listeners.forEach(function (f) { f(); }); }, 160);
+    function update() { compute(); cur = Math.min(cur, LAB.Q); redrawAll(); lamps(); notify(); }
+    update();
+  })();
+
+  /* =============================================================== sim-headline */
+  (function () {
+    var seed = 1, picks = [], score = 0, answered = 0;
+    var listEl = document.getElementById("hq-list");
+    var NAME = { when: "언제 기준인가", compare: "무엇과 비교했나", who: "누가 쟀나" };
+    var WHY = {
+      when: "몇 분기 뒤의 숫자인지가 빠졌다. 같은 숫자라도 충격 직후인지 2년 뒤인지에 따라 뜻이 다르다. 실제 기사라면 '9월', '2분기 속보치'처럼 잰 기간이 붙어야 한다.",
+      compare: "무엇과 비교한 숫자인지가 빠졌다. 1년 전 같은 분기와 비교했는지, 출발점이나 목표와 비교했는지에 따라 같은 숫자의 크기가 달라진다.",
+      who: "누가 계산했는지가 빠졌다. 이 숫자는 실제 통계가 아니라 이 책의 모형 계산이다. 출처가 빠지면 모형이나 전망의 숫자가 이미 일어난 실적처럼 읽힌다.",
+    };
+    function cands(R, Q) {
+      var out = [];
+      function ext(get, ref) { var bt = 1, bv = -1; for (var t = 1; t <= Q; t++) { var d = Math.abs(get(R[t]) - ref); if (d > bv + 1e-9) { bv = d; bt = t; } } return bt; }
+      var t, v;
+      t = ext(function (r) { return r.pi; }, 2); v = R[t].pi;
+      out.push({ k: "pi", t: t, sal: Math.abs(v - 2) / 0.4, get: function (r) { return r.pi; }, n: "물가",
+        core: v < 0 ? "소비자물가 " + abs1(v) + "% 하락… 디플레이션 우려" : "소비자물가 " + abs1(v) + "% 상승" + (v >= 3 ? "… 목표 크게 웃돌아" : v >= 2.3 ? "… 목표 웃돌아" : v <= 1.5 ? "… 오름세 둔화" : "… 목표 근처"),
+        cmp: "(전년 같은 분기 대비, 출발점 2.0%보다 " + sg(v - 2) + "%p)" });
+      t = ext(function (r) { return r.y; }, 0); v = R[t].y;
+      out.push({ k: "y", t: t, sal: Math.abs(v) / 0.5, get: function (r) { return r.y; }, n: "산출 갭",
+        core: v <= -0.3 ? "경기 식는다… 산출 갭 " + num(v, 1) + "%" : v >= 0.3 ? "경기 달아오른다… 산출 갭 +" + abs1(v) + "%" : "경기 제자리… 산출 갭 " + sg(v, 1) + "%",
+        cmp: "(잠재 GDP 수준 대비)" });
+      t = ext(function (r) { return r.e; }, 0); v = R[t].e;
+      var lvl = FX0 * (1 + v / 100);
+      out.push({ k: "e", t: t, sal: Math.abs(v) / 3, get: function (r) { return FX0 * (1 + r.e / 100); }, n: "환율",
+        core: "원/달러 " + wonInt(lvl) + (v > 0.5 ? "… 원화 약세" : v < -0.5 ? "… 원화 강세" : "… 보합"),
+        cmp: "(출발 " + FX0.toLocaleString("ko-KR") + "원보다 " + sg(v) + "%)" });
+      t = ext(function (r) { return r.i; }, I0); v = R[t].i;
+      out.push({ k: "i", t: t, sal: Math.abs(v - I0) / 0.5, get: function (r) { return r.i; }, n: "기준금리",
+        core: "기준금리 연 " + v.toFixed(2) + "%" + (v - I0 > 0.12 ? "로 오른다" : v - I0 < -0.12 ? "로 내린다" : " 유지"),
+        cmp: "(출발 " + I0.toFixed(2) + "%보다 " + sg(v - I0, 2) + "%p)" });
+      t = ext(function (r) { return r.u; }, EP.uStar); v = R[t].u;
+      out.push({ k: "u", t: t, sal: Math.abs(v - EP.uStar) / 0.25, get: function (r) { return r.u; }, n: "실업률",
+        core: "실업률 " + abs1(v) + "%" + (v - EP.uStar > 0.1 ? "로 올라… 일자리 한파" : v - EP.uStar < -0.1 ? "로 내려… 일손 부족" : " 제자리"),
+        cmp: "(출발 " + EP.uStar.toFixed(1) + "%보다 " + sg(v - EP.uStar) + "%p)" });
+      t = ext(function (r) { return r.h; }, 2); v = R[t].h;
+      out.push({ k: "h", t: t, sal: Math.abs(v - 2) / 1.5, get: function (r) { return r.h; }, n: "집값",
+        core: v < 0 ? "집값 " + abs1(v) + "% 하락… 하락 전환" : "집값 " + abs1(v) + "% 상승" + (v > 4 ? "… 오름세 가팔라" : v < 1 ? "… 오름세 꺾여" : ""),
+        cmp: "(전년 같은 분기 대비, 출발 2.0%)" });
+      return out;
+    }
+    function text(c, omit) {
+      var when = "모형 " + c.t + "분기 뒤", src = " · 이 책의 작은 경제 모형 계산";
+      return (omit === "when" ? "" : when + ", ") + c.core + (omit === "compare" ? "" : " " + c.cmp) + (omit === "who" ? "" : src);
+    }
+    function make() {
+      if (!LAB.R) return;
+      var R = LAB.R, Q = LAB.Q, rnd = EB.rng(seed * 7919 + 13);
+      var all = cands(R, Q).sort(function (a, b) { return b.sal - a.sal; });
+      picks = all.slice(0, 4);
+      var om = ["when", "compare", "who", ["when", "compare", "who"][Math.floor(rnd() * 3)]];
+      for (var i = om.length - 1; i > 0; i--) { var j = Math.floor(rnd() * (i + 1)); var tmp = om[i]; om[i] = om[j]; om[j] = tmp; }
+      picks.forEach(function (c, i) { c.omit = om[i]; });
+      score = 0; answered = 0;
+      listEl.innerHTML = picks.map(function (c, i) {
+        var order = ["when", "compare", "who"];
+        return '<div class="hq-card" data-i="' + i + '"><div class="lab">모형이 만든 가상 헤드라인 ' + "①②③④"[i] + " · 실제 기사나 통계가 아님</div>" +
+          '<div class="hl"><span class="no">' + "①②③④"[i] + "</span>" + esc(text(c, c.omit)) + "</div>" +
+          '<div class="hq-opts">' + order.map(function (k) { return '<button type="button" data-k="' + k + '">' + NAME[k] + "?</button>"; }).join("") + "</div>" +
+          '<div class="hq-exp"></div></div>';
+      }).join("");
+      var cnt = { when: 0, compare: 0, who: 0 }; picks.forEach(function (c) { cnt[c.omit]++; });
+      EB.stat("hq-o-s", "0 / 4");
+      EB.stat("hq-o-m", "시점 " + cnt.when + " · 비교 " + cnt.compare + " · 출처 " + cnt.who);
+      document.getElementById("hq-src").textContent = "지금 실험: " + LAB.kindName + " × " + LAB.size.toFixed(2) + ", " + (LAB.policy === "rule" ? "준칙 자동" : "직접 경로") + ", " + Q + "분기.";
+      cv.redraw();
+    }
+    listEl.addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-k]"); if (!b) return;
+      var card = b.closest(".hq-card"); if (card.classList.contains("done")) return;
+      var c = picks[+card.dataset.i], ok = b.dataset.k === c.omit;
+      card.querySelectorAll("button").forEach(function (x) { x.disabled = true; if (x.dataset.k === c.omit) x.classList.add("right"); });
+      if (!ok) b.classList.add("wrong");
+      card.classList.add("done");
+      card.querySelector(".hq-exp").innerHTML = "<b>" + (ok ? "맞았다. " : "아깝다. ") + "빠진 것: " + NAME[c.omit] + ".</b> " + WHY[c.omit] + "<br>채운 문장: <b>" + esc(text(c, null)) + "</b>";
+      answered++; if (ok) score++;
+      EB.stat("hq-o-s", score + " / 4" + (answered === 4 ? (score === 4 ? " 만점" : "") : ""));
+    });
+    var cv = EB.canvas("#hq-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      if (!picks.length || !LAB.R) return;
+      var R = LAB.R, Q = LAB.Q, cols = 2, cw = w / cols, chh = h / 2;
+      picks.forEach(function (c, i) {
+        var bx = (i % cols) * cw, by = Math.floor(i / cols) * chh;
+        var vals = R.map(c.get), yr = range(vals, c.k === "e" ? 20 : 0.6, 0.15);
+        var ch = EB.chart(ctx, { x: bx + 30, y: by + 22, w: cw - 52, h: chh - 44 }, {
+          x: [0, Q], y: yr, xTicks: [0, Q], yTicks: [], xFmt: function (v) { return v === 0 ? "출발" : v + "Q"; },
+          series: [{ data: R.map(function (r) { return [r.t, c.get(r)]; }), color: P.accent, width: 2 }],
+        });
+        ctx.fillStyle = P.text; ctx.font = EB.font(12, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+        ctx.fillText("①②③④"[i] + " " + c.n, bx + 8, by + 15);
+        var x = ch.X(c.t), y = ch.Y(c.get(R[c.t]));
+        ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fillStyle = P.accent2; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = P.bg; ctx.stroke();
+      });
+    }, { aspect: 0.75, minHeight: 250, maxHeight: 340 });
+    document.getElementById("hq-new").addEventListener("click", function () { seed++; make(); });
+    LAB.listeners.push(function () { seed++; make(); });
+    make();
+  })();
+
+  /* =============================================================== sim-wallet */
+  var R0 = C.home.loanRate + 0.005 * EC.TRANSMIT.loanPass;   // 2026년 10월 재산정 뒤(9장 방식): 3.90% + 0.5%p × 0.9
+  (function () {
+    var gL = EB.range("wl-l", function (v) { return EB.won(v * 1e4); }, draw);
+    var gR = EB.seg("wl-r", draw);
+    var gE = EB.range("wl-e", function (v) { return EB.won(v * 1e4); }, draw);
+    var gF = EB.range("wl-f", function (v) { return v + "%"; }, draw);
+    var gD = EB.range("wl-d", function (v) { return "$" + v.toLocaleString("en-US"); }, draw);
+    function series() {
+      var R = LAB.R, Q = LAB.Q, i0 = R[0].i, loan = gL() * 1e4, reset = +gR(), V = gE() * 1e4, s = gF() / 100, usd = gD();
+      var lvl = 1, out = [];
+      for (var t = 0; t <= Q; t++) {
+        var r = R[t];
+        if (t > 0) lvl *= Math.pow(1 + r.pi / 100, 0.25);
+        var lastReset = Math.floor(3 * t / reset) * reset, qi = Math.min(Q, Math.floor(lastReset / 3));
+        var rate = Math.max(0, R0 + 0.009 * (R[qi].i - i0));
+        var dom = 1 + (-3 * (r.i - i0) + 2 * r.y) / 100, fx = 1 + r.e / 100;
+        out.push({ t: t, rate: rate, interest: loan * rate / 12, etf: V * ((1 - s) * dom + s * fx), usd: usd * FX0 * fx, real: C.jiwoo.monthlyNet / lvl });
+      }
+      return out;
+    }
+    var cv = EB.canvas("#wl-cv", function (ctx, w, h) {
+      var P = EB.palette(); if (!LAB.R) return;
+      var S = series(), Q = LAB.Q, cw = w / 2, chh = h / 2;
+      var defs = [
+        { k: "interest", n: "월 대출 이자", col: P.bad, step: true },
+        { k: "etf", n: "ETF 평가액", col: P.accent },
+        { k: "usd", n: "달러 지출(원화, 월)", col: P.accent2 },
+        { k: "real", n: "실수령 구매력", col: P.ok },
+      ];
+      defs.forEach(function (d, i) {
+        var bx = (i % 2) * cw, by = Math.floor(i / 2) * chh;
+        var vals = S.map(function (s) { return s[d.k]; }), base = vals[0];
+        var span = Math.max(Math.abs(base) * 0.02, 1);
+        var yr = range(vals, span, 0.15);
+        var data = [];
+        S.forEach(function (s, k) { if (d.step && k > 0) data.push([s.t, S[k - 1][d.k]]); data.push([s.t, s[d.k]]); });
+        var yspan = yr[1] - yr[0], man = function (v) { return v >= 1e8 ? (v / 1e8).toFixed(yspan < 1e6 ? 3 : 2) + "억" : (v / 1e4).toFixed(yspan < 3e4 ? 1 : 0) + "만"; };
+        var ch = EB.chart(ctx, { x: bx + 52, y: by + 24, w: cw - 70, h: chh - 46 }, {
+          x: [0, Q], y: yr, xTicks: [0, Q], yTicks: [yr[0] + yspan * 0.1, yr[1] - yspan * 0.1], xFmt: function (v) { return v === 0 ? "출발" : v + "Q"; }, yFmt: man,
+          series: [{ data: data, color: d.col, width: 2.2 }], hlines: [{ y: base, color: P.faint }],
+        });
+        ctx.fillStyle = P.text; ctx.font = EB.font(12, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+        ctx.fillText(d.n, bx + 8, by + 15);
+        var last = vals[vals.length - 1], ch2 = base ? last / base - 1 : 0;
+        ctx.font = EB.font(11, true); ctx.textAlign = "right"; ctx.fillStyle = Math.abs(ch2) < 0.0005 ? P.dim : (d.k === "etf" || d.k === "real") === ch2 > 0 ? P.ok : P.bad;
+        ctx.fillText(sg(ch2 * 100, 1) + "%", bx + cw - 10, by + 15);
+      });
+      var a = S[0], z = S[S.length - 1];
+      EB.stat("wl-o-i", EB.won(z.interest) + " <small>" + (z.interest - a.interest >= 0 ? "+" : "−") + EB.won(Math.abs(z.interest - a.interest)) + "</small>");
+      EB.stat("wl-o-e", EB.won(z.etf) + " <small>" + sg((z.etf / (a.etf || 1) - 1) * 100) + "%</small>");
+      EB.stat("wl-o-d", EB.won(z.usd) + " <small>" + sg((z.usd / (a.usd || 1) - 1) * 100) + "%</small>");
+      EB.stat("wl-o-p", EB.won(z.real) + " <small>" + sg((z.real / a.real - 1) * 100) + "%</small>");
+    }, { aspect: 0.72, minHeight: 320, maxHeight: 440 });
+    function draw() { cv.redraw(); }
+    LAB.listeners.push(draw);
+  })();
+
+  /* =============================================================== 모형의 가정 표 */
+  (function () {
+    var eff = { fxExportEff: EP.fxExport * 0.25, oilEff: EP.oilGap * 0.1 };
+    document.querySelectorAll("#as-body td[data-k]").forEach(function (td) {
+      var k = td.dataset.k, v = eff[k] != null ? eff[k] : EP[k];
+      if (k === "smooth") v = EP.smooth;
+      if (v != null) td.textContent = String(+v.toFixed(4));
+    });
+  })();
+
+  /* =============================================================== 케이스 */
+  (function () {
+    var before = C.home.loanRate, after = R0, loan = C.home.loan;
+    var i0 = loan * before / 12, i1 = loan * after / 12, di = i1 - i0;
+    var fxChg = FX0 / K.usdkrw2025avg - 1;
+    document.getElementById("lab-case-calc").innerHTML = "그다음 지우는 표를 자기 가계부의 줄로 옮겼다. 첫 줄은 이자다. 10월은 전세대출 금리가 다시 정해지는 달이다. 7월과 8월의 인상(합계 0.5%p)이 90% 전가된다고 보면(<a href=\"transmission.html\">9장</a>의 방식) 금리는 연 " + (before * 100).toFixed(2) + "%에서 약 " + (after * 100).toFixed(2) + "%로, 월 이자는 " + EB.won(i0) + "에서 약 " + EB.won(i1) + "로 <b>" + EB.won(di) + "</b>쯤 늘어난다. 이 책의 모형으로 계산한 값이며 실제 금리는 은행의 공시를 따른다. 둘째 줄은 회사의 원가다. 원/달러 1,338.5원(10-08 종가)은 2025년 연평균 1,421.97원보다 " + abs1(fxChg * 100) + "% 낮다. 환율만 보면 달러로 사는 밀·원당·대두유의 원화 값을 낮추는 방향이지만, 국제 곡물값이 어떻게 움직였는지는 따로 확인해야 한다. 셋째 줄은 ETF다. 같은 환율 변화는 미국 지수 부분의 원화 평가액을 깎는 방향이다. 지우는 이 세 줄을 실험실의 계산판에 넣어 보고, 마지막으로 노트 첫 장의 질문 옆에 이렇게 적었다. \"집값을 맞히려 하지 않는다. 전세 만기 6개월 전부터 같은 표로 감당 가능한 가격을 다시 계산하고, 나쁜 시나리오에서 버틸 수 있을 때 움직인다.\"";
+    document.getElementById("lab-case-life").textContent = "10월부터 월 이자 약 " + EB.won(di) + " 증가(모형 계산), 월 저축 여력 약 " + EB.won(C.monthlySaving) + "에서 약 " + EB.won(C.monthlySaving - di) + "로. 집은 전세 만기(2027년 3월) 전 6개월 동안 같은 기준으로 점검한다.";
+  })();
+})();
+
+</script>
+</body>
+</html>

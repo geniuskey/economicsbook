@@ -1,0 +1,798 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and EconomicsBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "레버리지와 만기 불일치가 작은 손실을 은행의 파산으로, 한 은행의 파산을 금융 시스템의 위기로 키우는 구조. 1997년 외환위기, 2008년 글로벌 금융위기, 2020년 코로나 충격을 같은 해부도로 읽고, 은행 네트워크 위에서 위기의 전염과 안전망을 직접 시험한다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>금융위기 · EconomicsBook</title>
+<meta name="description" content="레버리지와 만기 불일치가 작은 손실을 은행의 파산으로, 한 은행의 파산을 금융 시스템의 위기로 키우는 구조. 1997년 외환위기, 2008년 글로벌 금융위기, 2020년 코로나 충격을 같은 해부도로 읽고, 은행 네트워크 위에서 위기의 전염과 안전망을 직접 시험한다.">
+<link rel="canonical" href="https://economicsbook.euiyun.com/chapters/crisis.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#4338ca">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="EconomicsBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="금융위기 · EconomicsBook">
+<meta property="og:description" content="레버리지와 만기 불일치가 작은 손실을 은행의 파산으로, 한 은행의 파산을 금융 시스템의 위기로 키우는 구조. 1997년 외환위기, 2008년 글로벌 금융위기, 2020년 코로나 충격을 같은 해부도로 읽고, 은행 네트워크 위에서 위기의 전염과 안전망을 직접 시험한다.">
+<meta property="og:url" content="https://economicsbook.euiyun.com/chapters/crisis.html">
+<meta property="og:image" content="https://economicsbook.euiyun.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://economicsbook.euiyun.com/chapters/crisis.html#chapter","name":"금융위기","headline":"금융위기 · EconomicsBook","description":"레버리지와 만기 불일치가 작은 손실을 은행의 파산으로, 한 은행의 파산을 금융 시스템의 위기로 키우는 구조. 1997년 외환위기, 2008년 글로벌 금융위기, 2020년 코로나 충격을 같은 해부도로 읽고, 은행 네트워크 위에서 위기의 전염과 안전망을 직접 시험한다.","url":"https://economicsbook.euiyun.com/chapters/crisis.html","position":13,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://economicsbook.euiyun.com/og.png","dateModified":"2026-10-09","isPartOf":{"@type":"Book","@id":"https://economicsbook.euiyun.com/#book","name":"EconomicsBook · 경제 뉴스 읽는 교과서","url":"https://economicsbook.euiyun.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"EconomicsBook","item":"https://economicsbook.euiyun.com/"},{"@type":"ListItem","position":2,"name":"13. 금융위기","item":"https://economicsbook.euiyun.com/chapters/crisis.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/econ.js"></script>
+<!--head:end-->
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"3d6151a0abc94ede89285d462527fa80"}'></script>
+<!-- End Cloudflare Web Analytics -->
+<style>
+  .cr-steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 16px 0; counter-reset: crs; }
+  @media (max-width: 640px) { .cr-steps { grid-template-columns: 1fr; } }
+  .cr-steps > div { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; background: var(--bg-elev); font-size: 14px; min-width: 0; }
+  .cr-steps > div b { display: block; font-size: 14.5px; margin-bottom: 2px; }
+</style>
+</head>
+<body data-chapter="crisis">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 13</div>
+    <h1>금융위기</h1>
+    <p class="lead">은행은 남의 돈으로 장사한다. 자기 돈은 얇고, 빌린 돈은 언제든 빠져나갈 수 있고, 빌려준 돈은 오래 묶여 있다. 평소에는 이 구조가 경제에 돈을 돌리는 엔진이지만, 자산 가격이 조금만 흔들려도 같은 구조가 손실을 키우고 공포를 옮긴다. 이 장은 은행의 대차대조표에서 출발해 1997년, 2008년, 2020년을 같은 해부도로 읽고, 위기를 막는 안전망을 직접 시험한다.</p>
+    <ul class="objectives">
+      <li>레버리지가 높을수록 작은 자산 손실이 자본을 지워 버리는 원리를 계산할 수 있다.</li>
+      <li>만기 불일치와 뱅크런, 투매와 전염이 위기를 키우는 고리를 설명할 수 있다.</li>
+      <li>1997년 외환위기의 단기 외채와 통화 불일치를 2008년·2020년과 비교할 수 있다.</li>
+      <li>최종대부자, 예금보험, 자본 규제, LTV·DSR, 외환보유액이 각각 어느 고리를 끊는지 말할 수 있다.</li>
+    </ul>
+  </header>
+
+  <div class="headline" id="hl-top">한국은행 「금융안정보고서」: 금융취약성지수 46.0, 2022년 4분기 이후 가장 높아… 수도권 집값과 레버리지 투자에 경계<small>지우의 헤드라인 노트 · 2026년 6월 · 근거: 한국은행 「금융안정보고서」(2026년 6월, 2026-06-24 발표)</small></div>
+
+  <section id="anatomy">
+    <h2>위기는 어떻게 생기나: 다섯 단계의 해부도</h2>
+    <p>금융위기는 나라와 시대마다 얼굴이 다르지만, 뼈대는 놀랄 만큼 닮았다. 경제학자들이 여러 나라의 위기를 모아 비교한 결과 되풀이되는 순서가 있다. 돈을 빌리기 쉬운 시기가 길게 이어지고, 빌린 돈이 한 자산으로 몰려 값이 오르고, 무언가가 그 믿음을 깨고, 모두가 한꺼번에 팔려 하고, 한 곳의 손실이 다른 곳으로 옮겨 간다.</p>
+    <div class="cr-steps">
+      <div><b>1. 신용 팽창</b>금리가 낮거나 대출 규제가 느슨해 빚이 소득보다 빨리 는다.</div>
+      <div><b>2. 자산 거품</b>빌린 돈이 집·주식·특정 자산으로 몰려 값이 오르고, 오른 값이 더 큰 대출의 담보가 된다.</div>
+      <div><b>3. 충격</b>금리 인상, 대형 부도, 해외 자금 이탈, 전염병. 계기는 매번 다르다.</div>
+      <div><b>4. 투매</b>손실을 본 쪽이 빚을 갚으려 자산을 팔고, 값이 더 떨어져 손실이 커진다.</div>
+      <div><b>5. 전염</b>서로 돈을 빌려준 금융회사들 사이로, 공포를 통해 다른 시장과 나라로 번진다.</div>
+    </div>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 300" role="img" aria-label="신용 팽창이 자산 거품을 만들고, 충격이 오면 투매와 전염이 자산 가격 하락을 다시 키우는 되먹임 고리">
+        <defs><marker id="cr-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="16" y="24" width="120" height="44" rx="10" class="f-ok-soft"/><text x="76" y="44" text-anchor="middle" class="lbl-b">신용 팽창</text><text x="76" y="60" text-anchor="middle" class="lbl-dim">빚 &gt; 소득</text>
+        <rect x="170" y="24" width="120" height="44" rx="10" class="f-warn-soft"/><text x="230" y="44" text-anchor="middle" class="lbl-b">자산 거품</text><text x="230" y="60" text-anchor="middle" class="lbl-dim">값이 담보가 된다</text>
+        <rect x="324" y="24" width="120" height="44" rx="10" class="f-bad-soft"/><text x="384" y="44" text-anchor="middle" class="lbl-b">충격</text><text x="384" y="60" text-anchor="middle" class="lbl-dim">믿음이 깨진다</text>
+        <path d="M136 46H170" class="s-line" marker-end="url(#cr-ar)"/><path d="M290 46H324" class="s-line" marker-end="url(#cr-ar)"/>
+        <path d="M120 70C150 96 120 96 150 70" class="s-dash"/>
+        <text x="96" y="100" class="lbl-dim">값이 오르면 더 빌린다</text>
+        <rect x="324" y="130" width="120" height="44" rx="10" class="f-bad-soft"/><text x="384" y="150" text-anchor="middle" class="lbl-b">자산 가격 하락</text><text x="384" y="166" text-anchor="middle" class="lbl-dim">담보 가치 감소</text>
+        <rect x="170" y="210" width="120" height="44" rx="10" class="f-bad-soft"/><text x="230" y="230" text-anchor="middle" class="lbl-b">투매</text><text x="230" y="246" text-anchor="middle" class="lbl-dim">빚 갚으려 판다</text>
+        <rect x="16" y="130" width="120" height="44" rx="10" class="f-bad-soft"/><text x="76" y="150" text-anchor="middle" class="lbl-b">전염</text><text x="76" y="166" text-anchor="middle" class="lbl-dim">다른 은행·시장</text>
+        <g class="s-bad" fill="none" marker-end="url(#cr-ar)">
+          <path d="M384 68V130"/><path d="M370 174C350 210 320 228 290 230"/><path d="M170 228C120 222 90 200 80 174"/><path d="M136 150C220 150 260 152 324 152"/>
+        </g>
+        <text x="230" y="140" text-anchor="middle" class="lbl-bad">악순환: 내리면 팔고, 팔면 내린다</text>
+        <text x="230" y="288" text-anchor="middle" class="lbl-dim">안전망은 이 고리의 화살표 하나를 끊는 장치다</text>
+      </svg>
+      <figcaption><b>그림 1. 위기의 해부도.</b> 위쪽 줄은 몇 년에 걸쳐 쌓이고, 아래쪽 고리는 며칠에서 몇 달 사이에 돈다. 값이 오를 때 더 빌리는 되먹임(점선)과 값이 내릴 때 더 파는 되먹임(빨간 고리)이 대칭이다. 이 책이 여러 위기 연구의 공통 구조를 단순하게 다시 그렸다.</figcaption>
+    </figure>
+
+    <p>이 장의 시뮬레이터들은 이 고리를 한 칸씩 떼어 본다. 먼저 은행의 대차대조표에서 왜 작은 손실이 큰 일이 되는지(레버리지), 왜 멀쩡한 은행도 무너질 수 있는지(만기 불일치와 뱅크런), 왜 손실이 번지는지(투매와 전염)를 보고, 세 번의 실제 위기에 대 본다.</p>
+
+    <div class="callout link"><strong>집값의 거품과 하락</strong>위 그림의 2단계, 집값이 대출과 함께 오르고 내리는 과정은 EstateBook <a href="https://estatebook.euiyun.com/chapters/bubble.html">거품과 하락</a>에서 집값 지표와 시뮬레이터로 더 자세히 다룬다. 이 장은 그 하락이 금융회사를 거쳐 경제 전체로 번지는 길을 본다.</div>
+  </section>
+
+  <section id="leverage">
+    <h2>레버리지: 얇은 자본 위의 큰 자산</h2>
+    <p>은행의 장부는 두 쪽이다. 왼쪽은 은행이 가진 것(대출, 채권, 현금), 오른쪽은 그 돈이 어디서 왔는지(예금, 빌린 돈, 주주의 돈)다. 주주의 돈, 곧 <span class="term">자기자본</span><span class="en">(Equity capital)</span>은 손실을 가장 먼저 떠안는 쿠션이다. 자산이 자기자본의 몇 배인지를 <span class="term">레버리지</span><span class="en">(Leverage)</span>라고 한다. 자본 8에 자산 100이면 레버리지는 12.5배다.</p>
+    <p>레버리지는 이익도 손실도 키운다. 자산이 1% 오르면 자본은 12.5% 늘고, 자산이 1% 내리면 자본은 12.5% 준다. 자산이 8% 내리면 자본이 0이 된다. 그 순간 은행은 가진 것을 다 팔아도 빚을 다 갚지 못하는 <span class="term">지급불능</span><span class="en">(Insolvency)</span> 상태가 된다. 아래에서 레버리지를 바꾸고, 자산 막대 위쪽을 끌어내려 손실을 내 본다.</p>
+
+    <div class="sim" id="sim-leverage">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>은행의 대차대조표: 몇 %의 손실에 자본이 사라지나</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="lev-cv"></canvas><span class="hint">자산 막대의 윗부분을 끌어 손실을 낸다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>레버리지(자산 ÷ 자본) <output id="lev-l-out"></output></span><input type="range" id="lev-l" min="2" max="50" step="0.5" value="12.5"></label>
+          <label class="ctrl"><span>자산 손실 <output id="lev-x-out"></output></span><input type="range" id="lev-x" min="0" max="20" step="0.25" value="3"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">자본비율(손실 전)</span><span class="v" id="lev-r-c">—</span></div>
+        <div class="stat"><span class="k">견딜 수 있는 손실</span><span class="v" id="lev-r-m">—</span></div>
+        <div class="stat"><span class="k">자본 감소율</span><span class="v" id="lev-r-e">—</span></div>
+        <div class="stat"><span class="k">판정</span><span class="v" id="lev-r-v">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 레버리지 12.5배에서 손실을 3%로 둔다. 자산은 3% 줄었을 뿐인데 자본은 37.5% 사라진다. ② 레버리지를 30배로 올린다. 3%의 손실이 자본을 모두 지운다. 2008년 9월 파산한 리먼 브러더스의 2007년 말 레버리지(총자산 ÷ 자기자본)가 약 30배였다. ③ 레버리지를 5배로 내린다. 같은 손실을 버티지만, 평소에 자본 1원이 벌어 오는 이익(자기자본이익률)도 그만큼 작다. 은행이 레버리지를 높이고 싶어 하는 이유이자 규제가 필요한 이유다. (모형: 자산 100의 단순 장부. 실제 규제는 자산의 위험에 가중치를 둔 위험가중자산을 쓰지만 이 그림은 가중치를 생략했다. '규제 미달' 판정은 바젤 III 레버리지 비율 최저 기준 3%를 빌려 썼다. 교육용 단순화.)</div>
+    </div>
+
+    <p>막대를 끌어 보면 레버리지의 뜻이 몸으로 들어온다. 레버리지 L배의 은행이 견딜 수 있는 손실은 자산의 \(1/L\)이다. 12.5배면 8%, 25배면 4%, 50배면 2%다. 은행 감독이 자본비율에 집착하는 이유가 여기 있다. 2008년 위기 뒤 국제 기준인 <span class="term">바젤 III</span><span class="en">(Basel III)</span>는 위험가중자산 대비 최소 총자본 8%에 완충자본을 더 쌓게 하고, 위험가중치와 무관한 단순 레버리지 비율(기본자본 ÷ 총노출) 3%를 따로 두었다 <span class="src">(바젤은행감독위원회 Basel III 기준)</span>.</p>
+
+    <div class="callout link"><strong>내 투자의 레버리지</strong>신용융자나 레버리지 ETF처럼 개인이 빚이나 파생상품으로 레버리지를 쓸 때 같은 계산이 내 계좌에서 일어난다. StockBook <a href="https://stockbook.euiyun.com/chapters/leverage.html">레버리지</a>에서 반대매매와 변동성 끌림까지 이어서 본다.</div>
+  </section>
+
+  <section id="run">
+    <h2>만기 불일치와 뱅크런: 멀쩡한 은행도 무너지는 이유</h2>
+    <p>레버리지가 은행을 손실에 약하게 만든다면, <span class="term">만기 불일치</span><span class="en">(Maturity mismatch)</span>는 공포에 약하게 만든다. 은행은 언제든 찾아갈 수 있는 예금으로 돈을 모아 10년, 30년짜리 대출을 내준다. 모든 예금자가 같은 날 돈을 찾으러 오지 않는다는 믿음 위에 서 있는 구조다. 금고에 있는 현금은 예금의 일부뿐이다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 260" role="img" aria-label="은행 대차대조표: 왼쪽 자산은 현금 조금과 장기 대출, 오른쪽 부채는 언제든 찾을 수 있는 예금과 단기 차입, 얇은 자기자본">
+        <text x="120" y="22" text-anchor="middle" class="lbl-b">자산 (은행이 가진 것)</text>
+        <text x="340" y="22" text-anchor="middle" class="lbl-b">부채와 자본 (돈이 온 곳)</text>
+        <rect x="50" y="34" width="140" height="28" rx="4" class="f-ok-soft"/><text x="120" y="53" text-anchor="middle" class="lbl">현금·국채(곧 쓸 수 있음)</text>
+        <rect x="50" y="64" width="140" height="170" rx="4" class="f-acc-soft"/><text x="120" y="140" text-anchor="middle" class="lbl">대출</text><text x="120" y="158" text-anchor="middle" class="lbl-dim">주택담보·기업 대출</text><text x="120" y="174" text-anchor="middle" class="lbl-dim">만기 수년~수십 년</text>
+        <rect x="270" y="34" width="140" height="150" rx="4" class="f-warn-soft"/><text x="340" y="100" text-anchor="middle" class="lbl">예금</text><text x="340" y="118" text-anchor="middle" class="lbl-dim">언제든 찾을 수 있음</text>
+        <rect x="270" y="186" width="140" height="30" rx="4" class="f-bad-soft"/><text x="340" y="206" text-anchor="middle" class="lbl">단기 차입(도매자금)</text>
+        <rect x="270" y="218" width="140" height="16" rx="3" class="f-acc2"/><text x="420" y="230" class="lbl-acc2">자본</text>
+        <path d="M200 140H260" class="s-dash"/>
+        <text x="230" y="132" text-anchor="middle" class="lbl-dim">길게</text><text x="230" y="158" text-anchor="middle" class="lbl-dim">짧게</text>
+        <text x="230" y="254" text-anchor="middle" class="lbl-bad">모두가 한꺼번에 찾으면 현금이 모자란다</text>
+      </svg>
+      <figcaption><b>그림 2. 만기 불일치.</b> 왼쪽의 대출은 길고 팔기 어렵고, 오른쪽의 예금과 단기 차입은 짧고 언제든 빠져나갈 수 있다. 자본(주황)은 얇다. 크기는 설명을 위한 비율이며 특정 은행의 장부가 아니다.</figcaption>
+    </figure>
+
+    <p>은행이 실제로 건전해도, 사람들이 "다른 사람들이 돈을 찾으러 갈 것"이라고 믿기 시작하면 먼저 찾는 것이 합리적인 선택이 된다. 늦게 가면 금고가 비어 있을 테니까. 이렇게 예금자가 한꺼번에 몰려드는 것이 <span class="term">뱅크런</span><span class="en">(Bank run)</span>이다. 현금이 바닥난 은행은 대출을 급히 헐값에 팔아야 하고, 그 손실이 자본을 깎아 정말로 지급불능이 된다. 소문이 스스로를 실현하는 것이다.</p>
+    <p>아래 예금자 120명 중 한 명을 눌러 돈을 찾게 하거나 '소문 시작'을 누른다. 불안은 이미 돈을 찾아간 사람의 비율에 비례해 퍼진다. 예금보호와 최종대부자를 켜고 끄며 결과를 비교한다.</p>
+
+    <div class="sim" id="sim-run">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>뱅크런: 소문이 스스로를 실현할 때</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="run-cv"></canvas><span class="hint">예금자 점을 눌러 돈을 찾게 한다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>현금성 자산 비중 <output id="run-c-out"></output></span><input type="range" id="run-c" min="5" max="40" step="1" value="12"></label>
+          <label class="ctrl"><span>불안의 전염 세기 <output id="run-s-out"></output></span><input type="range" id="run-s" min="0" max="1" step="0.05" value="0.6"></label>
+          <div class="seg" id="run-i"><button data-value="0" class="on">예금보호 없음</button><button data-value="1">예금보호 있음</button></div>
+          <label class="check"><input type="checkbox" id="run-l"> 최종대부자(중앙은행 대출)</label>
+          <div class="btn-row"><button class="btn primary" id="run-go">소문 시작</button><button class="btn" id="run-re">다시</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">인출된 예금</span><span class="v" id="run-r-w">—</span></div>
+        <div class="stat"><span class="k">남은 현금</span><span class="v" id="run-r-c">—</span></div>
+        <div class="stat"><span class="k">투매 손실</span><span class="v" id="run-r-f">—</span></div>
+        <div class="stat"><span class="k">은행 상태</span><span class="v" id="run-r-v">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 기본값에서 '소문 시작'. 몇 명이 돈을 찾자 불안이 번져 줄이 길어지고, 현금이 바닥나면 대출을 헐값에 팔다가 은행이 문을 닫는다. ② '예금보호 있음'으로 바꾸고 다시 소문을 낸다. 보호 한도 안의 예금자(점 테두리)는 거의 움직이지 않고 줄이 짧게 끝난다. ③ 예금보호를 끄고 '최종대부자'를 켠다. 중앙은행이 대출을 담보로 현금을 빌려주니 헐값 매각이 없고, 돈을 다 내주어도 은행이 살아남는다. 예금자가 그걸 보고 진정한다. (모형: 자산 100 = 현금 + 대출, 예금 92, 자본 8. 예금자마다 불안의 문턱이 다르고, 인출 비율과 은행의 현금 부족이 불안을 키운다. 헐값 매각은 장부가의 60%. 예금보호 시 예금자의 90%가 한도 안에 있다고 가정. 교육용 가정이다.)</div>
+    </div>
+
+    <p>세 번을 돌려 보면 두 안전망이 서로 다른 화살표를 끊는다는 것이 보인다. <span class="term">예금보험</span><span class="en">(Deposit insurance)</span>은 예금자의 공포 자체를 없앤다. 은행이 망해도 내 돈이 보장되면 먼저 달려갈 이유가 없다. <span class="term">최종대부자</span><span class="en">(Lender of last resort)</span>는 공포가 생겨도 은행이 대출을 헐값에 팔지 않게 한다. 중앙은행이 좋은 담보를 받고 현금을 빌려주면, 건전하지만 현금이 모자란 은행이 살아남는다. 19세기 영국의 월터 배젓이 정리한 원칙, "위기 때 좋은 담보를 받고 높은 금리로 아낌없이 빌려주라"가 지금도 중앙은행의 기본 규칙이다.</p>
+
+    <div class="callout stat"><strong>예금자보호 한도는 1억원</strong>예금보험공사가 보호하는 은행·저축은행·보험사·증권사 예금과, 각 중앙회가 보호하는 농협·수협·신협·산림조합·새마을금고 예금의 보호 한도는 2025년 9월 1일부터 1인당 금융회사별 원금과 소정의 이자를 합쳐 1억원이다(그 전 5,000만원, 24년 만의 상향). 같은 금융회사의 여러 계좌는 합산하고, 다른 금융회사의 예금은 따로 1억원씩 보호한다. 주식·펀드·ETF처럼 값이 변하는 투자상품은 보호 대상이 아니다. 근거: 금융위원회 보도자료 「'25.9.1일부터 예금을 1억원까지 보호합니다」(2025-07-22), 예금자보호법 시행령 개정. 자기 예금이 보호 대상인지는 예금보험공사 누리집과 통장의 보호 문구로 확인한다.</div>
+  </section>
+
+  <section id="firesale">
+    <h2>투매와 전염: 한 은행의 손실이 모두의 손실이 되는 길</h2>
+    <p>위기가 한 은행에서 멈추지 않는 이유는 두 가지다. 첫째, 은행들은 같은 종류의 자산(주택담보대출, 회사채, 부동산 관련 채권)을 많이 가지고 있다. 한 은행이 손실을 메우려 그 자산을 팔면 값이 내리고, 같은 자산을 가진 다른 은행의 장부도 함께 깎인다. 이것이 <span class="term">투매</span><span class="en">(Fire sale)</span>의 외부효과다. 둘째, 은행들은 서로 돈을 빌려준다. 한 은행이 쓰러지면 그 은행에 돈을 빌려준 은행이 손실을 입는다.</p>
+    <p>아래 시뮬레이터는 첫 번째 길을 본다. 레버리지를 일정하게 지키려는 금융회사들은 자산 값이 내리면 자본이 줄어든 만큼 자산을 팔아 레버리지를 맞춘다. 그 매도가 값을 다시 내린다.</p>
+
+    <div class="sim" id="sim-firesale">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>투매의 악순환: 팔수록 내리고, 내릴수록 판다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="fs-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>처음 자산 가격 충격 <output id="fs-s-out"></output></span><input type="range" id="fs-s" min="0" max="15" step="0.5" value="3"></label>
+          <label class="ctrl"><span>지키려는 레버리지 <output id="fs-l-out"></output></span><input type="range" id="fs-l" min="3" max="30" step="1" value="15"></label>
+          <div class="seg" id="fs-d"><button data-value="0.1">시장 깊음</button><button data-value="0.25" class="on">보통</button><button data-value="0.5">시장 얕음</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">최종 자산 가격</span><span class="v" id="fs-r-p">—</span></div>
+        <div class="stat"><span class="k">처음 충격 대비 배수</span><span class="v" id="fs-r-x">—</span></div>
+        <div class="stat"><span class="k">팔린 자산(누적)</span><span class="v" id="fs-r-v">—</span></div>
+        <div class="stat"><span class="k">남은 자본</span><span class="v" id="fs-r-e">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 기본값에서 3%의 처음 충격이 몇 바퀴 만에 얼마로 커지는지 본다. ② 레버리지를 25배로 올린다. 같은 충격에 매도가 훨씬 커지고 가격이 바닥까지 무너진다. ③ '시장 얕음'을 누른다. 사 줄 사람이 적은 시장(위기 때의 회사채·부동산 채권 시장)에서는 같은 매도가 값을 더 크게 누른다. 반대로 레버리지가 낮으면 충격이 거의 커지지 않는다. (모형: 자산 100, 자본 = 100 ÷ 레버리지. 매 바퀴 줄어든 자본에 맞춰 자산을 팔고, 매도액이 전체 자산의 1%일 때 가격이 '시장 깊이' × 1% 내린다. 교육용 가정이다.)</div>
+    </div>
+
+    <p>막대가 바퀴마다 줄어들지 않고 커지면 악순환이다. 2008년 미국의 주택저당증권 시장이 그랬다. 처음 손실은 서브프라임(저신용자 주택담보대출)이라는 작은 시장에서 났지만, 그 증권을 담보로 단기 자금을 빌리던 금융회사들이 담보 가치가 떨어지자 증권을 팔았고, 팔수록 값이 떨어져 멀쩡한 증권까지 값이 무너졌다. 처음 충격의 크기보다 <strong>레버리지와 시장의 깊이</strong>가 위기의 크기를 정한다는 것이 이 그래프의 교훈이다.</p>
+
+    <div class="callout news"><strong>"○○발 위기설"을 읽는 법</strong>백정호는 위기설 기사가 나올 때마다 세 가지를 따로 물었다. 손실이 난 곳의 크기는 얼마인가(처음 충격). 그 자산을 누가 얼마나 빚을 내서 들고 있나(레버리지). 그 사람들이 급히 팔아야 하는 사정이 있나(단기 자금, 만기 불일치). 손실이 커 보여도 빚 없이 들고 있는 사람이 많으면 값이 내려도 번지지 않고, 손실이 작아 보여도 단기 자금으로 버티는 곳에 몰려 있으면 번진다. "사상 최대 손실"이라는 제목보다 "누가 들고 있나"를 묻는 기사가 더 중요한 기사다.</div>
+  </section>
+
+  <section id="korea1997">
+    <h2>1997년 외환위기: 달러가 모자란 나라</h2>
+    <p>1997년 한국의 위기는 앞의 고리에 한 겹이 더 있었다. 빚이 원화가 아니라 <strong>달러</strong>였다. 1990년대 중반 한국의 은행과 종합금융회사들은 해외에서 금리가 낮은 단기 달러 자금을 빌려 국내 기업에 장기로 빌려주었다. 만기 불일치(짧게 빌려 길게 빌려줌)에 <span class="term">통화 불일치</span><span class="en">(Currency mismatch)</span>(달러로 빌려 원화로 버는 자산)가 겹친 구조였다. 1997년 들어 대기업들이 잇달아 쓰러지고 동남아시아에서 외환위기가 번지자, 해외 금융회사들이 만기가 돌아온 단기 대출의 연장을 거부했다.</p>
+    <p>만기 연장을 거부당하면 달러를 갚아야 한다. 은행들은 원화를 달러로 바꾸려 했고, 한국은행은 외환보유액을 풀어 막으려 했다. 보유액이 줄수록 "한국이 달러를 갚지 못한다"는 공포가 커져 연장 거부가 더 늘었다. 나라 전체의 뱅크런이었다. 아래 시뮬레이터에서 단기 외채와 만기 연장률을 움직여 본다. 오른쪽 그림의 달러 부채 막대 위쪽을 끌어 환율을 올릴 수도 있다.</p>
+
+    <div class="sim" id="sim-fx97">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>단기 외채와 통화 불일치: 외환보유액이 바닥나는 길</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="fx-cv"></canvas><span class="hint">오른쪽 달러 부채 막대를 끌어 환율을 올린다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>단기 외채 ÷ 외환보유액 <output id="fx-d-out"></output></span><input type="range" id="fx-d" min="0.3" max="4" step="0.1" value="2"></label>
+          <label class="ctrl"><span>만기 연장률 <output id="fx-r-out"></output></span><input type="range" id="fx-r" min="0" max="100" step="5" value="80"></label>
+          <label class="ctrl"><span>원/달러 환율 상승 <output id="fx-e-out"></output></span><input type="range" id="fx-e" min="0" max="120" step="5" value="0"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">갚아야 할 달러(보유액 대비)</span><span class="v" id="fx-o-n">—</span></div>
+        <div class="stat"><span class="k">남는 외환보유액</span><span class="v" id="fx-o-r">—</span></div>
+        <div class="stat"><span class="k">달러 빚진 기업의 자본</span><span class="v" id="fx-o-e">—</span></div>
+        <div class="stat"><span class="k">판정</span><span class="v" id="fx-o-v">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 단기 외채가 보유액의 2배, 만기 연장률 80%. 보유액의 40%만 쓰면 버틴다. ② 연장률을 40%로 내린다. 갚아야 할 달러가 보유액보다 많아 보유액이 바닥난다. 1997년 11~12월의 상황이다. ③ 환율 상승을 100%로 올린다(환율이 두 배). 달러로 빌린 기업은 번 돈이 그대로인데 원화로 잰 빚이 두 배가 되어 자본이 사라진다. 외환위기가 기업 연쇄 부도로 이어진 길이다. 단기 외채를 보유액의 0.5배로 낮추면 연장률이 0이어도 버틴다. (모형: 외환보유액 100. 기업 장부는 원화 자산 100, 원화 부채 50, 달러 부채 30(원화 환산), 자본 20. 연장률과 환율은 서로 독립으로 두었지만 실제로는 함께 나빠진다. 교육용 가정이다.)</div>
+    </div>
+
+    <p>실제 숫자는 이렇게 흘렀다. 정부는 1997년 11월 21일 밤 IMF(국제통화기금)에 구제금융을 신청했고, 12월 3일 합의를 거쳐 12월 4일 IMF 이사회가 SDR 155억, 약 210억 달러의 대기성차관을 승인했다. 당시 IMF 역사상 가장 큰 규모였다. 세계은행·아시아개발은행과 여러 나라의 지원을 합친 국제 지원 패키지는 약 550억 달러였다. 12월 중순 한국이 바로 쓸 수 있는 가용 외환보유액은 약 39억 달러까지 줄어 있었고, 원/달러 환율은 12월 23일 1,962원(종가)까지 올랐다 <span class="src">(IMF Press Release 97/55, 국가기록원, 서울외환시장 종가 보도)</span>.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>날짜</th><th>일</th><th class="num">숫자</th></tr></thead>
+      <tbody>
+        <tr><td>1997-11-21</td><td>IMF 구제금융 신청 발표</td><td class="num">—</td></tr>
+        <tr><td>1997-12-04</td><td>IMF 이사회 대기성차관 승인</td><td class="num">SDR 155억(약 210억 달러)</td></tr>
+        <tr><td>1997-12</td><td>국제 지원 패키지 전체</td><td class="num">약 550억 달러</td></tr>
+        <tr><td>1997-12 중순</td><td>가용 외환보유액</td><td class="num">약 39억 달러</td></tr>
+        <tr><td>1997-12-23</td><td>원/달러 환율 종가</td><td class="num">1,962원</td></tr>
+        <tr><td>1998년</td><td>실질 GDP 성장률</td><td class="num">약 −5%</td></tr>
+        <tr><td>2001-08-23</td><td>IMF 차입금 전액 상환(실제 인출 195억 달러)</td><td class="num">—</td></tr>
+      </tbody>
+    </table></div>
+    <p class="src">(IMF Press Release 97/55, 국가기록원 「IMF 외환위기」, 서울신문 2001-08-23, 한국은행 국민계정. 1998년 성장률은 시계열 개편에 따라 −4.9%~−5.1%로 인용된다. 210억 달러 중 15억 달러는 취소되어 실제로 빌린 돈은 195억 달러다)</p>
+    <p>1998년 한국 경제는 약 5% 뒷걸음질했고, 수많은 기업과 금융회사가 문을 닫았으며 실업이 크게 늘었다. 이 경험이 한국의 금융 안전망을 바꾸었다. 외환보유액을 크게 쌓고, 은행의 외화 단기 차입을 규제하고, 금융회사의 자본과 부실을 상시로 감독하는 체계가 이때 이후 자리 잡았다.</p>
+  </section>
+
+  <section id="global">
+    <h2>2008년과 2020년: 같은 고리, 다른 대응</h2>
+    <p>2008년 9월 15일 미국 투자은행 리먼 브러더스가 파산보호를 신청했다. 미국 주택 가격 하락에서 시작된 손실이 높은 레버리지와 단기 자금 시장을 타고 세계 금융시장 전체로 번진 순간이었다. 한국의 은행들은 미국 주택에 큰 돈을 걸지 않았지만 위기는 다른 길로 들어왔다. 해외 투자자들이 위험 자산을 팔고 달러를 거둬들이자, 달러를 빌려 쓰던 국내 은행들의 외화 자금줄이 말랐다. 원/달러 환율은 2008년 8월 말 1,089.0원에서 2009년 3월 2일 1,570.3원까지 올랐다 <span class="src">(서울외환시장 종가 보도)</span>.</p>
+    <p>이번에는 대응이 달랐다. 한국은행은 2008년 10월부터 2009년 2월까지 기준금리를 5.25%에서 2.00%로 3.25%p 내렸고, 2008년 10월 30일 미국 연준과 300억 달러 규모의 <span class="term">통화스와프</span><span class="en">(Currency swap)</span>를 맺었다. 필요하면 원화를 맡기고 달러를 빌려 올 수 있는 약속이다. 실제로 많이 꺼내 쓰지 않아도 "달러가 바닥나지 않는다"는 신호 자체가 공포를 누그러뜨렸다.</p>
+    <p>2020년 3월 코로나19 충격은 금융에서 시작되지 않았다. 전염병이 경제 활동을 멈춰 세웠고, 그 충격이 금융시장으로 번졌다. 세계 투자자들이 현금, 특히 달러로 몰리며 모든 자산이 동시에 팔렸다. 한국은행은 3월 16일 임시 금통위에서 기준금리를 1.25%에서 0.75%로 0.5%p 내렸고(빅컷), 3월 19일 미국 연준과 600억 달러 통화스와프를 맺었으며, 5월 28일 0.50%까지 내렸다. 2020년 한국 성장률은 −0.7%(현행 시계열)였다 <span class="src">(한국은행 기준금리 추이, 한국은행 국민계정)</span>.</p>
+
+    <div class="table-wrap"><table>
+      <thead><tr><th></th><th>1997 외환위기</th><th>2008 글로벌 금융위기</th><th>2020 코로나 충격</th></tr></thead>
+      <tbody>
+        <tr><td>출발점</td><td>국내 기업·금융의 단기 외채, 동아시아 위기 전염</td><td>미국 주택 거품 붕괴, 투자은행 레버리지</td><td>전염병으로 실물 경제 정지</td></tr>
+        <tr><td>한국으로 온 길</td><td>만기 연장 거부, 외환보유액 고갈</td><td>달러 자금 이탈, 외화 유동성 경색</td><td>세계적 달러 수요 폭증, 위험 자산 투매</td></tr>
+        <tr><td>환율 고점</td><td class="num">1,962원(1997-12-23)</td><td class="num">1,570.3원(2009-03-02)</td><td>—</td></tr>
+        <tr><td>기준금리 대응</td><td>오히려 고금리(IMF 프로그램)</td><td class="num">5.25% → 2.00%</td><td class="num">1.25% → 0.50%</td></tr>
+        <tr><td>달러 안전판</td><td>IMF 등 약 550억 달러</td><td class="num">한미 통화스와프 300억 달러</td><td class="num">한미 통화스와프 600억 달러</td></tr>
+        <tr><td>그해·이듬해 성장률</td><td class="num">1998년 약 −5%</td><td>플러스 성장 유지</td><td class="num">2020년 −0.7%</td></tr>
+      </tbody>
+    </table></div>
+    <p class="src">(EC.HIST: 한국은행 기준금리 추이, IMF 보도자료, 한미 통화스와프 발표 보도, 서울외환시장 종가 보도. 2009년 성장률은 이 책에서 숫자를 확인하지 않아 '플러스 성장 유지'로만 적었다. 2020년 환율 고점은 이 책의 확인 대상이 아니어서 비워 두었다)</p>
+    <p>표의 가운데 줄이 핵심이다. 1997년에는 위기 한가운데서 금리를 올려야 했다. 달러가 빠져나가는 것을 막으려면 원화 금리를 높여야 했고, IMF 프로그램의 조건이기도 했다. 2008년과 2020년에는 금리를 내리고 달러 안전판을 구할 수 있었다. 외환보유액과 통화스와프라는 방패가 있었기 때문에 중앙은행이 국내 경기를 위해 움직일 여유가 생긴 것이다.</p>
+  </section>
+
+  <section id="safety">
+    <h2>안전망: 고리의 화살표를 하나씩 끊는 장치</h2>
+    <p>위기를 막는 장치는 하나가 아니다. 그림 1의 고리에서 각 장치가 끊는 화살표가 다르다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 270" role="img" aria-label="위기 단계별 안전망: 신용 팽창에는 거시건전성 규제, 손실에는 자본 규제, 뱅크런에는 예금보험, 유동성 부족에는 최종대부자, 외화 부족에는 외환보유액과 통화스와프">
+        <text x="110" y="20" text-anchor="middle" class="lbl-b">위기의 고리</text>
+        <text x="340" y="20" text-anchor="middle" class="lbl-b">끊는 장치</text>
+        <g>
+          <rect x="30" y="32" width="160" height="34" rx="8" class="f-warn-soft"/><text x="110" y="54" text-anchor="middle" class="lbl">빚과 집값이 함께 오름</text>
+          <rect x="250" y="32" width="190" height="34" rx="8" class="f-acc-soft"/><text x="345" y="54" text-anchor="middle" class="lbl">거시건전성: LTV·DSR</text>
+          <rect x="30" y="76" width="160" height="34" rx="8" class="f-bad-soft"/><text x="110" y="98" text-anchor="middle" class="lbl">손실이 자본을 지움</text>
+          <rect x="250" y="76" width="190" height="34" rx="8" class="f-acc-soft"/><text x="345" y="98" text-anchor="middle" class="lbl">자본 규제(바젤 III)</text>
+          <rect x="30" y="120" width="160" height="34" rx="8" class="f-bad-soft"/><text x="110" y="142" text-anchor="middle" class="lbl">예금자의 공포</text>
+          <rect x="250" y="120" width="190" height="34" rx="8" class="f-acc-soft"/><text x="345" y="142" text-anchor="middle" class="lbl">예금보험(1억원 한도)</text>
+          <rect x="30" y="164" width="160" height="34" rx="8" class="f-bad-soft"/><text x="110" y="186" text-anchor="middle" class="lbl">현금 부족 → 헐값 매각</text>
+          <rect x="250" y="164" width="190" height="34" rx="8" class="f-acc-soft"/><text x="345" y="186" text-anchor="middle" class="lbl">중앙은행 최종대부자</text>
+          <rect x="30" y="208" width="160" height="34" rx="8" class="f-bad-soft"/><text x="110" y="230" text-anchor="middle" class="lbl">달러 부족</text>
+          <rect x="250" y="208" width="190" height="34" rx="8" class="f-acc-soft"/><text x="345" y="230" text-anchor="middle" class="lbl">외환보유액·통화스와프</text>
+        </g>
+        <g class="s-acc" stroke-width="2"><path d="M196 49H244"/><path d="M196 93H244"/><path d="M196 137H244"/><path d="M196 181H244"/><path d="M196 225H244"/></g>
+        <text x="230" y="262" text-anchor="middle" class="lbl-dim">위는 위기 전(예방), 아래는 위기 중(대응)</text>
+      </svg>
+      <figcaption><b>그림 3. 안전망의 지도.</b> 위쪽 장치는 위기가 쌓이는 것을 막고(예방), 아래쪽 장치는 위기가 터졌을 때 번지는 것을 막는다(대응). 이 책이 정리한 구조도다.</figcaption>
+    </figure>
+
+    <p>맨 위의 <span class="term">거시건전성 정책</span><span class="en">(Macroprudential policy)</span>은 개별 은행이 아니라 금융 시스템 전체의 위험을 본다. 대표적인 도구가 집값 대비 대출 한도인 <span class="term">LTV</span><span class="en">(Loan-to-value, 담보인정비율)</span>와 소득 대비 원리금 상환액의 한도인 <span class="term">DSR</span><span class="en">(Debt service ratio, 총부채원리금상환비율)</span>이다. LTV가 낮으면 집값이 떨어져도 대출보다 집값이 높은 상태가 유지되어, 빌린 사람과 은행 모두 손실을 덜 본다. 아래 시뮬레이터는 교육용 가상 대출 400건에 집값 하락을 넣어 본다. 그래프 위를 좌우로 끌어 하락 폭을 바꾼다.</p>
+
+    <div class="sim" id="sim-ltv">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>LTV 상한: 집값이 떨어지면 몇 명이 깡통이 되나</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ltv-cv"></canvas><span class="hint">좌우로 끌어 집값 하락 폭을 바꾼다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="ltv-c"><button data-value="0.4">LTV 40%</button><button data-value="0.5">50%</button><button data-value="0.7" class="on">70%</button><button data-value="0.9">90%</button></div>
+          <label class="ctrl"><span>집값 하락 <output id="ltv-f-out"></output></span><input type="range" id="ltv-f" min="0" max="50" step="1" value="20"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">대출이 집값보다 큰 차주</span><span class="v" id="ltv-r-u">—</span></div>
+        <div class="stat"><span class="k">평균 LTV(하락 뒤)</span><span class="v" id="ltv-r-a">—</span></div>
+        <div class="stat"><span class="k">은행 손실(전부 처분 시)</span><span class="v" id="ltv-r-l">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① LTV 70%, 하락 20%. 대출이 집값보다 큰 차주가 아직 없다. ② 하락을 40%로 끈다. 처음 LTV가 높던 차주부터 깡통(대출 &gt; 집값)이 되기 시작한다. ③ LTV 90%로 바꾼다. 10%만 내려도 깡통이 나오고, 은행 손실이 생긴다. 40%로 바꾸면 집값이 절반이 되어도 대부분 버틴다. LTV 규제가 집값 하락 자체를 막지는 못하지만 그 손실이 금융으로 번지는 것을 막는다. (교육용 가상 데이터: 차주 400명의 처음 LTV는 상한의 40~100% 사이에 고르게 퍼져 있다. 은행 손실은 대출이 집값의 90%(처분 비용 10%)보다 큰 부분. DSR과 상환에 따른 원금 감소는 생략했다.)</div>
+    </div>
+
+    <p>LTV를 낮추면 위기 때 손실은 작아지지만, 평소에는 집을 사려는 사람이 빌릴 수 있는 돈이 줄어든다. 특히 모아 둔 돈이 적은 젊은 실수요자에게 문턱이 된다. 거시건전성 정책에도 비용이 있고, 그래서 집값과 가계부채의 흐름에 따라 규제를 조이고 푸는 일이 되풀이된다. 마찬가지로 예금보험은 예금자의 공포를 없애는 대신 은행이 위험을 더 많이 지려는 유혹(<span class="term">도덕적 해이</span><span class="en">(Moral hazard)</span>)을 키울 수 있고, 최종대부자가 너무 너그러우면 "망하게 두지 않을 것"이라는 믿음이 다음 거품을 키운다. 안전망과 규제가 짝을 이루는 이유다.</p>
+    <p>마지막 방패가 외환보유액이다. 2026년 9월 말 한국의 외환보유액은 <b>4,405.6억 달러</b>다 <span class="src">(한국은행 「2026년 9월 말 외환보유액」, 2026-10-06)</span>. 1997년 12월의 가용 외환보유액 약 39억 달러와는 비교가 되지 않는 규모다. 다만 외환보유액이 얼마면 충분한지에는 정해진 답이 없다. 단기 외채, 외국인 증권 투자, 경상수지와 견줘 보는 여러 기준이 있고, 같은 숫자를 두고도 "충분하다"와 "더 쌓아야 한다"가 엇갈린다.</p>
+
+    <div class="callout stat"><strong>금융안정보고서와 두 개의 지수</strong>한국은행은 해마다 6월과 12월 「금융안정보고서」를 내고, 그 사이(3월·9월 무렵)에는 「금융안정 상황」을 공개한다. 보고서에는 지수 두 개가 나온다. 금융불안지수(FSI)는 주가·금리·환율의 변동처럼 지금 시장이 얼마나 불안한지를 재는 단기 지표이고, 금융취약성지수(FVI)는 자산 가격의 고평가, 신용 축적, 금융회사의 복원력처럼 위기가 쌓이고 있는지를 재는 중장기 지표다. 2026년 6월 보고서의 FVI는 1분기 46.0이었고, 9월 「금융안정 상황」에서는 2분기 46.5로 다시 올랐다고 보도되었다. 원문과 통계는 한국은행 누리집의 '금융안정' 메뉴와 ECOS에서 찾는다.</div>
+
+    <div class="callout warn"><strong>숫자는 기준 시점의 값이고, 시뮬레이터는 전망이 아니다</strong>이 장의 역사적 수치는 당시 발표와 이후 보도로 확인한 값이며, 1998년 성장률처럼 시계열이 개편되면 달라진다. 금융안정 지수들도 산출 방법이 바뀌면 과거 값이 고쳐진다. 시뮬레이터의 레버리지, 인출 문턱, 가격 충격 계수는 위기의 구조를 보이기 위한 교육용 가정이며, 특정 금융회사나 한국 금융 시스템의 위험을 평가하거나 위기를 예측하지 않는다.</div>
+  </section>
+
+  <section id="board">
+    <h2>위기 전염 판: 열두 은행의 네트워크</h2>
+    <p>이제 모든 고리를 한 판에 올린다. 열두 은행이 서로 돈을 빌려주며 연결되어 있고, 모두 같은 종류의 자산을 들고 있다. 레버리지와 단기 자금 비중을 정하고, 자산 가격 충격을 주고, 은행 하나를 눌러 그 은행에 개별 손실을 더한 뒤 '충격 주기'를 누른다. 은행이 쓰러지면 빌려준 은행이 손실을 입고, 위태로운 은행에서는 단기 자금과 예금이 빠져나가 자산을 헐값에 팔고, 그 매도가 모든 은행의 자산 값을 다시 깎는다. 안전망 세 개를 켜고 끄며 같은 충격의 결과를 비교한다.</p>
+
+    <div class="sim" id="sim-contagion">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>위기 전염 판: 레버리지·단기 자금·충격과 안전망</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ct-cv"></canvas><span class="hint">은행을 눌러 개별 손실을 줄 곳을 고른다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>평균 레버리지 <output id="ct-l-out"></output></span><input type="range" id="ct-l" min="5" max="30" step="1" value="16"></label>
+          <label class="ctrl"><span>단기 자금 비중 <output id="ct-s-out"></output></span><input type="range" id="ct-s" min="0" max="60" step="5" value="30"></label>
+          <label class="ctrl"><span>자산 가격 충격 <output id="ct-p-out"></output></span><input type="range" id="ct-p" min="0" max="20" step="0.5" value="4"></label>
+          <label class="check"><input type="checkbox" id="ct-lolr"> 최종대부자</label>
+          <label class="check"><input type="checkbox" id="ct-di"> 예금보험</label>
+          <label class="check"><input type="checkbox" id="ct-cap"> 자본 규제(레버리지 12.5배 이하)</label>
+          <div class="btn-row"><button class="btn primary" id="ct-go">충격 주기</button><button class="btn" id="ct-re">다시</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">쓰러진 은행</span><span class="v" id="ct-o-f">—</span></div>
+        <div class="stat"><span class="k">위태로운 은행</span><span class="v" id="ct-o-w">—</span></div>
+        <div class="stat"><span class="k">자산 가격</span><span class="v" id="ct-o-p">—</span></div>
+        <div class="stat"><span class="k">헐값 매각 · 중앙은행 대출</span><span class="v" id="ct-o-x">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 기본값에서 은행 하나를 누르고 '충격 주기'. 처음에는 그 은행만 흔들리지만, 몇 바퀴 만에 연결된 은행과 같은 자산을 든 은행이 함께 쓰러진다. ② '최종대부자'만 켜고 다시. 단기 자금이 빠져도 헐값 매각이 없어 가격 하락이 멈추고, 쓰러지는 은행이 크게 준다. 다만 이미 자본이 마이너스인 은행은 살리지 못한다(빌려주는 것이지 손실을 메워 주는 것이 아니다). ③ '자본 규제'를 켠다. 처음부터 레버리지가 낮아 같은 충격을 대부분의 은행이 버틴다. ④ 안전망을 모두 끄고 레버리지 30배, 단기 자금 60%, 충격 10%. 판 전체가 무너진다. (모형: 은행마다 자산 100 중 85는 같은 시장 자산, 15는 다른 은행 세 곳에 5씩 빌려준 돈. 자본비율이 4% 아래로 떨어지면 단기 자금이 빠지고, 예금보험이 없으면 예금의 20%도 빠진다. 빠진 돈만큼 시장 자산을 10% 할인해 팔고, 전체 매도가 시장 자산의 1%일 때 가격이 0.5% 내린다. 쓰러진 은행에 빌려준 돈은 60%를 잃는다. 교육용 가정이며 실제 은행 시스템의 평가가 아니다.)</div>
+    </div>
+
+    <p>판을 여러 번 무너뜨려 보면 위기의 크기를 정하는 것은 처음 충격보다 <strong>구조</strong>라는 것이 보인다. 같은 4%의 충격이 레버리지 10배의 판에서는 잔물결로 끝나고, 25배에 단기 자금이 많은 판에서는 연쇄 붕괴가 된다. 안전망은 저마다 다른 고리를 끊는다. 자본 규제는 충격을 받아낼 쿠션을 두껍게 하고, 예금보험은 예금자의 이탈을 막고, 최종대부자는 헐값 매각과 그것이 다른 은행으로 번지는 길을 막는다. 셋 중 무엇도 혼자서 모든 위기를 막지는 못한다. 그리고 한국이 1997년에 겪었듯 빚이 달러라면, 원화를 찍는 중앙은행만으로는 부족하고 외환보유액과 통화스와프라는 또 하나의 방패가 필요하다.</p>
+  </section>
+
+  <div class="casefile">
+    <div class="tag"><b>CASE 지우</b><span>헤드라인 노트 · 2026년 6월</span></div>
+    <div class="headline">한국은행 「금융안정보고서」: 금융취약성지수 46.0, 2022년 4분기 이후 가장 높아<small>근거: 한국은행 「금융안정보고서」(2026년 6월, 2026-06-24 발표). 금융취약성지수(FVI)는 2026년 1분기 값</small></div>
+    <h4>"취약성 46.0은 위험하다는 뜻인가"</h4>
+    <p>6월에 지우가 고른 헤드라인은 숫자 하나가 전부였다. 금융취약성지수 46.0. 삼촌 백정호는 역시 세 가지를 물었다. 언제 기준인가. 6월 말에 나온 보고서지만 지수는 1분기 값이다. 무엇과 비교했나. 2022년 4분기(46.5) 이후 가장 높고, 2008년 이후 장기 평균을 조금 웃도는 수준이라고 보도되었다. 누가 쟀나. 한국은행이 자산 가격, 신용, 금융회사의 복원력을 묶어 만든 지수다. 지수의 절대 수준보다 방향이 중요했다. 보고서는 시스템이 대체로 안정적이라고 보면서도 수도권 집값 상승과 빚을 낸 주식 투자 증가로 금융 불균형이 쌓이고 있다고 짚었다. 이 장의 해부도로 보면 1단계(신용 팽창)와 2단계(자산 가격)의 경고였다.</p>
+    <p id="cr-case-calc">—</p>
+    <div class="clue">
+      <div><b>헤드라인이 말한 것</b>금융취약성지수(FVI) 46.0. 단기 불안(FSI)보다 중장기 불균형이 쌓이는 쪽에 경고.</div>
+      <div><b>숫자를 다시 보니</b>1분기 값이며, 비교 기준은 2022년 4분기 고점과 장기 평균이다. 위기를 예고한 것이 아니라 고리의 앞 단계가 쌓이고 있다는 진단이다.</div>
+      <div><b>내 생활에는</b><span id="cr-case-life">—</span></div>
+    </div>
+  </div>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>금융위기는 대개 신용 팽창 → 자산 거품 → 충격 → 투매 → 전염의 순서를 밟는다. 값이 오를 때 더 빌리고 내릴 때 더 파는 두 되먹임이 대칭이다.</li>
+      <li>레버리지 L배의 은행은 자산의 1/L만 잃어도 자본이 사라진다. 바젤 III는 위험가중 자본비율과 단순 레버리지 비율로 이 쿠션의 두께를 규제한다.</li>
+      <li>만기 불일치는 건전한 은행도 뱅크런으로 무너뜨릴 수 있다. 예금보험(2025년 9월부터 1억원 한도)은 공포를, 최종대부자는 헐값 매각을 막는다.</li>
+      <li>1997년 위기는 단기 외채와 통화 불일치가 겹친 나라 전체의 뱅크런이었다. 2008년과 2020년에는 외환보유액과 한미 통화스와프 덕에 금리를 내리며 대응할 수 있었다.</li>
+      <li>위기의 크기는 처음 충격보다 레버리지, 단기 자금 의존, 시장의 깊이 같은 구조가 정한다. 안전망은 각기 다른 고리를 끊으며 도덕적 해이라는 비용도 함께 따른다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q"><p>1. 자산 100, 자기자본 5인 은행이 있다. 자산 가치가 몇 % 떨어지면 자본이 모두 사라지는가?</p>
+        <div class="opts"><button class="opt">20%</button><button class="opt">50%</button><button class="opt" data-correct>5%</button><button class="opt">0.5%</button></div>
+        <div class="quiz-exp">레버리지가 20배(100 ÷ 5)이므로 자산의 1/20, 곧 5%의 손실이 자본 5를 지운다. 레버리지가 높을수록 견딜 수 있는 손실이 작다.</div></div>
+      <div class="quiz-q"><p>2. 대출 부실이 거의 없는 은행에서도 뱅크런이 일어날 수 있는 가장 직접적인 이유는?</p>
+        <div class="opts"><button class="opt" data-correct>예금은 언제든 찾을 수 있지만 대출은 길게 묶여 있어, 모두가 한꺼번에 찾으면 현금이 모자라기 때문이다</button><button class="opt">은행의 자기자본이 예금보다 많기 때문이다</button><button class="opt">예금자보호 한도가 1억원이기 때문이다</button><button class="opt">중앙은행이 기준금리를 올렸기 때문이다</button></div>
+        <div class="quiz-exp">만기 불일치 때문이다. 다른 사람이 먼저 찾을 것이라는 믿음만으로 먼저 찾는 것이 합리적이 되고, 현금이 바닥난 은행은 대출을 헐값에 팔다 실제로 지급불능이 될 수 있다.</div></div>
+      <div class="quiz-q"><p>3. 1997년 외환위기에서 달러로 돈을 빌린 국내 기업이 특히 큰 타격을 입은 이유로 가장 알맞은 것은?</p>
+        <div class="opts"><button class="opt">달러 금리가 원화 금리보다 높았기 때문이다</button><button class="opt">IMF가 기업의 달러 부채를 모두 갚아 주었기 때문이다</button><button class="opt">수출이 늘어 원화 수입이 늘었기 때문이다</button><button class="opt" data-correct>원/달러 환율이 급등하자 원화로 버는 돈은 그대로인데 원화로 잰 달러 빚이 크게 늘었기 때문이다</button></div>
+        <div class="quiz-exp">통화 불일치다. 자산과 수입은 원화, 부채는 달러인 기업은 환율이 두 배가 되면 원화 기준 부채가 두 배가 되어 자본이 사라진다. 환율은 1997년 12월 23일 종가 1,962원까지 올랐다.</div></div>
+      <div class="quiz-q"><p>4. 다음 중 중앙은행의 '최종대부자' 역할에 대한 설명으로 옳은 것은?</p>
+        <div class="opts"><button class="opt">은행이 진 손실을 세금으로 메워 주는 것이다</button><button class="opt" data-correct>건전하지만 현금이 모자란 은행에 담보를 받고 돈을 빌려주어, 자산을 헐값에 팔지 않게 하는 것이다</button><button class="opt">예금자 한 사람당 1억원까지 예금을 지급하는 것이다</button><button class="opt">집값 대비 대출 한도를 정하는 것이다</button></div>
+        <div class="quiz-exp">최종대부자는 유동성(현금)을 빌려주는 것이지 손실(지급불능)을 메워 주는 것이 아니다. 예금 지급은 예금보험, 대출 한도는 거시건전성 정책(LTV)의 몫이다.</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var K = EC.KR, H = EC.HIST, C = EC.CASE;
+  var pc = function (x, d) { d = d == null ? 1 : d; return (x * 100).toFixed(d) + "%"; };
+  var sp = function (x, d) { d = d == null ? 1 : d; return (x > 0.00001 ? "+" : x < -0.00001 ? "−" : "") + Math.abs(x * 100).toFixed(d) + "%"; };
+
+  /* ---------------- sim-leverage ---------------- */
+  (function () {
+    var box = null;
+    var gL = EB.range("lev-l", function (v) { return v.toFixed(1) + "배"; }, draw);
+    var gX = EB.range("lev-x", function (v) { return v.toFixed(2) + "%"; }, draw);
+    var cv = EB.canvas("#lev-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      var L = gL(), loss = gX(), E = 100 / L, E1 = E - loss, A1 = 100 - loss, D = 100 - E;
+      var top = 34, bot = h - 34, unit = (bot - top) / 100;
+      var colW = Math.min(120, w * 0.24), x1 = w * 0.27 - colW / 2, x2 = w * 0.67 - colW / 2;
+      box = { x: x1, w: colW, top: top, unit: unit };
+      ctx.font = EB.font(12, false, 700); ctx.fillStyle = P.text; ctx.textAlign = "center";
+      ctx.fillText("자산", x1 + colW / 2, 20); ctx.fillText("부채 + 자본", x2 + colW / 2, 20);
+      // 자산 막대
+      ctx.fillStyle = P.accent; ctx.globalAlpha = 0.75; ctx.fillRect(x1, top + loss * unit, colW, A1 * unit); ctx.globalAlpha = 1;
+      if (loss > 0) { ctx.fillStyle = EB.color("bad-soft"); ctx.fillRect(x1, top, colW, loss * unit); ctx.strokeStyle = P.bad; ctx.setLineDash([4, 3]); ctx.strokeRect(x1, top, colW, loss * unit); ctx.setLineDash([]); }
+      ctx.fillStyle = "#fff"; ctx.font = EB.font(12, false, 600); ctx.fillText("대출·채권", x1 + colW / 2, top + loss * unit + A1 * unit / 2);
+      if (loss * unit > 14) { ctx.fillStyle = P.bad; ctx.fillText("손실 " + loss.toFixed(1), x1 + colW / 2, top + loss * unit / 2 + 4); }
+      // 손잡이
+      var hy = top + loss * unit;
+      ctx.beginPath(); ctx.arc(x1 + colW / 2, hy, 8, 0, Math.PI * 2); ctx.fillStyle = P.text; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = P.bg; ctx.stroke();
+      // 부채 + 자본
+      ctx.fillStyle = P.dim; ctx.globalAlpha = 0.35; ctx.fillRect(x2, top + E * unit, colW, D * unit); ctx.globalAlpha = 1;
+      ctx.fillStyle = P.text; ctx.font = EB.font(12, false, 600); ctx.fillText("예금·차입 " + D.toFixed(1), x2 + colW / 2, top + E * unit + D * unit / 2);
+      var eLeft = Math.max(0, E1);
+      ctx.fillStyle = P.accent2; ctx.fillRect(x2, top + (E - eLeft) * unit, colW, eLeft * unit);
+      if (E1 < E) { ctx.fillStyle = EB.color("bad-soft"); ctx.fillRect(x2, top, colW, Math.min(E, loss) * unit); }
+      if (E1 < 0) { ctx.fillStyle = P.bad; ctx.fillRect(x2, top - Math.min(26, -E1 * unit), colW, Math.min(26, -E1 * unit)); }
+      ctx.textAlign = "left"; ctx.font = EB.font(12, true, 600);
+      ctx.fillStyle = E1 > 0 ? P.accent2 : P.bad;
+      ctx.fillText("자본 " + E.toFixed(1) + " → " + E1.toFixed(1), x2 + colW + 8, top + Math.max(10, E * unit / 2 + 4));
+      // 규제선(레버리지 비율 3%)
+      ctx.strokeStyle = P.warn; ctx.setLineDash([5, 4]); var ry = top + (E - 3) * unit;
+      if (E > 3) { ctx.beginPath(); ctx.moveTo(x2 - 6, ry); ctx.lineTo(x2 + colW + 6, ry); ctx.stroke(); ctx.fillStyle = P.warn; ctx.font = EB.font(10.5); ctx.fillText("자본 3% 선", x2 + colW + 8, ry + 14); }
+      ctx.setLineDash([]);
+      ctx.textAlign = "center"; ctx.font = EB.font(11.5); ctx.fillStyle = P.dim;
+      ctx.fillText("자산 100에서 출발 · 손실은 자본이 먼저 떠안는다", w / 2, h - 10);
+      var ratio = E1 / A1, verdict;
+      if (E1 <= 0) verdict = '<span class="bad-t">지급불능</span>';
+      else if (ratio < 0.03) verdict = '<span class="warn-t">규제 미달</span>';
+      else verdict = '<span class="ok-t">버팀</span>';
+      EB.stat("lev-r-c", pc(1 / L, 1));
+      EB.stat("lev-r-m", "자산의 " + pc(1 / L, 1));
+      EB.stat("lev-r-e", E1 <= 0 ? "−100% 이상" : sp(-loss / E, 1));
+      EB.stat("lev-r-v", verdict);
+    }, { aspect: 0.62, minHeight: 280, maxHeight: 400 });
+    EB.drag(cv.canvas, { move: function (x, y) { if (!box) return; var l = EB.clamp((y - box.top) / box.unit, 0, 20); gX.set(Math.round(l * 4) / 4); } });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-run ---------------- */
+  (function () {
+    var N = 120, R = EB.rng(7), people = [], st = null, running = false, acc = 0, layout = null;
+    for (var i = 0; i < N; i++) people.push({ th: 0.08 + 0.92 * R(), ins: R() < 0.9, out: false, t: 0 });
+    var gC = EB.range("run-c", function (v) { return v + "%"; }, reset);
+    var gS = EB.range("run-s", function (v) { return v.toFixed(2); }, function () {});
+    var gI = EB.seg("run-i", reset);
+    var cL = document.getElementById("run-l"); cL.addEventListener("change", reset);
+    function reset() {
+      running = false;
+      people.forEach(function (p) { p.out = false; p.t = 0; });
+      var cash = gC();
+      st = { cash: cash, loans: 100 - cash, dep: 92, eq: 8, withdrawn: 0, fire: 0, cb: 0, status: "ok" };
+      if (cv) cv.redraw();
+    }
+    function withdraw(p) {
+      if (p.out || st.status === "fail") return;
+      var amt = 92 / N;
+      if (st.cash >= amt) st.cash -= amt;
+      else {
+        var need = amt - st.cash; st.cash = 0;
+        if (cL.checked) { st.cb += need; }                // 중앙은행이 대출을 담보로 빌려준다(헐값 매각 없음)
+        else {
+          var sell = need / 0.6;                           // 장부가의 60%에 판다
+          if (sell > st.loans) { st.status = "fail"; return; }
+          st.loans -= sell; st.fire += sell - need; st.eq -= sell - need;
+        }
+      }
+      p.out = true; p.t = 0; st.dep -= amt; st.withdrawn += amt;
+      if (st.eq <= 0) st.status = "fail";
+    }
+    function step() {
+      if (!st || st.status === "fail") { running = false; return; }
+      var w = st.withdrawn / 92, s = gS(), ins = gI() === "1";
+      var stress = Math.max(0, 1 - st.cash / gC()) * (cL.checked ? 0.15 : 1) + (st.eq < 4 ? 0.5 : 0);
+      var signal = s * (w * 2.2 + stress * 0.6);
+      var cand = people.filter(function (p) { return !p.out && signal > p.th * (ins && p.ins ? 6 : 1); });
+      cand.sort(function (a, b) { return a.th - b.th; });
+      cand.slice(0, 3).forEach(withdraw);
+      if (!cand.length) running = false;
+    }
+    var cv = EB.canvas("#run-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      if (!st) return;
+      var cols = 12, rows = Math.ceil(N / cols), gx = Math.min(22, (w * 0.6 - 20) / cols), gy = Math.min(22, (h - 50) / rows);
+      layout = { x0: 16 + gx / 2, y0: 30 + gy / 2, gx: gx, gy: gy, cols: cols };
+      ctx.fillStyle = P.dim; ctx.font = EB.font(11.5); ctx.textAlign = "left"; ctx.fillText("예금자 120명", 16, 18);
+      var ins = gI() === "1";
+      people.forEach(function (p, i) {
+        var cx = layout.x0 + (i % cols) * gx, cy = layout.y0 + Math.floor(i / cols) * gy;
+        ctx.beginPath(); ctx.arc(cx, cy, Math.min(gx, gy) * 0.33, 0, Math.PI * 2);
+        ctx.fillStyle = p.out ? P.bad : P.accent; ctx.globalAlpha = p.out ? 0.9 : 0.65; ctx.fill(); ctx.globalAlpha = 1;
+        if (ins && p.ins && !p.out) { ctx.strokeStyle = P.ok; ctx.lineWidth = 1.6; ctx.stroke(); }
+      });
+      // 은행 금고
+      var bx = w * 0.64, bw = w - bx - 16, by = 30, bh = h - 70, u = bh / 100;
+      ctx.fillStyle = P.text; ctx.font = EB.font(12, false, 700); ctx.textAlign = "center"; ctx.fillText("은행 장부", bx + bw / 2, 18);
+      var y = by;
+      ctx.strokeStyle = P.border; ctx.strokeRect(bx, by, bw, bh);
+      ctx.fillStyle = P.ok; ctx.globalAlpha = 0.8; ctx.fillRect(bx, by + bh - st.cash * u, bw, st.cash * u); ctx.globalAlpha = 1;
+      ctx.fillStyle = P.accent; ctx.globalAlpha = 0.45; ctx.fillRect(bx, by + bh - (st.cash + st.loans) * u, bw, st.loans * u); ctx.globalAlpha = 1;
+      if (st.cb > 0) { ctx.fillStyle = P.accent2; ctx.globalAlpha = 0.6; ctx.fillRect(bx, by, bw * 0.18, Math.min(bh, st.cb * u)); ctx.globalAlpha = 1; }
+      ctx.fillStyle = P.text; ctx.font = EB.font(11); ctx.fillText("현금 " + st.cash.toFixed(1), bx + bw / 2, by + bh - Math.max(8, st.cash * u / 2) + 4);
+      ctx.fillText("대출 " + st.loans.toFixed(1), bx + bw / 2, by + bh - st.cash * u - st.loans * u / 2 + 4);
+      ctx.fillStyle = P.dim; ctx.fillText(st.cb > 0 ? "주황: 중앙은행 대출 " + st.cb.toFixed(1) : "", bx + bw / 2, by + 14);
+      var msg = st.status === "fail" ? "은행 문 닫음" : st.withdrawn > 0 ? (running ? "줄이 길어진다" : "진정됨") : "평온";
+      ctx.font = EB.font(13, false, 700); ctx.fillStyle = st.status === "fail" ? P.bad : running ? P.warn : P.ok;
+      ctx.fillText(msg, bx + bw / 2, h - 18);
+      EB.stat("run-r-w", pc(st.withdrawn / 92, 0));
+      EB.stat("run-r-c", st.cash.toFixed(1) + " / " + gC());
+      EB.stat("run-r-f", st.fire.toFixed(1));
+      EB.stat("run-r-v", st.status === "fail" ? '<span class="bad-t">지급불능</span>' : st.cb > 0 ? '<span class="warn-t">중앙은행 지원</span>' : st.withdrawn > 0 ? '<span class="ok-t">버팀</span>' : "정상");
+    }, { aspect: 0.6, minHeight: 280, maxHeight: 380 });
+    reset();
+    EB.drag(cv.canvas, { start: function (x, y) {
+      if (!layout) return;
+      var i = Math.round((x - layout.x0) / layout.gx), j = Math.round((y - layout.y0) / layout.gy);
+      if (i < 0 || i >= layout.cols || j < 0) return;
+      var k = j * layout.cols + i; if (k >= N) return;
+      withdraw(people[k]); running = true; cv.redraw();
+    } });
+    document.getElementById("run-go").addEventListener("click", function () {
+      if (st.status === "fail") reset();
+      people.filter(function (p) { return !p.out; }).sort(function (a, b) { return a.th - b.th; }).slice(0, 4).forEach(withdraw);
+      running = true; cv.redraw();
+    });
+    document.getElementById("run-re").addEventListener("click", reset);
+    EB.loop(document.getElementById("sim-run"), function (dt) {
+      if (!running) return;
+      acc += dt; if (acc > 0.12) { acc = 0; step(); cv.redraw(); }
+    });
+  })();
+
+  /* ---------------- sim-firesale ---------------- */
+  (function () {
+    var gS = EB.range("fs-s", function (v) { return "−" + v.toFixed(1) + "%"; }, draw);
+    var gL = EB.range("fs-l", function (v) { return v + "배"; }, draw);
+    var gD = EB.seg("fs-d", draw);
+    function run() {
+      var L = gL(), k = +gD(), units = 100, p = 1 - gS() / 100, E = 100 / L - 100 * (gS() / 100), rows = [{ n: 0, p: p, E: E, sold: 0 }], cum = 0;
+      for (var n = 1; n <= 10; n++) {
+        if (E <= 0) { rows.push({ n: n, p: p, E: E, sold: 0 }); continue; }
+        var value = units * p, target = L * E, sell = Math.max(0, value - target);
+        if (sell < 0.01) { rows.push({ n: n, p: p, E: E, sold: 0 }); continue; }
+        units -= sell / p; cum += sell;
+        var p2 = Math.max(0.05, p * (1 - k * sell / 100));
+        E -= units * (p - p2);
+        p = p2;
+        rows.push({ n: n, p: p, E: E, sold: sell });
+      }
+      return { rows: rows, cum: cum };
+    }
+    var cv = EB.canvas("#fs-cv", function (ctx, w, h) {
+      var P = EB.palette(), r = run(), rows = r.rows;
+      var minP = Math.min.apply(null, rows.map(function (q) { return q.p; }));
+      var lo = Math.max(0, Math.floor((minP - 0.05) * 10) / 10);
+      var c = EB.chart(ctx, { x: 52, y: 16, w: w - 66, h: h - 54 }, {
+        x: [-0.5, 10.5], y: [lo, 1.02], xTicks: [0, 2, 4, 6, 8, 10], xFmt: function (v) { return v + "바퀴"; }, yFmt: function (v) { return Math.round(v * 100) + "%"; },
+        series: [{ data: rows.map(function (q) { return [q.n, q.p]; }), color: P.bad, width: 2.6 }],
+        hlines: [{ y: 1, color: P.faint, label: "충격 전 가격 100%" }, { y: 1 - gS() / 100, color: P.warn, label: "처음 충격" }],
+      });
+      // 매도 막대(아래에서 위로, 보조 축)
+      var maxS = Math.max(1, Math.max.apply(null, rows.map(function (q) { return q.sold; })));
+      rows.forEach(function (q) { if (!q.sold) return; var bh = q.sold / maxS * c.box.h * 0.35; ctx.fillStyle = EB.color("accent-soft"); ctx.fillRect(c.X(q.n) - 7, c.box.y + c.box.h - bh, 14, bh); });
+      rows.forEach(function (q) { ctx.beginPath(); ctx.arc(c.X(q.n), c.Y(q.p), 3.5, 0, Math.PI * 2); ctx.fillStyle = q.E > 0 ? P.bad : P.text; ctx.fill(); });
+      ctx.fillStyle = P.dim; ctx.font = EB.font(11); ctx.textAlign = "left";
+      ctx.fillText("빨간 선: 자산 가격 · 옅은 막대: 그 바퀴의 매도", c.box.x + 8, c.box.y + c.box.h - 8);
+      var last = rows[rows.length - 1], drop = 1 - last.p, first = gS() / 100;
+      EB.stat("fs-r-p", pc(last.p));
+      EB.stat("fs-r-x", first > 0 ? (drop / first).toFixed(1) + "배" : "—");
+      EB.stat("fs-r-v", r.cum.toFixed(1));
+      EB.stat("fs-r-e", last.E <= 0 ? '<span class="bad-t">자본 소진</span>' : last.E.toFixed(2) + " (처음 " + (100 / gL()).toFixed(1) + ")");
+    }, { aspect: 0.58, minHeight: 260, maxHeight: 380 });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-fx97 ---------------- */
+  (function () {
+    var box = null;
+    var gD = EB.range("fx-d", function (v) { return v.toFixed(1) + "배"; }, draw);
+    var gR = EB.range("fx-r", function (v) { return v + "%"; }, draw);
+    var gE = EB.range("fx-e", function (v) { return "+" + v + "%"; }, draw);
+    var cv = EB.canvas("#fx-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      var debt = gD() * 100, need = debt * (1 - gR() / 100), left = 100 - need;
+      var dep = gE() / 100, usd = 30 * (1 + dep), eq = 100 - 50 - usd;
+      var half = w / 2, top = 40, bot = h - 40, maxV = Math.max(140, need + 10), u = (bot - top) / maxV;
+      // 왼쪽: 외환보유액 vs 갚아야 할 달러
+      ctx.fillStyle = P.text; ctx.font = EB.font(12, false, 700); ctx.textAlign = "center";
+      ctx.fillText("나라의 달러", half / 2, 20);
+      var bw = Math.min(56, half * 0.28), xa = half / 2 - bw - 6, xb = half / 2 + 6;
+      ctx.fillStyle = P.ok; ctx.globalAlpha = 0.75; ctx.fillRect(xa, bot - 100 * u, bw, 100 * u); ctx.globalAlpha = 1;
+      ctx.fillStyle = P.bad; ctx.globalAlpha = 0.75; ctx.fillRect(xb, bot - need * u, bw, need * u); ctx.globalAlpha = 1;
+      ctx.strokeStyle = P.dim; ctx.setLineDash([4, 3]); ctx.strokeRect(xb, bot - debt * u, bw, debt * u); ctx.setLineDash([]);
+      ctx.font = EB.font(11); ctx.fillStyle = P.dim;
+      ctx.fillText("보유액", xa + bw / 2, bot + 14); ctx.fillText("만기 상환", xb + bw / 2, bot + 14);
+      ctx.fillText("(연장 안 된 몫)", xb + bw / 2, bot + 27);
+      ctx.fillStyle = P.text; ctx.font = EB.font(11.5, true, 600);
+      ctx.fillText("100", xa + bw / 2, bot - 100 * u - 6); ctx.fillText(need.toFixed(0), xb + bw / 2, bot - need * u - 6);
+      ctx.fillStyle = P.dim; ctx.font = EB.font(10.5); ctx.fillText("점선: 단기 외채 " + debt.toFixed(0), half / 2, top - 8);
+      // 오른쪽: 기업 장부
+      ctx.fillStyle = P.text; ctx.font = EB.font(12, false, 700); ctx.fillText("달러 빚진 기업(원화 기준)", half + half / 2, 20);
+      var cw = Math.min(64, half * 0.3), x1 = half + half / 2 - cw - 6, x2 = half + half / 2 + 6, U = (bot - top) / 150;
+      ctx.fillStyle = P.accent; ctx.globalAlpha = 0.6; ctx.fillRect(x1, bot - 100 * U, cw, 100 * U); ctx.globalAlpha = 1;
+      ctx.fillStyle = P.dim; ctx.globalAlpha = 0.35; ctx.fillRect(x2, bot - 50 * U, cw, 50 * U); ctx.globalAlpha = 1;
+      ctx.fillStyle = P.bad; ctx.globalAlpha = 0.75; ctx.fillRect(x2, bot - (50 + usd) * U, cw, usd * U); ctx.globalAlpha = 1;
+      if (eq > 0) { ctx.fillStyle = P.accent2; ctx.fillRect(x2, bot - (50 + usd + eq) * U, cw, eq * U); }
+      box = { x: x2, w: cw, bot: bot, U: U };
+      var hy = bot - (50 + usd) * U;
+      ctx.beginPath(); ctx.arc(x2 + cw / 2, hy, 8, 0, Math.PI * 2); ctx.fillStyle = P.text; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = P.bg; ctx.stroke();
+      ctx.font = EB.font(10.5); ctx.fillStyle = P.dim; ctx.textAlign = "center";
+      ctx.fillText("원화 자산", x1 + cw / 2, bot + 14); ctx.fillText("부채+자본", x2 + cw / 2, bot + 14);
+      ctx.fillStyle = "#fff"; ctx.fillText("100", x1 + cw / 2, bot - 50 * U);
+      ctx.fillStyle = P.text; ctx.fillText("원화빚 50", x2 + cw / 2, bot - 25 * U + 4);
+      if (usd * U > 14) { ctx.fillStyle = "#fff"; ctx.fillText("달러빚 " + usd.toFixed(0), x2 + cw / 2, bot - (50 + usd / 2) * U + 4); }
+      ctx.fillStyle = eq > 0 ? P.accent2 : P.bad; ctx.font = EB.font(11.5, false, 700);
+      ctx.fillText(eq > 0 ? "자본 " + eq.toFixed(0) : "자본 잠식 " + eq.toFixed(0), x2 + cw / 2, bot - Math.max(100, 50 + usd) * U - 8);
+      ctx.strokeStyle = P.border; ctx.beginPath(); ctx.moveTo(half, 30); ctx.lineTo(half, h - 10); ctx.stroke();
+      EB.stat("fx-o-n", pc(need / 100, 0));
+      EB.stat("fx-o-r", left > 0 ? left.toFixed(0) + " / 100" : '<span class="bad-t">바닥(' + left.toFixed(0) + ")</span>");
+      EB.stat("fx-o-e", eq > 0 ? eq.toFixed(1) + " / 20" : '<span class="bad-t">잠식</span>');
+      var v = left <= 0 && eq <= 0 ? '<span class="bad-t">외환위기 + 기업 연쇄 부도</span>' : left <= 0 ? '<span class="bad-t">외환 바닥</span>' : eq <= 0 ? '<span class="bad-t">기업 부도</span>' : left < 30 || eq < 8 ? '<span class="warn-t">위태</span>' : '<span class="ok-t">버팀</span>';
+      EB.stat("fx-o-v", v);
+    }, { aspect: 0.62, minHeight: 290, maxHeight: 400 });
+    EB.drag(cv.canvas, { move: function (x, y) { if (!box || x < box.x - 30) return; var usd = (box.bot - y) / box.U - 50; var dep = EB.clamp(Math.round((usd / 30 - 1) * 20) * 5, 0, 120); gE.set(dep); } });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-ltv ---------------- */
+  (function () {
+    var R = EB.rng(11), U = []; for (var i = 0; i < 400; i++) U.push(R());
+    var box = null;
+    var gC = EB.seg("ltv-c", draw);
+    var gF = EB.range("ltv-f", function (v) { return "−" + v + "%"; }, draw);
+    var cv = EB.canvas("#ltv-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      var cap = +gC(), f = gF() / 100;
+      var eff = U.map(function (u) { return cap * (0.4 + 0.6 * u) / (1 - f); });
+      var bins = 24, lo = 0, hi = 2.4, counts = new Array(bins).fill(0);
+      eff.forEach(function (x) { var b = Math.min(bins - 1, Math.floor((x - lo) / (hi - lo) * bins)); counts[b]++; });
+      var maxC = Math.max(10, Math.max.apply(null, counts));
+      var c = EB.chart(ctx, { x: 46, y: 16, w: w - 60, h: h - 54 }, {
+        x: [lo, hi], y: [0, maxC * 1.1], xTicks: [0, 0.4, 0.8, 1.2, 1.6, 2.0, 2.4], xFmt: function (v) { return Math.round(v * 100) + "%"; }, yFmt: function (v) { return Math.round(v) + ""; },
+        xLabel: "집값 대비 대출(하락 뒤 LTV)",
+      });
+      box = c;
+      var bw = c.box.w / bins;
+      counts.forEach(function (n, b) {
+        var x0 = lo + (hi - lo) * b / bins, over = x0 + (hi - lo) / bins / 2 > 1;
+        ctx.fillStyle = over ? P.bad : P.accent; ctx.globalAlpha = 0.8;
+        ctx.fillRect(c.box.x + b * bw + 1, c.Y(n), bw - 2, c.Y(0) - c.Y(n)); ctx.globalAlpha = 1;
+      });
+      ctx.strokeStyle = P.bad; ctx.setLineDash([5, 4]); ctx.beginPath(); ctx.moveTo(c.X(1), c.box.y); ctx.lineTo(c.X(1), c.box.y + c.box.h); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = P.bad; ctx.font = EB.font(11); ctx.textAlign = "left"; ctx.fillText("100%: 대출 = 집값", c.X(1) + 4, c.box.y + 12);
+      ctx.fillStyle = P.dim; ctx.textAlign = "right"; ctx.fillText("교육용 가상 데이터 400건", c.box.x + c.box.w - 4, c.box.y + 28);
+      var under = eff.filter(function (x) { return x > 1; }).length / eff.length;
+      var avg = eff.reduce(function (a, b) { return a + b; }, 0) / eff.length;
+      var lossSum = 0, loanSum = 0;
+      U.forEach(function (u) { var loan = cap * (0.4 + 0.6 * u), val = (1 - f); loanSum += loan; lossSum += Math.max(0, loan - val * 0.9); });
+      EB.stat("ltv-r-u", pc(under, 1));
+      EB.stat("ltv-r-a", pc(avg, 0));
+      EB.stat("ltv-r-l", "대출의 " + pc(lossSum / loanSum, 1));
+    }, { aspect: 0.56, minHeight: 250, maxHeight: 360 });
+    var x0 = null, f0 = 0;
+    EB.drag(cv.canvas, { start: function (x) { x0 = x; f0 = gF(); }, move: function (x) { if (x0 == null || !box) return; gF.set(EB.clamp(Math.round(f0 + (x - x0) / box.box.w * 80), 0, 50)); }, end: function () { x0 = null; } });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-contagion (대표) ---------------- */
+  (function () {
+    var NB = 12, LINKS = [1, 4, 7], target = 0, banks = [], price = 1, round = 0, running = false, acc = 0, layout = [], soldTotal = 0, cbTotal = 0, pulse = 0;
+    var gL = EB.range("ct-l", function (v) { return v + "배"; }, reset);
+    var gS = EB.range("ct-s", function (v) { return v + "%"; }, reset);
+    var gP = EB.range("ct-p", function (v) { return "−" + v.toFixed(1) + "%"; }, reset);
+    var cLolr = document.getElementById("ct-lolr"), cDi = document.getElementById("ct-di"), cCap = document.getElementById("ct-cap");
+    [cLolr, cDi, cCap].forEach(function (c) { c.addEventListener("change", reset); });
+    var Rm = EB.rng(5), MULT = []; for (var i = 0; i < NB; i++) MULT.push(0.75 + 0.5 * Rm());
+    function reset() {
+      running = false; round = 0; price = 1; soldTotal = 0; cbTotal = 0;
+      var Lbar = gL(); banks = [];
+      for (var i = 0; i < NB; i++) {
+        var L = Lbar * MULT[i]; if (cCap.checked) L = Math.min(L, 12.5);
+        var E = 100 / L, ext = 85, ib = 15, liab = 100 - E - 15, st = liab * gS() / 100;
+        banks.push({ E0: E, eq: E, units: ext, ib: ib, st: st, dep: liab - st, ran: false, depRan: false, failed: false, loss: 0, cb: 0 });
+      }
+      if (cv) cv.redraw();
+    }
+    function lenders(j) { var out = []; for (var i = 0; i < NB; i++) LINKS.forEach(function (k) { if ((i + k) % NB === j) out.push(i); }); return out; }
+    function stepRound() {
+      round++;
+      var V = 0, changed = false;
+      if (round === 1) {
+        price = 1 - gP() / 100;
+        banks.forEach(function (b, i) { b.eq -= b.units * (1 - price); if (i === target) b.eq -= 6; });
+        changed = true;
+      }
+      banks.forEach(function (b, i) {
+        if (b.failed) return;
+        var assets = b.units * price + b.ib;
+        if (b.eq <= 0) {
+          b.failed = true; changed = true;
+          V += b.units * price * 0.5; b.units *= 0.5;              // 정리 과정에서 자산 절반을 시장에 내놓는다
+          lenders(i).forEach(function (j) { if (!banks[j].failed) banks[j].eq -= 5 * 0.6; });
+          return;
+        }
+        if (b.eq / assets < 0.04) {
+          var out = 0;
+          if (!b.ran) { out += b.st; b.ran = true; }
+          if (!cDi.checked && !b.depRan) { out += b.dep * 0.2; b.depRan = true; }
+          if (out > 0) {
+            changed = true;
+            if (cLolr.checked) { b.cb += out; cbTotal += out; }
+            else { var u = out / (price * 0.9); u = Math.min(u, b.units); b.units -= u; b.eq -= u * price * 0.1; V += u * price; soldTotal += u * price; }
+          }
+        }
+      });
+      if (V > 0) {
+        var p2 = Math.max(0.2, price * (1 - 0.5 * V / (85 * NB) * 100 / 100));
+        var dp = price - p2; price = p2;
+        banks.forEach(function (b) { if (!b.failed) b.eq -= b.units * dp; });
+        changed = true;
+      }
+      if (!changed || round >= 14) running = false;
+    }
+    var cv = EB.canvas("#ct-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      var cx = w / 2, cy = h / 2 + 4, Rr = Math.min(w, h) * 0.36;
+      layout = [];
+      for (var i = 0; i < NB; i++) { var a = -Math.PI / 2 + i * Math.PI * 2 / NB; layout.push({ x: cx + Math.cos(a) * Rr * (w > h ? 1.25 : 1), y: cy + Math.sin(a) * Rr }); }
+      // 연결선
+      banks.forEach(function (b, i) {
+        LINKS.forEach(function (k) {
+          var j = (i + k) % NB, A = layout[i], B = layout[j];
+          var hot = b.failed || banks[j].failed;
+          ctx.strokeStyle = hot ? P.bad : P.grid; ctx.globalAlpha = hot ? 0.5 : 1; ctx.lineWidth = hot ? 1.6 : 1;
+          ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke(); ctx.globalAlpha = 1;
+        });
+      });
+      // 가운데: 자산 가격 게이지
+      ctx.beginPath(); ctx.arc(cx, cy, 34, 0, Math.PI * 2); ctx.fillStyle = EB.color("canvas-bg"); ctx.fill(); ctx.strokeStyle = P.border; ctx.lineWidth = 1; ctx.stroke();
+      ctx.beginPath(); ctx.arc(cx, cy, 34, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * price); ctx.strokeStyle = price < 0.85 ? P.bad : price < 0.97 ? P.warn : P.ok; ctx.lineWidth = 5; ctx.stroke(); ctx.lineWidth = 1;
+      ctx.fillStyle = P.dim; ctx.font = EB.font(10.5); ctx.textAlign = "center"; ctx.fillText("자산 가격", cx, cy - 4);
+      ctx.fillStyle = P.text; ctx.font = EB.font(13, true, 700); ctx.fillText(pc(price, 1), cx, cy + 13);
+      // 은행
+      var nf = 0, nw = 0;
+      banks.forEach(function (b, i) {
+        var p = layout[i], assets = b.units * price + b.ib, ratio = b.eq / Math.max(1, assets);
+        var col = b.failed ? P.bad : ratio < 0.04 ? P.warn : P.ok;
+        if (b.failed) nf++; else if (ratio < 0.04) nw++;
+        var r = 13 + 5 * Math.min(1, b.E0 / 10);
+        ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+        ctx.fillStyle = EB.color("canvas-bg"); ctx.fill();
+        ctx.fillStyle = col; ctx.globalAlpha = b.failed ? 0.85 : 0.3; ctx.fill(); ctx.globalAlpha = 1;
+        ctx.strokeStyle = col; ctx.lineWidth = i === target ? 3.5 : 1.8; ctx.stroke(); ctx.lineWidth = 1;
+        if (i === target) { ctx.beginPath(); ctx.arc(p.x, p.y, r + 5 + 1.5 * Math.sin(pulse * 4), 0, Math.PI * 2); ctx.strokeStyle = P.text; ctx.globalAlpha = 0.5; ctx.stroke(); ctx.globalAlpha = 1; }
+        if (b.cb > 0) { ctx.fillStyle = P.accent2; ctx.beginPath(); ctx.arc(p.x + r * 0.8, p.y - r * 0.8, 4, 0, Math.PI * 2); ctx.fill(); }
+        ctx.fillStyle = b.failed ? "#fff" : P.text; ctx.font = EB.font(10.5, true, 600); ctx.textAlign = "center";
+        ctx.fillText(b.failed ? "X" : (Math.max(0, ratio) * 100).toFixed(1), p.x, p.y + 4);
+      });
+      ctx.fillStyle = P.dim; ctx.font = EB.font(11); ctx.textAlign = "left";
+      ctx.fillText(round ? round + "바퀴" : "충격 전 · 은행 안 숫자는 자본비율(%)", 10, 16);
+      EB.stat("ct-o-f", nf + " / " + NB);
+      EB.stat("ct-o-w", nw + "");
+      EB.stat("ct-o-p", pc(price, 1));
+      EB.stat("ct-o-x", soldTotal.toFixed(0) + " · " + cbTotal.toFixed(0));
+    }, { aspect: 0.7, minHeight: 320, maxHeight: 460 });
+    reset();
+    EB.drag(cv.canvas, { start: function (x, y) {
+      var best = -1, bd = 900;
+      layout.forEach(function (p, i) { var d = (p.x - x) * (p.x - x) + (p.y - y) * (p.y - y); if (d < bd) { bd = d; best = i; } });
+      if (best >= 0 && round === 0) { target = best; cv.redraw(); }
+    } });
+    document.getElementById("ct-go").addEventListener("click", function () { if (round > 0) reset(); running = true; acc = 0.5; });
+    document.getElementById("ct-re").addEventListener("click", reset);
+    EB.loop(document.getElementById("sim-contagion"), function (dt) {
+      pulse += dt;
+      if (running) { acc += dt; if (acc > 0.6) { acc = 0; stepRound(); } }
+      cv.redraw();
+    });
+  })();
+
+  /* ---------------- 케이스 ---------------- */
+  (function () {
+    var assets = C.home.deposit + C.savings + C.etf.value, debt = C.home.loan, eq = assets - debt;
+    var lev = assets / eq;
+    document.getElementById("cr-case-calc").innerHTML = "지우는 이 장의 대차대조표를 자기 가계부에 그려 보았다. 자산은 전세 보증금 " + EB.won(C.home.deposit) + ", 정기예금 " + EB.won(C.savings) + ", ETF " + EB.won(C.etf.value) + "으로 합계 " + EB.won(assets) + ". 부채는 전세대출 " + EB.won(debt) + ". 자기자본(순자산)은 " + EB.won(eq) + "이고 레버리지는 약 <b>" + lev.toFixed(1) + "배</b>다. 3년 안에 집을 산다면 어떨까. 순자산을 모두 넣고 집값의 70%를 빌리면 레버리지는 3.3배, 집값이 10% 내리면 순자산의 약 33%가 사라진다. 보고서가 말한 '레버리지 투자'는 은행만의 이야기가 아니라 지우가 고민하는 내 집 마련의 계산이기도 했다.";
+    document.getElementById("cr-case-life").textContent = "정기예금 " + EB.won(C.savings) + "은 예금자보호 한도 1억원 안이다. ETF는 가격 변동이 보호 대상이 아니고, 전세 보증금은 예금보험과 다른 문제(집주인의 상환 능력)다. 집을 살 때의 레버리지는 LTV·DSR이 정한다.";
+  })();
+})();
+</script>
+</body>
+</html>

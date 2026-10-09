@@ -1,0 +1,699 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and EconomicsBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "원/달러 환율이 오른다는 말은 원화가 약해진다는 뜻이다. 외환시장의 수요와 공급, 한·미 금리 차와 자본 이동, 구매력평가와 빅맥 지수, 수입 원가와 물가로의 전가, 외환보유액을 시뮬레이터로 움직여 보고, 환율 결정 판에서 경상수지·금리 차·위험 회피·해외투자를 한꺼번에 바꿔 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>환율 · EconomicsBook</title>
+<meta name="description" content="원/달러 환율이 오른다는 말은 원화가 약해진다는 뜻이다. 외환시장의 수요와 공급, 한·미 금리 차와 자본 이동, 구매력평가와 빅맥 지수, 수입 원가와 물가로의 전가, 외환보유액을 시뮬레이터로 움직여 보고, 환율 결정 판에서 경상수지·금리 차·위험 회피·해외투자를 한꺼번에 바꿔 본다.">
+<link rel="canonical" href="https://economicsbook.euiyun.com/chapters/fx.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#4338ca">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="EconomicsBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="환율 · EconomicsBook">
+<meta property="og:description" content="원/달러 환율이 오른다는 말은 원화가 약해진다는 뜻이다. 외환시장의 수요와 공급, 한·미 금리 차와 자본 이동, 구매력평가와 빅맥 지수, 수입 원가와 물가로의 전가, 외환보유액을 시뮬레이터로 움직여 보고, 환율 결정 판에서 경상수지·금리 차·위험 회피·해외투자를 한꺼번에 바꿔 본다.">
+<meta property="og:url" content="https://economicsbook.euiyun.com/chapters/fx.html">
+<meta property="og:image" content="https://economicsbook.euiyun.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://economicsbook.euiyun.com/chapters/fx.html#chapter","name":"환율","headline":"환율 · EconomicsBook","description":"원/달러 환율이 오른다는 말은 원화가 약해진다는 뜻이다. 외환시장의 수요와 공급, 한·미 금리 차와 자본 이동, 구매력평가와 빅맥 지수, 수입 원가와 물가로의 전가, 외환보유액을 시뮬레이터로 움직여 보고, 환율 결정 판에서 경상수지·금리 차·위험 회피·해외투자를 한꺼번에 바꿔 본다.","url":"https://economicsbook.euiyun.com/chapters/fx.html","position":10,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://economicsbook.euiyun.com/og.png","dateModified":"2026-10-09","isPartOf":{"@type":"Book","@id":"https://economicsbook.euiyun.com/#book","name":"EconomicsBook · 경제 뉴스 읽는 교과서","url":"https://economicsbook.euiyun.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"EconomicsBook","item":"https://economicsbook.euiyun.com/"},{"@type":"ListItem","position":2,"name":"10. 환율","item":"https://economicsbook.euiyun.com/chapters/fx.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/econ.js"></script>
+<!--head:end-->
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"3d6151a0abc94ede89285d462527fa80"}'></script>
+<!-- End Cloudflare Web Analytics -->
+</head>
+<body data-chapter="fx">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 10</div>
+    <h1>환율</h1>
+    <p class="lead">"환율 1,300원대로 하락." 이 한 줄에는 방향이 거꾸로 붙은 숫자, 하루에 수백억 달러가 오가는 시장, 두 나라의 금리, 햄버거 한 개의 값, 그리고 지우 회사의 밀가루 원가가 함께 들어 있다. 이 장은 환율이라는 가격 하나를 시장의 수요와 공급으로 다시 그리고, 그 가격이 내 장바구니까지 번지는 길을 따라간다.</p>
+    <ul class="objectives">
+      <li>"환율이 오른다"를 "원화 가치가 내린다"로 바꿔 읽고, 환율 변화율과 원화 가치 변화율이 왜 다른지 계산할 수 있다.</li>
+      <li>외환시장에서 달러를 파는 쪽과 사는 쪽을 구분하고, 경상수지·금리 차·위험 회피·해외투자가 환율을 어느 쪽으로 미는지 설명할 수 있다.</li>
+      <li>금리평가와 구매력평가로 "적정 환율"을 계산해 보고, 그것이 단기 환율을 잘 맞히지 못하는 이유를 말할 수 있다.</li>
+      <li>환율 변화가 수입 원가와 소비자물가, 해외 직구와 여행 경비로 옮겨 가는 크기를 내 숫자로 계산할 수 있다.</li>
+    </ul>
+  </header>
+
+  <div class="headline" id="hl-top">미국 연준 0.25%p 인상에도 원/달러 환율은 1,300원대<small>지우의 헤드라인 노트 · 2026년 9월 · 근거: 미국 연방준비제도 FOMC 성명(2026-09-16, 연방기금금리 목표 3.75~4.00%), 서울외환시장 원/달러 주간거래 종가(2026-09-07 1,340.5원, 2026-10-08 1,338.5원)</small></div>
+
+  <section id="meaning">
+    <h2>환율이 오른다는 말</h2>
+    <p><span class="term">환율</span><span class="en">(Exchange rate)</span>은 한 나라 돈을 다른 나라 돈으로 바꿀 때의 가격이다. 한국 뉴스에서 "환율"이라고만 하면 대개 <strong>원/달러 환율</strong>, 곧 1달러를 사는 데 드는 원화의 양을 말한다. 2026년 10월 8일 서울외환시장의 주간거래 종가는 1,338.5원이었다 <span class="src">(서울외환시장, 2026-10-08 주간거래 종가)</span>. 1달러를 사려면 1,338.5원을 내야 한다는 뜻이다.</p>
+    <p>헷갈리는 지점은 방향이다. 사과 값이 오르면 사과가 귀해진 것이다. 마찬가지로 원/달러 환율이 오르면 <strong>달러가 귀해진 것</strong>, 거꾸로 말하면 원화가 흔해져 값어치가 떨어진 것이다. 그래서 "환율 상승"은 "원화 약세", "환율 하락"은 "원화 강세"와 같은 말이다. 기사에 나오는 "원화값 급락"은 환율이 크게 올랐다는 뜻이고, "원화 강세로 환율 1,300원대"는 환율이 내렸다는 뜻이다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 250" role="img" aria-label="원/달러 환율이 1,300원에서 1,500원으로 오르면 같은 1달러를 사는 데 원화가 더 필요하므로 원화 가치는 내려간다">
+        <defs><marker id="fx-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <text x="230" y="22" text-anchor="middle" class="lbl-b">같은 1달러를 사는 데 드는 원화</text>
+        <rect x="20" y="40" width="150" height="70" rx="10" class="f-ok-soft"/>
+        <text x="95" y="68" text-anchor="middle" class="lbl-b">1달러 = 1,300원</text>
+        <text x="95" y="92" text-anchor="middle" class="lbl-dim">원화가 상대적으로 강하다</text>
+        <rect x="290" y="40" width="150" height="70" rx="10" class="f-bad-soft"/>
+        <text x="365" y="68" text-anchor="middle" class="lbl-b">1달러 = 1,500원</text>
+        <text x="365" y="92" text-anchor="middle" class="lbl-dim">원화가 상대적으로 약하다</text>
+        <g class="s-acc2" marker-end="url(#fx-ar)"><path d="M180 66H280" fill="none"/></g>
+        <text x="230" y="58" text-anchor="middle" class="lbl-acc2">환율 상승</text>
+        <g class="s-acc" marker-end="url(#fx-ar)"><path d="M280 86H180" fill="none"/></g>
+        <text x="230" y="104" text-anchor="middle" class="lbl-acc">환율 하락</text>
+        <rect x="40" y="140" width="380" height="96" rx="10" class="f-surface"/>
+        <text x="60" y="164" class="lbl">환율 상승 = 원화 약세 = 달러 강세</text>
+        <text x="60" y="186" class="lbl-dim">수입품·해외여행·해외 직구가 원화로 비싸진다</text>
+        <text x="60" y="206" class="lbl-dim">수출 기업이 받은 달러를 원화로 바꾸면 더 많이 남는다</text>
+        <text x="60" y="226" class="lbl-dim">해외 주식·달러 예금의 원화 평가액이 오른다</text>
+      </svg>
+      <figcaption><b>그림 1. 환율 숫자와 원화 가치는 반대로 움직인다.</b> 원/달러 환율은 "달러 한 개의 원화 가격"이다. 숫자가 커지면 달러가 비싸진 것이고, 같은 말로 원화의 값어치가 떨어진 것이다.</figcaption>
+    </figure>
+
+    <p>방향만 반대인 것이 아니다. 크기도 다르다. 환율이 1,300원에서 1,500원으로 오르면 환율은 15.4% 오른 것이지만, 원화 1만원으로 살 수 있는 달러는 7.69달러에서 6.67달러로 13.3% 줄었다. 환율과 원화 가치는 서로의 <strong>역수</strong>이기 때문이다. 아래 그래프의 점을 끌어 환율을 옮겨 본다. 가로축에는 이 장에 나오는 몇 개의 기준점을 표시했다.</p>
+
+    <div class="sim" id="sim-quote">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>환율을 원화 가치로 뒤집기</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="qt-cv"></canvas><span class="hint">곡선 위의 점을 끌어 환율을 옮긴다</span></div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">원/달러 환율</span><span class="v" id="qt-o-e">—</span></div>
+        <div class="stat"><span class="k">1만원으로 살 수 있는 달러</span><span class="v" id="qt-o-d">—</span></div>
+        <div class="stat"><span class="k">기준(1,338.5원) 대비 환율</span><span class="v" id="qt-o-c">—</span></div>
+        <div class="stat"><span class="k">같은 기간 원화 가치</span><span class="v" id="qt-o-w">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 점을 2025년 연평균(1,421.97원)으로 옮긴다. 환율은 기준보다 6% 남짓 높고, 원화 가치는 그보다 조금 작게 낮다. ② 2026년 7월 2일 종가(1,555.8원)로 옮긴다. 환율 +16%, 원화 가치 −14%로 숫자가 벌어진다. ③ 1997년 12월 23일 종가(1,962원)까지 끈다. 환율 상승률과 원화 가치 하락률의 차이가 훨씬 커진다. 변화가 클수록 "환율 ○% 상승"과 "원화 가치 ○% 하락"은 다른 숫자가 된다. (원화 가치 = 1 ÷ 환율. 수수료와 매매 차이는 뺐다.)</div>
+    </div>
+
+    <p>그래프의 곡선은 오른쪽으로 갈수록 완만해진다. 환율이 낮을 때의 100원과 높을 때의 100원은 원화 가치에 다른 크기로 작용한다. 기사 제목의 "원화 가치 ○% 하락"이 환율 상승률과 다르게 적혀 있다면 계산이 틀린 것이 아니라 기준이 다른 것이다.</p>
+
+    <p>환율은 원/달러 하나만 있는 것이 아니다. 원/엔 환율은 보통 <strong>100엔당</strong> 원화로, 원/유로는 1유로당 원화로 적는다. 원화와 직접 바꾸는 시장이 큰 통화는 달러와 위안화뿐이어서, 원/엔이나 원/유로는 대개 원/달러와 달러/엔, 달러/유로를 곱해 만든 <span class="term">재정환율</span><span class="en">(Cross rate)</span>이다. 원/달러가 그대로여도 엔화가 달러에 대해 강해지면 원/엔 환율은 오른다. 2026년 7~9월의 원화 강세 기사에 "엔화 강세"가 자주 함께 나온 것도 두 통화가 아시아 시장에서 함께 움직이는 경향이 있기 때문이다.</p>
+
+    <div class="callout stat"><strong>"오늘 환율"은 누가, 언제 정하나</strong>서울외환시장에서 원/달러는 은행들 사이에서 거래된다. 뉴스의 "종가"는 대개 오후 3시 30분 주간거래 종가다. 2024년 7월부터는 거래 시간이 다음 날 새벽 2시까지 늘어 "야간거래 종가"도 따로 있다. 은행 창구에서 보는 기준 숫자는 전날 거래를 거래량으로 가중평균한 매매기준율이고, 실제로 달러를 살 때는 여기에 은행 수수료(스프레드)가 붙는다. 한국은행 ECOS의 '환율' 항목에서 일별·월평균·연평균을 내려받을 수 있다. 기사에서 숫자 하나를 보면 그것이 장중 고가인지, 주간 종가인지, 매매기준율인지부터 확인한다. 같은 날 세 숫자가 10원 넘게 다를 때도 있다.</div>
+  </section>
+
+  <section id="market">
+    <h2>외환시장의 수요와 공급</h2>
+    <p>환율도 가격이므로 시장에서 정해진다. 서울외환시장에서 파는 물건은 달러, 값은 원화다. <a href="market.html">2장</a>의 수요·공급 곡선을 그대로 쓰면 된다. 다만 누가 달러를 팔고 누가 사는지를 알아야 곡선이 왜 움직이는지 읽을 수 있다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 320" role="img" aria-label="외환시장에서 달러를 파는 쪽(수출 기업, 외국인 투자자의 국내 투자, 해외에서 들어오는 배당)과 달러를 사는 쪽(수입 기업, 해외 투자에 나서는 국내 투자자, 해외여행)">
+        <defs><marker id="fx-ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="165" y="110" width="130" height="80" rx="12" class="f-acc-soft"/>
+        <text x="230" y="144" text-anchor="middle" class="lbl-b">외환시장</text>
+        <text x="230" y="166" text-anchor="middle" class="lbl-dim">달러 ↔ 원화</text>
+        <text x="80" y="24" text-anchor="middle" class="lbl-acc">달러를 판다(공급)</text>
+        <rect x="10" y="36" width="140" height="44" rx="8" class="f-surface"/><text x="80" y="55" text-anchor="middle" class="lbl">수출 기업</text><text x="80" y="72" text-anchor="middle" class="lbl-dim">벌어 온 달러를 원화로</text>
+        <rect x="10" y="128" width="140" height="44" rx="8" class="f-surface"/><text x="80" y="147" text-anchor="middle" class="lbl">외국인 투자자</text><text x="80" y="164" text-anchor="middle" class="lbl-dim">한국 주식·채권을 산다</text>
+        <rect x="10" y="220" width="140" height="44" rx="8" class="f-surface"/><text x="80" y="239" text-anchor="middle" class="lbl">해외 배당·이자 수입</text><text x="80" y="256" text-anchor="middle" class="lbl-dim">원화로 바꿀 때</text>
+        <text x="380" y="24" text-anchor="middle" class="lbl-acc2">달러를 산다(수요)</text>
+        <rect x="310" y="36" width="140" height="44" rx="8" class="f-surface"/><text x="380" y="55" text-anchor="middle" class="lbl">수입 기업</text><text x="380" y="72" text-anchor="middle" class="lbl-dim">원유·곡물·부품 결제</text>
+        <rect x="310" y="128" width="140" height="44" rx="8" class="f-surface"/><text x="380" y="147" text-anchor="middle" class="lbl">국내 투자자</text><text x="380" y="164" text-anchor="middle" class="lbl-dim">해외 주식·채권을 산다</text>
+        <rect x="310" y="220" width="140" height="44" rx="8" class="f-surface"/><text x="380" y="239" text-anchor="middle" class="lbl">해외여행·직구·유학</text><text x="380" y="256" text-anchor="middle" class="lbl-dim">카드 결제도 결국 달러</text>
+        <g class="s-acc" marker-end="url(#fx-ar2)" fill="none"><path d="M150 60L170 118"/><path d="M150 150H163"/><path d="M150 240L170 182"/></g>
+        <g class="s-acc2" marker-end="url(#fx-ar2)" fill="none"><path d="M290 118L310 60"/><path d="M297 150H308"/><path d="M290 182L310 240"/></g>
+        <text x="230" y="296" text-anchor="middle" class="lbl-dim">외환당국(한국은행·재정경제부)은 쏠림이 심할 때</text>
+        <text x="230" y="314" text-anchor="middle" class="lbl-dim">달러를 팔거나 사서 어느 쪽에도 선다</text>
+      </svg>
+      <figcaption><b>그림 2. 달러를 파는 사람과 사는 사람.</b> 왼쪽이 많아지면 달러 공급이 늘어 환율이 내리고(원화 강세), 오른쪽이 많아지면 달러 수요가 늘어 환율이 오른다(원화 약세). 수출입처럼 물건이 오가는 거래와, 주식·채권처럼 돈만 오가는 거래가 같은 시장에서 만난다.</figcaption>
+    </figure>
+
+    <p>공급 곡선은 오른쪽 위로 올라간다. 환율이 높을수록 수출 기업은 쌓아 둔 달러를 원화로 바꾸고 싶어진다. 수출 기업이 달러를 파는 것을 외환시장에서는 <span class="term">네고</span><span class="en">(Nego, 수출 대금 매도)</span>라고 부른다. 수요 곡선은 오른쪽 아래로 내려간다. 환율이 낮을수록 수입품과 해외 자산이 싸 보여 달러를 더 산다. 아래 그래프에서 곡선을 직접 잡아 좌우로 끌어 본다.</p>
+
+    <div class="sim" id="sim-fxmarket">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>달러의 수요와 공급: 곡선을 끌어 환율을 옮긴다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="mk-cv"></canvas><span class="hint">곡선 가운데 손잡이를 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>달러 공급 이동(수출 네고·외국인 유입) <output id="mk-s-out"></output></span><input type="range" id="mk-s" min="-300" max="300" step="10" value="0"></label>
+          <label class="ctrl"><span>달러 수요 이동(수입 결제·해외투자) <output id="mk-d-out"></output></span><input type="range" id="mk-d" min="-300" max="300" step="10" value="0"></label>
+          <div class="btn-row"><button class="btn" id="mk-re">처음으로</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">균형 환율</span><span class="v" id="mk-o-e">—</span></div>
+        <div class="stat"><span class="k">거래량(월, 교육용)</span><span class="v" id="mk-o-q">—</span></div>
+        <div class="stat"><span class="k">처음 대비</span><span class="v" id="mk-o-c">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 공급 곡선을 오른쪽으로 100억 달러 끈다. 수출 기업이 쌓아 둔 달러를 한꺼번에 파는 장면이다. 환율이 내린다. ② 수요 곡선도 오른쪽으로 같은 만큼 끈다. 거래량은 크게 늘지만 환율은 제자리다. 수출이 늘어도 국내 투자자가 그만큼 해외 주식을 사면 원화는 강해지지 않는다. ③ 공급을 −300, 수요를 +300으로 민다. 위기 때처럼 달러를 파는 사람은 사라지고 사려는 사람만 몰리면 환율이 수백 원 뛴다. (선형 수요·공급, 처음 균형 1,340원·월 500억 달러. 기울기와 거래량은 교육용 가정이며 실제 시장 규모가 아니다.)</div>
+    </div>
+
+    <p>곡선을 움직여 보면 환율 기사가 두 종류의 문장으로 나뉜다는 것을 알 수 있다. 하나는 "누가 달러를 팔았나"(수출 기업 네고, 외국인 채권 매수), 다른 하나는 "누가 달러를 샀나"(수입 결제, 서학개미의 해외 주식 매수, 연기금의 해외 투자)다. 2026년 9월 초 환율이 장중 1,330원대까지 내린 날의 기사들은 수출 기업의 달러 매도와 엔화 강세를 이유로 들었다 <span class="src">(2026-09-07 서울외환시장 마감 보도: 이투데이, SBS Biz, 파이낸셜뉴스)</span>. 이것은 시장 참여자들이 사후에 붙인 <strong>보도된 설명</strong>이다. 하루의 환율 움직임을 한두 가지 이유로 설명하는 문장은 늘 그럴듯하지만, 같은 날 반대 방향의 힘도 함께 있었다는 것을 잊지 않는다.</p>
+
+    <div class="callout deep"><strong>수출 기업은 달러를 언제 파는가</strong>수출 대금이 들어온다고 그날 바로 원화로 바꾸는 것은 아니다. 환율이 더 오를 것 같으면 달러를 들고 기다리고(해외 법인에 쌓아 두거나 외화예금으로), 내릴 것 같으면 서둘러 판다. 2026년 상반기 반도체 수출이 기록적이고 경상수지 흑자가 컸는데도 환율이 1,500원대까지 오른 것을 두고, 기업과 개인이 달러를 쌓아 두는 심리를 원인으로 지목한 분석이 있었다. 반대로 환율이 꺾이자 쌓여 있던 달러가 한꺼번에 나와 하락을 빠르게 만들었다는 설명도 나왔다. 무역에서 번 달러(경상수지)와 외환시장에 나온 달러(공급)는 같은 것이 아니고, 그 사이에 <b>기대</b>가 있다.</div>
+  </section>
+
+  <section id="parity">
+    <h2>금리 차와 자본 이동: 금리평가</h2>
+    <p><a href="transmission.html#fx">9장</a>에서 환율은 한국 금리 하나가 아니라 한·미 금리 차로 움직인다고 했다. 여기서는 그 이유를 투자자의 계산으로 한 걸음 더 들어가 본다. 1억원을 1년 동안 굴리려는 투자자에게 길은 둘이다.</p>
+    <ul>
+      <li><b>원화 길</b>: 한국 채권에 넣어 1년 뒤 \(\text{1억} \times (1 + i_{\text{한}})\)을 받는다.</li>
+      <li><b>달러 길</b>: 오늘 환율 \(S_0\)으로 달러를 사서 미국 채권에 넣고, 1년 뒤 \((1 + i_{\text{미}})\)만큼 불어난 달러를 그때의 환율 \(S_1\)으로 다시 원화로 바꾼다.</li>
+    </ul>
+    <p>두 길의 결과가 같아지는 1년 뒤 환율을 구하면 다음과 같다. 이것이 <span class="term">금리평가</span><span class="en">(Interest rate parity)</span>다.</p>
+    <div class="formula">$$S^{*} = S_0 \times \frac{1 + i_{\text{한}}}{1 + i_{\text{미}}}$$<div class="where">\(S_0\): 오늘 환율, \(S^{*}\): 두 투자가 똑같아지는 1년 뒤 환율, \(i_{\text{한}}, i_{\text{미}}\): 두 나라의 1년 금리. 한국 금리가 더 낮으면 \(S^{*}\)는 \(S_0\)보다 낮다.</div></div>
+    <p>뜻은 이렇다. 미국 금리가 한국보다 1%p 높다면 달러 길이 이자를 1% 더 준다. 그 대신 1년 동안 원화가 1% 남짓 강해지면(환율이 그만큼 내리면) 달러를 원화로 되바꿀 때 손해를 보아 이득이 사라진다. 그래서 금리 차는 그 자체로 환율을 정하지 않는다. <strong>금리 차와 투자자가 예상하는 환율 변화의 합</strong>이 돈의 방향을 정한다. 아래 그래프에서 1년 뒤 환율을 끌어 보며 두 길을 비교한다.</p>
+
+    <div class="sim" id="sim-parity">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>원화 채권과 달러 채권: 1년 뒤 환율에 따라 갈리는 승부</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="pr-cv"></canvas><span class="hint">세로선을 끌어 1년 뒤 환율을 고른다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>한국 1년 금리 <output id="pr-k-out"></output></span><input type="range" id="pr-k" min="0" max="7" step="0.25" value="3"></label>
+          <label class="ctrl"><span>미국 1년 금리 <output id="pr-u-out"></output></span><input type="range" id="pr-u" min="0" max="7" step="0.25" value="4"></label>
+          <label class="check"><input type="checkbox" id="pr-h"> 선물환으로 환율을 미리 고정(헤지)</label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 1년 뒤 환율</span><span class="v" id="pr-o-s">—</span></div>
+        <div class="stat"><span class="k">손익분기 환율 \(S^*\)</span><span class="v" id="pr-o-b">—</span></div>
+        <div class="stat"><span class="k">1억원의 1년 뒤: 원화 · 달러</span><span class="v" id="pr-o-v">—</span></div>
+        <div class="stat"><span class="k">스왑포인트(선물환 − 현물)</span><span class="v" id="pr-o-w">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 한국 3%, 미국 4%에서 세로선을 오늘 환율(1,338.5원)에 둔다. 환율이 그대로면 달러 길이 1억원당 약 100만원 더 번다. ② 세로선을 손익분기 환율 아래로 끈다. 원화가 1년 동안 1% 남짓만 강해져도 이자 차이는 사라진다. ③ '헤지'를 켠다. 선물환으로 1년 뒤 환율을 오늘 고정하면 두 길의 결과가 똑같아진다. 은행이 선물환을 그 값에 파는 이유가 금리 차다. 이자 차이를 노리려면 환율 위험을 지는 수밖에 없다. (세금·수수료·신용 위험은 뺐다. 1년 만기 할인채로 단순화. 오늘 환율은 2026-10-08 종가.)</div>
+    </div>
+
+    <p>헤지를 켜면 두 선이 겹친다. 이것이 <span class="term">무위험 금리평가</span><span class="en">(Covered interest parity)</span>다. 선물환율이 금리 차만큼 현물환율과 벌어져 있기 때문에 "이자 차이를 공짜로 먹는" 길은 막혀 있다. 한국 금리가 미국보다 낮으면 1년 선물환율은 현물환율보다 낮고, 그 차이(<span class="term">스왑포인트</span><span class="en">(Swap point)</span>)가 마이너스다. 달러 예금이나 미국 채권에 투자하면서 환율 위험을 없애려는 사람은 이 마이너스만큼 비용을 낸다. 해외 주식형 펀드의 '환헤지형'과 '환노출형'이 1년 뒤 다른 성적을 내는 이유도 여기서 나온다.</p>
+    <p>헤지를 끄면 이야기가 달라진다. 이제 승부는 투자자가 예상하는 1년 뒤 환율에 걸려 있다. 이론상 기대 환율이 \(S^*\)에 있으면 두 길이 같지만, 현실의 투자자는 원화를 들고 있는 위험에 대한 보상(위험 프리미엄)을 따로 요구한다. 세계 금융시장이 불안해지면 이 프리미엄이 커져, 금리 차가 같아도 돈이 달러로 몰린다. 금리 차를 넣었는데 환율 방향이 맞지 않는 날이 많은 이유다.</p>
+
+    <div class="callout news"><strong>"연준이 올렸는데 왜 원화가 강한가"</strong>2026년 9월 16일(한국 시간 17일 새벽) 연준이 금리를 0.25%p 올려 연방기금금리 목표 범위가 3.75~4.00%가 되었다. 2023년 7월 이후 첫 인상이었다. 교과서대로라면 한·미 금리 차가 벌어져 원화가 약해질 일이다. 그런데 9월 내내 원/달러 환율은 1,300원대 중후반에 머물렀다. 백정호는 이 기사를 읽으며 세 가지를 물었다. 첫째, <b>무엇과 비교했나.</b> 한국은행도 7월과 8월에 기준금리를 두 번 올려 3.00%가 되었다. 연준 인상 전의 금리 차(상단 기준 −0.75%p)는 오히려 연초(−1.25%p)보다 좁아진 상태였다. 둘째, <b>예상과의 차이는.</b> 인상은 회의 전부터 예상되어 값에 들어가 있었다(<a href="transmission.html#expect">9장</a>). 셋째, <b>다른 힘은.</b> 같은 시기 보도는 수출 기업의 달러 매도, 엔화 강세, 사상 최대 수준의 경상수지 흑자를 원화 강세의 이유로 들었다. 금리 차는 여러 힘 중 하나다. "인상에도"라는 말이 붙은 제목은 대개 그 하나만 보고 다른 힘을 빼먹은 제목이다.</div>
+  </section>
+
+  <section id="ppp">
+    <h2>구매력평가와 빅맥 지수</h2>
+    <p>금리평가가 돈의 길에서 본 환율이라면, <span class="term">구매력평가</span><span class="en">(PPP, Purchasing Power Parity)</span>는 물건의 길에서 본 환율이다. 같은 물건은 어느 나라에서 사든 같은 값이어야 한다는 <span class="term">일물일가 법칙</span><span class="en">(Law of one price)</span>에서 출발한다. 서울에서 5,500원인 햄버거가 뉴욕에서 6달러라면, 두 값이 같아지는 환율은 5,500 ÷ 6 = 917원이다. 실제 환율이 1,338.5원이라면 원화는 햄버거 기준으로 31% 넘게 <strong>저평가</strong>되어 있다고 말한다.</p>
+    <p>영국 경제지 이코노미스트는 1986년부터 맥도날드 빅맥 값으로 이 계산을 해서 해마다 1월과 7월 무렵 <span class="term">빅맥 지수</span><span class="en">(Big Mac index)</span>로 발표한다. 반쯤은 농담으로 시작한 지수지만 PPP의 생각을 한눈에 보여 준다. 아래 시뮬레이터의 기본값은 계산을 보여 주기 위한 교육용 숫자다. 실제 최신 지수는 이코노미스트 원문에서 확인한다.</p>
+
+    <div class="sim" id="sim-ppp">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>햄버거로 잰 환율: 구매력평가와 고평가·저평가</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="pp-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>서울의 버거 값 <output id="pp-k-out"></output></span><input type="range" id="pp-k" min="3000" max="9000" step="100" value="5500"></label>
+          <label class="ctrl"><span>뉴욕의 버거 값 <output id="pp-u-out"></output></span><input type="range" id="pp-u" min="3" max="9" step="0.1" value="6"></label>
+          <label class="ctrl"><span>시장 환율 <output id="pp-e-out"></output></span><input type="range" id="pp-e" min="900" max="1800" step="5" value="1340"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">PPP 환율(버거 기준)</span><span class="v" id="pp-o-p">—</span></div>
+        <div class="stat"><span class="k">서울 버거의 달러 값</span><span class="v" id="pp-o-d">—</span></div>
+        <div class="stat"><span class="k">원화 평가</span><span class="v" id="pp-o-v">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 시장 환율을 PPP 환율까지 내린다. 그때 서울 버거의 달러 값이 뉴욕 값과 같아진다. ② 서울 버거 값을 6,000원으로 올린다. 한국 물가가 오르면 PPP 환율이 올라가고 '저평가' 폭이 줄어든다. 환율이 그대로여도 한국 물건이 달러로 비싸진 것이다. ③ 시장 환율을 1,800원으로 올린다. 원화가 절반 가까이 싸 보이지만, 그렇다고 환율이 PPP 쪽으로 곧 돌아온다는 뜻은 아니다. (버거 값은 교육용 숫자다. 이코노미스트의 실제 빅맥 지수가 아니다.)</div>
+    </div>
+
+    <p>빅맥 지수로 보면 원화는 오랫동안 '저평가'로 나온다. 그렇다면 언젠가 그만큼 강해져야 하는가. 꼭 그렇지 않다. 햄버거 값에는 밀과 쇠고기(국경을 넘는 재료)뿐 아니라 매장 임대료와 직원 임금(국경을 넘지 않는 서비스)이 들어 있다. 소득이 높은 나라일수록 서비스 값이 비싸서 같은 햄버거도 비싸다. 그래서 PPP는 소득 수준이 비슷한 나라끼리, 그리고 10년 넘는 긴 기간에서 더 잘 맞는다. 몇 달, 몇 해의 환율은 앞에서 본 자본의 흐름이 훨씬 크게 흔든다.</p>
+    <p>PPP에서 나오는 쓸모 있는 생각이 하나 더 있다. <span class="term">실질환율</span><span class="en">(Real exchange rate)</span>이다. 명목 환율이 그대로여도 한국 물가가 미국보다 빨리 오르면 한국 물건은 달러로 비싸진다. 수출 기업의 가격 경쟁력은 명목 환율이 아니라 두 나라 물가까지 반영한 실질환율로 재야 한다.</p>
+    <div class="formula">$$\text{실질환율} = S \times \frac{P_{\text{미}}}{P_{\text{한}}}$$<div class="where">\(S\): 원/달러 명목 환율, \(P_{\text{미}}, P_{\text{한}}\): 두 나라의 물가 수준. 값이 오르면 한국 물건이 상대적으로 싸진 것이다(실질 절하). 국제결제은행(BIS)은 교역 상대국 여럿을 묶은 실질실효환율(REER)을 매달 공표한다.</div></div>
+
+    <div class="callout deep"><strong>왜 장기적으로는 PPP 쪽으로 끌리나</strong>원화가 실질 기준으로 아주 싸면 한국 물건이 해외에서 잘 팔리고, 수출 기업이 번 달러를 원화로 바꾸며 원화 수요가 늘어난다. 동시에 수입품이 비싸 수입이 준다. 이 힘이 몇 해에 걸쳐 쌓이면 환율이나 물가 중 하나가 움직여 실질환율이 되돌아간다. 다만 그 속도는 느리다. 실증 연구들은 실질환율의 괴리가 절반으로 줄어드는 데 몇 년이 걸린다고 보고한다. 단기 환율 전망에 PPP를 쓰는 기사를 보면 "언제쯤"이라는 질문을 붙인다.</div>
+  </section>
+
+  <section id="passthrough">
+    <h2>환율이 물가로 번지는 길</h2>
+    <p>지우의 회사 D식품은 미국과 호주에서 밀을, 동남아에서 원당을, 남미에서 대두유를 달러로 산다. 원가표의 맨 윗줄은 언제나 같은 곱셈이다.</p>
+    <div class="formula">$$\text{원화 원가} = \text{톤수} \times \text{국제 가격(달러)} \times \text{환율}$$<div class="where">국제 가격과 환율이 함께 10% 오르면 원화 원가는 21% 오른다(1.1 × 1.1 = 1.21). 반대로 국제 가격이 오를 때 원화가 강해지면 서로 상쇄된다.</div></div>
+    <p>원가가 오르면 회사는 셋 중 하나를 고른다. 판매 가격을 올리거나, 이익을 줄여 버티거나, 싼 원료로 바꾼다. 판매 가격을 얼마나 올리느냐가 <span class="term">환율 전가율</span><span class="en">(Exchange rate pass-through)</span>이다. 아래 시뮬레이터는 D식품의 한 달 원료 구매(교육용 가정)로 이 선택을 보여 준다.</p>
+
+    <div class="sim" id="sim-cost">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>D식품의 원가표: 환율·밀값·판매가와 이익률</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ct-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>원/달러 환율 <output id="ct-e-out"></output></span><input type="range" id="ct-e" min="1100" max="1800" step="5" value="1340"></label>
+          <label class="ctrl"><span>국제 밀 가격(톤당) <output id="ct-w-out"></output></span><input type="range" id="ct-w" min="150" max="500" step="5" value="250"></label>
+          <label class="ctrl"><span>판매 가격 인상 <output id="ct-p-out"></output></span><input type="range" id="ct-p" min="0" max="20" step="0.5" value="0"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">밀 1톤의 원화 값</span><span class="v" id="ct-o-t">—</span></div>
+        <div class="stat"><span class="k">한 달 원료비</span><span class="v" id="ct-o-r">—</span></div>
+        <div class="stat"><span class="k">영업이익률</span><span class="v" id="ct-o-m">—</span></div>
+        <div class="stat"><span class="k">이익률 0%가 되는 환율</span><span class="v" id="ct-o-b">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 환율을 1,340원에서 1,555원(2026년 7월 2일 종가 수준)으로 올린다. 판매가를 그대로 두면 이익률이 8%에서 0% 가까이로 떨어진다. ② 밀값을 350달러로 함께 올린다. 두 충격이 겹치면 이익률이 마이너스로 내려가 그래프의 빨간 영역에 들어간다. 팔수록 손해다. ③ 판매 가격을 올려 이익률을 8%로 되돌린다. 원료비 비중이 절반쯤인 회사에서 환율 16%가 판매가 몇 %를 부르는지 본다. 이것이 수입물가가 소비자물가로 번지는 첫 계단이다. (한 달 구매: 밀 3,000톤, 원당 1,000톤(450달러), 대두유 500톤(1,100달러), 그 밖의 비용 20억원. 판매 수량은 가격과 무관하다고 가정. 모두 교육용 숫자다.)</div>
+    </div>
+
+    <p>그래프의 선은 환율에 따른 이익률이다. 원료비 비중이 클수록 선이 가파르고, 이익률 0%가 되는 환율에 빨리 닿는다. 식품·항공·정유처럼 달러로 원료를 사는 업종이 환율 기사에 민감한 이유다. 반대로 원료는 국내에서 사고 제품을 달러로 파는 회사는 같은 그래프가 거꾸로 기운다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 210" role="img" aria-label="환율 상승이 수입물가, 생산자물가, 소비자물가로 차례로 번지며 단계마다 크기가 줄고 시간이 걸린다">
+        <defs><marker id="fx-ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="10" y="40" width="96" height="60" rx="10" class="f-acc2-soft"/><text x="58" y="66" text-anchor="middle" class="lbl-b">환율</text><text x="58" y="86" text-anchor="middle" class="lbl-dim">+10%</text>
+        <rect x="124" y="40" width="96" height="60" rx="10" class="f-surface"/><text x="172" y="66" text-anchor="middle" class="lbl-b">수입물가</text><text x="172" y="86" text-anchor="middle" class="lbl-dim">원화 기준</text>
+        <rect x="238" y="40" width="96" height="60" rx="10" class="f-surface"/><text x="286" y="66" text-anchor="middle" class="lbl-b">생산자물가</text><text x="286" y="86" text-anchor="middle" class="lbl-dim">공장 출고가</text>
+        <rect x="352" y="40" width="96" height="60" rx="10" class="f-acc-soft"/><text x="400" y="66" text-anchor="middle" class="lbl-b">소비자물가</text><text x="400" y="86" text-anchor="middle" class="lbl-dim">장바구니</text>
+        <g class="s-line" marker-end="url(#fx-ar3)" fill="none"><path d="M106 70H122"/><path d="M220 70H236"/><path d="M334 70H350"/></g>
+        <rect x="124" y="120" width="96" height="14" rx="3" class="f-acc2"/>
+        <rect x="238" y="120" width="58" height="14" rx="3" class="f-acc2"/>
+        <rect x="352" y="120" width="22" height="14" rx="3" class="f-acc2"/>
+        <text x="172" y="152" text-anchor="middle" class="lbl-dim">거의 그대로</text>
+        <text x="286" y="152" text-anchor="middle" class="lbl-dim">줄어든다</text>
+        <text x="400" y="152" text-anchor="middle" class="lbl-dim">더 줄어든다</text>
+        <text x="230" y="186" text-anchor="middle" class="lbl">단계마다 원료비 비중만큼 희석되고, 몇 달의 시차가 붙는다</text>
+        <text x="230" y="204" text-anchor="middle" class="lbl-dim">막대 길이는 크기의 순서를 보이기 위한 그림이며 실제 계수가 아니다</text>
+      </svg>
+      <figcaption><b>그림 3. 환율에서 장바구니까지.</b> 달러로 계약하는 수입품은 원화 값이 환율만큼 곧바로 오른다. 그러나 소비자가 사는 물건에는 국내 인건비·임대료·유통비가 섞여 있어, 소비자물가로 오는 몫은 훨씬 작고 늦다. 이 책의 모형은 환율 1%가 소비자물가 수준을 약 0.08% 움직인다고 가정한다(<a href="transmission.html#assume">9장</a>).</figcaption>
+    </figure>
+
+    <p>소비자에게는 더 직접적인 길도 있다. 해외 직구와 해외여행은 결제 순간의 환율이 곧 가격이다. 미국 쇼핑몰에서 200달러짜리 물건을 사면 환율 1,421.97원(2025년 연평균)일 때 약 28만 4천원, 1,338.5원(2026-10-08 종가)일 때 약 26만 8천원이다. 1년 사이에 같은 물건이 1만 7천원쯤 싸졌다. 카드 해외 결제에는 카드사와 국제 브랜드 수수료가 붙고, 청구 환율은 결제일이 아니라 매입일의 환율이 쓰이기도 한다.</p>
+    <div class="slip">
+      <div class="row"><span>미국 여행 경비 3,000달러 · 2025년 연평균 1,421.97원</span><span>약 427만원</span></div>
+      <div class="row"><span>같은 경비 · 2026-07-02 종가 1,555.8원</span><span>약 467만원</span></div>
+      <div class="row"><span>같은 경비 · 2026-10-08 종가 1,338.5원</span><span>약 402만원</span></div>
+      <div class="row total"><span>7월 고점과 10월의 차이</span><span>약 65만원</span></div>
+    </div>
+    <p>같은 원화 강세가 누구에게는 손해다. 미국 주식이나 미국 지수 ETF를 가진 사람은 주가가 그대로여도 원화로 환산한 평가액이 줄어든다. 지우가 적립하는 ETF 가운데 미국 지수 몫도 그렇다. 해외 자산을 가진 가계에 환율은 수익률의 한 부분이다.</p>
+
+    <div class="callout link"><strong>해외 주식과 환율, 내 돈의 결정으로</strong>환율이 해외 주식 수익률에 더해지는 계산, 환헤지형과 환노출형 상품의 차이는 StockBook <a href="https://stockbook.euiyun.com/chapters/global.html">해외 주식과 환율</a>에서, 금리·환율·경기가 가계 재무에 닿는 전체 그림은 MoneyBook <a href="https://moneybook.euiyun.com/chapters/economy.html">금리·환율·경기</a>에서 이어진다. 이 책은 환율이 왜 움직이는지까지만 다루고, 어떤 상품을 고를지는 다루지 않는다.</div>
+  </section>
+
+  <section id="reserves">
+    <h2>외환보유액: 4,405.6억 달러는 무엇에 쓰나</h2>
+    <p>2026년 9월 말 한국의 <span class="term">외환보유액</span><span class="en">(Foreign exchange reserves)</span>은 4,405.6억 달러였다 <span class="src">(한국은행 「2026년 9월 말 외환보유액」, 2026-10-06 발표)</span>. 전달보다 17.2억 달러 줄었는데, 발표와 보도는 한미전략투자공사에 자산을 맡긴 영향 등을 이유로 들었다. 외환보유액은 한국은행과 정부가 가진 외화 자산으로, 대부분 해외 국채·정부기관채 같은 유가증권이고, 나머지가 해외 예치금, 국제통화기금(IMF)과 관련된 자산(특별인출권 SDR, IMF 포지션), 금이다.</p>
+    <p>쓰임은 두 가지다. 하나는 <strong>쏠림 완화</strong>다. 환율이 며칠 사이에 한쪽으로 지나치게 빠르게 움직이면 외환당국이 달러를 팔거나 사서 속도를 늦춘다. 이것을 <span class="term">스무딩 오퍼레이션</span><span class="en">(Smoothing operation)</span>이라고 부른다. 방향을 거스르는 것이 아니라 속도를 조절하는 것이 목적이다. 다른 하나는 <strong>위기의 방파제</strong>다. 1997년 외환위기 때 한국의 가용 외환보유액은 12월에 약 39억 달러까지 줄어 해외에 갚을 달러가 바닥났다(<a href="crisis.html">13장</a>). 외국인 투자자가 한꺼번에 빠져나가도 달러를 내줄 수 있다는 믿음이 있으면, 애초에 한꺼번에 빠져나갈 이유가 줄어든다.</p>
+    <p>외환보유액이 많을수록 좋기만 한 것은 아니다. 대부분 수익률이 낮은 안전 자산이라 쌓아 두는 데 기회비용이 들고, 달러를 사서 쌓으려면 원화를 풀어야 한다. 얼마가 적정한지는 단기 외채, 수입액, 외국인 투자 규모에 따라 다르고, IMF와 국내 연구자들 사이에도 의견이 갈린다. 그래서 기사에서 "외환보유액 세계 ○위"를 보면 순위보다 단기 외채와 견준 비율을 함께 본다.</p>
+
+    <div class="callout stat"><strong>외환보유액과 연평균 환율은 어디서</strong>한국은행은 매달 초(대개 3~6일) 「○월 말 외환보유액」을 보도자료로 낸다. 구성(유가증권·예치금·SDR·IMF 포지션·금)과 전월 대비 증감 사유가 함께 나온다. 증감에는 외환당국의 시장 개입뿐 아니라 보유 자산의 이자 수입, 달러 이외 통화(유로·엔 등) 자산의 달러 환산액 변화도 섞여 있다. 시장 개입 규모 자체는 분기마다 따로 공개한다. 원/달러 연평균은 ECOS의 일별 환율을 평균한 값으로, 2025년 연평균은 1,421.97원으로 외환위기 때인 1998년(1,394.97원)을 넘는 역대 최고였다고 보도되었다 (한국은행 자료 인용 보도, 2025년 연평균).</div>
+  </section>
+
+  <section id="board">
+    <h2>환율 결정 판</h2>
+    <p>이제 앞의 힘들을 한 판에 올린다. 슬라이더 넷은 각각 달러의 공급이나 수요 곡선을 민다. 경상수지 흑자는 수출 기업의 달러 매도로 공급을 늘리고, 한·미 금리 차가 좁아지면 외국인의 채권 투자가 들어와 공급을 늘린다. 세계가 불안해지면(위험 회피) 외국인은 한국 주식을 팔고 모두가 달러를 찾는다. 국내 투자자의 해외투자는 달러 수요다. 아래 줄은 지우 회사의 한 달 원료비다.</p>
+
+    <div class="sim" id="sim-fxboard">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>환율 결정 판: 경상수지·금리 차·위험 회피·해외투자</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="fb-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>경상수지 흑자(월) <output id="fb-ca-out"></output></span><input type="range" id="fb-ca" min="0" max="700" step="10" value="400"></label>
+          <label class="ctrl"><span>한·미 금리 차(한국 − 미국) <output id="fb-g-out"></output></span><input type="range" id="fb-g" min="-3" max="2" step="0.25" value="-1"></label>
+          <label class="ctrl"><span>위험 회피(세계 불안) <output id="fb-r-out"></output></span><input type="range" id="fb-r" min="0" max="5" step="0.5" value="1"></label>
+          <label class="ctrl"><span>국내 투자자의 해외투자(월) <output id="fb-i-out"></output></span><input type="range" id="fb-i" min="0" max="400" step="10" value="150"></label>
+          <label class="check"><input type="checkbox" id="fb-sm"> 외환당국 스무딩(1,500원 위에서 달러 매도)</label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">균형 환율</span><span class="v" id="fb-o-e">—</span></div>
+        <div class="stat"><span class="k">지우 회사의 한 달 원료비(처음 장면 대비)</span><span class="v" id="fb-o-c">—</span></div>
+        <div class="stat"><span class="k">소비자물가 수준(이 책의 모형)</span><span class="v" id="fb-o-p">—</span></div>
+        <div class="stat"><span class="k">외환보유액 사용</span><span class="v" id="fb-o-r">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 처음 값은 2026년 9월과 비슷한 장면(큰 경상수지 흑자, 금리 차 −1%p)이다. 금리 차를 −1.25%p로 넓혀도(연준 인상) 환율은 조금만 오른다. 흑자가 크면 금리 차 하나로는 판이 잘 안 바뀐다. ② 경상수지를 100억 달러로 줄이고 위험 회피를 4로 올린다. 공급은 왼쪽, 수요는 오른쪽으로 가서 환율이 1,500원을 넘는다. 지우 회사의 원료비가 수억 원 늘어난다. ③ 그 상태에서 해외투자를 400억 달러로 올리고 스무딩을 켠다. 당국이 1,500원을 지키려면 매달 300억 달러 넘게 팔아야 하고, 보유액 전부를 써도 1년 남짓이면 바닥나는 계산이 나온다. 경상수지를 0으로 내리면 그 기간이 더 짧아진다. 시장은 그 계산을 먼저 한다. 막는 값을 정해 두고 버티는 개입이 위험한 이유다. (선형 수요·공급. 각 슬라이더가 곡선을 미는 크기는 교육용 가정이다. 보유액 전부를 개입에 쓸 수 있다고 단순화했지만 실제로는 바로 쓸 수 있는 몫이 더 작다. 전망이 아니다.)</div>
+    </div>
+
+    <p>판을 돌려 보면 2026년의 환율 기사 두 편이 한 그림에 들어온다. 상반기에는 반도체 수출이 기록적이었는데도 외국인의 주식 매도와 해외투자, 달러를 쌓아 두는 심리가 수요 쪽을 더 크게 밀어 환율이 1,500원대까지 올랐다는 해석이 나왔다. 7월 이후에는 수출 기업이 쌓아 둔 달러를 내놓고 금리 차가 좁아지면서 공급 쪽이 커져 환율이 1,300원대로 내려왔다는 해석이 나왔다. 둘 다 사후에 보도된 설명이며, 이 판의 계수로 실제 크기를 맞힌 것은 아니다. 판이 보여 주는 것은 <strong>하나의 힘만 보고 환율을 말할 수 없다</strong>는 것이다.</p>
+
+    <div class="callout warn"><strong>환율 숫자와 시뮬레이터에 대하여</strong>이 장의 환율 수치는 기사에 인용된 서울외환시장 종가이며 기준 시점의 값이다. 같은 날도 장중 고가, 주간 종가, 야간 종가, 매매기준율이 서로 다르고, 연평균 같은 통계는 원자료 대조에서 소수점이 달라질 수 있다. 시뮬레이터의 곡선 기울기와 반응 크기는 방향과 순서를 보이기 위한 교육용 가정이며, 앞으로의 환율을 예측하지 않는다.</div>
+  </section>
+
+  <div class="casefile">
+    <div class="tag"><b>CASE 지우</b><span>헤드라인 노트 · 2026년 9월</span></div>
+    <div class="headline">미국 연준 0.25%p 인상에도 원/달러 환율은 1,300원대<small>근거: FOMC 성명(2026-09-16, 3.50~3.75% → 3.75~4.00%, 2023년 7월 이후 첫 인상). 서울외환시장 주간거래 종가 2026-09-07 1,340.5원(장중 1,330원대, 1년 11개월 만의 최저), 2026-10-08 1,338.5원</small></div>
+    <h4>"원가표의 환율 칸을 고칠 때가 됐나"</h4>
+    <p>9월 아침 회의에서 팀장이 물었다. "다음 분기 원가표, 환율을 얼마로 놓을까?" 지우는 7월 초 1,550원대 환율로 짠 원가표를 아직 쓰고 있었다. 연준이 금리를 올렸다는 뉴스를 보고 환율이 다시 오를까 걱정했는데, 화면의 숫자는 1,300원대 후반에서 크게 움직이지 않았다.</p>
+    <p>지우는 노트에 숫자를 옮기고 삼촌 백정호에게 보여 주었다. 삼촌의 첫 질문은 "언제 기준이니?"였다. 지우는 7월 2일 주간거래 종가 1,555.8원(2009년 3월 이후 가장 높은 종가로 보도)과 9월 7일 종가 1,340.5원을 나란히 적었다. 두 번째 질문은 "무엇과 비교했니?"였다. 연준의 인상만 보면 금리 차가 벌어진 것이지만, 한국은행도 7월과 8월에 올려 9월의 금리 차(상단 기준 −1.00%p)는 연초(−1.25%p)보다 좁았다. 세 번째 질문은 "누가 잰 숫자니?"였다. 지우는 기사에 나온 숫자가 장중 최저가인지 종가인지부터 다시 확인했다. 9월 7일 장중 최저는 매체마다 1,334~1,336원으로 달랐고, 종가는 1,340.5원으로 같았다.</p>
+    <p id="fx-case-calc">—</p>
+    <div class="clue">
+      <div><b>헤드라인이 말한 것</b>미국이 금리를 올렸는데도 원화는 강하다.</div>
+      <div><b>숫자를 다시 보니</b>9월의 원화 강세는 금리 차 하나가 아니라 수출 기업의 달러 매도, 엔화 강세, 큰 경상수지 흑자가 함께 만든 것으로 보도되었다. 한·미 금리 차는 오히려 연초보다 좁았다.</div>
+      <div><b>내 생활에는</b><span id="fx-case-life">—</span></div>
+    </div>
+  </div>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>원/달러 환율은 1달러의 원화 가격이다. 환율 상승은 원화 약세, 환율 하락은 원화 강세다. 원화 가치는 환율의 역수라서 변화율의 크기도 다르다.</li>
+      <li>외환시장에서 수출 기업·외국인 투자자는 달러를 팔고(공급), 수입 기업·해외에 투자하는 국내 투자자는 달러를 산다(수요). 경상수지에서 번 달러가 모두 시장에 나오는 것은 아니며, 그 사이에 기대가 있다.</li>
+      <li>금리평가에 따르면 금리 차는 선물환율과 현물환율의 차이(스왑포인트)로 나타나고, 헤지하지 않은 투자의 승부는 1년 뒤 환율에 걸린다. 금리 차는 여러 힘 중 하나다.</li>
+      <li>구매력평가와 실질환율은 긴 기간의 기준점이다. 빅맥 지수가 '저평가'라고 해서 환율이 곧 그쪽으로 간다는 뜻은 아니다.</li>
+      <li>환율은 달러로 원료를 사는 기업의 원가를 곧바로 바꾸고, 판매가를 거쳐 몇 달에 걸쳐 소비자물가로 일부 번진다. 외환보유액은 쏠림을 늦추고 위기를 막는 방파제이며, 특정 환율을 지키는 데 쓰면 빠르게 줄어든다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q"><p>1. "원/달러 환율이 1,400원에서 1,330원으로 내렸다." 이 문장과 같은 뜻은?</p>
+        <div class="opts"><button class="opt">달러 가치가 올라 수입품이 비싸졌다</button><button class="opt" data-correct>원화 가치가 올라 같은 원화로 더 많은 달러를 살 수 있다</button><button class="opt">원화 가치가 떨어져 해외여행 경비가 늘었다</button><button class="opt">수출 기업이 받은 달러의 원화 환산액이 늘었다</button></div>
+        <div class="quiz-exp">원/달러 환율은 1달러의 원화 가격이다. 숫자가 내리면 달러가 싸진 것, 곧 원화가 강해진 것이다. 수입품과 해외여행은 싸지고, 수출 기업이 받은 달러의 원화 환산액은 줄어든다.</div></div>
+      <div class="quiz-q"><p>2. 경상수지 흑자가 사상 최대인데도 원/달러 환율이 오르는 경우를 가장 잘 설명하는 것은?</p>
+        <div class="opts"><button class="opt">경상수지 흑자는 언제나 환율을 올린다</button><button class="opt">경상수지와 환율은 아무 관계가 없다</button><button class="opt">한국은행이 기준금리를 올렸기 때문이다</button><button class="opt" data-correct>수출 기업이 달러를 쌓아 두고, 외국인 주식 매도와 해외투자로 달러 수요가 더 크게 늘었기 때문일 수 있다</button></div>
+        <div class="quiz-exp">외환시장의 환율은 그날 나온 달러 공급과 수요로 정해진다. 무역으로 번 달러가 시장에 나오지 않거나, 자본 거래로 달러를 사려는 쪽이 더 크면 흑자 속에서도 환율이 오를 수 있다.</div></div>
+      <div class="quiz-q"><p>3. 한국 1년 금리가 3%, 미국 1년 금리가 4%, 오늘 환율이 1,340원이다. 1년 선물환율에 대한 설명으로 알맞은 것은?</p>
+        <div class="opts"><button class="opt" data-correct>금리 차 때문에 현물환율보다 약 13원 낮다(스왑포인트가 마이너스)</button><button class="opt">미국 금리가 높으므로 현물환율보다 높다</button><button class="opt">선물환율은 현물환율과 항상 같다</button><button class="opt">선물환율은 시장의 환율 전망을 그대로 나타낸다</button></div>
+        <div class="quiz-exp">무위험 금리평가에 따라 선물환율 = 1,340 × 1.03 ÷ 1.04 ≈ 1,327원이다. 선물환율은 전망이 아니라 두 나라 금리 차로 정해지는 값이다. 그래서 환헤지를 하면 금리 차의 이득이 사라진다.</div></div>
+      <div class="quiz-q"><p>4. 달러로 밀을 사는 식품 회사에 대해 옳은 설명은?</p>
+        <div class="opts"><button class="opt">국제 밀값이 오르면 환율과 상관없이 원가가 같은 비율로 오른다</button><button class="opt">환율이 10% 오르면 소비자물가도 곧바로 10% 오른다</button><button class="opt" data-correct>국제 밀값과 환율이 함께 10% 오르면 원화 원가는 약 21% 오르고, 소비자물가에는 그보다 훨씬 작은 몫이 늦게 번진다</button><button class="opt">원화 강세는 이 회사의 원가를 올린다</button></div>
+        <div class="quiz-exp">원화 원가 = 톤수 × 달러 가격 × 환율이므로 1.1 × 1.1 = 1.21배가 된다. 소비자가 사는 제품에는 국내 비용이 섞여 있고 회사가 이익을 줄여 흡수하기도 해서, 소비자물가로 오는 몫은 작고 늦다.</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var K = EC.KR, H = EC.HIST, C = EC.CASE, T = EC.TRANSMIT;
+  var E0 = K.usdkrw;                       // 2026-10-08 종가 1,338.5원
+  var PEAK = 1555.8;                       // 2026-07-02 주간거래 종가(보도)
+  var SEP7 = 1340.5;                       // 2026-09-07 주간거래 종가(보도)
+  var won0 = function (x) { return Math.round(x).toLocaleString("ko-KR") + "원"; };
+  var won1 = function (x) { return (Math.round(x * 10) / 10).toLocaleString("ko-KR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + "원"; };
+  var sgn = function (x, d) { d = d == null ? 1 : d; return (x > 0.00005 ? "+" : x < -0.00005 ? "−" : "") + Math.abs(x * 100).toFixed(d) + "%"; };
+  // 지우 회사의 한 달 원료 구매(교육용)
+  var BUY = { wheatT: 3000, wheatP: 250, sugarT: 1000, sugarP: 450, oilT: 500, oilP: 1100, other: 20e8 };
+  function rawUsd(wp) { return BUY.wheatT * (wp == null ? BUY.wheatP : wp) + BUY.sugarT * BUY.sugarP + BUY.oilT * BUY.oilP; }
+
+  /* ---------------- sim-quote ---------------- */
+  (function () {
+    var e = 1421.97, box = null;
+    var MARKS = [[E0, "2026-10-08", "26.10"], [K.usdkrw2025avg, "2025 평균", "25 평균"], [PEAK, "2026-07-02", "26.7"], [H.fx1997Peak.close, "1997-12-23", "97.12"]];
+    var cv = EB.canvas("#qt-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      var xs = []; for (var x = 900; x <= 2100; x += 10) xs.push([x, 10000 / x]);
+      var c = EB.chart(ctx, { x: 56, y: 18, w: w - 72, h: h - 60 }, {
+        x: [900, 2100], y: [4, 11.5], xTicks: [900, 1200, 1500, 1800, 2100], yTicks: [4, 6, 8, 10],
+        xFmt: function (v) { return v.toLocaleString("ko-KR"); }, yFmt: function (v) { return "$" + v; },
+        xLabel: "원/달러 환율(원)", series: [{ data: xs, color: P.accent, width: 2.6 }],
+      });
+      box = c;
+      ctx.font = EB.font(10.5); ctx.textAlign = "center";
+      MARKS.forEach(function (m, i) {
+        var px = c.X(m[0]);
+        ctx.strokeStyle = P.faint; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(px, c.box.y + 6); ctx.lineTo(px, c.box.y + c.box.h); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = P.dim; ctx.fillText(w < 520 ? m[2] : m[1], px, c.box.y + 30 + (i % 2) * 14);
+      });
+      // 기준점과 현재점
+      var bx = c.X(E0), by = c.Y(10000 / E0), px = c.X(e), py = c.Y(10000 / e);
+      ctx.fillStyle = P.faint; ctx.beginPath(); ctx.arc(bx, by, 4, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = P.accent2; ctx.lineWidth = 1.4; ctx.setLineDash([4, 3]);
+      ctx.beginPath(); ctx.moveTo(px, c.box.y + c.box.h); ctx.lineTo(px, py); ctx.lineTo(c.box.x, py); ctx.stroke(); ctx.setLineDash([]);
+      ctx.beginPath(); ctx.arc(px, py, 8, 0, Math.PI * 2); ctx.fillStyle = P.accent2; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = P.bg; ctx.stroke();
+      ctx.fillStyle = P.text; ctx.font = EB.font(12, true, 600); ctx.textAlign = px > c.box.x + c.box.w * 0.7 ? "right" : "left";
+      ctx.fillText("$" + (10000 / e).toFixed(2), px + (ctx.textAlign === "left" ? 12 : -12), py - 10);
+      var dc = e / E0 - 1, dw = E0 / e - 1;
+      EB.stat("qt-o-e", won1(e));
+      EB.stat("qt-o-d", (10000 / e).toFixed(2) + "달러");
+      EB.stat("qt-o-c", '<span class="won ' + (dc >= 0 ? "minus" : "plus") + '">' + sgn(dc) + "</span>");
+      EB.stat("qt-o-w", '<span class="won ' + (dw >= 0 ? "plus" : "minus") + '">' + sgn(dw) + "</span>");
+    }, { aspect: 0.55, minHeight: 250, maxHeight: 380 });
+    EB.drag(cv.canvas, { move: function (x) {
+      if (!box) return;
+      var v = EB.map(x, box.box.x, box.box.x + box.box.w, 900, 2100);
+      // 기준점 근처로 끌면 붙는다
+      [E0, K.usdkrw2025avg, PEAK, H.fx1997Peak.close].forEach(function (m) { if (Math.abs(v - m) < 12) v = m; });
+      e = EB.clamp(v, 900, 2100); cv.redraw();
+    } });
+  })();
+
+  /* ---------------- 외환시장 곡선(공통) ---------------- */
+  // 수요 e = A + B·m − B·Q, 공급 e = Cc − D·s + D·Q (Q: 월 거래량, 억 달러, 교육용)
+  var MK = { A: 1940, B: 1.2, C: 740, D: 1.2 };
+  function eq(s, m) {
+    var q = (MK.A + MK.B * m - MK.C + MK.D * s) / (MK.B + MK.D);
+    return { q: q, e: MK.A + MK.B * m - MK.B * q };
+  }
+  function drawMarket(ctx, c, P, s, m, ghost) {
+    var dem = function (q) { return MK.A + MK.B * m - MK.B * q; }, sup = function (q) { return MK.C - MK.D * s + MK.D * q; };
+    if (ghost) {
+      ctx.save(); ctx.beginPath(); ctx.rect(c.box.x, c.box.y, c.box.w, c.box.h); ctx.clip(); ctx.globalAlpha = 0.45; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.4;
+      ctx.strokeStyle = P.faint;
+      ctx.beginPath(); ctx.moveTo(c.X(0), c.Y(MK.A)); ctx.lineTo(c.X(1000), c.Y(MK.A - MK.B * 1000)); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(c.X(0), c.Y(MK.C)); ctx.lineTo(c.X(1000), c.Y(MK.C + MK.D * 1000)); ctx.stroke();
+      ctx.restore();
+    }
+    ctx.save(); ctx.beginPath(); ctx.rect(c.box.x, c.box.y, c.box.w, c.box.h); ctx.clip();
+    ctx.lineWidth = 2.6;
+    ctx.strokeStyle = P.accent2; ctx.beginPath(); ctx.moveTo(c.X(0), c.Y(dem(0))); ctx.lineTo(c.X(1000), c.Y(dem(1000))); ctx.stroke();
+    ctx.strokeStyle = P.accent; ctx.beginPath(); ctx.moveTo(c.X(0), c.Y(sup(0))); ctx.lineTo(c.X(1000), c.Y(sup(1000))); ctx.stroke();
+    ctx.restore();
+    return { dem: dem, sup: sup };
+  }
+
+  /* ---------------- sim-fxmarket ---------------- */
+  (function () {
+    var box = null, grab = null, grabX = 0, grabV = 0;
+    var gS = EB.range("mk-s", function (v) { return (v > 0 ? "+" : "") + v + "억 달러"; }, draw);
+    var gD = EB.range("mk-d", function (v) { return (v > 0 ? "+" : "") + v + "억 달러"; }, draw);
+    var HQ = { d: 260, s: 260 }; // 손잡이를 둘 가격 높이 대신 거래량 위치
+    var cv = EB.canvas("#mk-cv", function (ctx, w, h) {
+      var P = EB.palette(), s = gS(), m = gD(), r = eq(s, m);
+      var c = EB.chart(ctx, { x: 56, y: 16, w: w - 70, h: h - 58 }, {
+        x: [0, 1000], y: [900, 1900], xTicks: [0, 250, 500, 750, 1000], yTicks: [1000, 1200, 1400, 1600, 1800],
+        xFmt: function (v) { return v + "억$"; }, yFmt: function (v) { return v.toLocaleString("ko-KR"); },
+        xLabel: "달러 거래량(월, 교육용)",
+      });
+      box = c;
+      var L = drawMarket(ctx, c, P, s, m, true);
+      // 손잡이: 수요는 위쪽(높은 환율) 끝 근처, 공급은 아래쪽 끝 근처
+      var qd = EB.clamp((MK.A + MK.B * m - 1750) / MK.B, 30, 970), qs = EB.clamp((1050 - MK.C + MK.D * s) / MK.D, 30, 970);
+      HQ.d = qd; HQ.s = qs;
+      [[qd, L.dem(qd), P.accent2, "달러 수요"], [qs, L.sup(qs), P.accent, "달러 공급"]].forEach(function (k) {
+        var px = c.X(k[0]), py = c.Y(k[1]);
+        ctx.beginPath(); ctx.arc(px, py, 9, 0, Math.PI * 2); ctx.fillStyle = k[2]; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = P.bg; ctx.stroke();
+        ctx.fillStyle = k[2]; ctx.font = EB.font(11.5, false, 600); ctx.textAlign = "left"; ctx.fillText(k[3], px + 13, py + 4);
+      });
+      // 균형점
+      var ex = c.X(r.q), ey = c.Y(r.e);
+      ctx.strokeStyle = P.text; ctx.globalAlpha = 0.5; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(c.box.x, ey); ctx.lineTo(ex, ey); ctx.lineTo(ex, c.box.y + c.box.h); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+      ctx.beginPath(); ctx.arc(ex, ey, 6, 0, Math.PI * 2); ctx.fillStyle = P.text; ctx.fill();
+      ctx.font = EB.font(12, false, 700); ctx.textAlign = ex > c.box.x + c.box.w * 0.6 ? "right" : "left";
+      ctx.fillText(Math.round(r.e).toLocaleString("ko-KR") + "원", ex + (ctx.textAlign === "left" ? 10 : -10), ey - 10);
+      EB.stat("mk-o-e", won0(r.e));
+      EB.stat("mk-o-q", Math.round(r.q) + "억 달러");
+      var d = r.e / 1340 - 1;
+      EB.stat("mk-o-c", '<span class="won ' + (d > 0.0005 ? "minus" : d < -0.0005 ? "plus" : "") + '">' + sgn(d) + (d > 0.0005 ? " 원화 약세" : d < -0.0005 ? " 원화 강세" : "") + "</span>");
+    }, { aspect: 0.62, minHeight: 270, maxHeight: 420 });
+    EB.drag(cv.canvas, {
+      start: function (x, y) {
+        if (!box) return;
+        var dD = Math.hypot(x - box.X(HQ.d), y - box.Y(MK.A + MK.B * gD() - MK.B * HQ.d));
+        var dS = Math.hypot(x - box.X(HQ.s), y - box.Y(MK.C - MK.D * gS() + MK.D * HQ.s));
+        // 손잡이가 아니어도 가까운 곡선을 잡는다
+        if (Math.min(dD, dS) > 60) {
+          var q = EB.map(x, box.box.x, box.box.x + box.box.w, 0, 1000), ev = EB.map(y, box.box.y + box.box.h, box.box.y, 900, 1900);
+          dD = Math.abs(ev - (MK.A + MK.B * gD() - MK.B * q)); dS = Math.abs(ev - (MK.C - MK.D * gS() + MK.D * q));
+        }
+        grab = dD <= dS ? "d" : "s"; grabX = x; grabV = grab === "d" ? gD() : gS();
+      },
+      move: function (x) {
+        if (!box || !grab) return;
+        var dq = (x - grabX) / box.box.w * 1000, v = EB.clamp(Math.round((grabV + dq) / 10) * 10, -300, 300);
+        if (grab === "d") gD.set(v); else gS.set(v);
+      },
+      end: function () { grab = null; },
+    });
+    document.getElementById("mk-re").addEventListener("click", function () { gS.set(0); gD.set(0); });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-parity ---------------- */
+  (function () {
+    var S1 = E0, box = null;
+    var gK = EB.range("pr-k", function (v) { return v.toFixed(2) + "%"; }, draw);
+    var gU = EB.range("pr-u", function (v) { return v.toFixed(2) + "%"; }, draw);
+    var hedge = document.getElementById("pr-h");
+    hedge.addEventListener("change", draw);
+    var PR = 1e8;
+    var cv = EB.canvas("#pr-cv", function (ctx, w, h) {
+      var P = EB.palette(), ik = gK() / 100, iu = gU() / 100;
+      var F = E0 * (1 + ik) / (1 + iu), H1 = hedge.checked;
+      var krw = PR * (1 + ik);
+      var usd = function (s) { return PR / E0 * (1 + iu) * (H1 ? F : s); };
+      var c = EB.chart(ctx, { x: 64, y: 16, w: w - 78, h: h - 58 }, {
+        x: [1100, 1600], y: [0.85e8, 1.25e8], xTicks: [1100, 1200, 1300, 1400, 1500, 1600], yTicks: [0.9e8, 1e8, 1.1e8, 1.2e8],
+        xFmt: function (v) { return v.toLocaleString("ko-KR"); }, yFmt: function (v) { return EB.wonAxis(v); },
+        xLabel: "1년 뒤 원/달러 환율(원)",
+        series: [
+          { data: [[1100, krw], [1600, krw]], color: P.accent, width: 2.6 },
+          { data: [[1100, usd(1100)], [1600, usd(1600)]], color: P.accent2, width: 2.6, dash: H1 ? [6, 4] : null },
+        ],
+        hlines: [{ y: PR, color: P.faint, label: "원금 1억" }],
+        vlines: [{ x: E0, color: P.faint, label: "오늘" }],
+      });
+      box = c;
+      // 손익분기
+      if (F > 1100 && F < 1600) {
+        ctx.beginPath(); ctx.arc(c.X(F), c.Y(krw), 5, 0, Math.PI * 2); ctx.fillStyle = P.text; ctx.fill();
+        ctx.fillStyle = P.dim; ctx.font = EB.font(10.5); ctx.textAlign = "center"; ctx.fillText("S*", c.X(F), c.Y(krw) + 16);
+      }
+      // 이긴 쪽 영역
+      var px = c.X(S1);
+      ctx.save(); ctx.strokeStyle = P.text; ctx.globalAlpha = 0.6; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(px, c.box.y); ctx.lineTo(px, c.box.y + c.box.h); ctx.stroke(); ctx.restore();
+      var vu = usd(S1);
+      ctx.beginPath(); ctx.arc(px, c.Y(krw), 5, 0, Math.PI * 2); ctx.fillStyle = P.accent; ctx.fill();
+      ctx.beginPath(); ctx.arc(px, c.Y(EB.clamp(vu, 0.85e8, 1.25e8)), 5, 0, Math.PI * 2); ctx.fillStyle = P.accent2; ctx.fill();
+      ctx.beginPath(); ctx.arc(px, c.box.y + c.box.h, 8, 0, Math.PI * 2); ctx.fillStyle = P.text; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = P.bg; ctx.stroke();
+      ctx.font = EB.font(11); ctx.textAlign = "left";
+      ctx.fillStyle = P.accent; ctx.fillText("원화 채권", c.box.x + 8, c.box.y + 14);
+      ctx.fillStyle = P.accent2; ctx.fillText(H1 ? "달러 채권(선물환 헤지)" : "달러 채권(환노출)", c.box.x + 8, c.box.y + 29);
+      EB.stat("pr-o-s", won1(S1) + (H1 ? " (헤지라 무관)" : ""));
+      EB.stat("pr-o-b", won1(F));
+      var diff = vu - krw;
+      EB.stat("pr-o-v", EB.won(krw) + " · " + EB.won(vu) + (Math.abs(diff) < 5e4 ? " (같음)" : diff > 0 ? " (달러 승)" : " (원화 승)"));
+      var sp = F - E0;
+      EB.stat("pr-o-w", (sp >= 0 ? "+" : "−") + Math.abs(sp).toFixed(1) + "원");
+    }, { aspect: 0.6, minHeight: 260, maxHeight: 400 });
+    EB.drag(cv.canvas, { move: function (x) { if (!box) return; S1 = EB.clamp(Math.round(EB.map(x, box.box.x, box.box.x + box.box.w, 1100, 1600) * 2) / 2, 1100, 1600); cv.redraw(); } });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-ppp ---------------- */
+  (function () {
+    var gK = EB.range("pp-k", function (v) { return v.toLocaleString("ko-KR") + "원"; }, draw);
+    var gU = EB.range("pp-u", function (v) { return v.toFixed(1) + "달러"; }, draw);
+    var gE = EB.range("pp-e", function (v) { return v.toLocaleString("ko-KR") + "원"; }, draw);
+    var cv = EB.canvas("#pp-cv", function (ctx, w, h) {
+      var P = EB.palette(), kp = gK(), up = gU(), e = gE();
+      var ppp = kp / up, val = ppp / e - 1, kd = kp / e;
+      var L = 50, R = w - 30, y = h * 0.42;
+      var lo = 300, hi = 2400, X = function (v) { return L + (EB.clamp(v, lo, hi) - lo) / (hi - lo) * (R - L); };
+      // 눈금
+      ctx.strokeStyle = P.axis; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(L, y); ctx.lineTo(R, y); ctx.stroke();
+      ctx.fillStyle = P.dim; ctx.font = EB.font(10.5, true); ctx.textAlign = "center";
+      [500, 1000, 1500, 2000].forEach(function (v) { ctx.fillRect(X(v) - 0.5, y - 4, 1, 8); ctx.fillText(v.toLocaleString("ko-KR"), X(v), y + 20); });
+      ctx.font = EB.font(11); ctx.fillText("원/달러 환율", (L + R) / 2, y + 38);
+      // 괴리 구간
+      ctx.fillStyle = val < 0 ? EB.color("bad-soft") : EB.color("ok-soft");
+      ctx.fillRect(Math.min(X(ppp), X(e)), y - 16, Math.abs(X(e) - X(ppp)), 32);
+      function mark(v, col, label, up1) {
+        var px = X(v);
+        ctx.fillStyle = col; ctx.beginPath(); ctx.moveTo(px, y); ctx.lineTo(px - 7, y + (up1 ? -14 : 14)); ctx.lineTo(px + 7, y + (up1 ? -14 : 14)); ctx.fill();
+        ctx.font = EB.font(12, false, 700); ctx.textAlign = "center"; ctx.fillText(label, EB.clamp(px, L + 40, R - 40), y + (up1 ? -24 : 58));
+      }
+      mark(ppp, P.accent, "PPP " + Math.round(ppp).toLocaleString("ko-KR") + "원", true);
+      mark(e, P.accent2, "시장 " + Math.round(e).toLocaleString("ko-KR") + "원", false);
+      // 버거 막대 비교
+      var by = h - 38, bw = (R - L) / 2 - 16, mx = Math.max(kd, up, 1);
+      [[kd, "서울 버거(달러 환산)", P.accent], [up, "뉴욕 버거", P.accent2]].forEach(function (b, i) {
+        var x0 = L + i * ((R - L) / 2 + 8), len = b[0] / (mx * 1.15) * bw;
+        ctx.fillStyle = b[2]; ctx.globalAlpha = 0.85; ctx.fillRect(x0, by, len, 14); ctx.globalAlpha = 1;
+        ctx.fillStyle = P.text; ctx.font = EB.font(11); ctx.textAlign = "left";
+        ctx.fillText(b[1] + " $" + b[0].toFixed(2), x0, by - 6);
+      });
+      ctx.fillStyle = P.dim; ctx.font = EB.font(11); ctx.textAlign = "left"; ctx.fillText("교육용 숫자", 8, 16);
+      EB.stat("pp-o-p", won0(ppp));
+      EB.stat("pp-o-d", "$" + kd.toFixed(2) + " (뉴욕 $" + up.toFixed(2) + ")");
+      EB.stat("pp-o-v", Math.abs(val) < 0.005 ? "적정" : (val < 0 ? "저평가 " : "고평가 ") + Math.abs(val * 100).toFixed(1) + "%");
+    }, { aspect: 0.5, minHeight: 230, maxHeight: 320 });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-cost ---------------- */
+  (function () {
+    var gE = EB.range("ct-e", function (v) { return v.toLocaleString("ko-KR") + "원"; }, draw);
+    var gW = EB.range("ct-w", function (v) { return v + "달러"; }, draw);
+    var gP = EB.range("ct-p", function (v) { return "+" + v.toFixed(1) + "%"; }, draw);
+    var SALES0 = (rawUsd() * 1340 + BUY.other) / 0.92;   // 처음 이익률 8%
+    function margin(e, wp, p) { var s = SALES0 * (1 + p); return (s - rawUsd(wp) * e - BUY.other) / s; }
+    var cv = EB.canvas("#ct-cv", function (ctx, w, h) {
+      var P = EB.palette(), e = gE(), wp = gW(), p = gP() / 100;
+      var xs = []; for (var x = 1100; x <= 1800; x += 10) xs.push([x, margin(x, wp, p) * 100]);
+      var c = EB.chart(ctx, { x: 52, y: 16, w: w - 66, h: h - 58 }, {
+        x: [1100, 1800], y: [-25, 30], xTicks: [1100, 1300, 1500, 1700], yTicks: [-20, -10, 0, 10, 20, 30],
+        xFmt: function (v) { return v.toLocaleString("ko-KR"); }, yFmt: function (v) { return v + "%"; },
+        xLabel: "원/달러 환율(원)",
+      });
+      ctx.fillStyle = EB.color("bad-soft"); ctx.fillRect(c.box.x, c.Y(0), c.box.w, c.Y(-25) - c.Y(0));
+      ctx.strokeStyle = P.axis; ctx.beginPath(); ctx.moveTo(c.box.x, c.Y(0)); ctx.lineTo(c.box.x + c.box.w, c.Y(0)); ctx.stroke();
+      EB.chart(ctx, c.box, { x: [1100, 1800], y: [-25, 30], xTicks: [], yTicks: [], series: [
+        { data: [[1100, margin(1100, 250, 0) * 100], [1800, margin(1800, 250, 0) * 100]], color: P.faint, width: 1.4, dash: [4, 4] },
+        { data: xs, color: P.accent, width: 2.6 }] });
+      var m = margin(e, wp, p), px = c.X(e), py = c.Y(EB.clamp(m * 100, -25, 30));
+      ctx.beginPath(); ctx.arc(px, py, 7, 0, Math.PI * 2); ctx.fillStyle = m < 0 ? P.bad : P.accent2; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = P.bg; ctx.stroke();
+      ctx.fillStyle = P.text; ctx.font = EB.font(12, true, 700); ctx.textAlign = px > c.box.x + c.box.w * 0.7 ? "right" : "left";
+      ctx.fillText((m * 100).toFixed(1) + "%", px + (ctx.textAlign === "left" ? 11 : -11), py - 9);
+      ctx.font = EB.font(11); ctx.textAlign = "left"; ctx.fillStyle = P.dim;
+      ctx.fillText("점선: 밀 250달러·판매가 그대로", c.box.x + 8, c.box.y + 14);
+      ctx.fillStyle = P.bad; ctx.fillText("팔수록 손해", c.box.x + 8, c.Y(-20));
+      var be = (SALES0 * (1 + p) - BUY.other) / rawUsd(wp);
+      EB.stat("ct-o-t", EB.won(wp * e));
+      EB.stat("ct-o-r", EB.won(rawUsd(wp) * e) + " (" + sgn(rawUsd(wp) * e / (rawUsd() * 1340) - 1) + ")");
+      EB.stat("ct-o-m", '<span class="won ' + (m < 0 ? "minus" : "") + '">' + (m * 100).toFixed(1) + "%</span>");
+      EB.stat("ct-o-b", won0(be));
+    }, { aspect: 0.6, minHeight: 260, maxHeight: 400 });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-fxboard ---------------- */
+  (function () {
+    var CAP = 1500;
+    var gCA = EB.range("fb-ca", function (v) { return v + "억 달러"; }, draw);
+    var gG = EB.range("fb-g", function (v) { return (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(2) + "%p"; }, draw);
+    var gR = EB.range("fb-r", function (v) { return v.toFixed(1); }, draw);
+    var gI = EB.range("fb-i", function (v) { return v + "억 달러"; }, draw);
+    var sm = document.getElementById("fb-sm");
+    sm.addEventListener("change", draw);
+    function shifts() {
+      var ca = gCA(), g = gG(), r = gR(), inv = gI();
+      // 공급 이동: 수출 네고(흑자의 절반만 시장에), 금리 차에 따른 외국인 채권 자금, 위험 회피 때 외국인 주식 매도
+      var s = 0.5 * (ca - 400) + 50 * (g + 1) - 25 * (r - 1);
+      // 수요 이동: 위험 회피 때 달러 선호, 국내 투자자의 해외투자
+      var m = 35 * (r - 1) + (inv - 150);
+      return { s: s, m: m };
+    }
+    var cv = EB.canvas("#fb-cv", function (ctx, w, h) {
+      var P = EB.palette(), sh = shifts(), r = eq(sh.s, sh.m);
+      var e = r.e, capOn = sm.checked && e > CAP, need = 0;
+      if (capOn) {
+        var qd = (MK.A + MK.B * sh.m - CAP) / MK.B, qs = (CAP - MK.C + MK.D * sh.s) / MK.D;
+        need = Math.max(0, qd - qs); e = CAP;
+      }
+      var c = EB.chart(ctx, { x: 56, y: 16, w: w - 70, h: h - 58 }, {
+        x: [0, 1000], y: [900, 2000], xTicks: [0, 250, 500, 750, 1000], yTicks: [1000, 1200, 1400, 1600, 1800, 2000],
+        xFmt: function (v) { return v + "억$"; }, yFmt: function (v) { return v.toLocaleString("ko-KR"); },
+        xLabel: "달러 거래량(월, 교육용)",
+      });
+      if (sm.checked) {
+        ctx.fillStyle = EB.color("warn-soft"); ctx.fillRect(c.box.x, c.box.y, c.box.w, c.Y(CAP) - c.box.y);
+        ctx.fillStyle = P.dim; ctx.font = EB.font(10.5); ctx.textAlign = "right"; ctx.fillText("당국이 막으려는 구간", c.box.x + c.box.w - 6, c.box.y + 14);
+      }
+      drawMarket(ctx, c, P, sh.s, sh.m, true);
+      if (capOn) {
+        var qd2 = (MK.A + MK.B * sh.m - CAP) / MK.B, qs2 = (CAP - MK.C + MK.D * sh.s) / MK.D;
+        ctx.strokeStyle = P.bad; ctx.lineWidth = 5; ctx.globalAlpha = 0.7; ctx.beginPath(); ctx.moveTo(c.X(qs2), c.Y(CAP)); ctx.lineTo(c.X(qd2), c.Y(CAP)); ctx.stroke(); ctx.globalAlpha = 1;
+        ctx.fillStyle = P.bad; ctx.font = EB.font(11, false, 600); ctx.textAlign = "center"; ctx.fillText("당국이 메우는 달러 부족", (c.X(qs2) + c.X(qd2)) / 2, c.Y(CAP) + 16);
+      }
+      var ex = c.X(capOn ? (CAP - MK.C + MK.D * sh.s) / MK.D : r.q), ey = c.Y(e);
+      ctx.beginPath(); ctx.arc(ex, ey, 7, 0, Math.PI * 2); ctx.fillStyle = P.text; ctx.fill();
+      ctx.font = EB.font(13, false, 700); ctx.textAlign = ex > c.box.x + c.box.w * 0.6 ? "right" : "left";
+      ctx.fillText(Math.round(e).toLocaleString("ko-KR") + "원", ex + (ctx.textAlign === "left" ? 11 : -11), ey - 11);
+      ctx.font = EB.font(11); ctx.textAlign = "right";
+      ctx.fillStyle = P.accent; ctx.fillText("달러 공급", c.box.x + c.box.w - 6, c.box.y + c.box.h - 24);
+      ctx.fillStyle = P.accent2; ctx.fillText("달러 수요", c.box.x + c.box.w - 6, c.box.y + c.box.h - 9);
+      // 읽기
+      var B0 = eq(0, 0).e, cost = rawUsd() * e, cost0 = rawUsd() * B0, de = e / B0 - 1;
+      EB.stat("fb-o-e", won0(e) + (capOn ? " (당국이 막는 중)" : "") + (Math.abs(de) < 0.0005 ? "" : ' <span class="won ' + (de > 0 ? "minus" : "plus") + '">' + sgn(de) + "</span>"));
+      EB.stat("fb-o-c", EB.won(cost) + " (" + (cost >= cost0 ? "+" : "−") + EB.won(Math.abs(cost - cost0)) + ")");
+      EB.stat("fb-o-p", sgn(T.fxToCpi * de, 2) + " (몇 달에 걸쳐)");
+      if (!sm.checked) EB.stat("fb-o-r", r.e > CAP ? "개입 없음(스무딩 꺼짐)" : "없음");
+      else if (!capOn) EB.stat("fb-o-r", "필요 없음");
+      else {
+        var months = K.fxReserves / 1e8 / need;
+        EB.stat("fb-o-r", '<span class="won minus">월 ' + Math.round(need) + "억 달러 · 약 " + (months < 1 ? "1개월 안" : Math.round(months) + "개월") + "이면 소진</span>");
+      }
+    }, { aspect: 0.66, minHeight: 290, maxHeight: 440 });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- 케이스 ---------------- */
+  (function () {
+    var cPeak = rawUsd() * PEAK, cSep = rawUsd() * SEP7, d = cSep / cPeak - 1;
+    document.getElementById("fx-case-calc").innerHTML = "지우는 회사의 한 달 원료 구매(밀 3,000톤, 원당 1,000톤, 대두유 500톤, 국제 가격은 그대로라고 두고, 교육용 숫자)로 계산해 보았다. 달러로는 " + (rawUsd() / 1e4).toLocaleString("ko-KR") + "만 달러다. 7월 2일 종가로 바꾸면 " + EB.won(cPeak) + ", 9월 7일 종가로 바꾸면 " + EB.won(cSep) + "이다. 환율이 " + sgn(SEP7 / PEAK - 1) + " 움직이는 동안 원료비는 한 달에 <b>" + EB.won(cPeak - cSep) + "</b> 줄었다. 지우는 원가표의 환율 칸에 숫자 하나를 넣는 대신, 1,300원·1,400원·1,500원 세 줄을 나란히 넣자고 제안했다. 환율이 어디로 갈지는 아무도 모른다는 것을 숫자로 보여 주는 편이 정직했다.";
+    var trip = 3000 * (PEAK - E0);
+    document.getElementById("fx-case-life").textContent = "회사 원료비는 7월보다 한 달 " + EB.won(cPeak - cSep) + " 가볍다(교육용 계산). 미국 여행 경비 3,000달러는 7월 고점보다 약 " + EB.won(trip) + " 싸다. ETF의 미국 지수 몫은 원화 환산액이 그만큼 줄었다.";
+  })();
+})();
+</script>
+</body>
+</html>

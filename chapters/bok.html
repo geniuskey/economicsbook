@@ -1,0 +1,688 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and EconomicsBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "한국은행과 금융통화위원회는 무엇을 보고 기준금리를 정하는가. 기준금리가 단기 시장금리를 붙잡는 방법, 은행이 대출로 돈을 만드는 원리, 테일러 준칙과 실제 금리의 길, 제로 금리와 양적완화, 점도표와 포워드 가이던스를 시뮬레이터로 보고 금통위 의자에 직접 앉아 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>중앙은행과 통화정책 · EconomicsBook</title>
+<meta name="description" content="한국은행과 금융통화위원회는 무엇을 보고 기준금리를 정하는가. 기준금리가 단기 시장금리를 붙잡는 방법, 은행이 대출로 돈을 만드는 원리, 테일러 준칙과 실제 금리의 길, 제로 금리와 양적완화, 점도표와 포워드 가이던스를 시뮬레이터로 보고 금통위 의자에 직접 앉아 본다.">
+<link rel="canonical" href="https://economicsbook.euiyun.com/chapters/bok.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#4338ca">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="EconomicsBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="중앙은행과 통화정책 · EconomicsBook">
+<meta property="og:description" content="한국은행과 금융통화위원회는 무엇을 보고 기준금리를 정하는가. 기준금리가 단기 시장금리를 붙잡는 방법, 은행이 대출로 돈을 만드는 원리, 테일러 준칙과 실제 금리의 길, 제로 금리와 양적완화, 점도표와 포워드 가이던스를 시뮬레이터로 보고 금통위 의자에 직접 앉아 본다.">
+<meta property="og:url" content="https://economicsbook.euiyun.com/chapters/bok.html">
+<meta property="og:image" content="https://economicsbook.euiyun.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://economicsbook.euiyun.com/chapters/bok.html#chapter","name":"중앙은행과 통화정책","headline":"중앙은행과 통화정책 · EconomicsBook","description":"한국은행과 금융통화위원회는 무엇을 보고 기준금리를 정하는가. 기준금리가 단기 시장금리를 붙잡는 방법, 은행이 대출로 돈을 만드는 원리, 테일러 준칙과 실제 금리의 길, 제로 금리와 양적완화, 점도표와 포워드 가이던스를 시뮬레이터로 보고 금통위 의자에 직접 앉아 본다.","url":"https://economicsbook.euiyun.com/chapters/bok.html","position":8,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://economicsbook.euiyun.com/og.png","dateModified":"2026-10-09","isPartOf":{"@type":"Book","@id":"https://economicsbook.euiyun.com/#book","name":"EconomicsBook · 경제 뉴스 읽는 교과서","url":"https://economicsbook.euiyun.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"EconomicsBook","item":"https://economicsbook.euiyun.com/"},{"@type":"ListItem","position":2,"name":"8. 중앙은행과 통화정책","item":"https://economicsbook.euiyun.com/chapters/bok.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/econ.js"></script>
+<!--head:end-->
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"3d6151a0abc94ede89285d462527fa80"}'></script>
+<!-- End Cloudflare Web Analytics -->
+<style>
+  .dots { display: grid; grid-template-columns: 64px 1fr; gap: 4px 10px; align-items: center; font-size: 14px; margin: 8px 0 4px; }
+  .dots span:nth-child(odd) { font-family: var(--mono); color: var(--text-dim); text-align: right; }
+  .dots i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); margin-right: 3px; vertical-align: middle; }
+  .dots i.o { background: transparent; border: 2px solid var(--accent-2); width: 12px; height: 12px; box-sizing: border-box; }
+</style>
+</head>
+<body data-chapter="bok">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 08</div>
+    <h1>중앙은행과 통화정책</h1>
+    <p class="lead">한 해에 여덟 번, 일곱 명이 한 방에 모여 숫자 하나를 정한다. 그 숫자는 은행끼리 하루짜리 돈을 빌려주는 금리를 붙잡고, 거기서 시작해 경제 전체의 돈값을 움직인다. 이 장은 한국은행이 그 숫자를 어떻게 정하고, 어떻게 시장에 박아 넣고, 숫자만으로 부족할 때 무엇을 하는지 본다. 마지막에는 직접 금통위 의자에 앉아 2년 뒤를 굴려 본다.</p>
+    <ul class="objectives">
+      <li>한국은행과 금융통화위원회의 구성, 목표(물가안정목표 2%, 금융안정), 결정 일정과 발표 자료를 설명할 수 있다.</li>
+      <li>기준금리가 공개시장운영과 대기성 여수신 제도로 단기 시장금리를 붙잡는 원리를 설명할 수 있다.</li>
+      <li>은행 대출이 예금을 만든다는 것과 교과서의 통화승수가 실제를 과장하는 이유를 말할 수 있다.</li>
+      <li>테일러 준칙으로 금리 수준을 가늠하고, 2024~2026년 실제 기준금리의 길과 그 공식 설명을 비교할 수 있다.</li>
+    </ul>
+  </header>
+
+  <div class="headline" id="hl-top">기준금리 연 2.50% 동결, 새 총재의 첫 회의에서 인상 소수의견 두 명<small>지우의 헤드라인 노트 · 2026년 5월 · 근거: 한국은행 「통화정책방향」(2026-05-28). 2025년 7월 이후 8회 연속 동결</small></div>
+
+  <section id="who">
+    <h2>한국은행과 금융통화위원회</h2>
+    <p>나라마다 돈을 찍고 돈값의 기준을 정하는 기관이 있다. 이를 <span class="term">중앙은행</span><span class="en">(Central bank)</span>이라고 한다. 한국에서는 한국은행이 그 일을 한다. 한국은행은 은행권(지폐)을 발행하고, 은행들이 맡겨 둔 돈(지급준비금)의 계좌를 관리하고, 정부의 돈을 맡아 두며, 외환보유액을 운용한다. 그 가운데 경제 뉴스의 첫머리를 가장 자주 차지하는 일이 <span class="term">통화정책</span><span class="en">(Monetary policy)</span>, 곧 돈의 양과 값을 조절하는 일이다.</p>
+    <p>통화정책은 총재 혼자 정하지 않는다. 한국은행 안의 <span class="term">금융통화위원회</span><span class="en">(금통위, Monetary Policy Board)</span>가 정한다. 금통위는 일곱 명이다. 한국은행 총재가 의장을 맡고, 부총재가 당연직으로 들어가며, 나머지 다섯 명은 기획재정부 장관(2026년부터는 재정경제부 장관), 한국은행 총재, 금융위원장, 대한상공회의소 회장, 전국은행연합회 회장이 한 명씩 추천해 대통령이 임명한다. 정부와 업계가 추천하지만, 한국은행법은 통화정책을 중립적으로 수행하고 한국은행의 자주성을 존중하도록 정해 두었다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 300" role="img" aria-label="금융통화위원회 일곱 명의 구성과, 물가안정과 금융안정 목표 아래 연 여덟 번 기준금리를 정하는 흐름">
+        <defs><marker id="bk-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="140" y="10" width="180" height="40" rx="8" class="f-acc-soft"/>
+        <text x="230" y="35" text-anchor="middle" class="lbl-b">금융통화위원회 7명</text>
+        <g>
+          <circle cx="70" cy="90" r="16" class="f-acc"/><text x="70" y="122" text-anchor="middle" class="lbl-dim">총재(의장)</text>
+          <circle cx="130" cy="90" r="16" class="f-acc"/><text x="130" y="122" text-anchor="middle" class="lbl-dim">부총재</text>
+          <circle cx="190" cy="90" r="16" class="f-acc2-soft"/><circle cx="240" cy="90" r="16" class="f-acc2-soft"/><circle cx="290" cy="90" r="16" class="f-acc2-soft"/><circle cx="340" cy="90" r="16" class="f-acc2-soft"/><circle cx="390" cy="90" r="16" class="f-acc2-soft"/>
+          <text x="290" y="122" text-anchor="middle" class="lbl-dim">추천 위원 5명(4년 임기)</text>
+        </g>
+        <rect x="20" y="145" width="200" height="54" rx="8" class="f-surface"/>
+        <text x="120" y="167" text-anchor="middle" class="lbl">물가안정목표</text>
+        <text x="120" y="187" text-anchor="middle" class="lbl-dim">소비자물가 상승률 2%</text>
+        <rect x="240" y="145" width="200" height="54" rx="8" class="f-surface"/>
+        <text x="340" y="167" text-anchor="middle" class="lbl">금융안정</text>
+        <text x="340" y="187" text-anchor="middle" class="lbl-dim">가계부채·집값·외환시장</text>
+        <rect x="110" y="226" width="240" height="40" rx="8" class="f-elev"/>
+        <text x="230" y="251" text-anchor="middle" class="lbl-b">기준금리 결정 · 연 8회</text>
+        <text x="230" y="290" text-anchor="middle" class="lbl-dim">통화정책방향 · 기자간담회 · 의사록(2주 뒤)</text>
+        <g class="s-line" marker-end="url(#bk-ar)"><path d="M120 199L190 226"/><path d="M340 199L270 226"/><path d="M230 50V70"/></g>
+      </svg>
+      <figcaption><b>그림 1. 누가, 무엇을 보고, 언제 정하나.</b> 금통위는 기준금리를 정하는 회의를 1년에 여덟 번 연다. 법이 정한 첫째 목표는 물가안정이고, 금융안정에도 유의해야 한다. 결정 당일 「통화정책방향」과 총재 기자간담회, 약 2주 뒤 위원들의 발언을 담은 의사록이 나온다.</figcaption>
+    </figure>
+
+    <p>한국은행의 첫째 목표는 <span class="term">물가안정</span><span class="en">(Price stability)</span>이다. 구체적으로는 소비자물가 상승률(전년동기비) 2%를 <span class="term">물가안정목표</span><span class="en">(Inflation target)</span>로 삼는다<span class="src">(한국은행 물가안정목표)</span>. 물가를 0%가 아니라 2%로 잡는 이유는 <a href="inflation.html">6장</a>에서 보았다. 2011년 한국은행법 개정 뒤로는 통화정책을 펼 때 <span class="term">금융안정</span><span class="en">(Financial stability)</span>에도 유의하도록 되어 있다. 가계부채가 너무 빨리 늘거나 집값이 과열되거나 외환시장이 흔들리면, 물가만 보고 금리를 내리기 어렵다. 2024~2026년 한국은행의 결정문에 "금융안정 상황"이라는 말이 거의 빠지지 않은 이유다.</p>
+
+    <div class="callout stat"><strong>금리 결정의 원자료와 일정</strong>금통위의 기준금리 결정 회의 일정은 전년 말에 한 해 치가 미리 공개된다. 결정 당일 오전 「통화정책방향」(결정문)이 한국은행 누리집에 올라오고, 이어 총재 기자간담회가 열린다. 2월·5월·8월·11월 회의에서는 경제전망(성장률·물가 전망)과 금통위원들의 6개월 뒤 금리 전망(점도표)을 함께 낸다. 2주쯤 뒤 의사록이 공개되어 위원별 발언과 소수의견의 이유를 볼 수 있다. 기준금리의 역대 값은 ECOS(한국은행 경제통계시스템)의 '한국은행 기준금리 및 여수신금리'에서 내려받는다. 2026년 남은 회의는 10월 22일과 11월에 있다.</div>
+  </section>
+
+  <section id="anchor">
+    <h2>기준금리는 어떻게 시장금리를 붙잡나</h2>
+    <p>한국은행이 "기준금리를 연 3.00%로 한다"고 발표해도, 은행끼리 돈을 빌려주는 금리를 법으로 3.00%로 정하는 것은 아니다. 은행들은 매일 영업이 끝날 무렵 돈이 남는 곳과 모자라는 곳이 생기고, 하루짜리 돈을 서로 빌려준다. 이 시장의 금리가 <span class="term">콜금리</span><span class="en">(Call rate)</span>다. 기준금리는 한국은행이 은행들과 7일짜리 환매조건부채권(RP)을 사고팔 때 쓰는 기준 금리이고, 한국은행은 이 콜금리가 기준금리에서 멀리 벗어나지 않도록 매일 은행 시스템의 돈의 양을 조절한다.</p>
+    <p>도구는 두 가지다. 하나는 <span class="term">공개시장운영</span><span class="en">(Open market operations)</span>이다. 은행 시스템에 돈이 넘쳐 콜금리가 기준금리 아래로 내려가려 하면 한국은행이 RP를 팔거나 통화안정증권을 발행해 돈을 흡수하고, 돈이 모자라 콜금리가 오르려 하면 RP를 사서 돈을 풀어 준다. 다른 하나는 <span class="term">대기성 여수신 제도</span><span class="en">(Standing facilities)</span>다. 은행은 돈이 모자라면 언제든 한국은행에서 기준금리보다 조금 높은 금리로 빌릴 수 있고(자금조정대출), 남으면 기준금리보다 조금 낮은 금리로 맡길 수 있다(자금조정예금). 한국은행에서 이 금리로 빌릴 수 있는데 시장에서 더 비싸게 빌릴 은행은 없으니 위쪽 금리가 천장이 되고, 같은 이유로 아래쪽 금리가 바닥이 된다. 이 천장과 바닥 사이를 <span class="term">금리 회랑</span><span class="en">(Interest rate corridor)</span>이라고 부른다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 230" role="img" aria-label="자금조정대출 금리가 천장, 자금조정예금 금리가 바닥이 되고 그 사이에서 콜금리가 기준금리 근처에 머무는 금리 회랑">
+        <rect x="60" y="40" width="380" height="140" class="f-acc-soft" opacity="0.5"/>
+        <line x1="60" y1="40" x2="440" y2="40" class="s-bad"/>
+        <line x1="60" y1="180" x2="440" y2="180" class="s-ok"/>
+        <line x1="60" y1="110" x2="440" y2="110" class="s-acc"/>
+        <path d="M60 112 L90 104 L120 118 L150 108 L180 114 L210 100 L240 120 L270 109 L300 113 L330 103 L360 116 L390 107 L420 111 L440 109" class="s-acc2"/>
+        <text x="64" y="32" class="lbl-bad">천장: 자금조정대출 금리</text>
+        <text x="64" y="200" class="lbl">바닥: 자금조정예금 금리</text>
+        <text x="64" y="96" class="lbl-acc">기준금리</text>
+        <text x="436" y="140" text-anchor="end" class="lbl-acc2">콜금리(매일)</text>
+        <text x="436" y="220" text-anchor="end" class="lbl-dim">공개시장운영으로 기준금리 근처에 붙잡는다</text>
+      </svg>
+      <figcaption><b>그림 2. 금리 회랑.</b> 은행은 언제든 한국은행에서 천장 금리로 빌리고 바닥 금리로 맡길 수 있으므로, 콜금리는 이 사이를 벗어나기 어렵다. 그 안에서 한국은행이 RP 거래로 돈의 양을 조절해 콜금리를 기준금리에 바짝 붙인다. 회랑의 폭(기준금리에서 위아래로 몇 %p인지)은 한국은행이 정하며 시기에 따라 바뀌었다. 그림의 폭은 개념도다.</figcaption>
+    </figure>
+
+    <p>아래 시뮬레이터는 은행 시스템의 하루하루를 흉내 낸 것이다. 매일 세금 납부, 정부 지출, 현금 수요 때문에 은행들의 돈이 들쭉날쭉한다. 공개시장운영이 그 흔들림을 얼마나 상쇄하는지, 회랑이 있고 없음이 콜금리를 어떻게 바꾸는지 본다.</p>
+
+    <div class="sim" id="sim-corridor">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>금리 회랑: 콜금리를 기준금리에 붙잡는 두 도구</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="co-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>회랑 폭(위아래) <output id="co-w-out"></output></span><input type="range" id="co-w" min="0.25" max="1.5" step="0.25" value="1"></label>
+          <label class="ctrl"><span>공개시장운영 강도 <output id="co-o-out"></output></span><input type="range" id="co-o" min="0" max="100" step="5" value="85"></label>
+          <label class="ctrl"><span>하루 자금 흔들림 <output id="co-s-out"></output></span><input type="range" id="co-s" min="1" max="10" step="1" value="4"></label>
+          <label class="check"><input type="checkbox" id="co-off"> 대기성 여수신(회랑) 없애기</label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">기준금리</span><span class="v" id="co-o-b">—</span></div>
+        <div class="stat"><span class="k">최근 60일 평균 이탈</span><span class="v" id="co-o-a">—</span></div>
+        <div class="stat"><span class="k">최대 이탈</span><span class="v" id="co-o-m">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 기본값에서 콜금리는 기준금리 근처에서 잔잔하게 흔들린다. ② 공개시장운영 강도를 0%로 내린다. 콜금리가 크게 출렁이지만 천장과 바닥에 막혀 회랑을 벗어나지 못한다. ③ 이 상태에서 '대기성 여수신 없애기'를 켜고 흔들림을 10으로 올린다. 콜금리가 기준금리에서 몇 %p씩 튄다. 이런 시장에서는 기준금리라는 숫자가 아무것도 붙잡지 못한다. (모형: 하루 자금 과부족 = 정규분포 충격 × (1 − 운영 강도). 콜금리 = 기준금리 + 과부족에 비례한 반응, 회랑이 있으면 천장·바닥에서 잘린다. 교육용 가정이며 실제 회랑 폭이나 운영 규모를 뜻하지 않는다.)</div>
+    </div>
+
+    <p>평소 콜금리는 기준금리와 거의 같은 수준에서 움직인다. 그래서 기사에서는 "기준금리 인상"이 곧 "단기 금리 인상"으로 읽힌다. 그다음 길, 곧 단기 금리에서 국고채·은행채·코픽스를 거쳐 대출금리로 번지는 과정은 <a href="rates.html">7장</a>의 금리 계단과 <a href="transmission.html">9장</a>의 연결판이 맡는다.</p>
+  </section>
+
+  <section id="money">
+    <h2>은행은 어떻게 돈을 만드는가</h2>
+    <p>우리가 쓰는 돈의 대부분은 지폐나 동전이 아니라 은행 계좌의 숫자, 곧 예금이다. 그 예금은 어디서 오는가. 교과서의 오랜 설명은 이렇다. 누군가 1,000만원을 예금하면 은행은 그중 일부를 <span class="term">지급준비금</span><span class="en">(Reserves)</span>으로 남기고 나머지를 빌려준다. 빌린 사람이 그 돈을 쓰면 받은 사람이 다시 은행에 예금하고, 은행은 또 일부를 남기고 빌려준다. 이 과정이 되풀이되며 처음 1,000만원이 몇 배의 예금이 된다. 그 배수를 <span class="term">통화승수</span><span class="en">(Money multiplier)</span>라고 한다.</p>
+    <div class="formula">$$\text{예금 승수} = \frac{1}{1 - (1-r)(1-c)}$$<div class="where">\(r\): 지급준비율(예금 가운데 은행이 남겨 두는 비율), \(c\): 빌린 돈 가운데 예금으로 돌아오지 않고 현금으로 남는 비율(현금 누출). 현금 누출이 없으면 \(1/r\)이 된다. 지급준비율 10%라면 최대 10배. 본원통화 대비 통화량으로 정의한 통화승수 \((1+c)/(r+c)\)도 같은 생각에서 나온다.</div></div>
+
+    <div class="sim" id="sim-multiplier">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>예금은 몇 번 불어나는가: 교과서 승수와 대출 수요</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="mu-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>지급준비율 <output id="mu-r-out"></output></span><input type="range" id="mu-r" min="0.5" max="20" step="0.5" value="7"></label>
+          <label class="ctrl"><span>현금 누출 <output id="mu-c-out"></output></span><input type="range" id="mu-c" min="0" max="30" step="1" value="5"></label>
+          <label class="ctrl"><span>대출 수요(빌려 갈 사람) <output id="mu-d-out"></output></span><input type="range" id="mu-d" min="10" max="100" step="5" value="100"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">처음 예금</span><span class="v">1,000만원</span></div>
+        <div class="stat"><span class="k">교과서 승수</span><span class="v" id="mu-o-t">—</span></div>
+        <div class="stat"><span class="k">대출 수요를 넣은 승수</span><span class="v" id="mu-o-a">—</span></div>
+        <div class="stat"><span class="k">늘어난 예금 합계</span><span class="v" id="mu-o-s">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 지급준비율 7%, 현금 누출 5%에서 교과서 승수는 약 8.6배다. 막대가 한 바퀴마다 줄어들며 쌓인다. ② 지급준비율을 0.5%, 현금 누출을 0%로 내린다. 승수가 200배로 폭발한다. 지급준비율이 거의 0인 나라에서도 예금이 무한히 늘지 않는 것을 보면 이 공식이 무언가를 빠뜨렸다는 것을 알 수 있다. ③ 지급준비율은 그대로 두고 대출 수요를 30%로 내린다. 은행이 빌려줄 돈이 있어도 빌려 갈 사람이 없으면 예금은 거의 늘지 않는다. 실제 예금을 정하는 쪽은 지급준비금이 아니라 대출 수요와 은행의 판단이다. (모형: 매 바퀴 새 예금 = 직전 예금 × (1 − 지급준비율) × (1 − 현금 누출) × 대출 수요. 40바퀴까지 그린다. 교육용.)</div>
+    </div>
+
+    <p>교과서 승수는 셈은 맞지만 순서가 거꾸로다. 실제 은행은 예금이 먼저 들어와야 대출을 내주지 않는다. 은행이 대출을 승인하는 순간 빌린 사람의 계좌에 예금이 생긴다. <strong>대출이 예금을 만든다.</strong> 지급준비금은 그 뒤에 필요한 만큼 시장이나 한국은행에서 구한다. 한국은행은 콜금리를 기준금리에 붙잡으려고 은행 시스템이 필요로 하는 지급준비금을 어차피 공급하므로, 지급준비금의 양이 대출을 묶는 끈이 되지 못한다. 대출을 묶는 것은 그 금리(기준금리에서 시작하는 돈값), 빌리려는 사람의 수요, 은행의 자본과 위험 판단, 그리고 금융당국의 규제(DSR 같은)다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 460 230" role="img" aria-label="은행이 1억원 대출을 내주면 은행의 자산에 대출 1억원, 부채에 고객 예금 1억원이 동시에 생기는 대차대조표">
+        <text x="230" y="22" text-anchor="middle" class="lbl-b">대출을 승인하는 순간 은행의 장부</text>
+        <rect x="40" y="40" width="380" height="150" rx="8" class="f-surface"/>
+        <line x1="230" y1="40" x2="230" y2="190" class="s-axis"/>
+        <line x1="40" y1="74" x2="420" y2="74" class="s-axis"/>
+        <text x="135" y="63" text-anchor="middle" class="lbl">자산(은행이 받을 것)</text>
+        <text x="325" y="63" text-anchor="middle" class="lbl">부채(은행이 줄 것)</text>
+        <rect x="60" y="94" width="150" height="40" rx="6" class="f-acc2-soft"/>
+        <text x="135" y="119" text-anchor="middle" class="lbl">대출 +1억원</text>
+        <rect x="250" y="94" width="150" height="40" rx="6" class="f-acc-soft"/>
+        <text x="325" y="119" text-anchor="middle" class="lbl">고객 예금 +1억원</text>
+        <text x="135" y="168" text-anchor="middle" class="lbl-dim">빌린 사람이 갚을 약속</text>
+        <text x="325" y="168" text-anchor="middle" class="lbl-dim">새로 생긴 돈(통화)</text>
+        <text x="230" y="216" text-anchor="middle" class="lbl-dim">대출을 갚으면 두 칸이 함께 사라지고 돈도 줄어든다</text>
+      </svg>
+      <figcaption><b>그림 3. 대출이 예금을 만든다.</b> 은행은 누군가의 예금을 옮겨 빌려주는 것이 아니라, 빌린 사람의 계좌에 새 예금을 적어 넣는다. 그래서 가계대출이 빠르게 늘면 시중의 돈(통화량)도 함께 늘고, 대출을 갚으면 줄어든다. 영국 중앙은행이 2014년 계간지에서 이 원리를 정리해 널리 알려졌다.</figcaption>
+    </figure>
+
+    <p>지급준비율 자체도 대부분의 나라에서 통화정책의 주된 도구가 아니다. 한국의 법정 지급준비율은 예금 종류에 따라 다르며, 2006년 조정 이후 가장 높은 요구불예금도 7% 수준이다. 이 비율을 자주 바꾸지 않고 금리로 정책을 편다. 이 장에서 기준금리가 중심에 있는 이유다.</p>
+
+    <div class="callout link"><strong>MoneyBook에서 이어 읽기</strong>본원통화와 광의통화(M2), 신용 창조, 은행 예금이 안전한 이유와 예금자보호는 MoneyBook <a href="https://moneybook.euiyun.com/chapters/money.html">돈은 어떻게 생겨나는가</a>에서 시뮬레이터로 다룬다. 이 장은 중앙은행이 그 돈의 값을 어떻게 정하는지에 집중한다.</div>
+  </section>
+
+  <section id="taylor">
+    <h2>금리는 얼마가 적당한가: 테일러 준칙</h2>
+    <p>금통위원은 무엇을 기준으로 2.50%가 아니라 2.75%라고 판단하는가. 정해진 공식은 없다. 하지만 경제학자 존 테일러는 1993년, 미국 연준의 실제 금리 결정이 간단한 식으로 꽤 잘 설명된다는 것을 보였다. 물가가 목표보다 높으면 금리를 더 올리고, 경기가 잠재 수준보다 뜨거우면 금리를 더 올린다는 식이다. 이것을 <span class="term">테일러 준칙</span><span class="en">(Taylor rule)</span>이라고 한다.</p>
+    <div class="formula">$$i = r^* + \pi + 0.5\,(\pi - \pi^*) + 0.5\,y$$<div class="where">\(i\): 준칙이 권하는 정책금리, \(r^*\): 중립 실질금리(경기를 밀지도 당기지도 않는 실질금리), \(\pi\): 물가상승률, \(\pi^*\): 물가안정목표(2%), \(y\): 산출 갭(실제 GDP가 잠재 GDP보다 몇 % 높은가). 물가가 1%p 오르면 금리는 1.5%p 올라 실질금리가 오른다.</div></div>
+    <p>식의 핵심은 물가 계수가 1보다 크다는 데 있다. 물가가 1%p 오를 때 명목금리를 1%p만 올리면 실질금리가 그대로라 경기를 식히지 못한다. 그보다 더 올려야 실질금리가 올라 수요를 누른다. 아래 평면에서 손잡이를 끌어 물가와 산출 갭을 바꾸고 준칙이 권하는 금리를 본다.</p>
+
+    <div class="sim" id="sim-taylor">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>테일러 준칙 평면: 물가와 경기를 끌면 권장 금리가 나온다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ty-cv"></canvas><span class="hint">손잡이를 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>중립 실질금리 r* <output id="ty-n-out"></output></span><input type="range" id="ty-n" min="-1" max="2" step="0.25" value="0.5"></label>
+          <label class="ctrl"><span>물가 반응 계수 <output id="ty-a-out"></output></span><input type="range" id="ty-a" min="0" max="1.5" step="0.1" value="0.5"></label>
+          <label class="ctrl"><span>경기 반응 계수 <output id="ty-b-out"></output></span><input type="range" id="ty-b" min="0" max="1.5" step="0.1" value="0.5"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">물가상승률</span><span class="v" id="ty-o-p">—</span></div>
+        <div class="stat"><span class="k">산출 갭</span><span class="v" id="ty-o-g">—</span></div>
+        <div class="stat"><span class="k">준칙 권장 금리</span><span class="v" id="ty-o-i">—</span></div>
+        <div class="stat"><span class="k">실질 정책금리</span><span class="v" id="ty-o-r">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 손잡이를 물가 2%, 산출 갭 0에 놓는다. 권장 금리는 r* + 2%로, 중립 명목금리다. ② 물가 2.9%(2026년 9월), 산출 갭 +0.5%에 놓는다. 기본 계수로 권장 금리는 4%를 넘는다. 당시 기준금리 3.00%보다 높다. r*를 0으로 내리면 3.6% 안팎이다. 준칙의 답은 r*를 무엇으로 보느냐에 크게 기댄다. ③ 물가 0.5%, 산출 갭 −4%로 끈다. 권장 금리가 0 아래로 내려가 빨간 구역에 들어간다. 금리를 0 밑으로 크게 내릴 수는 없으니 다른 도구가 필요하다. (계산: <code>EC.taylor</code>, 물가목표 2%. 산출 갭과 r*는 관측할 수 없는 추정값이라 기관마다 다르다. 교육용.)</div>
+    </div>
+
+    <p>준칙은 편리하지만 금통위가 그대로 따르지는 않는다. 첫째, 식에 들어가는 두 숫자가 눈에 보이지 않는다. 산출 갭은 잠재 GDP를 추정해야 알 수 있고, 중립금리도 추정치다. 한국은행은 그간 한국의 중립금리를 2%대 범위로 추정해 왔다고 밝혔고, 그 범위 자체가 1%p 가까이 넓다<span class="src">(한국은행 총재·부총재보 발언 보도, 2026년 4월·9월)</span>. 둘째, 준칙에는 가계부채, 집값, 환율, 미국 금리 같은 금융안정 변수가 없다. 셋째, 중앙은행은 금리를 한 번에 크게 바꾸기보다 0.25%p씩 나눠 움직이는 것을 선호한다(금리 평활화). 그래서 준칙은 "지금 금리가 높은 편인가 낮은 편인가"를 가늠하는 잣대로 쓴다.</p>
+  </section>
+
+  <section id="path">
+    <h2>2024~2026년 기준금리의 길</h2>
+    <p>이제 실제 결정을 준칙과 나란히 놓아 보자. 한국은행은 2021년 8월부터 2023년 1월까지 기준금리를 0.50%에서 3.50%로 올렸고, 1년 반 넘게 묶어 두었다. 2024년 10월 3.25%로 내리며 38개월 만에 인하로 돌아섰고, 11월 3.00%, 2025년 2월 2.75%, 5월 2.50%까지 내렸다. 그 뒤 2025년 7월부터 2026년 5월까지 여덟 번 연속 동결했다. 그리고 2026년 7월 16일 2.75%로 올려 2023년 1월 이후 처음 인상했고, 8월 27일 3.00%로 한 번 더 올렸다<span class="src">(한국은행 「통화정책방향」 각 회의, 보도 교차 확인)</span>.</p>
+
+    <div class="sim" id="sim-history">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>실제 기준금리와 테일러 준칙: 2021~2026</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="hi-cv"></canvas><span class="hint">세로선을 끌어 시점을 고른다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>가정한 산출 갭 <output id="hi-g-out"></output></span><input type="range" id="hi-g" min="-2" max="2" step="0.25" value="0"></label>
+          <label class="ctrl"><span>중립 실질금리 r* <output id="hi-n-out"></output></span><input type="range" id="hi-n" min="-1" max="2" step="0.25" value="0.5"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 시점</span><span class="v" id="hi-o-d">—</span></div>
+        <div class="stat"><span class="k">실제 기준금리</span><span class="v" id="hi-o-a">—</span></div>
+        <div class="stat"><span class="k">준칙(그해 물가 기준)</span><span class="v" id="hi-o-t">—</span></div>
+        <div class="stat"><span class="k">그 무렵의 결정</span><span class="v" id="hi-o-n" style="font-size:13.5px;line-height:1.45">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 세로선을 2022년으로 끈다. 그해 물가 5.1%로 계산한 준칙 금리는 7%를 넘지만 실제 기준금리는 1.25%에서 3.25%로 따라 올라가는 중이었다. 중앙은행이 늦었다는 비판과, 공급 충격(유가)에서 온 물가를 금리로 다 잡으려 하면 경기를 지나치게 누른다는 반론이 함께 나온 시기다. ② 2024~2025년으로 옮긴다. 물가가 2%대 초반으로 내려오자 준칙 선과 실제 금리가 가까워지고, 실제 금리는 인하로 돌아섰다. ③ 산출 갭을 −2로 내리고 r*를 0으로 낮춘다. 준칙 선 전체가 내려가 같은 결정이 "높은 금리"로 보인다. 같은 자료로 다른 결론이 나는 이유다. (실제 금리: <code>EC.HIST.baseRate</code>. 준칙: 연평균 소비자물가 2021~2025년, 2026년은 9월 전년동월비 2.9%를 쓰고 산출 갭은 슬라이더 값으로 고정한 단순 계산. 교육용.)</div>
+    </div>
+
+    <p>2026년 두 번의 인상에 대해 금통위가 결정문에서 밝힌 이유는 확인되는 범위에서 이렇다. 7월에는 성장세가 수출과 투자를 중심으로 강해지는 반면 물가상승률이 상당 기간 목표 수준을 웃돌 것으로 보이고 금융안정 측면의 위험도 이어지고 있다고 판단했다(위원 전원 찬성). 8월에는 선제적 대응으로 물가 오름세가 확산되는 것을 막는 것이 중요하고 금융안정 위험에도 계속 유의할 필요가 있다고 밝혔다. 이때는 7명 가운데 6명이 찬성했고, 황건일 위원은 2.75% 동결 의견을 냈다. 보도들은 그 배경으로 수도권 집값 상승과 가계대출 증가, 높아진 환율을 함께 들었다<span class="src">(한국은행 「통화정책방향」 2026-07-16·08-27 전문 보도)</span>. 2024~2025년 인하 결정의 이유는 각 회의의 결정문 원문으로 확인하기를 권한다. 이 책은 그 문장을 대조하지 못해 옮기지 않는다.</p>
+
+    <div class="table-wrap"><table>
+      <thead><tr><th>결정일</th><th class="num">기준금리</th><th>변화</th><th>표결·메모</th></tr></thead>
+      <tbody>
+        <tr><td>2024-10-11</td><td class="num">3.25%</td><td class="won minus">−0.25%p</td><td>38개월 만의 인하</td></tr>
+        <tr><td>2024-11-28</td><td class="num">3.00%</td><td class="won minus">−0.25%p</td><td>두 달 연속 인하</td></tr>
+        <tr><td>2025-02-25</td><td class="num">2.75%</td><td class="won minus">−0.25%p</td><td></td></tr>
+        <tr><td>2025-05-29</td><td class="num">2.50%</td><td class="won minus">−0.25%p</td><td>이후 8회 연속 동결(2025년 7월 ~ 2026년 5월)</td></tr>
+        <tr><td>2026-05-28</td><td class="num">2.50%</td><td>동결</td><td>5 대 2. 장용성·유상대 위원 인상 소수의견. 신현송 총재 첫 회의</td></tr>
+        <tr><td>2026-07-16</td><td class="num">2.75%</td><td class="won plus">+0.25%p</td><td>만장일치. 2023년 1월 이후 첫 인상</td></tr>
+        <tr><td>2026-08-27</td><td class="num">3.00%</td><td class="won plus">+0.25%p</td><td>6 대 1. 황건일 위원 동결 의견</td></tr>
+      </tbody>
+    </table></div>
+    <p class="src">(한국은행 「통화정책방향」 각 회의. 보도로 교차 확인: SOURCES.md 기준금리 표, 뉴시스 2026-05-28, 아주경제 2026-07-16, 아이뉴스24 2026-08-27)</p>
+  </section>
+
+  <section id="zlb">
+    <h2>0%의 벽: 양적완화와 포워드 가이던스</h2>
+    <p>테일러 준칙 평면에서 물가와 경기를 함께 끌어내리면 권장 금리가 0 아래로 내려간다. 그런데 정책금리를 크게 마이너스로 내리기는 어렵다. 예금 금리가 마이너스가 되면 사람들은 은행 대신 현금을 금고에 쌓아 둘 수 있기 때문이다. 이 한계를 <span class="term">제로 금리 하한</span><span class="en">(Zero lower bound)</span>이라고 부른다. 2008년 금융위기 뒤 미국·영국·일본, 2020년 코로나 충격 때 여러 나라가 이 벽에 부딪혔다. 한국은행은 2020년 5월 기준금리를 사상 최저인 0.50%까지 내렸다<span class="src">(한국은행 기준금리 추이)</span>.</p>
+    <p>벽에 닿은 중앙은행에게 남은 도구는 크게 둘이다. 하나는 <span class="term">양적완화</span><span class="en">(QE, Quantitative easing)</span>다. 중앙은행이 국채나 주택저당증권 같은 장기 채권을 대규모로 사들여 장기금리를 직접 끌어내린다. 단기금리는 0에 묶여 있어도 10년 금리와 대출금리는 더 내려갈 수 있다. 다른 하나는 <span class="term">포워드 가이던스</span><span class="en">(Forward guidance)</span>다. "물가가 목표에 안정될 때까지 오래 낮은 금리를 유지하겠다"고 미리 약속하면, 앞으로의 단기금리 예상이 낮아져 장기금리가 내려간다. <a href="rates.html">7장</a>의 수익률 곡선에서 오른쪽 점들을 끌어내리는 일이다.</p>
+
+    <div class="sim" id="sim-zlb">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>큰 충격이 오면: 0%의 벽과 그 너머의 도구</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="zl-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>수요 충격(산출 갭) <output id="zl-s-out"></output></span><input type="range" id="zl-s" min="-8" max="0" step="0.5" value="-5"></label>
+          <label class="ctrl"><span>충격 전 기준금리 <output id="zl-i-out"></output></span><input type="range" id="zl-i" min="0.5" max="5" step="0.25" value="1.25"></label>
+          <label class="check"><input type="checkbox" id="zl-qe"> 양적완화·포워드 가이던스 쓰기</label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">준칙의 최저 권장 금리</span><span class="v" id="zl-o-m">—</span></div>
+        <div class="stat"><span class="k">0%에 묶인 분기</span><span class="v" id="zl-o-z">—</span></div>
+        <div class="stat"><span class="k">3년 누적 산출 손실</span><span class="v" id="zl-o-l">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 기본값(충격 전 금리 1.25%, 충격 −5%)에서 준칙은 금리를 0 훨씬 아래로 내리라고 하지만 실제 금리는 0에서 멈춘다. 점선(준칙)과 실선(실제)의 틈이 "못 내린 만큼"이다. ② 양적완화·포워드 가이던스를 켠다. 장기금리를 끌어내려 실효 금리(초록 선)가 0 아래로 내려가고, 산출 손실이 줄어든다. ③ 충격 전 금리를 4%로 올린다. 0%에 묶이는 기간과 산출 손실이 크게 줄고, 충격을 −3%로 줄이면 아예 벽에 닿지 않는다. 평소 금리가 아주 낮은 나라일수록 큰 충격에 쓸 탄약이 적다. (모형: 분기별. 충격 전 금리를 그 경제의 중립 금리로 본다. 산출 갭 = 0.7 × 지난 갭 − 0.25 × 실질금리 갭 + 충격(분기마다 30%씩 소멸). 물가 = 0.6 × 지난 물가 + 0.8 + 0.2 × 갭. 금리는 테일러 준칙을 따르되 0 아래로 내려가지 않는다. 양적완화는 실효 금리를 최대 1.5%p 더 낮추는 것으로 단순화. 교육용.)</div>
+    </div>
+
+    <p>양적완화의 효과와 비용에 대해서는 평가가 갈린다. 장기금리를 낮추고 금융시장의 공황을 멈추는 데 효과가 있었다는 연구가 많다. 반대로 자산 가격을 끌어올려 자산을 가진 사람과 못 가진 사람의 격차를 키웠고, 중앙은행 장부를 크게 불려 나중에 줄이기 어렵게 만들었다는 비판도 있다. 한국은행은 2020년 3월 금융시장이 흔들리자 은행 등에 RP 매입으로 필요한 만큼 돈을 공급하는 조치를 폈는데, 국내 보도는 이를 '한국판 양적완화'로 부르기도 했다. 다만 금리를 0 근처에 묶고 장기채를 대량으로 사들인 미국식 양적완화와는 규모와 성격이 다르다.</p>
+
+    <div class="callout news"><strong>점도표는 약속이 아니다</strong>한국은행은 2022년부터 기자간담회에서 금통위원들의 "3개월 내 금리 전망"을 밝혀 왔고, 2026년 2월부터는 이를 넓혀 위원 7명이 각자 6개월 뒤 적정 금리를 점 3개로 찍는 점도표를 내놓았다(경제전망을 내는 2·5·8·11월). 2월에는 21개 점 가운데 16개가 당시 금리 2.50%에 있었고, 5월에는 19개가 2.50%보다 위에 찍혔다(3.00% 10개, 2.75% 7개, 3.25% 2개, 2.50% 2개)<span class="src">(한국은행 발표 인용 보도, 2026-02-26·05-28)</span>. 백정호는 이런 기사에서 "조건부"라는 말을 지우지 말라고 했다. 점은 "지금 보는 경제 전망이 맞는다면"이라는 조건을 단 각자의 판단이고, 전망이 바뀌면 점도 옮겨 간다. "점도표상 연내 두 차례 인상"이라는 제목은 조건을 빼고 평균을 약속처럼 읽은 문장이다.</div>
+  </section>
+
+  <section id="fed">
+    <h2>미국 연준과 나란히 보기</h2>
+    <p>한국 경제 기사에서 한국은행만큼 자주 나오는 중앙은행이 미국의 <span class="term">연방준비제도</span><span class="en">(Fed, Federal Reserve)</span>다. 달러가 세계의 기축통화라서 연준의 금리는 전 세계 돈값의 기준점 노릇을 한다. 연준에서 금리를 정하는 회의는 <span class="term">연방공개시장위원회</span><span class="en">(FOMC)</span>로, 1년에 여덟 번 정례회의를 연다. 두 중앙은행의 생김새는 비슷하지만 목표와 정책금리의 모양이 조금 다르다.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th></th><th>한국은행</th><th>미국 연준</th></tr></thead>
+      <tbody>
+        <tr><td>결정 기구</td><td>금융통화위원회 7명</td><td>FOMC(투표권자 12명: 이사 7명 + 지역 연은 총재 5명)</td></tr>
+        <tr><td>정례 회의</td><td>연 8회</td><td>연 8회</td></tr>
+        <tr><td>법적 목표</td><td>물가안정(목표 2%), 금융안정에 유의</td><td>최대 고용과 물가안정(이중 책무, 개인소비지출 물가 2%)</td></tr>
+        <tr><td>정책금리</td><td>기준금리(한 개의 숫자)</td><td>연방기금금리 목표 범위(위아래 0.25%p 폭)</td></tr>
+        <tr><td>금리 전망 공개</td><td>위원별 6개월 뒤 전망 점도표(연 4회)</td><td>위원별 연말 금리 전망 점도표(연 4회)</td></tr>
+        <tr><td>2026-10-09 현재</td><td id="fed-k">연 3.00%</td><td id="fed-u">연 3.75~4.00%</td></tr>
+      </tbody>
+    </table></div>
+    <p class="src">(한국은행 「통화정책방향」 2026-08-27, Federal Reserve FOMC statement 2026-09-16)</p>
+    <p>연준은 2026년 9월 16일 목표 범위를 0.25%p 올려 3.75~4.00%로 만들었다. 2023년 7월 이후 첫 인상이었다<span class="src">(Federal Reserve, FOMC statement 2026-09-16)</span>. 한국은행이 금리를 정할 때 연준을 보는 이유는 한·미 금리 차가 환율을 움직이기 때문이다. 미국 금리가 한국보다 높으면 달러 자산의 매력이 커지고, 원화가 약해져 수입물가가 오를 수 있다. 하지만 한국은행이 연준을 그대로 따라야 하는 것은 아니다. 금리 차만으로 환율이 정해지지 않고, 한국의 물가와 경기가 미국과 다르게 움직이기 때문이다. 이 이야기는 <a href="fx.html">10장</a>에서 이어진다.</p>
+  </section>
+
+  <section id="chair">
+    <h2>금통위 의자에 앉기</h2>
+    <p>이제 직접 결정해 본다. 조작판의 네 값은 회의 날 아침 책상에 놓인 자료다. 물가상승률, 산출 갭(경기의 온도), 가계부채 증가율, 그리고 최근 원/달러 환율의 변화. 위쪽 그래프의 점 여덟 개는 앞으로 2년(8분기) 동안 내가 정할 기준금리이고, 끌어서 바꿀 수 있다. 회색 점선은 테일러 준칙이 권하는 길이다. 아래쪽 그래프는 이 책의 작은 경제 모형이 계산한 물가와 경기, 집값의 길이다.</p>
+
+    <div class="sim" id="sim-chair">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>금통위 의자에 앉기: 2년 동안의 기준금리를 정하라</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ch-cv"></canvas><span class="hint">위쪽 점을 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>지금 물가상승률 <output id="ch-p-out"></output></span><input type="range" id="ch-p" min="0" max="6" step="0.1" value="2.9"></label>
+          <label class="ctrl"><span>산출 갭(경기 온도) <output id="ch-g-out"></output></span><input type="range" id="ch-g" min="-4" max="4" step="0.25" value="0.5"></label>
+          <label class="ctrl"><span>가계부채 증가율(연) <output id="ch-d-out"></output></span><input type="range" id="ch-d" min="0" max="12" step="0.5" value="5"></label>
+          <label class="ctrl"><span>원/달러 환율 변화 <output id="ch-x-out"></output></span><input type="range" id="ch-x" min="-10" max="15" step="1" value="0"></label>
+          <div class="seg" id="ch-pre"><button data-value="hold" class="on">동결</button><button data-value="rule">준칙대로</button><button data-value="fast">빠른 인상</button><button data-value="cut">인하</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">준칙 권장 금리(지금)</span><span class="v" id="ch-o-t">—</span></div>
+        <div class="stat"><span class="k">2년 뒤 물가상승률</span><span class="v" id="ch-o-p">—</span></div>
+        <div class="stat"><span class="k">2년 뒤 산출 갭 · 실업률</span><span class="v" id="ch-o-y">—</span></div>
+        <div class="stat"><span class="k">2년 뒤 집값 상승률 · 가계부채 증가율</span><span class="v" id="ch-o-h">—</span></div>
+        <div class="stat"><span class="k">2년 평균 물가 목표 이탈</span><span class="v" id="ch-o-s">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① '동결'로 3.00%를 2년 유지한다. 이 모형에서 물가는 2년 뒤 2% 근처로 내려오고 가계부채 증가율은 5% 안팎에 머문다. ② '빠른 인상'을 누른다. 물가는 목표보다 더 낮게 내려가지만 산출 갭이 −1.5% 안팎으로 떨어지고 실업률이 오르며 집값 상승률은 마이너스가 된다. 물가와 일자리 사이의 맞바꿈이다. '준칙대로'는 먼저 올렸다가 물가가 내려오면 다시 내리는 길을 그린다. ③ 환율 변화를 +15%로 올리고 '인하'를 누른다. 원화 약세가 수입물가를 밀어 올리는데 금리까지 내리면 2년 뒤에도 물가가 2.7% 안팎에 머물고 집값 상승률이 높아진다. ④ 여덟 개 점을 모두 7%까지 끌어 올린다. 물가는 0% 가까이 꺾이지만 산출 갭이 −4%를 넘고 실업률이 5%에 가까워지며 집값이 크게 떨어진다. 금리 하나로 모든 목표를 맞출 수는 없다. (모형: <code>EC.economy</code>, rule=false, 내가 정한 금리 경로, 중립 명목금리 2.5%. 가계부채 증가율은 4%를 넘는 만큼 수요 충격으로, 환율 변화는 첫 분기 위험 충격으로 넣었다. 계수는 교육용 가정이며 실제 한국 경제의 전망이 아니다.)</div>
+    </div>
+
+    <p>몇 번 앉아 보면 금통위 결정문의 문장이 다르게 읽힌다. "물가 오름세의 확산을 막는 것이 중요하다"는 물가 쪽 점이 무겁다는 말이고, "금융안정 리스크에 유의한다"는 집값과 가계부채 선을 보고 있다는 말이다. "인상의 시기와 속도를 결정해 나가겠다"는 위쪽 점들을 어떤 간격으로 올릴지 아직 정하지 않았다는 말이다. 소수의견은 같은 자료를 보고 무게를 다르게 둔 위원이 있다는 뜻이다. 2026년 5월에 두 위원은 인상을, 8월에 한 위원은 동결을 주장했다.</p>
+
+    <div class="callout warn"><strong>숫자는 기준 시점의 값이고 시뮬레이터는 전망이 아니다</strong>이 장의 기준금리·표결·점도표 분포는 2026년 10월 9일까지 공표된 한국은행 발표를 보도로 교차 확인한 값이다. 다음 금통위는 2026년 10월 22일로 예정되어 있다. 테일러 준칙의 r*와 산출 갭, 금리 회랑의 폭, 작은 경제 모형의 계수는 원리를 보이기 위한 교육용 가정이다. 시뮬레이터의 결과는 앞으로의 기준금리나 물가를 예측하지 않는다.</div>
+  </section>
+
+  <div class="casefile">
+    <div class="tag"><b>CASE 지우</b><span>헤드라인 노트 · 2026년 5월</span></div>
+    <div class="headline">기준금리 연 2.50% 동결, 새 총재의 첫 회의에서 인상 소수의견 두 명<small>근거: 한국은행 「통화정책방향」(2026-05-28). 5 대 2(장용성·유상대 위원 인상 의견). 2025년 7월 이후 8회 연속 동결</small></div>
+    <h4>"아무것도 안 바뀌었는데 왜 다들 인상 이야기를 하지?"</h4>
+    <p>5월 28일은 신현송 총재가 4월 21일 취임한 뒤 처음 주재한 금통위였다. 결과는 동결. 지우는 처음에 "동결이면 내 이자도 그대로"라고만 적었다. 삼촌 백정호는 같은 날 나온 세 숫자를 표로 그려 보라고 했다. 첫째, 표결이 5 대 2였고 두 위원이 0.25%p 인상을 주장했다. 둘째, 금통위원 7명의 6개월 뒤 금리 전망 점도표에서 21개 점 가운데 19개가 2.50%보다 위에 있었다. 2월에는 16개가 2.50%에 있었다. 셋째, 한국은행은 올해 물가 전망을 2.2%에서 2.7%로, 성장률 전망을 2.0%에서 2.6%로 올렸다<span class="src">(한국은행 경제전망, 2026-05-28 보도)</span>. "언제 기준인가? 오늘. 무엇과 비교했나? 석 달 전의 점들과. 누가 쟀나? 결정한 사람들 자신이다." 삼촌의 결론은 짧았다. "결정은 동결인데, 다음 걸음의 방향을 적어 놓은 회의다."</p>
+
+    <div class="dots" aria-label="2026년 5월 점도표 분포">
+      <span>3.25%</span><span><i></i><i></i></span>
+      <span>3.00%</span><span><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span>2.75%</span><span><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span>2.50%</span><span><i class="o"></i><i class="o"></i> ← 당시 기준금리</span>
+    </div>
+    <p class="src">(2026년 5월 금통위원 6개월 뒤 조건부 금리 전망, 21개 점. 한국은행 발표 인용 보도)</p>
+
+    <p id="case-calc">—</p>
+    <div class="clue">
+      <div><b>헤드라인이 말한 것</b>기준금리 2.50% 동결, 8회 연속. 새 총재의 첫 회의.</div>
+      <div><b>숫자를 다시 보니</b>표결 5 대 2, 점도표의 점 19개가 현재 금리 위. 물가 전망 2.7%로 상향. 동결 속에 인상 쪽으로 기운 신호가 겹쳐 있다.</div>
+      <div><b>내 생활에는</b><span id="case-life">—</span></div>
+    </div>
+  </div>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>한국은행 금융통화위원회(7명)는 연 8회 기준금리를 정한다. 목표는 물가안정(소비자물가 상승률 2%)이고 금융안정에도 유의한다.</li>
+      <li>기준금리는 공개시장운영(RP 거래)과 대기성 여수신 제도(천장과 바닥의 금리 회랑)로 콜금리를 붙잡고, 거기서 시장금리와 대출금리로 번진다.</li>
+      <li>은행 대출이 예금을 만든다. 교과서의 통화승수는 지급준비금이 대출을 묶는다고 보지만, 실제로는 금리·대출 수요·은행의 자본과 규제가 돈의 양을 정한다.</li>
+      <li>테일러 준칙은 물가와 산출 갭으로 금리 수준을 가늠하는 잣대다. 중립금리와 산출 갭이 추정값이고 금융안정 변수가 빠져 있어 그대로 따르지는 않는다.</li>
+      <li>금리가 0에 닿으면 양적완화와 포워드 가이던스로 장기금리를 낮춘다. 점도표는 조건부 판단이지 약속이 아니다. 2024~2025년 2.50%까지 내린 기준금리는 2026년 7·8월 3.00%로 올랐다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q"><p>1. 은행 시스템에 돈이 넘쳐 콜금리가 기준금리 아래로 내려가려 한다. 한국은행이 할 일로 가장 알맞은 것은?</p>
+        <div class="opts"><button class="opt">RP를 사들여 돈을 더 푼다</button><button class="opt" data-correct>RP를 팔거나 통화안정증권을 발행해 돈을 흡수한다</button><button class="opt">기준금리를 즉시 내린다</button><button class="opt">은행들의 대출을 법으로 금지한다</button></div>
+        <div class="quiz-exp">공개시장운영은 돈의 양을 조절해 콜금리를 기준금리 근처에 붙잡는다. 돈이 남아 금리가 내려가려 하면 흡수하고, 모자라 금리가 오르려 하면 공급한다. 대기성 여수신 제도의 천장·바닥이 그 바깥을 막는다.</div></div>
+      <div class="quiz-q"><p>2. 지급준비율이 1%인 나라에서 예금이 100배로 늘지 않는 이유로 가장 알맞은 것은?</p>
+        <div class="opts"><button class="opt">지급준비율 공식이 틀렸기 때문이다</button><button class="opt">중앙은행이 지폐를 덜 찍기 때문이다</button><button class="opt" data-correct>대출(예금)의 양은 지급준비금이 아니라 대출 수요, 금리, 은행의 자본과 규제로 정해지기 때문이다</button><button class="opt">예금자가 모두 현금을 인출하기 때문이다</button></div>
+        <div class="quiz-exp">은행이 대출을 내주면 예금이 생기고, 필요한 지급준비금은 뒤에 구한다. 빌려 갈 사람이 없거나 은행이 위험을 꺼리면 지급준비율이 낮아도 예금은 늘지 않는다. 교과서 승수는 최대치의 셈일 뿐이다.</div></div>
+      <div class="quiz-q"><p>3. 테일러 준칙(r* = 0.5%, 계수 0.5, 0.5)에서 물가상승률이 4%, 산출 갭이 0이면 권장 정책금리는?</p>
+        <div class="opts"><button class="opt">4.0%</button><button class="opt">4.5%</button><button class="opt">2.5%</button><button class="opt" data-correct>5.5%</button></div>
+        <div class="quiz-exp">i = r* + π + 0.5(π − 2) + 0.5y = 0.5 + 4 + 0.5 × 2 + 0 = 5.5%. 물가가 목표보다 높을수록 명목금리를 물가보다 더 올려 실질금리를 높이라는 것이 준칙의 핵심이다.</div></div>
+      <div class="quiz-q"><p>4. 금통위원 점도표에서 대부분의 점이 현재 기준금리보다 높게 찍혔다. 가장 알맞은 해석은?</p>
+        <div class="opts"><button class="opt" data-correct>지금의 경제 전망이 맞는다면 위원 다수가 6개월 뒤 더 높은 금리가 적절하다고 본다는 조건부 판단이다</button><button class="opt">6개월 안에 반드시 금리를 올리겠다는 약속이다</button><button class="opt">시장 참가자들의 금리 예상을 모은 것이다</button><button class="opt">정부가 정한 금리 목표다</button></div>
+        <div class="quiz-exp">점도표는 위원 각자가 지금의 전망을 전제로 찍은 판단이다. 전망이 바뀌면 점도 바뀐다. 다음 결정의 방향을 읽는 단서이지만 확정된 경로는 아니다.</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var K = EC.KR, C = EC.CASE, H = EC.HIST;
+  var pc = function (x, d) { return (x * 100).toFixed(d == null ? 2 : d) + "%"; };
+  var pp = function (x, d) { return (x >= 0 ? "+" : "−") + Math.abs(x).toFixed(d == null ? 2 : d) + "%p"; };
+  EB.stat("fed-k", "연 " + pc(K.baseRate));
+  EB.stat("fed-u", "연 " + pc(K.usRate[0]) + "~" + pc(K.usRate[1]));
+
+  /* ---------------- sim-corridor ---------------- */
+  (function () {
+    var BASE = K.baseRate * 100, N = 60;
+    var gW = EB.range("co-w", function (v) { return "±" + v.toFixed(2) + "%p"; }, reset);
+    var gO = EB.range("co-o", function (v) { return v + "%"; }, reset);
+    var gS = EB.range("co-s", function (v) { return String(v); }, reset);
+    var off = document.getElementById("co-off");
+    off.addEventListener("change", reset);
+    var g = EC.gauss(7), shocks = [], day = 0;
+    for (var k = 0; k < 4000; k++) shocks.push(g());
+    function rateAt(d) {
+      var w = gW(), imb = shocks[d % shocks.length] * gS() * (1 - gO() / 100);
+      var r = BASE + 0.35 * imb;
+      if (!off.checked) r = EB.clamp(r, BASE - w + 0.03, BASE + w - 0.03);
+      return r;
+    }
+    function reset() { cv.redraw(); }
+    var cv = EB.canvas("#co-cv", function (ctx, w, h) {
+      var P = EB.palette(), W = gW(), d0 = Math.max(0, Math.floor(day) - N), data = [], sum = 0, mx = 0;
+      for (var d = d0; d <= d0 + N; d++) { var r = rateAt(d); data.push([d - d0, r]); sum += Math.abs(r - BASE); mx = Math.max(mx, Math.abs(r - BASE)); }
+      var span = off.checked ? Math.max(2, Math.ceil(mx + 0.3)) : Math.max(W + 0.4, 1);
+      var c = EB.chart(ctx, { x: 52, y: 14, w: w - 66, h: h - 50 }, {
+        x: [0, N], y: [BASE - span, BASE + span], xTicks: [0, 20, 40, 60], xFmt: function (v) { return v === N ? "오늘" : (v - N) + "일"; }, yFmt: function (v) { return v.toFixed(1) + "%"; },
+        bands: [],
+        series: [{ data: data, color: P.accent2, width: 1.8 }],
+        hlines: off.checked ? [{ y: BASE, color: P.accent, label: "기준금리" }] : [{ y: BASE + W, color: P.bad, label: "천장: 자금조정대출", dash: [] }, { y: BASE, color: P.accent, label: "기준금리" }, { y: BASE - W, color: P.ok, label: "바닥: 자금조정예금", dash: [] }],
+      });
+      if (!off.checked) { ctx.save(); ctx.fillStyle = EB.color("accent-soft"); ctx.globalAlpha = 0.5; ctx.fillRect(c.box.x, c.Y(BASE + W), c.box.w, c.Y(BASE - W) - c.Y(BASE + W)); ctx.restore(); }
+      var last = data[data.length - 1];
+      ctx.fillStyle = P.accent2; ctx.beginPath(); ctx.arc(c.X(last[0]), c.Y(last[1]), 4.5, 0, 7); ctx.fill();
+      EB.stat("co-o-b", pc(K.baseRate));
+      EB.stat("co-o-a", (sum / data.length).toFixed(2) + "%p");
+      EB.stat("co-o-m", '<span class="' + (mx > 1 ? "bad-t" : "") + '">' + mx.toFixed(2) + "%p</span>");
+    }, { aspect: 0.55, minHeight: 240, maxHeight: 360 });
+    var acc = 0;
+    EB.loop(document.getElementById("sim-corridor"), function (dt) { acc += dt; if (acc > 0.25) { acc = 0; day += 1; cv.redraw(); } });
+  })();
+
+  /* ---------------- sim-multiplier ---------------- */
+  (function () {
+    var gR = EB.range("mu-r", function (v) { return v.toFixed(1) + "%"; }, draw);
+    var gC = EB.range("mu-c", function (v) { return v + "%"; }, draw);
+    var gD = EB.range("mu-d", function (v) { return v + "%"; }, draw);
+    var D0 = 1e7, ROUNDS = 40;
+    var cv = EB.canvas("#mu-cv", function (ctx, w, h) {
+      var P = EB.palette(), r = gR() / 100, c = gC() / 100, lam = gD() / 100;
+      var q = (1 - r) * (1 - c) * lam, dep = [], cum = 0, cums = [];
+      for (var k = 0; k < ROUNDS; k++) { var dk = D0 * Math.pow(q, k); dep.push(dk); cum += dk; cums.push(cum); }
+      var tb = 1 / (1 - (1 - r) * (1 - c)), act = 1 / (1 - q);
+      var showN = w < 420 ? 20 : 30;
+      var labels = [], data = [];
+      for (k = 0; k < showN; k++) { labels.push(k % 5 === 0 ? String(k + 1) : ""); data.push(dep[k] / 1e4); }
+      var b = EB.bars(ctx, { x: 52, y: 26, w: w - 66, h: h - 70 }, { labels: labels, stacks: [{ label: "새 예금", color: P.accent, data: data }], y: [0, 1050], yFmt: function (v) { return v + "만"; }, gap: 0.2 });
+      ctx.fillStyle = P.dim; ctx.font = EB.font(11); ctx.textAlign = "center";
+      ctx.fillText("바퀴(대출 → 지출 → 예금)", b.box.x + b.box.w / 2, b.box.y + b.box.h + 30);
+      ctx.textAlign = "left"; ctx.fillStyle = P.text; ctx.font = EB.font(12, false, 600);
+      ctx.fillText("40바퀴까지 누적 예금 " + EB.won(Math.min(cum, 1e12)) + (q > 0.97 ? " (40바퀴에도 멈추지 않음)" : ""), b.box.x + 8, 16);
+      EB.stat("mu-o-t", (tb > 999 ? "∞" : tb.toFixed(1)) + "배");
+      EB.stat("mu-o-a", act.toFixed(1) + "배" + (q > 0.97 ? " (사실상 폭주)" : ""));
+      EB.stat("mu-o-s", EB.won(D0 * act));
+    }, { aspect: 0.55, minHeight: 240, maxHeight: 360 });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-taylor ---------------- */
+  (function () {
+    var pi = 2.9, gap = 0.5, box = null;
+    var gN = EB.range("ty-n", function (v) { return v.toFixed(2) + "%"; }, draw);
+    var gA = EB.range("ty-a", function (v) { return v.toFixed(1); }, draw);
+    var gB = EB.range("ty-b", function (v) { return v.toFixed(1); }, draw);
+    function rule(p, y) { return EC.taylor({ inflation: p / 100, gap: y / 100, neutral: gN() / 100, a: gA(), b: gB() }) * 100; }
+    var cv = EB.canvas("#ty-cv", function (ctx, w, h) {
+      var P = EB.palette();
+      var c = EB.chart(ctx, { x: 52, y: 14, w: w - 66, h: h - 52 }, { x: [0, 7], y: [-4, 4], xLabel: "물가상승률(%)", xFmt: function (v) { return v + "%"; }, yFmt: function (v) { return (v > 0 ? "+" : "") + v; } });
+      box = c;
+      // 색 칠: 권장 금리 수준
+      var nx = 28, ny = 16, cw = c.box.w / nx, ch = c.box.h / ny;
+      for (var i = 0; i < nx; i++) for (var j = 0; j < ny; j++) {
+        var p = (i + 0.5) / nx * 7, y = 4 - (j + 0.5) / ny * 8, r = rule(p, y);
+        ctx.fillStyle = r < 0 ? P.bad : P.accent;
+        ctx.globalAlpha = r < 0 ? 0.28 : EB.clamp(r / 12, 0.04, 0.5);
+        ctx.fillRect(c.box.x + i * cw, c.box.y + j * ch, cw + 0.5, ch + 0.5);
+      }
+      ctx.globalAlpha = 1;
+      // 등금리선
+      ctx.font = EB.font(10.5, true); ctx.fillStyle = P.dim; ctx.strokeStyle = P.faint; ctx.setLineDash([3, 3]);
+      [0, 2, 4, 6, 8].forEach(function (lv) {
+        // r = n + p + a(p-2) + b y  -> y = (lv - n - p(1+a) + 2a)/b
+        var n = gN(), a = gA(), bb = gB(); if (bb < 0.05) return;
+        var pts = []; for (var p2 = 0; p2 <= 7; p2 += 0.25) { var yy = (lv - n - p2 * (1 + a) + 2 * a) / bb; if (yy >= -4 && yy <= 4) pts.push([p2, yy]); }
+        if (pts.length < 2) return;
+        ctx.beginPath(); pts.forEach(function (q, k) { var X = c.X(q[0]), Y = c.Y(q[1]); k ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y); }); ctx.stroke();
+        var e = pts[0]; ctx.fillText(lv + "%", c.X(e[0]) + 3, c.Y(e[1]) - 3);
+      });
+      ctx.setLineDash([]);
+      ctx.save(); ctx.translate(14, c.box.y + c.box.h / 2); ctx.rotate(-Math.PI / 2); ctx.textAlign = "center"; ctx.fillStyle = P.dim; ctx.font = EB.font(11.5); ctx.fillText("산출 갭(%)", 0, 0); ctx.restore();
+      var X = c.X(pi), Y = c.Y(gap);
+      ctx.beginPath(); ctx.arc(X, Y, 9, 0, 7); ctx.fillStyle = P.text; ctx.fill(); ctx.beginPath(); ctx.arc(X, Y, 4, 0, 7); ctx.fillStyle = EB.color("canvas-bg"); ctx.fill();
+      var r = rule(pi, gap);
+      ctx.font = EB.font(12, true, 700); ctx.fillStyle = P.text; ctx.textAlign = X > c.box.x + c.box.w - 80 ? "right" : "left";
+      ctx.fillText(r.toFixed(2) + "%", X + (ctx.textAlign === "right" ? -14 : 14), Y - 10);
+      ctx.font = EB.font(11); ctx.fillStyle = P.bad; ctx.textAlign = "left"; ctx.fillText("빨강: 권장 금리 < 0", c.box.x + 6, c.box.y + c.box.h - 8);
+      EB.stat("ty-o-p", pi.toFixed(1) + "%");
+      EB.stat("ty-o-g", (gap >= 0 ? "+" : "−") + Math.abs(gap).toFixed(2) + "%");
+      EB.stat("ty-o-i", '<span class="' + (r < 0 ? "bad-t" : "") + '">' + r.toFixed(2) + "%</span>");
+      EB.stat("ty-o-r", (r - pi).toFixed(2) + "%");
+    }, { aspect: 0.62, minHeight: 260, maxHeight: 400 });
+    function draw() { cv.redraw(); }
+    EB.drag(cv.canvas, { move: function (x, y) { if (!box) return; pi = EB.clamp(Math.round(EB.map(x, box.box.x, box.box.x + box.box.w, 0, 7) * 10) / 10, 0, 7); gap = EB.clamp(Math.round(EB.map(y, box.box.y, box.box.y + box.box.h, 4, -4) * 4) / 4, -4, 4); draw(); } });
+  })();
+
+  /* ---------------- sim-history ---------------- */
+  (function () {
+    var tOf = function (s) { var p = s.split("-"); return +p[0] + ((+p[1] || 1) - 1) / 12 + ((+p[2] || 1) - 1) / 365; };
+    var steps = [[2020.4, 0.005]].concat(H.baseRate.filter(function (q) { return tOf(q[0]) >= 2021; }).map(function (q) { return [tOf(q[0]), q[1]]; }));
+    var CPI = [[2021, H.cpiAnnual[2021]], [2022, H.cpiAnnual[2022]], [2023, H.cpiAnnual[2023]], [2024, H.cpiAnnual[2024]], [2025, H.cpiAnnual[2025]], [2026, K.cpi]];
+    var NOTES = [
+      [2021.0, "0.50%: 2020년 코로나 충격 때 내린 사상 최저 금리가 이어지던 시기"],
+      [2021.6, "2021-08 인상 시작. 2023-01까지 0.50% → 3.50%"],
+      [2023.05, "2023-01 3.50%로 정점. 이후 1년 반 넘게 동결"],
+      [2024.75, "2024-10 3.25%로 38개월 만의 인하, 11월 3.00%"],
+      [2025.1, "2025-02 2.75%, 05 2.50%로 인하. 이후 8회 연속 동결"],
+      [2026.38, "2026-05 동결(5 대 2, 인상 소수의견 2명). 신현송 총재 첫 회의"],
+      [2026.53, "2026-07 2.75%로 인상(만장일치), 2023-01 이후 첫 인상"],
+      [2026.65, "2026-08 3.00%로 인상(6 대 1). 물가 확산 선제 대응·금융안정"],
+    ];
+    var t = 2026.4, box = null;
+    var gG = EB.range("hi-g", function (v) { return (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(2) + "%"; }, draw);
+    var gN = EB.range("hi-n", function (v) { return v.toFixed(2) + "%"; }, draw);
+    function actual(tt) { var r = steps[0][1]; steps.forEach(function (s) { if (s[0] <= tt) r = s[1]; }); return r; }
+    function cpiAt(tt) { var y = Math.floor(tt); var f = CPI.filter(function (q) { return q[0] === y; })[0]; return f ? f[1] : CPI[CPI.length - 1][1]; }
+    function rule(tt) { return EC.taylor({ inflation: cpiAt(tt), gap: gG() / 100, neutral: gN() / 100 }); }
+    var cv = EB.canvas("#hi-cv", function (ctx, w, h) {
+      var P = EB.palette(), x0 = 2021, x1 = 2026.8;
+      var act = [], tr = [];
+      for (var tt = x0; tt <= x1 + 1e-6; tt += 1 / 48) { act.push([tt, actual(tt) * 100]); tr.push([tt, rule(tt) * 100]); }
+      var c = EB.chart(ctx, { x: 46, y: 14, w: w - 60, h: h - 50 }, {
+        x: [x0, x1], y: [0, 9], xTicks: [2021, 2022, 2023, 2024, 2025, 2026], xFmt: function (v) { return String(v); }, yFmt: function (v) { return v + "%"; },
+        series: [{ data: tr, color: P.faint, width: 2, dash: [5, 4] }, { data: act, color: P.accent, width: 2.6 }],
+        hlines: [{ y: 2, color: P.ok, label: "물가목표 2%" }],
+      });
+      box = c;
+      var X = c.X(t);
+      ctx.save(); ctx.strokeStyle = P.text; ctx.globalAlpha = 0.55; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(X, c.box.y); ctx.lineTo(X, c.box.y + c.box.h); ctx.stroke(); ctx.restore();
+      ctx.beginPath(); ctx.arc(X, c.box.y + c.box.h, 7, 0, 7); ctx.fillStyle = P.text; ctx.fill();
+      ctx.fillStyle = P.accent; ctx.beginPath(); ctx.arc(X, c.Y(actual(t) * 100), 5, 0, 7); ctx.fill();
+      ctx.font = EB.font(11); ctx.textAlign = "left";
+      var lx = c.X(2023.1), ly = c.Y(1.25);
+      ctx.fillStyle = P.accent; ctx.fillRect(lx, ly, 12, 3); ctx.fillStyle = P.dim; ctx.fillText("실제 기준금리", lx + 18, ly + 5);
+      ctx.fillStyle = P.faint; ctx.fillRect(lx, ly + 15, 12, 3); ctx.fillStyle = P.dim; ctx.fillText("테일러 준칙(그해 물가)", lx + 18, ly + 20);
+      var yr = Math.floor(t), mo = Math.min(12, Math.floor((t - yr) * 12) + 1);
+      EB.stat("hi-o-d", yr + "년 " + mo + "월");
+      EB.stat("hi-o-a", pc(actual(t)));
+      EB.stat("hi-o-t", pc(rule(t)) + ' <small style="color:var(--text-faint)">(물가 ' + pc(cpiAt(t), 1) + (yr >= 2026 ? ", 9월" : ", 연평균") + ")</small>");
+      var note = NOTES[0][1]; NOTES.forEach(function (n) { if (n[0] <= t) note = n[1]; });
+      EB.stat("hi-o-n", note);
+    }, { aspect: 0.55, minHeight: 250, maxHeight: 380 });
+    function draw() { cv.redraw(); }
+    EB.drag(cv.canvas, { move: function (x) { if (!box) return; t = EB.clamp(EB.map(x, box.box.x, box.box.x + box.box.w, 2021, 2026.8), 2021, 2026.79); draw(); } });
+  })();
+
+  /* ---------------- sim-zlb ---------------- */
+  (function () {
+    var gS = EB.range("zl-s", function (v) { return v.toFixed(1) + "%"; }, draw);
+    var gI = EB.range("zl-i", function (v) { return v.toFixed(2) + "%"; }, draw);
+    var qe = document.getElementById("zl-qe");
+    qe.addEventListener("change", draw);
+    var Q = 12;
+    function run(useQE) {
+      var RS = gI() - 2, y = 0, pi = 2, i = gI(), eff = i, rows = [{ t: 0, rule: i, i: i, eff: i, y: 0, pi: 2 }], loss = 0, zero = 0, minR = 99, shock = 0;
+      for (var t = 1; t <= Q; t++) {
+        shock = t === 1 ? gS() : shock * 0.7;                       // 충격은 분기마다 30%씩 사라진다
+        y = 0.7 * y - 0.25 * ((eff - pi) - RS) + shock;            // 지난 분기 실효 금리가 이번 분기 경기에
+        pi = 0.6 * pi + 0.4 * 2 + 0.2 * y;
+        var rr = RS + pi + 0.5 * (pi - 2) + 0.5 * y;               // 테일러 준칙
+        i = Math.max(0, rr);
+        eff = i - (useQE && rr < 0 ? Math.min(1.5, -rr) : 0);
+        if (i <= 0.0001) zero++;
+        loss += Math.min(0, y);
+        minR = Math.min(minR, rr);
+        rows.push({ t: t, rule: rr, i: i, eff: eff, y: y, pi: pi });
+      }
+      return { rows: rows, loss: loss / 4, zero: zero, minR: minR };
+    }
+    var cv = EB.canvas("#zl-cv", function (ctx, w, h) {
+      var P = EB.palette(), a = run(false), b = run(true), use = qe.checked, R = use ? b : a;
+      var c = EB.chart(ctx, { x: 46, y: 14, w: w - 60, h: h - 50 }, {
+        x: [0, Q], y: [-8, 5], xTicks: [0, 4, 8, 12], xFmt: function (v) { return v + "분기"; }, yFmt: function (v) { return v + "%"; },
+        series: [
+          { data: R.rows.map(function (r) { return [r.t, r.rule]; }), color: P.faint, width: 2, dash: [5, 4] },
+          { data: R.rows.map(function (r) { return [r.t, r.i]; }), color: P.accent, width: 2.6 },
+          { data: use ? R.rows.map(function (r) { return [r.t, r.eff]; }) : [], color: P.ok, width: 2.2 },
+          { data: a.rows.map(function (r) { return [r.t, r.y]; }), color: P.bad, width: use ? 1.4 : 2.2, dash: use ? [2, 3] : [] },
+          { data: use ? b.rows.map(function (r) { return [r.t, r.y]; }) : [], color: P.bad, width: 2.2 },
+        ],
+        hlines: [{ y: 0, color: P.dim, label: "0%" }],
+      });
+      ctx.save(); ctx.fillStyle = EB.color("bad-soft"); ctx.fillRect(c.box.x, c.Y(0), c.box.w, c.box.y + c.box.h - c.Y(0)); ctx.restore();
+      ctx.font = EB.font(11); ctx.textAlign = "left";
+      var L = [["실제 기준금리", P.accent], ["준칙 권장 금리", P.faint], ["산출 갭", P.bad]]; if (use) L.splice(1, 0, ["실효 금리(QE 포함)", P.ok]);
+      L.forEach(function (l, k) { ctx.fillStyle = l[1]; ctx.fillRect(c.box.x + c.box.w - 128, c.box.y + 8 + k * 15, 12, 3); ctx.fillStyle = P.dim; ctx.fillText(l[0], c.box.x + c.box.w - 110, c.box.y + 13 + k * 15); });
+      EB.stat("zl-o-m", '<span class="' + (R.minR < 0 ? "bad-t" : "") + '">' + R.minR.toFixed(2) + "%</span>");
+      EB.stat("zl-o-z", R.zero + "분기");
+      EB.stat("zl-o-l", (R.loss).toFixed(1) + "%·년" + (use ? ' <small style="color:var(--text-faint)">(QE 없이 ' + a.loss.toFixed(1) + ")</small>" : ""));
+    }, { aspect: 0.58, minHeight: 250, maxHeight: 380 });
+    function draw() { cv.redraw(); }
+  })();
+
+  /* ---------------- sim-chair ---------------- */
+  (function () {
+    var I0 = K.baseRate * 100, NQ = 8, path = [], box = null, drag = -1;
+    for (var q = 0; q < NQ; q++) path.push(I0);
+    var gP = EB.range("ch-p", function (v) { return v.toFixed(1) + "%"; }, draw);
+    var gG = EB.range("ch-g", function (v) { return (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(2) + "%"; }, draw);
+    var gD = EB.range("ch-d", function (v) { return v.toFixed(1) + "%"; }, draw);
+    var gX = EB.range("ch-x", function (v) { return (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%"; }, draw);
+    function taylorNow() { return EC.taylor({ inflation: gP() / 100, gap: gG() / 100, neutral: 0.005 }) * 100; }
+    function simulate(p) {
+      var d0 = gD(), dem = [], risk = [], rp = [0];
+      for (var t = 1; t <= NQ; t++) { dem.push(0); risk.push(0); }
+      var demand = [0], rk = [0];
+      for (t = 1; t <= NQ; t++) { demand.push(0.04 * (d0 - 4) * Math.pow(0.85, t - 1)); rk.push(t === 1 ? gX() : 0); rp.push(p[t - 1] - (t === 1 ? I0 : p[t - 2])); }
+      var r = EC.economy({ quarters: NQ, rule: false, ratePath: rp, shocks: { demand: demand, risk: rk }, start: { pi: gP(), i: I0, y: gG() }, params: { neutral: 2.5 } });
+      r.rows.forEach(function (row) { row.debt = Math.max(-2, d0 + 0.6 * row.y - 1.5 * (row.i - I0)); });
+      return r.rows;
+    }
+    function rulePath() {
+      // 준칙을 평활화해 따라가는 경로(모형 안에서 rule=true로 계산)
+      var r = EC.economy({ quarters: NQ, rule: true, shocks: { demand: [0].concat(Array.apply(null, Array(NQ)).map(function (_, k) { return 0.04 * (gD() - 4) * Math.pow(0.85, k); })), risk: [0, gX()] }, start: { pi: gP(), i: I0, y: gG() }, params: { neutral: 2.5, smooth: 0.5 } });
+      return r.rows.slice(1).map(function (row) { return Math.round(row.i * 4) / 4; });
+    }
+    var PRE = {
+      hold: function () { return path.map(function () { return I0; }); },
+      rule: rulePath,
+      fast: function () { return [3.5, 4.0, 4.5, 4.5, 4.5, 4.5, 4.25, 4.0]; },
+      cut: function () { return [2.75, 2.5, 2.25, 2.25, 2.25, 2.25, 2.25, 2.25]; },
+    };
+    var gPre = EB.seg("ch-pre", function (v) { path = PRE[v](); cv.redraw(); });
+    var cv = EB.canvas("#ch-cv", function (ctx, w, h) {
+      var P = EB.palette(), rows = simulate(path);
+      var topH = Math.round((h - 40) * 0.46);
+      var A = { x: 46, y: 12, w: w - 60, h: topH - 20 }, B = { x: 46, y: topH + 26, w: w - 60, h: h - topH - 58 };
+      var rp = rulePath();
+      var c1 = EB.chart(ctx, A, {
+        x: [0, NQ], y: [0, 7], xTicks: [], yFmt: function (v) { return v + "%"; },
+        series: [
+          { data: [[0, I0]].concat(rp.map(function (v, k) { return [k + 1, v]; })), color: P.faint, width: 1.8, dash: [5, 4] },
+          { data: [[0, I0]].concat(path.map(function (v, k) { return [k + 1, v]; })), color: P.accent, width: 2.6 },
+        ],
+      });
+      box = c1;
+      path.forEach(function (v, k) { ctx.beginPath(); ctx.arc(c1.X(k + 1), c1.Y(v), k === drag ? 8.5 : 7, 0, 7); ctx.fillStyle = P.accent; ctx.fill(); ctx.fillStyle = EB.color("canvas-bg"); ctx.beginPath(); ctx.arc(c1.X(k + 1), c1.Y(v), 3, 0, 7); ctx.fill(); });
+      ctx.fillStyle = P.dim; ctx.beginPath(); ctx.arc(c1.X(0), c1.Y(I0), 4, 0, 7); ctx.fill();
+      ctx.font = EB.font(11); ctx.textAlign = "left";
+      var ly = c1.Y(1.1);
+      ctx.fillStyle = P.accent; ctx.fillRect(A.x + 8, ly, 12, 3); ctx.fillStyle = P.dim; ctx.fillText("내가 정한 기준금리", A.x + 26, ly + 5);
+      ctx.fillStyle = P.faint; ctx.fillRect(A.x + 150, ly, 12, 3); ctx.fillStyle = P.dim; ctx.fillText("준칙(평활화)", A.x + 168, ly + 5);
+      var lo = -6, hi = 8;
+      var c2 = EB.chart(ctx, B, {
+        x: [0, NQ], y: [lo, hi], xTicks: [0, 2, 4, 6, 8], xFmt: function (v) { return v === 0 ? "지금" : v + "분기"; }, yFmt: function (v) { return v + "%"; },
+        series: [
+          { data: rows.map(function (r) { return [r.t, r.pi]; }), color: P.accent2, width: 2.4 },
+          { data: rows.map(function (r) { return [r.t, r.y]; }), color: P.bad, width: 2.2 },
+          { data: rows.map(function (r) { return [r.t, r.h]; }), color: P.warn, width: 1.8, dash: [5, 3] },
+        ],
+        hlines: [{ y: 2, color: P.ok, label: "물가목표 2%" }, { y: 0, color: P.faint }],
+      });
+      var L = [["물가상승률", P.accent2], ["산출 갭", P.bad], ["집값 상승률", P.warn]];
+      L.forEach(function (l, k) { var lx = B.x + 8 + k * (w < 420 ? 86 : 100); ctx.fillStyle = l[1]; ctx.fillRect(lx, B.y + 6, 12, 3); ctx.fillStyle = P.dim; ctx.fillText(l[0], lx + 16, B.y + 11); });
+      var e = rows[rows.length - 1], dev = 0; rows.slice(1).forEach(function (r) { dev += Math.abs(r.pi - 2); }); dev /= NQ;
+      EB.stat("ch-o-t", taylorNow().toFixed(2) + "%");
+      EB.stat("ch-o-p", '<span class="' + (Math.abs(e.pi - 2) > 1 ? "bad-t" : "") + '">' + e.pi.toFixed(2) + "%</span>");
+      EB.stat("ch-o-y", (e.y >= 0 ? "+" : "−") + Math.abs(e.y).toFixed(2) + "% · " + e.u.toFixed(1) + "%");
+      EB.stat("ch-o-h", '<span class="' + (e.h < -3 ? "bad-t" : e.h > 5 ? "warn-t" : "") + '">' + e.h.toFixed(1) + "%</span> · " + e.debt.toFixed(1) + "%");
+      EB.stat("ch-o-s", dev.toFixed(2) + "%p");
+    }, { aspect: 0.8, minHeight: 420, maxHeight: 520 });
+    function draw() { cv.redraw(); }
+    EB.drag(cv.canvas, {
+      start: function (x, y) { if (!box) return; drag = -1; var bd = 1e9; path.forEach(function (v, k) { var d = Math.hypot(box.X(k + 1) - x, box.Y(v) - y); if (d < bd) { bd = d; drag = k; } }); if (bd > 40) drag = -1; },
+      move: function (x, y) { if (drag < 0 || !box) return; path[drag] = EB.clamp(Math.round((7 - (y - box.box.y) / box.box.h * 7) * 4) / 4, 0, 7); draw(); },
+      end: function () { drag = -1; draw(); },
+    });
+  })();
+
+  /* ---------------- 케이스 ---------------- */
+  (function () {
+    var L = C.home.loan, r0 = C.home.loanRate, up = 0.005;
+    var di = Math.round(L * up / 12 / 1000) * 1000;
+    document.getElementById("case-calc").innerHTML = "지우는 자기 대출에 이 회의를 옮겨 보았다. 전세대출 1억 4,000만원은 4월 재산정 때 연 " + pc(r0) + "로 정해졌고 다음 재산정은 10월이다. 동결이니 당장 바뀌는 것은 없다. 다만 삼촌은 '만약'을 하나 적어 보라고 했다. 점도표에서 가장 많은 점(3.00%)대로 6개월 안에 기준금리가 0.5%p 오르고 그 폭이 지표금리에 그대로 옮겨 간다면, 월 이자는 " + EB.won(L * r0 / 12) + "에서 약 <b>" + EB.won(di) + "</b> 늘어난다. 지우는 이 숫자 옆에 '조건부'라고 크게 썼다. 점은 약속이 아니고, 지표금리가 기준금리를 그대로 따라가지도 않는다(7장의 금리 계단). 그래도 월 저축 여력 " + EB.won(C.monthlySaving) + " 가운데 그만큼을 비워 둘 수 있는지 가계부를 다시 보기로 했다.";
+    document.getElementById("case-life").textContent = "당장은 변화 없음(다음 재산정 10월). 점도표의 다수 의견대로라면(조건부) 월 이자 약 " + EB.won(di) + " 증가 가능성을 가계부에 미리 적어 둔다.";
+  })();
+})();
+</script>
+</body>
+</html>

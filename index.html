@@ -1,0 +1,308 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and EconomicsBook contributors.
+     Executable code: MIT (see LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see LICENSE.md). -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EconomicsBook · 경제 뉴스 읽는 교과서</title>
+<meta name="description" content="수요와 공급, GDP와 경기 순환, 고용, 물가와 금리, 중앙은행과 통화정책, 환율과 무역, 재정과 국가부채, 금융위기까지. 1년 동안 경제 뉴스 헤드라인을 하나씩 해석하는 지우의 노트를 따라 변수를 직접 바꾸며 배우는 인터랙티브 경제 교과서.">
+<link rel="canonical" href="https://economicsbook.euiyun.com/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#4338ca">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EconomicsBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="EconomicsBook · 경제 뉴스 읽는 교과서">
+<meta property="og:description" content="기준금리를 올리면 대출·주식·집값·환율은 어떻게 움직일까. 성장률·물가·고용·환율·국가채무 기사의 숫자를 공식 통계와 시뮬레이터로 다시 읽는 경제 교과서.">
+<meta property="og:url" content="https://economicsbook.euiyun.com/">
+<meta property="og:image" content="https://economicsbook.euiyun.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://economicsbook.euiyun.com/#site","name":"EconomicsBook","alternateName":"이코노믹스북","url":"https://economicsbook.euiyun.com/","inLanguage":"ko","description":"경제 뉴스 읽는 인터랙티브 교과서"},{"@type":"Book","@id":"https://economicsbook.euiyun.com/#book","name":"EconomicsBook · 경제 뉴스 읽는 교과서","url":"https://economicsbook.euiyun.com/","inLanguage":"ko","isAccessibleForFree":true,"educationalLevel":"일반 성인","about":["경제","거시경제","수요와 공급","GDP","경기 순환","고용","물가","금리","통화정책","환율","무역","경상수지","재정","국가부채","금융위기","경제 뉴스"],"description":"성장률·물가·고용·금리·환율·국가채무 기사의 숫자를 공식 통계와 시뮬레이터로 다시 읽는 인터랙티브 경제 교과서.","image":"https://economicsbook.euiyun.com/og.png","dateModified":"2026-10-09","hasPart":[]}]}</script>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/common.js"></script>
+<script src="js/econ.js"></script>
+<style>
+  .paths { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .path { padding: 18px 20px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-elev); }
+  .path h3 { margin: 0 0 6px; font-size: 17px; }
+  .path p { margin: 0 0 10px; color: var(--text-dim); font-size: 14.5px; }
+  .steps { display: flex; flex-wrap: wrap; gap: 6px; }
+  .steps a, .steps span { font-family: var(--mono); font-size: 12px; padding: 3px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+  .steps span { background: var(--surface); color: var(--text-faint); }
+  .steps a:hover { text-decoration: none; filter: brightness(1.1); }
+  .numbers { display: grid; gap: 1px; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .numbers div { background: var(--bg-elev); padding: 18px 20px; }
+  .numbers b { display: block; font-family: var(--mono); font-size: 26px; letter-spacing: -0.02em; color: var(--text); }
+  .numbers span { color: var(--text-dim); font-size: 14px; }
+  .hero-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+  .hero-badges span { font-size: 13px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--text-dim); background: var(--bg-elev); }
+  .hero-sim { border-radius: 20px; border: 1px solid var(--border); background: var(--bg-elev); overflow: hidden; box-shadow: var(--shadow); }
+  .hero-sim canvas { display: block; width: 100%; touch-action: none; }
+  .hero-sim .ctl { display: grid; gap: 10px; padding: 14px 16px 16px; border-top: 1px solid var(--border); }
+  .hero-sim .row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .hero-sim .row .ctrl { flex: 1 1 160px; margin: 0; }
+  .hero-sim .cap { font-size: 14px; color: var(--text-dim); min-height: 44px; line-height: 1.5; }
+  .hero-sim .cap b { color: var(--text); }
+  .questions { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .questions > div { padding: 20px 22px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-elev); }
+  .questions h3 { margin: 0 0 8px; font-size: 18px; }
+  .questions p { margin: 0 0 10px; color: var(--text-dim); font-size: 15px; line-height: 1.6; }
+  .trail { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); counter-reset: tr; }
+  .trail > div { counter-increment: tr; padding: 16px; border-radius: 12px; background: var(--bg-elev); border: 1px solid var(--border); }
+  .trail > div::before { content: "PART " counter(tr); font-family: var(--mono); font-size: 12px; color: var(--accent); font-weight: 700; }
+  .trail b { display: block; font-size: 16px; margin: 4px 0 2px; }
+  .trail small { display: block; font-family: var(--mono); font-size: 11px; color: var(--text-faint); margin-bottom: 8px; }
+  .trail p { margin: 0 0 10px; font-size: 14px; color: var(--text-dim); line-height: 1.55; }
+  .series { display: flex; flex-wrap: wrap; gap: 10px; }
+  .series a { padding: 10px 16px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-elev); color: var(--text); font-weight: 600; font-size: 15px; }
+  .series a small { display: block; font-weight: 400; color: var(--text-dim); font-size: 13px; }
+  .series a:hover { text-decoration: none; border-color: var(--accent); }
+  .game-cta { display: grid; gap: 18px; align-items: center; grid-template-columns: minmax(0, 1fr); padding: 24px; border-radius: var(--radius); border: 1px solid var(--accent); background: linear-gradient(120deg, var(--accent-soft), var(--accent-2-soft)); }
+  @media (min-width: 760px) { .game-cta { grid-template-columns: minmax(0, 1fr) auto; } }
+  .game-cta h2 { margin: 0 0 6px; font-size: 24px; }
+  .game-cta p { margin: 0; color: var(--text-dim); font-size: 15.5px; }
+  .game-cta a, .game-cta span.soon { justify-self: start; padding: 12px 20px; border-radius: 12px; font-weight: 700; background: var(--accent); color: var(--on-accent); white-space: nowrap; }
+  .game-cta span.soon { background: var(--surface); color: var(--text-faint); }
+  .game-cta a:hover { text-decoration: none; filter: brightness(1.05); }
+  .persona { display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); padding: 22px; border-radius: var(--radius); border: 1px solid var(--border); border-left: 4px solid var(--accent-2); background: var(--bg-elev); }
+  @media (min-width: 760px) { .persona { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); } }
+  .persona p { margin: 0 0 10px; color: var(--text-dim); }
+  .persona .slip { margin: 0; }
+  .numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 900px) { .numbers { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .numbers b { font-size: 24px; }
+  .numbers small { display: block; margin-top: 4px; font-size: 12px; color: var(--text-faint); }
+  .ch-card.soon { opacity: .62; cursor: default; }
+  .ch-card.soon:hover { transform: none; border-color: var(--border); }
+  .disclaimer { font-size: 14px; color: var(--text-dim); }
+</style>
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"3d6151a0abc94ede89285d462527fa80"}'></script>
+<!-- End Cloudflare Web Analytics -->
+</head>
+<body data-root="">
+<section class="home-hero">
+  <div class="inner">
+    <div>
+      <div class="eyebrow">Interactive Economics Textbook</div>
+      <h1>경제 뉴스를<br><span class="grad">숫자로 다시 읽는다</span></h1>
+      <p>기준금리를 올리면 내 대출 이자는 언제 늘고, 주가와 집값, 환율은 어떻게 움직일까. 성장률 0.6%는 좋은 숫자일까. 이 교과서는 수요와 공급에서 시작해 GDP와 경기, 고용, 물가와 금리, 중앙은행, 환율과 무역, 재정과 국가부채, 금융위기까지를 슬라이더와 그래프로 직접 움직이며 푼다. 헤드라인 한 줄 뒤에 있는 정의와 기준 시점, 비교 기준을 읽는 눈을 준다.</p>
+      <div class="cta">
+        <a class="primary" href="chapters/overview.html">1장부터 시작하기 →</a>
+        <a class="ghost" href="chapters/transmission.html">기준금리 연결판 열기</a>
+      </div>
+      <div class="hero-badges">
+        <span>15개 챕터</span><span>장마다 5~7개 시뮬레이터</span><span>이어지는 케이스: 지우의 헤드라인 노트</span><span>기자 노트 · 통계 확인</span><span>공식 통계와 기준 시점 표기</span>
+      </div>
+    </div>
+    <div class="hero-sim" id="hero">
+      <canvas id="hero-cv"></canvas>
+      <div class="ctl">
+        <div class="row">
+          <label class="ctrl"><span>기준금리 변화 <output id="hero-d-out"></output></span><input type="range" id="hero-d" min="-1" max="1" step="0.25" value="0.25"></label>
+          <label class="ctrl"><span>같은 기간 미국 금리 변화 <output id="hero-u-out"></output></span><input type="range" id="hero-u" min="-1" max="1" step="0.25" value="0"></label>
+        </div>
+        <div class="cap" id="hero-cap"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="home-section">
+  <h2>이 책이 답하는 세 가지 질문</h2>
+  <p class="sub">경제 기사가 어려운 것은 숫자가 많아서가 아니라, 숫자마다 재는 방법과 비교 기준이 다르고 서로 이어져 있기 때문입니다.</p>
+  <div class="questions">
+    <div>
+      <h3>이 숫자는 무엇을 잰 것인가</h3>
+      <p>성장률은 전기 대비인가 전년 동기 대비인가, 실업률은 왜 고용 사정과 다르게 움직이는가, 물가 상승률이 내려도 왜 장바구니는 비싼가. 정의와 기준 시점, 속보치와 수정치를 짚는다.</p>
+      <div class="steps" data-chs="overview gdp jobs inflation fiscal"></div>
+    </div>
+    <div>
+      <h3>무엇이 일으켰고 어디로 번지는가</h3>
+      <p>수요와 공급, 금리, 환율, 재정은 서로 이어져 있다. 기준금리 0.25%p가 대출금리·주가·집값·환율·물가로 번지는 순서와 시차를 연결판 위에서 직접 움직여 본다.</p>
+      <div class="steps" data-chs="market cycle bok transmission fx trade"></div>
+    </div>
+    <div>
+      <h3>내 생활에는 무엇을 뜻하는가</h3>
+      <p>전세대출 이자, 월급의 실질 가치, 일자리, 해외 직구 값, ETF와 집값. 경제 뉴스를 내 가계부의 숫자로 옮기고, 금리·주식·집 이야기는 시리즈의 다른 책으로 이어 간다.</p>
+      <div class="steps" data-chs="rates transmission crisis lab"></div>
+    </div>
+  </div>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>숫자로 보는 지금의 한국 경제</h2>
+  <p class="sub">이 교과서를 끝내면 아래 숫자가 어디서 나오는지, 무엇과 비교한 값인지 설명할 수 있게 됩니다. 모두 공식 발표값이며 기준 시점이 지나면 바뀝니다.</p>
+  <div class="numbers" id="numbers"></div>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>여섯 부의 구성</h2>
+  <p class="sub">1장은 전체 지도, 14장은 실험실, 15장은 용어집입니다. 나머지 열두 장은 여섯 부로 나뉘고, 지우의 노트에서 한 달씩을 맡습니다.</p>
+  <div class="trail" id="trail"></div>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>이어지는 케이스: 지우의 헤드라인 노트</h2>
+  <div class="persona">
+    <div>
+      <p><strong style="color:var(--text)">서지우(31), 식품 제조사 원료구매팀 대리.</strong> 수입 밀·원당·대두유를 달러로 계약하니 환율과 국제 곡물값이 곧 회사의 원가다. 경기 F시 빌라에 전세 2억원으로 살고, 그중 1억 4,000만원이 6개월마다 금리가 바뀌는 전세대출이다. 지수 ETF를 매달 40만원씩 모은다. 질문은 하나. "3년 안에 내 집을 살 수 있을까, 그걸 판단하려면 경제 뉴스를 어떻게 읽어야 할까."</p>
+      <p><strong style="color:var(--text)">백정호(64), 외삼촌.</strong> 경제신문 기자로 32년을 일하고 은퇴했다. 원칙은 "헤드라인보다 표를 먼저 본다". 숫자를 보면 세 가지를 묻는다. 언제 기준인가, 무엇과 비교했나, 누가 쟀나.</p>
+      <p>2025년 10월부터 1년 동안 지우는 매달 헤드라인 하나를 골라 노트에 옮기고 해석한다. 책은 그 노트를 주제순으로 엮는다. 헤드라인은 공식 발표를 바탕으로 이 책이 다시 쓴 문장이고, 인물과 회사는 가상이다.</p>
+    </div>
+    <div class="slip" id="case-slip"></div>
+  </div>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <div class="game-cta">
+    <div>
+      <h2>경제 뉴스 실험실</h2>
+      <p>유가 급등, 수출 호황, 세계 금융 불안, 재정 확대, 미국 금리 인상을 넣으면 작은 경제 모형이 2~3년 동안 성장·물가·금리·환율·실업·집값을 어떻게 움직이는지 보여 준다. 중앙은행의 의자에 앉아 금리 경로를 직접 그려 본다.</p>
+    </div>
+    <span class="soon" id="lab-cta">집필 중</span>
+  </div>
+</section>
+
+<section class="home-section" style="padding-top:0" id="chapters">
+  <h2>전체 챕터</h2>
+  <p class="sub">각 장은 이 달의 헤드라인 → 만져 보는 그림 → 원리 → 시뮬레이터 → 실제 통계 → 지우의 헤드라인 노트 → 퀴즈 순서로 구성됩니다.</p>
+  <div class="ch-grid" id="chgrid"></div>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>독자별 추천 경로</h2>
+  <p class="sub">지금 궁금한 것부터 읽어도 됩니다.</p>
+  <div class="paths">
+    <div class="path"><h3>대출이 있다면</h3><p>내 이자는 언제, 얼마나 바뀌나. 금리의 구조와 기준금리의 길.</p><div class="steps" data-chs="rates bok transmission"></div></div>
+    <div class="path"><h3>주식·ETF에 투자한다면</h3><p>금리·경기·환율이 주가에 닿는 길을 먼저.</p><div class="steps" data-chs="cycle rates transmission fx crisis"></div></div>
+    <div class="path"><h3>내 집 마련을 고민한다면</h3><p>금리와 대출 한도, 경기와 위기의 구조.</p><div class="steps" data-chs="inflation rates transmission crisis lab"></div></div>
+    <div class="path"><h3>해외 직구·여행·수입 업무라면</h3><p>환율이 정해지는 원리와 수입물가.</p><div class="steps" data-chs="market fx trade inflation"></div></div>
+    <div class="path"><h3>시사 상식·면접을 준비한다면</h3><p>성장률·물가·고용·재정 숫자를 정확히 읽는 법.</p><div class="steps" data-chs="overview gdp jobs inflation fiscal glossary"></div></div>
+    <div class="path"><h3>처음부터 차근차근</h3><p>시장에서 출발해 나라 경제, 돈, 바깥 세계, 정부, 위기로.</p><div class="steps" data-chs="overview market gdp cycle jobs inflation rates bok transmission fx trade fiscal crisis lab glossary"></div></div>
+  </div>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>이 사이트 사용법</h2>
+  <div class="flow">
+    <div><b>읽기</b>이 달의 헤드라인에서 시작합니다. 용어는 처음 나올 때 풀어 씁니다.</div>
+    <div><b>만지기</b>슬라이더를 밀고 곡선과 그래프의 점을 끌어 보세요.</div>
+    <div><b>무너뜨리기</b>값을 끝까지 밀어 보세요. 가격 상한이 품귀를 만들고, 금리가 성장률보다 높으면 부채 비율이 끝없이 오르는 지점이 배울 점입니다.</div>
+    <div><b>골라 읽기</b>기자 노트는 헤드라인이 만들어지는 사정과 흔한 오독을, 통계 확인은 원자료를 찾는 법을 담습니다.</div>
+    <div><b>이어 읽기</b>금리·주식·집 이야기는 MoneyBook·StockBook·EstateBook의 해당 장으로 이어집니다.</div>
+  </div>
+  <p class="disclaimer" style="margin-top:20px">이 사이트의 통계는 한국은행·국가데이터처(옛 통계청)·재정경제부·산업통상부 등 공식 발표를 인용한 값이며, 장마다 출처와 기준 시점을 밝혔습니다(작성 시점 2026년 10월). 통계는 수정·갱신되므로 최신 값은 원자료에서 확인하세요. 시뮬레이터는 원리를 보여 주는 교육용 모형이며 경기·금리·환율·주가·집값을 전망하지 않습니다. 투자 자문이 아닙니다.</p>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>함께 읽으면 좋은 교과서</h2>
+  <p class="sub">같은 방식으로 만든 인터랙티브 교과서 시리즈입니다. 이 책이 경제 전체의 흐름을 본다면, 아래 책들은 내 돈의 결정을 맡습니다.</p>
+  <div class="series">
+    <a href="https://moneybook.euiyun.com/">MoneyBook<small>돈 교과서 · 월급 명세서에서 은퇴 설계까지</small></a>
+    <a href="https://stockbook.euiyun.com/">StockBook<small>주식 교과서 · 호가창에서 옵션까지</small></a>
+    <a href="https://estatebook.euiyun.com/">EstateBook<small>부동산 교과서 · 집값과 전세를 숫자로</small></a>
+    <a href="https://books.euiyun.com/">전체 책<small>euiyun 책 시리즈</small></a>
+  </div>
+</section>
+
+<script>
+(function () {
+  "use strict";
+  var byslug = {};
+  EB.CHAPTERS.forEach(function (c) { byslug[c.slug] = c; });
+  function chip(slug) {
+    var c = byslug[slug];
+    return c.ready ? '<a href="chapters/' + c.slug + '.html" title="' + c.title + '">' + c.num + "</a>" : '<span title="' + c.title + ' (집필 중)">' + c.num + "</span>";
+  }
+  document.querySelectorAll("[data-chs]").forEach(function (el) { el.innerHTML = el.getAttribute("data-chs").split(" ").map(chip).join(""); });
+
+  document.getElementById("chgrid").innerHTML = EB.CHAPTERS.map(function (c) {
+    var tags = c.tags.map(function (t) { return '<span class="' + (t === "sim" ? "sim" : "") + '">' + (t === "sim" ? "시뮬레이터" : t) + "</span>"; }).join("");
+    var inner = '<span class="num">CHAPTER ' + c.num + "</span><h3>" + c.title + "</h3><p>" + c.desc + '</p><span class="tags">' + (c.ready ? "" : "<span>집필 중</span>") + tags + "</span>";
+    return c.ready ? '<a class="ch-card" href="chapters/' + c.slug + '.html">' + inner + "</a>" : '<div class="ch-card soon">' + inner + "</div>";
+  }).join("");
+  if (byslug.lab.ready) document.getElementById("lab-cta").outerHTML = '<a href="chapters/lab.html">실험실 열기 →</a>';
+
+  var about = [
+    "가격은 누가 정하는가. 수요·공급과 탄력성.",
+    "GDP와 성장률, 경기 순환과 지표, 고용.",
+    "물가, 금리, 중앙은행, 그리고 기준금리가 퍼지는 길.",
+    "환율, 무역과 경상수지.",
+    "예산과 재정수지, 국가채무.",
+    "레버리지와 뱅크런, 1997·2008·2020.",
+  ];
+  document.getElementById("trail").innerHTML = EB.PARTS.map(function (s, i) {
+    var chs = EB.CHAPTERS.filter(function (c) { return c.part === i; });
+    return "<div><b>" + s.name + "</b><small>" + s.en + "</small><p>" + about[i] + '</p><span class="steps">' + chs.map(function (c) { return chip(c.slug); }).join("") + "</span></div>";
+  }).join("");
+
+  var K = EC.KR, C = EC.CASE;
+  var pct = function (x, d) { return (x * 100).toFixed(d == null ? 1 : d) + "%"; };
+  var nums = [
+    [pct(K.baseRate, 2), "한국은행 기준금리. 2026년 7월과 8월 두 번 0.25%p씩 올렸다", "한국은행 통화정책방향(2026-08-27)", "transmission"],
+    [pct(K.cpi), "소비자물가 상승률(전년 동월 대비). 물가안정목표는 2%", "국가데이터처 소비자물가동향(2026년 9월)", "inflation"],
+    [pct(K.gdpQoQ) + " · " + pct(K.gdpYoY), "실질 GDP 성장률. 앞은 전기 대비, 뒤는 전년 동기 대비. 같은 분기의 두 얼굴", "한국은행 국민소득 잠정(2026년 2분기)", "gdp"],
+    [pct(K.unemployment) + " · " + pct(K.extUnemployment), "실업률과 확장실업률(고용보조지표3). 같은 달, 다른 정의", "국가데이터처 고용동향(2026년 8월)", "jobs"],
+    [K.usdkrw.toLocaleString("ko-KR", { minimumFractionDigits: 1 }) + "원", "원/달러 환율. 2025년 연평균은 1,421.97원으로 역대 가장 높았다", "서울외환시장 종가(2026-10-08)", "fx"],
+    [Math.round(K.currentAccount2025 / 1e8).toLocaleString("ko-KR") + "억 달러", "2025년 경상수지 흑자. 사상 최대", "한국은행 국제수지(2025년 연간)", "trade"],
+    [pct(K.debtRatio2025), "국가채무(D1, 중앙+지방)의 GDP 대비 비율. 금액은 1,304.5조원", "재정경제부 2025회계연도 국가결산", "fiscal"],
+    [Math.round(K.householdCredit / 1e12).toLocaleString("ko-KR") + "조원", "가계신용 잔액. 처음으로 2,000조원을 넘었다", "한국은행 가계신용(2026년 2분기 말)", "crisis"],
+  ];
+  document.getElementById("numbers").innerHTML = nums.map(function (n) {
+    var c = byslug[n[3]];
+    return "<div><b>" + n[0] + "</b><span>" + n[1] + "</span><small>" + n[2] + (c && c.ready ? ' · <a href="chapters/' + c.slug + '.html">' + c.num + "장</a>" : "") + "</small></div>";
+  }).join("");
+
+  document.getElementById("case-slip").innerHTML = [
+    ["월 실수령", EB.won(C.jiwoo.monthlyNet)],
+    ["전세 보증금(경기 F시 빌라)", EB.won(C.home.deposit)],
+    ["전세대출(6개월 변동, 연 3.9%)", "−" + EB.won(C.home.loan)],
+    ["월 대출 이자", "−" + EB.won(C.monthlyInterest)],
+    ["정기예금", EB.won(C.savings)],
+    ["지수 ETF 평가액(월 40만원 적립)", EB.won(C.etf.value)],
+  ].map(function (r) { return '<div class="row"><span>' + r[0] + "</span><span>" + r[1] + "</span></div>"; }).join("") +
+    '<div class="row total"><span>순자산</span><span>' + EB.won(C.netWorth) + "</span></div>";
+
+  // 히어로: 기준금리 연결판 미리보기
+  var fmtP = function (v) { return (v >= 0 ? "+" : "") + v.toFixed(2) + "%p"; };
+  var gD = EB.range("hero-d", fmtP, draw), gU = EB.range("hero-u", fmtP, draw);
+  var anim = 0, cap = document.getElementById("hero-cap");
+  var LOAN0 = C.home.loanRate;
+  function run() { return EC.transmit({ dRate: gD() / 100, usRate: gU() / 100, surprise: 0.5, months: 24, base0: 0.0275, loan0: LOAN0 }); }
+  var cv = EB.canvas("#hero-cv", function (ctx, w, h) {
+    var P = EB.palette(), r = run(), rows = r.rows;
+    var n = Math.max(1, Math.round(24 * anim));
+    var S = [
+      { k: "loan", name: "대출금리(%p ×4)", col: P.bad, f: function (q) { return (q.loan - LOAN0) * 100 * 4; } },
+      { k: "stock", name: "주가", col: P.accent2, f: function (q) { return q.stock * 100; } },
+      { k: "house", name: "집값", col: P.accent, f: function (q) { return q.house * 100; } },
+      { k: "fx", name: "원/달러 환율", col: P.ok, f: function (q) { return q.fx * 100; } },
+    ];
+    var lim = 1;
+    rows.forEach(function (q) { S.forEach(function (s) { lim = Math.max(lim, Math.abs(s.f(q))); }); });
+    lim = Math.ceil(lim * 1.15);
+    var c = EB.chart(ctx, { x: 44, y: 16, w: w - 60, h: h - 52 }, {
+      x: [0, 24], y: [-lim, lim], xTicks: [0, 6, 12, 18, 24], xFmt: function (v) { return v + "개월"; }, yFmt: function (v) { return (v > 0 ? "+" : "") + v + "%"; },
+      series: S.map(function (s) { return { data: rows.slice(0, n + 1).map(function (q) { return [q.m, s.f(q)]; }), color: s.col, width: 2.4 }; }),
+      hlines: [{ y: 0, color: P.axis }],
+    });
+    ctx.font = EB.font(11); ctx.textAlign = "left";
+    S.forEach(function (s, i) { var q = rows[n]; ctx.fillStyle = s.col; ctx.fillRect(c.box.x + 8 + (i % 2) * 120, c.box.y + 6 + Math.floor(i / 2) * 15, 10, 3); ctx.fillStyle = P.dim; ctx.fillText(s.name, c.box.x + 24 + (i % 2) * 120, c.box.y + 11 + Math.floor(i / 2) * 15); });
+  }, { aspect: 0.66, minHeight: 260, maxHeight: 380 });
+  function draw() {
+    var q = run().rows[24], q12 = run().rows[12];
+    var s = function (x) { return (x >= 0 ? "+" : "−") + Math.abs(x * 100).toFixed(1) + "%"; };
+    cap.innerHTML = "기준금리 <b>" + fmtP(gD()) + "</b>" + (gU() ? ", 미국 " + fmtP(gU()) : "") + "이면 이 책의 모형에서 1년 뒤 대출금리 <b>" + fmtP((q12.loan - LOAN0) * 100) + "</b>, 주가 <b>" + s(q12.stock) + "</b>, 2년 뒤 집값 <b>" + s(q.house) + "</b>, 발표 직후 환율 <b>" + s(run().rows[0].fx) + "</b>. 미국 금리를 더 올려 보면 환율의 방향이 바뀐다(9장). 교육용 모형이며 전망이 아니다.";
+    cv.redraw();
+  }
+  EB.loop(document.getElementById("hero"), function (dt) { if (anim < 1) { anim = Math.min(1, anim + dt * 0.7); cv.redraw(); } });
+  draw();
+})();
+</script>
+</body>
+</html>

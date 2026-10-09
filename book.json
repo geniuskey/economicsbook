@@ -1,0 +1,10 @@
+{
+  "id": "economicsbook",
+  "title": "EconomicsBook",
+  "description": "수요와 공급, GDP와 경기 순환, 고용, 물가와 금리, 중앙은행과 통화정책, 환율과 무역, 재정과 국가부채, 금융위기까지. 1년 동안 경제 뉴스 헤드라인을 하나씩 해석하는 지우의 노트를 따라 변수를 직접 바꾸며 배웁니다.",
+  "url": "https://economicsbook.euiyun.com/",
+  "repo": "https://github.com/geniuskey/economicsbook",
+  "field": "money",
+  "status": "published",
+  "domain": "economicsbook.euiyun.com"
+}
