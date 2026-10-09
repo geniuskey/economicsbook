@@ -5,6 +5,30 @@
 <html lang="ko">
 <head>
 <!--head:start {"desc": "GDP·산출 갭·근원물가·수익률 곡선·테일러 준칙·경상수지·관리재정수지·DSR까지, 경제 기사에 자주 나오는 용어를 한국어·영어·초성으로 검색하고 여섯 부로 걸러 본다. 헤드라인 해독 연습과 20문항 종합 퀴즈로 책 전체를 점검한다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>용어집 & 종합 퀴즈 · EconomicsBook</title>
+<meta name="description" content="GDP·산출 갭·근원물가·수익률 곡선·테일러 준칙·경상수지·관리재정수지·DSR까지, 경제 기사에 자주 나오는 용어를 한국어·영어·초성으로 검색하고 여섯 부로 걸러 본다. 헤드라인 해독 연습과 20문항 종합 퀴즈로 책 전체를 점검한다.">
+<link rel="canonical" href="https://economicsbook.euiyun.com/chapters/glossary.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#4338ca">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="EconomicsBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="용어집 &amp; 종합 퀴즈 · EconomicsBook">
+<meta property="og:description" content="GDP·산출 갭·근원물가·수익률 곡선·테일러 준칙·경상수지·관리재정수지·DSR까지, 경제 기사에 자주 나오는 용어를 한국어·영어·초성으로 검색하고 여섯 부로 걸러 본다. 헤드라인 해독 연습과 20문항 종합 퀴즈로 책 전체를 점검한다.">
+<meta property="og:url" content="https://economicsbook.euiyun.com/chapters/glossary.html">
+<meta property="og:image" content="https://economicsbook.euiyun.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://economicsbook.euiyun.com/chapters/glossary.html#chapter","name":"용어집 & 종합 퀴즈","headline":"용어집 & 종합 퀴즈 · EconomicsBook","description":"GDP·산출 갭·근원물가·수익률 곡선·테일러 준칙·경상수지·관리재정수지·DSR까지, 경제 기사에 자주 나오는 용어를 한국어·영어·초성으로 검색하고 여섯 부로 걸러 본다. 헤드라인 해독 연습과 20문항 종합 퀴즈로 책 전체를 점검한다.","url":"https://economicsbook.euiyun.com/chapters/glossary.html","position":15,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://economicsbook.euiyun.com/og.png","dateModified":"2026-10-09","isPartOf":{"@type":"Book","@id":"https://economicsbook.euiyun.com/#book","name":"EconomicsBook · 경제 뉴스 읽는 교과서","url":"https://economicsbook.euiyun.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"EconomicsBook","item":"https://economicsbook.euiyun.com/"},{"@type":"ListItem","position":2,"name":"15. 용어집 & 종합 퀴즈","item":"https://economicsbook.euiyun.com/chapters/glossary.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/econ.js"></script>
 <!--head:end-->
 <!-- Cloudflare Web Analytics -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"3d6151a0abc94ede89285d462527fa80"}'></script>
@@ -285,7 +309,305 @@
 </main>
 
 <script>
-/*SCRIPT*/
+(function () {
+  "use strict";
+  /* =============================================================== 용어 데이터
+     [한국어, 영어, 정의, 장 slug, 분야]  분야: m 시장, e 경기, r 돈과 금리, w 바깥 세계, s 정부, c 위기 */
+  const RAW = [
+    // 01 경제 뉴스의 지도
+    ["경제 주체", "Economic agents", "경제 활동을 하는 네 무리. 가계(소비·노동 공급), 기업(생산·투자), 정부(세금·지출), 해외(수출입·자본 이동). 경제 뉴스의 숫자는 대개 이 넷 사이를 오가는 돈의 흐름 가운데 한 곳을 잰 것이다.", "overview", "e"],
+    ["경제 순환도", "Circular flow of income", "가계가 기업에 노동과 자본을 제공하고 소득을 받아, 그 소득으로 기업의 상품을 사는 돈의 순환을 그린 그림. 같은 돈이 생산·분배·지출로 한 바퀴 돌기 때문에 GDP를 세 방향에서 잴 수 있다.", "overview", "e"],
+    ["기준 시점", "Reference period", "숫자가 잰 기간이나 시점. 발표일과 다르다. 10월에 발표된 물가는 9월의 값이고, 9월에 발표된 GDP 잠정치는 2분기의 값이다.", "overview", "e"],
+    ["계절조정", "Seasonal adjustment", "명절, 날씨, 영업일 수처럼 해마다 같은 때 되풀이되는 변동을 통계적으로 걷어 낸 것. 계절조정한 값끼리는 바로 앞 달·분기와 비교할 수 있다.", "overview", "e"],
+    ["원계열", "Original (unadjusted) series", "계절조정을 하지 않은 원래 숫자. 계절 요인이 섞여 있어 보통 1년 전 같은 달·분기와 비교한다.", "overview", "e"],
+    ["전망치", "Forecast", "아직 일어나지 않은 일에 대해 어떤 기관이나 모형이 가정을 깔고 계산한 숫자. 이미 잰 실적치와 성격이 다르며, 기관마다 다르고 시간이 지나면 고쳐진다.", "overview", "e"],
+
+    // 02 수요와 공급
+    ["수요", "Demand", "여러 가격 각각에서 사람들이 사려고 하는 양의 관계. 값이 오르면 사려는 양이 줄어 수요 곡선은 오른쪽 아래로 기운다.", "market", "m"],
+    ["공급", "Supply", "여러 가격 각각에서 생산자가 팔려고 하는 양의 관계. 값이 오르면 더 팔려고 해 공급 곡선은 오른쪽 위로 오른다.", "market", "m"],
+    ["균형가격", "Equilibrium price", "사려는 양과 팔려는 양이 같아지는 가격. 수요나 공급 곡선이 움직이면 새 균형으로 옮겨 간다.", "market", "m"],
+    ["수요의 변화", "Shift in demand", "가격 아닌 요인(소득, 취향, 다른 상품 값, 기대)이 바뀌어 수요 곡선 자체가 옮겨 가는 것. 가격 변화에 따라 곡선 위를 움직이는 '수요량의 변화'와 구분한다.", "market", "m"],
+    ["가격 탄력성", "Price elasticity", "가격이 1% 바뀔 때 수요량(또는 공급량)이 몇 % 바뀌는지. 1보다 작으면 비탄력적이라 하며, 쌀·전기처럼 꼭 필요한 물건은 수요가 비탄력적이라 공급이 조금 줄어도 값이 크게 뛴다.", "market", "m"],
+    ["가격 상한제", "Price ceiling", "정부가 정한 최고 가격. 균형가격보다 낮게 정하면 사려는 양이 팔려는 양보다 많아져 품귀, 줄 서기, 암시장이 생기기 쉽다.", "market", "m"],
+    ["가격 하한제", "Price floor", "정부가 정한 최저 가격. 균형가격보다 높게 정하면 팔려는 양이 사려는 양보다 많아져 남는 물량(초과공급)이 생긴다. 최저임금이 대표적 예로 거론된다.", "market", "m"],
+    ["조세 귀착", "Tax incidence", "세금을 누가 실제로 부담하는가. 법으로 누구에게 매기든, 가격에 덜 민감한(비탄력적인) 쪽이 더 많이 떠안는다.", "market", "m"],
+    ["소비자 잉여", "Consumer surplus", "사람들이 내려고 했던 최고 가격과 실제로 낸 가격의 차이를 모두 더한 것. 수요 곡선 아래, 가격 위의 넓이다.", "market", "m"],
+    ["사중손실", "Deadweight loss", "세금이나 가격 규제 때문에 거래가 줄어 누구에게도 돌아가지 않고 사라진 잉여. 시장 개입의 비용을 재는 개념이다.", "market", "m"],
+
+    // 03 GDP
+    ["국내총생산", "GDP, Gross Domestic Product", "일정 기간 한 나라 안에서 새로 만들어진 최종 상품과 서비스의 시장 가치를 모두 더한 것. 누가 만들었든 국내에서 생산한 것을 센다.", "gdp", "e"],
+    ["국민총소득", "GNI, Gross National Income", "한 나라 국민이 국내외에서 번 소득의 합. GDP에 국외에서 받은 소득을 더하고 국외로 준 소득을 뺀다(실질 GNI는 교역조건 변화도 반영).", "gdp", "e"],
+    ["1인당 국민총소득", "GNI per capita", "명목 GNI를 인구로 나눈 값. 국제 비교를 위해 보통 달러로 환산하므로 환율이 오르면(원화 약세) 달러 기준 값이 줄어든다.", "gdp", "e"],
+    ["명목 GDP", "Nominal GDP", "그해의 가격으로 잰 GDP. 생산량이 그대로여도 값이 오르면 커진다. 부채 비율처럼 금액끼리 비교할 때 쓴다.", "gdp", "e"],
+    ["실질 GDP", "Real GDP", "기준년의 가격으로 잰 GDP. 가격 변화를 걷어 내 생산량의 변화만 본다. 경제성장률은 보통 실질 GDP의 증가율이다.", "gdp", "e"],
+    ["GDP 디플레이터", "GDP deflator", "명목 GDP를 실질 GDP로 나눠 100을 곱한 값. 경제 전체에서 생산된 모든 것의 평균 가격 수준을 나타내며, 수입품 값은 들어가지 않는다는 점에서 소비자물가와 다르다.", "gdp", "e"],
+    ["전기 대비", "Quarter-on-quarter, q/q", "바로 앞 분기(또는 달)와 비교한 증가율. 계절조정한 숫자로 계산한다. 한국은행이 분기 성장률로 먼저 발표하는 것이 이 기준이다.", "gdp", "e"],
+    ["전년 동기 대비", "Year-on-year, y/y", "1년 전 같은 분기(같은 달)와 비교한 증가율. 계절 요인이 저절로 걸러지지만, 1년 전 값이 유난히 낮거나 높으면 기저효과가 생긴다.", "gdp", "e"],
+    ["연율", "Annualized rate", "한 분기의 성장 속도가 1년 내내 이어진다고 가정해 1년치로 환산한 값. 전기비 g라면 (1+g)<sup>4</sup> − 1. 미국은 GDP 성장률을 주로 연율로 발표한다.", "gdp", "e"],
+    ["성장 기여도", "Contribution to growth", "전체 성장률 가운데 소비·투자·순수출 같은 항목 하나가 차지한 몫(%p). 항목의 증가분을 지난 기의 GDP로 나눠 구한다. 기여도를 모두 더하면 성장률이 된다.", "gdp", "e"],
+    ["속보치", "Advance estimate", "분기가 끝나고 약 4주 뒤 한국은행이 처음 발표하는 GDP 추정치. 자료가 다 모이기 전의 값이라 뒤에 수정된다.", "gdp", "e"],
+    ["잠정치", "Preliminary estimate", "속보치 뒤 자료를 더 반영해 다시 발표하는 추정치(분기 GDP는 분기가 끝나고 두 달 남짓 뒤). 이후 연간 국민계정에서 확정치로 한 번 더 바뀐다.", "gdp", "e"],
+    ["순수출", "Net exports", "수출에서 수입을 뺀 것. 지출 측면 GDP는 소비 + 투자 + 정부지출 + 순수출로 나뉜다.", "gdp", "e"],
+
+    // 04 경기 순환
+    ["경기 순환", "Business cycle", "경제 활동이 추세를 중심으로 확장과 수축을 되풀이하는 움직임. 정점(꼭대기)과 저점(바닥) 사이를 한 국면으로 본다.", "cycle", "e"],
+    ["산출 갭", "Output gap", "실제 GDP가 잠재 GDP보다 몇 % 많거나 적은지. 양수면 과열 쪽(물가 압력), 음수면 침체 쪽이다. 잠재 GDP가 추정치라 산출 갭도 추정치다.", "cycle", "e"],
+    ["잠재성장률", "Potential growth rate", "노동·자본·생산성을 무리 없이 쓸 때 물가를 자극하지 않고 낼 수 있는 성장률. 관측되지 않아 기관마다 추정치가 다르다.", "cycle", "e"],
+    ["선행종합지수", "Composite leading index", "건설수주, 주가, 장단기 금리 차처럼 경기보다 먼저 움직이는 지표들을 모아 국가데이터처가 만드는 지수. 경기 전환점을 미리 가늠하는 데 쓴다.", "cycle", "e"],
+    ["동행종합지수", "Composite coincident index", "생산, 소매판매, 취업자 수처럼 경기와 함께 움직이는 지표를 모은 지수. 지금 경기가 어디쯤인지를 보여 준다.", "cycle", "e"],
+    ["순환변동치", "Cyclical component", "경기종합지수에서 장기 추세를 걷어 내고 남은 순환 움직임. 100보다 높으면 추세보다 위, 오름세면 확장 국면으로 읽는다.", "cycle", "e"],
+    ["소비자심리지수", "CCSI, Composite Consumer Sentiment Index", "한국은행이 가계를 설문해 만든 지수. 장기 평균을 100으로 두고, 100보다 크면 경제 상황을 평균보다 낙관적으로 본다는 뜻이다.", "cycle", "e"],
+    ["기업경기실사지수", "BSI, Business Survey Index", "기업에 경기가 좋아질지 나빠질지 물어 만든 지수. '좋다'는 답이 '나쁘다'보다 많으면 100을 넘는다. 실적이 아니라 체감과 기대를 잰다.", "cycle", "e"],
+    ["승수", "Multiplier", "처음 늘어난 지출이 소득을 거쳐 다시 지출을 낳으며 최종적으로 GDP를 몇 배 늘리는지. 소득 가운데 더 쓰는 비율이 클수록 커지고, 저축·세금·수입으로 새어 나가는 만큼 작아진다.", "cycle", "e"],
+    ["연착륙", "Soft landing", "물가를 잡으려 금리를 올리는 동안 경기가 침체에 빠지지 않고 완만하게 식는 것. 반대로 급격한 침체로 이어지면 경착륙이라 한다.", "cycle", "e"],
+
+    // 05 고용
+    ["경제활동인구", "Economically active population", "15세 이상 인구 가운데 일하고 있거나(취업자) 일자리를 찾고 있는 사람(실업자)의 합. 실업률의 분모다.", "jobs", "e"],
+    ["비경제활동인구", "Economically inactive population", "15세 이상 가운데 일하지도, 일자리를 찾지도 않는 사람. 학생, 주부, 은퇴자, 구직을 포기한 사람이 여기에 들어간다.", "jobs", "e"],
+    ["취업자", "Employed persons", "조사 기간(한 주) 동안 수입을 목적으로 1시간 이상 일한 사람과 일시 휴직자 등. 고용동향의 '취업자 증감'은 보통 1년 전 같은 달과 비교한 값이다.", "jobs", "e"],
+    ["실업률", "Unemployment rate", "실업자 ÷ 경제활동인구. 구직을 포기한 사람은 분모에서 빠지므로 일자리 사정이 나빠져도 실업률이 내려갈 수 있다.", "jobs", "e"],
+    ["고용률", "Employment rate", "취업자 ÷ 15세 이상 인구(OECD 비교 기준은 15~64세). 구직 포기의 영향을 덜 받아 실업률과 함께 본다.", "jobs", "e"],
+    ["확장실업률", "Extended unemployment rate", "공식 실업자에 더 일하고 싶은 단시간 근로자와 잠재적 구직자(구직 단념자 등)까지 넣어 계산한 고용보조지표3. 체감 일자리 사정에 더 가깝다.", "jobs", "e"],
+    ["오쿤의 법칙", "Okun's law", "산출 갭(또는 성장률)과 실업률이 반대로 움직이는 경험적 관계. 경기가 잠재 수준보다 1% 나빠질 때 실업률이 얼마나 오르는지는 나라와 시기마다 다르다.", "jobs", "e"],
+    ["자연실업률", "Natural rate of unemployment", "경기가 과열도 침체도 아닐 때 남는 실업률. 이직 과정의 마찰적 실업과 기술·지역 불일치의 구조적 실업으로 이루어지며 관측되지 않는다.", "jobs", "e"],
+    ["기저효과", "Base effect", "비교 대상(분모)이 된 1년 전 값이 유난히 낮거나 높아서 증가율이 실제 흐름보다 크거나 작게 나오는 현상.", "jobs", "e"],
+
+    // 06 물가
+    ["소비자물가지수", "CPI, Consumer Price Index", "가계가 사는 상품과 서비스 묶음(장바구니)의 가격을 기준년 = 100으로 나타낸 지수. 품목마다 지출 비중에 따라 가중치를 둔다. 국가데이터처가 매달 발표한다.", "inflation", "r"],
+    ["근원물가", "Core inflation", "날씨·국제 유가처럼 일시적 공급 요인으로 크게 출렁이는 품목을 뺀 물가. 한국은 '농산물 및 석유류 제외'와 OECD 기준 '식료품 및 에너지 제외' 두 가지를 발표한다.", "inflation", "r"],
+    ["생활물가지수", "Living CPI", "소비자물가 품목 가운데 자주 사고 지출 비중이 큰 품목만 모아 만든 지수. 체감물가에 더 가깝다는 이유로 함께 발표된다.", "inflation", "r"],
+    ["기대 인플레이션", "Expected inflation", "사람들이 앞으로 물가가 얼마나 오를 것이라 보는지. 임금 협상과 가격 결정에 반영되어 실제 물가를 끌고 가므로 중앙은행이 가장 경계한다.", "inflation", "r"],
+    ["스태그플레이션", "Stagflation", "경기 침체(높은 실업)와 높은 물가 상승이 함께 나타나는 상태. 유가 급등 같은 공급 충격이 주된 원인이며, 금리 정책으로 둘을 동시에 잡기 어렵다.", "inflation", "r"],
+    ["디플레이션", "Deflation", "물가 수준 자체가 지속적으로 내려가는 것(상승률이 마이너스). 빚의 실질 부담이 커지고 소비를 미루게 해 경기를 더 누를 수 있다.", "inflation", "r"],
+    ["디스인플레이션", "Disinflation", "물가가 오르긴 하지만 오르는 속도가 느려지는 것. 물가 상승률이 5%에서 3%로 내려오면 디스인플레이션이지 디플레이션이 아니다.", "inflation", "r"],
+    ["수요 견인 인플레이션", "Demand-pull inflation", "총수요가 생산 능력보다 빨리 늘어 물가가 오르는 것. 경기 과열과 함께 나타나며 금리 인상이 잘 듣는다.", "inflation", "r"],
+    ["비용 인상 인플레이션", "Cost-push inflation", "원자재·에너지·임금 같은 생산비가 올라 물가가 오르는 것. 생산이 줄면서 물가가 올라 경기와 물가 사이의 선택이 어렵다.", "inflation", "r"],
+    ["필립스 곡선", "Phillips curve", "실업률(또는 산출 갭)과 물가 상승률 사이의 관계. 경기가 뜨거울수록 물가가 오르기 쉽다는 뜻이며, 기울기는 시기마다 달라진다.", "inflation", "r"],
+
+    // 07 금리
+    ["명목금리", "Nominal interest rate", "계약서와 통장에 적힌 금리. 물가 변화를 고려하지 않은 돈의 값이다.", "rates", "r"],
+    ["실질금리", "Real interest rate", "명목금리에서 (기대) 물가 상승률을 뺀 값. 빌린 돈의 구매력 기준 부담이며, 경기와 투자에 영향을 주는 것은 실질금리다.", "rates", "r"],
+    ["피셔 방정식", "Fisher equation", "(1 + 명목금리) = (1 + 실질금리) × (1 + 기대 인플레이션). 근사적으로 명목금리 ≈ 실질금리 + 기대 인플레이션.", "rates", "r"],
+    ["채권", "Bond", "정부나 기업이 돈을 빌리며 정해진 날짜에 이자와 원금을 갚겠다고 약속한 증서. 시장금리가 오르면 이미 발행된 채권의 가격은 내린다.", "rates", "r"],
+    ["만기수익률", "Yield to maturity", "지금 가격에 채권을 사서 만기까지 들고 있을 때 얻는 연평균 수익률. 기사에서 '국고채 3년물 금리'라고 하면 이 수익률이다.", "rates", "r"],
+    ["수익률 곡선", "Yield curve", "만기가 다른 채권들의 금리를 이은 선. 보통은 만기가 길수록 금리가 높아 오른쪽 위로 오른다. 짧은 금리가 긴 금리보다 높아지는 '장단기 금리 역전'은 경기 둔화 신호로 자주 거론된다.", "rates", "r"],
+    ["듀레이션", "Duration", "채권의 현금흐름을 받는 데 걸리는 가중평균 기간. 수정 듀레이션은 금리 1%p 변화에 대한 가격 변화율(%)의 근사치다. 만기가 길수록 커진다.", "rates", "r"],
+    ["신용 스프레드", "Credit spread", "같은 만기의 회사채와 국고채 금리 차이. 돈을 떼일 위험에 대한 보상이며, 경제가 불안해지면 벌어진다.", "rates", "r"],
+    ["코픽스", "COFIX, Cost of Funds Index", "은행들이 예금·채권 등으로 새로 모은 돈의 가중평균 금리. 은행연합회가 매달 공시하며 변동금리 주택담보대출·전세대출의 기준금리로 쓰인다.", "rates", "r"],
+    ["가산금리", "Spread, margin", "대출의 기준이 되는 금리(코픽스, 금융채 금리 등) 위에 은행이 더하는 금리. 신용위험, 업무 원가, 목표 이익을 반영하며 정책 상황에 따라 조정된다.", "rates", "r"],
+    ["변동금리", "Floating rate", "기준이 되는 시장금리에 따라 정해진 주기(재산정 주기)마다 바뀌는 대출 금리. 고정금리는 약정 기간 동안 바뀌지 않는다.", "rates", "r"],
+    ["신규취급액 기준 금리", "Rate on new loans", "그달 새로 나간 대출의 평균 금리. 이미 나가 있는 모든 대출의 평균인 잔액 기준 금리보다 시장 변화를 빨리 반영한다.", "rates", "r"],
+
+    // 08 중앙은행과 통화정책
+    ["기준금리", "Base rate", "한국은행이 은행들과 7일 만기 환매조건부채권(RP)을 거래할 때 기준으로 삼는 정책금리. 콜금리 같은 초단기 시장금리를 이 근처로 이끌어 다른 금리의 기준점이 된다.", "bok", "r"],
+    ["금융통화위원회", "Monetary Policy Board", "한국은행의 최고 의사결정 기구. 총재·부총재를 포함한 7명으로 구성되며, 1년에 여덟 번 기준금리를 정한다.", "bok", "r"],
+    ["물가안정목표", "Inflation target", "중앙은행이 공개적으로 약속한 물가 상승률 목표. 한국은행의 목표는 소비자물가 상승률(전년동기비) 2%다.", "bok", "r"],
+    ["테일러 준칙", "Taylor rule", "중립금리에 물가 목표와의 차이와 산출 갭을 반영해 정책금리를 계산하는 공식. 대표 형태는 물가 차이에 1.5, 산출 갭에 0.5를 곱한다. 중앙은행은 참고 지표로 쓴다.", "bok", "r"],
+    ["중립금리", "Neutral interest rate", "경기를 데우지도 식히지도 않는 금리 수준. 관측되지 않아 추정 방법에 따라 범위가 넓다.", "bok", "r"],
+    ["양적완화", "Quantitative easing, QE", "정책금리가 0% 근처에 닿아 더 내리기 어려울 때 중앙은행이 국채 등 자산을 대규모로 사들여 장기 금리를 낮추고 돈을 푸는 정책.", "bok", "r"],
+    ["포워드 가이던스", "Forward guidance", "중앙은행이 앞으로의 정책 방향을 미리 밝혀 시장의 기대를 이끄는 것. 결정 자체만큼 말이 시장금리를 움직인다.", "bok", "r"],
+    ["지급준비율", "Reserve requirement ratio", "은행이 받은 예금 가운데 중앙은행에 의무적으로 맡겨 두거나 현금으로 보유해야 하는 비율. 이론상 신용창조의 상한(1 ÷ 지급준비율)을 정한다.", "bok", "r"],
+    ["신용창조", "Credit creation", "은행이 대출을 해 주면 그 돈이 다시 예금이 되어 또 대출되는 과정을 거쳐, 처음 들어온 돈보다 훨씬 많은 예금 통화가 만들어지는 것.", "bok", "r"],
+    ["빅스텝", "Big step", "한국 기사에서 기준금리를 한 번에 0.5%p 조정하는 것을 이르는 말. 보통 폭(0.25%p)의 두 배다. 0.75%p는 자이언트 스텝이라고 부른다.", "bok", "r"],
+    ["매파", "Hawk", "물가 안정을 앞세워 금리 인상이나 긴축을 선호하는 쪽. 반대로 경기와 고용을 앞세워 완화를 선호하는 쪽을 비둘기파(Dove)라고 부른다.", "bok", "r"],
+    ["소수의견", "Dissent", "금융통화위원회 결정에 반대한 위원의 의견. 다음 회의의 방향을 가늠하는 신호로 읽힌다.", "bok", "r"],
+    ["제로 금리 하한", "Zero lower bound", "현금을 쥐고 있으면 0%의 수익이 보장되므로 정책금리를 0% 아래로 크게 내리기 어렵다는 제약. 이때 양적완화 같은 비전통적 정책이 쓰인다.", "bok", "r"],
+    ["피벗", "Pivot", "통화정책의 방향을 바꾸는 것. 금리를 올리던 중앙은행이 내리기 시작하거나 그 반대로 돌아서는 전환점을 가리킨다.", "bok", "r"],
+
+    // 09 기준금리가 퍼지는 길
+    ["통화정책 파급 경로", "Monetary policy transmission", "기준금리 변화가 금리·자산 가격·환율·신용·기대의 다섯 길을 거쳐 소비·투자·순수출과 물가로 번지는 과정. 길마다 시차가 다르다.", "transmission", "r"],
+    ["콜금리", "Call rate", "금융회사끼리 하루짜리 같은 아주 짧은 돈을 빌려주고 받을 때의 금리. 한국은행이 기준금리 근처로 유지되게 관리한다.", "transmission", "r"],
+    ["금리 재산정 주기", "Reset period", "변동금리 대출의 금리가 새 시장금리로 다시 정해지는 간격(예: 6개월). 기준금리가 바뀌어도 내 이자는 다음 재산정일에 바뀐다.", "transmission", "r"],
+    ["자산 가격 경로", "Asset price channel", "금리가 주가·집값·채권값을 바꾸고, 그 변화가 가계의 부와 기업의 자금 사정을 거쳐 소비·투자로 이어지는 길.", "transmission", "r"],
+
+    // 10 환율
+    ["환율", "Exchange rate", "두 나라 돈의 교환 비율. 원/달러 환율 1,340원은 1달러를 사는 데 1,340원이 든다는 뜻이다.", "fx", "w"],
+    ["원화 약세", "Won depreciation", "원화 가치가 내려 원/달러 환율이 오르는 것(예: 1,300원 → 1,400원). 수입품·해외 결제는 비싸지고 수출 기업의 원화 수입과 달러 자산의 원화 값은 커진다. 반대는 원화 강세다.", "fx", "w"],
+    ["구매력평가", "PPP, Purchasing power parity", "같은 물건은 어느 나라에서나 같은 값이어야 한다는 생각에서, 두 나라의 물가 수준 비율로 환율을 설명하는 이론. 긴 기간의 방향을 설명하는 데 더 맞는다.", "fx", "w"],
+    ["금리평형", "Interest rate parity", "두 나라의 금리 차이가 환율의 예상 변화(또는 선물환율과 현물환율의 차이)와 같아진다는 관계. 금리가 높은 통화에 돈이 몰리는 힘과 환율 변화가 균형을 이룬다.", "fx", "w"],
+    ["외환보유액", "Foreign exchange reserves", "중앙은행과 정부가 위기 때 쓰려고 가진 외화 자산(달러 예치금, 외국 국채, 금 등). 한국은행이 매달 초 전월 말 기준으로 발표한다.", "fx", "w"],
+    ["통화스와프", "Currency swap", "두 나라 중앙은행이 정해진 한도 안에서 서로의 통화를 맞바꿔 쓰기로 한 약속. 달러가 부족할 때 꺼내 쓸 수 있는 안전판이다.", "fx", "w"],
+    ["환율 전가", "Exchange rate pass-through", "환율 변화가 수입물가를 거쳐 소비자물가에 옮겨 가는 정도. 원화가 약해지면 몇 달에 걸쳐 물가에 스며든다.", "fx", "w"],
+    ["달러 강세", "Strong dollar", "달러 가치가 다른 통화들에 견줘 오르는 것. 미국 금리가 오르거나 세계가 불안해 안전 자산을 찾을 때 나타나며, 기사에서는 '킹달러'라고도 부른다.", "fx", "w"],
+
+    // 11 무역과 경상수지
+    ["경상수지", "Current account", "한 나라가 상품·서비스를 사고팔고, 소득과 이전을 주고받아 남긴 수지. 상품수지·서비스수지·본원소득수지·이전소득수지로 나뉜다. 한국은행이 발표한다.", "trade", "w"],
+    ["상품수지", "Goods balance", "상품 수출과 수입의 차이(소유권이 넘어간 시점 기준). 산업통상부의 통관 기준 무역수지와 기준이 달라 숫자가 다를 수 있다.", "trade", "w"],
+    ["서비스수지", "Services balance", "여행, 운송, 지식재산권 사용료, 컨설팅 같은 서비스 거래의 수지. 해외여행이 늘면 적자가 커진다.", "trade", "w"],
+    ["본원소득수지", "Primary income balance", "임금, 배당, 이자처럼 노동과 자본을 빌려준 대가로 국경을 넘어 주고받은 소득의 수지.", "trade", "w"],
+    ["이전소득수지", "Secondary income balance", "대가 없이 주고받은 돈(해외 송금, 무상 원조 등)의 수지.", "trade", "w"],
+    ["무역수지", "Trade balance (customs)", "세관을 통과한 수출액과 수입액의 차이. 산업통상부가 매달 1일 전달 실적을 발표해 가장 빨리 나오는 대외 지표다.", "trade", "w"],
+    ["교역조건", "Terms of trade", "수출품 한 단위로 수입품을 얼마나 살 수 있는지. 순상품교역조건은 수출물가 ÷ 수입물가 × 100이다. 유가가 오르면 한국의 교역조건은 나빠지기 쉽다.", "trade", "w"],
+    ["비교우위", "Comparative advantage", "다른 나라보다 기회비용이 더 작은 상품에 특화하는 것이 유리하다는 원리. 모든 것을 더 잘 만드는 나라와 교역해도 서로 이득을 볼 수 있는 이유다.", "trade", "w"],
+    ["관세", "Tariff", "수입품에 매기는 세금. 수입품 값을 올려 국내 생산자를 보호하지만, 소비자 부담과 사중손실이 생기고 상대국의 보복을 부를 수 있다.", "trade", "w"],
+
+    // 12 재정
+    ["통합재정수지", "Consolidated fiscal balance", "정부의 한 해 총수입에서 총지출을 뺀 값(융자 거래 포함). 국민연금 같은 사회보장성기금의 흑자가 들어 있다.", "fiscal", "s"],
+    ["관리재정수지", "Managed fiscal balance", "통합재정수지에서 사회보장성기금(국민연금·사학연금·고용보험·산재보험)의 수지를 뺀 값. 미래 지급을 위해 쌓는 기금 흑자를 걷어 내 정부의 실제 살림을 본다.", "fiscal", "s"],
+    ["국가채무(D1)", "Government debt, D1", "중앙정부와 지방정부가 갚아야 할 확정 채무. 재정경제부 국가결산에서 발표하며 기사에서 말하는 '국가채무'는 대개 이것이다.", "fiscal", "s"],
+    ["일반정부부채(D2)", "General government debt, D2", "D1에 비영리 공공기관의 부채를 더하고 발생주의로 계산한 정부 부채. 국제 비교(IMF·OECD)에 주로 쓴다.", "fiscal", "s"],
+    ["공공부문부채(D3)", "Public sector debt, D3", "D2에 비금융 공기업(한국전력, LH 등)의 부채를 더한 가장 넓은 정부 부채.", "fiscal", "s"],
+    ["재정 승수", "Fiscal multiplier", "정부지출이 1 늘 때 GDP가 얼마나 느는지. 경기가 나쁠 때, 통화정책이 금리를 따라 올리지 않을 때 더 크다고 보는 연구가 많다.", "fiscal", "s"],
+    ["자동안정화장치", "Automatic stabilizers", "경기가 나빠지면 세금이 저절로 덜 걷히고 실업급여가 더 나가, 따로 결정하지 않아도 경기 변동을 줄여 주는 재정의 구조.", "fiscal", "s"],
+    ["기초재정수지", "Primary balance", "이자 지출을 빼고 계산한 재정수지. 부채 비율의 방향은 이 수지와 이자율·성장률의 차이가 정한다.", "fiscal", "s"],
+    ["추가경정예산", "Supplementary budget", "본예산이 국회를 통과한 뒤 경기 대응이나 재난 등으로 다시 짜는 예산. 기사에서는 '추경'이라고 줄여 부른다.", "fiscal", "s"],
+
+    // 13 금융위기
+    ["레버리지", "Leverage", "자기 돈보다 많은 자산을 빚으로 사는 것. 자산 ÷ 자기자본이 레버리지 배수이며, 배수가 클수록 작은 손실로도 자본이 사라진다.", "crisis", "c"],
+    ["만기 불일치", "Maturity mismatch", "짧게 빌려 길게 빌려주는 구조. 은행은 언제든 찾을 수 있는 예금으로 장기 대출을 내주므로, 예금자가 한꺼번에 돈을 찾으면 버티기 어렵다.", "crisis", "c"],
+    ["뱅크런", "Bank run", "은행이 위험하다는 소문에 예금자들이 한꺼번에 돈을 찾아가는 것. 건전한 은행도 버티지 못하게 만들 수 있어 스스로 실현되는 위기다.", "crisis", "c"],
+    ["최종대부자", "Lender of last resort", "위기 때 아무도 돈을 빌려주지 않으면 중앙은행이 담보를 받고 금융회사에 돈을 빌려주는 역할. 유동성 부족이 지급불능으로 번지는 것을 막는다.", "crisis", "c"],
+    ["예금자보호제도", "Deposit insurance", "금융회사가 문을 닫아도 예금보험공사가 1인당 금융회사별로 법이 정한 한도까지 예금을 대신 돌려주는 제도. 뱅크런을 막는 장치다(한도는 법령으로 정하며 바뀐다).", "crisis", "c"],
+    ["거시건전성 정책", "Macroprudential policy", "금융회사 하나가 아니라 금융 시스템 전체의 위험을 줄이려는 정책. LTV·DSR 같은 대출 규제, 경기 대응 완충자본 등이 있다.", "crisis", "c"],
+    ["LTV", "Loan-to-value ratio", "주택담보대출 금액 ÷ 집의 담보가치. 집값 대비 얼마까지 빌릴 수 있는지를 제한한다.", "crisis", "c"],
+    ["DSR", "Debt service ratio", "한 해 갚아야 할 모든 대출의 원리금 ÷ 연소득. 소득 대비 빚 상환 부담을 제한하며, 금리가 오르면 같은 소득으로 빌릴 수 있는 돈이 준다.", "crisis", "c"],
+    ["신용경색", "Credit crunch", "금융회사들이 위험을 두려워해 대출을 크게 줄여 멀쩡한 기업과 가계도 돈을 빌리기 어려워지는 상태.", "crisis", "c"],
+    ["시스템 리스크", "Systemic risk", "한 금융회사나 시장의 문제가 서로 얽힌 거래를 타고 금융 시스템 전체로 번질 위험.", "crisis", "c"],
+    ["외환위기", "Currency crisis", "외화가 한꺼번에 빠져나가 환율이 폭등하고 외채를 갚을 달러가 바닥나는 위기. 한국은 1997년 IMF에 구제금융을 신청했다.", "crisis", "c"],
+
+    // 14 실험실
+    ["수요 충격", "Demand shock", "소비·투자·수출·재정지출처럼 수요 쪽에서 오는 충격. 경기와 물가를 같은 방향으로 움직여 금리 대응이 둘을 함께 안정시킨다.", "lab", "e"],
+    ["공급 충격", "Supply shock", "유가·원자재·작황처럼 생산비나 생산 능력 쪽에서 오는 충격. 물가와 경기를 반대 방향으로 움직여 정책의 선택이 어렵다.", "lab", "e"],
+    ["금리 평활화", "Interest rate smoothing", "중앙은행이 금리를 목표 수준으로 한 번에 옮기지 않고 여러 번에 나눠 조금씩 움직이는 관행. 금융시장의 충격을 줄이고 판단 오류에 대비한다.", "lab", "r"],
+  ];
+
+  /* =============================================================== 공통 */
+  const CH = {}, ORDER = {};
+  EB.CHAPTERS.forEach((c, i) => { CH[c.slug] = c; ORDER[c.slug] = i; });
+  const GNAME = { m: "시장", e: "경기", r: "돈과 금리", w: "바깥 세계", s: "정부", c: "위기" };
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  const strip = (s) => String(s).replace(/<[^>]+>/g, "");
+  const norm = (s) => strip(s).toLowerCase().replace(/[\s\-·_/()'.,%]/g, "");
+  const CHO = ["ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
+  const MERGE = { "ㄲ": "ㄱ", "ㄸ": "ㄷ", "ㅃ": "ㅂ", "ㅆ": "ㅅ", "ㅉ": "ㅈ" };
+  const JUMP = ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ", "A–Z", "0–9"];
+  const choOf = (ch) => { const c = ch.charCodeAt(0); return c >= 0xac00 && c <= 0xd7a3 ? CHO[Math.floor((c - 0xac00) / 588)] : ch.toLowerCase(); };
+  const choStr = (s) => [...s.replace(/\s/g, "")].map(choOf).join("");
+  const initial = (s) => { const j = choOf(s[0]); return CHO.includes(j) ? MERGE[j] || j : /[0-9]/.test(s[0]) ? "0–9" : "A–Z"; };
+  const gOrd = (g) => { const i = JUMP.indexOf(g); return i >= 0 ? i : 99; };
+  function hl(text, q, allowHtml) {
+    const raw = allowHtml ? text : esc(text);
+    if (!q) return raw;
+    const plain = strip(text), i = plain.toLowerCase().indexOf(q);
+    if (i < 0 || /<[^>]+>/.test(text)) return raw;
+    return esc(plain.slice(0, i)) + "<mark>" + esc(plain.slice(i, i + q.length)) + "</mark>" + esc(plain.slice(i + q.length));
+  }
+
+  const TERMS = RAW.map((r, i) => {
+    const t = { id: i, ko: r[0], en: r[1], def: r[2], ch: r[3], g: r[4] };
+    t._key = norm(t.ko + " " + t.en);
+    t._def = norm(t.def);
+    t._cho = choStr(t.ko);
+    t._ini = initial(t.ko);
+    return t;
+  });
+
+  /* =============================================================== 용어집 */
+  const qEl = $("gl-q"), listEl = $("gl-list"), countEl = $("gl-count"), choEl = $("gl-cho");
+  const catSel = EB.seg("gl-cat", renderGlossary), sortSel = EB.seg("gl-sort", renderGlossary);
+  qEl.addEventListener("input", renderGlossary);
+  choEl.innerHTML = JUMP.map((g) => `<button type="button" data-g="${g}">${g}</button>`).join("");
+  choEl.addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b || b.disabled) return;
+    if (sortSel() !== "kor" || qEl.value) { qEl.value = ""; sortSel.set("kor", false); renderGlossary(); }
+    const h = listEl.querySelector(`.gl-group[data-g="${b.dataset.g}"]`);
+    if (h) listEl.scrollTop = h.offsetTop - listEl.offsetTop;
+  });
+
+  function renderGlossary() {
+    const raw = qEl.value.trim(), q = norm(raw), qLow = raw.toLowerCase(), cat = catSel(), mode = sortSel();
+    const choQ = /^[ㄱ-ㅎ]+$/.test(q) ? q : "";
+    const nameHit = (t) => (choQ ? t._cho.indexOf(choQ) >= 0 : t._key.indexOf(q) >= 0);
+    const items = TERMS.filter((t) => {
+      if (cat !== "all" && t.g !== cat) return false;
+      return !q || nameHit(t) || (!choQ && t._def.indexOf(q) >= 0);
+    });
+    const rank = (t) => (q && !nameHit(t) ? 1 : 0);
+    items.sort((a, b) => {
+      const r = rank(a) - rank(b); if (r) return r;
+      if (mode === "ch") { const d = ORDER[a.ch] - ORDER[b.ch]; if (d) return d; return a.id - b.id; }
+      const g = gOrd(a._ini) - gOrd(b._ini); if (g) return g;
+      return a.ko.localeCompare(b.ko, "ko");
+    });
+    const inCat = cat === "all" ? TERMS.length : TERMS.filter((t) => t.g === cat).length;
+    countEl.textContent = items.length + " / " + inCat + "개 용어" + (cat === "all" ? "" : " · " + GNAME[cat]);
+    const present = new Set(TERMS.filter((t) => cat === "all" || t.g === cat).map((t) => t._ini));
+    choEl.querySelectorAll("button").forEach((b) => { b.disabled = !present.has(b.dataset.g); });
+    if (!items.length) { listEl.innerHTML = `<div class="gl-empty">“${esc(raw)}”에 해당하는 용어가 없다. 다른 표현이나 영어, 초성으로도 검색해 보자.</div>`; return; }
+    const html = [];
+    let last = null;
+    items.forEach((t) => {
+      const c = CH[t.ch];
+      const g = q && rank(t) ? "정의 본문 일치" : mode === "ch" ? Number(c.num) + "장 · " + c.title : t._ini;
+      if (g !== last) { last = g; html.push(`<div class="gl-group" data-g="${esc(g)}">${esc(g)}</div>`); }
+      html.push(`<div class="gl-item" id="term-${t.id}"><h4>${hl(t.ko, choQ ? "" : qLow)}${t.en ? `<span class="en">${hl(t.en, qLow)}</span>` : ""}</h4><p>${hl(t.def, choQ ? "" : qLow, true)}</p><span class="cat">${GNAME[t.g]}</span><a class="ch" href="${t.ch}.html">→ ${Number(c.num)}장 ${esc(c.title)}</a></div>`);
+    });
+    listEl.innerHTML = html.join("");
+    listEl.scrollTop = 0;
+  }
+  renderGlossary();
+
+  /* =============================================================== 헤드라인 해독 */
+  const DC = [...document.querySelectorAll("#dc .quiz-q")];
+  function dcTally() {
+    const done = DC.filter((q) => q.classList.contains("done"));
+    const ok = done.filter((q) => !q.querySelector("button.opt.wrong"));
+    $("dc-score").innerHTML = "맞힌 수 <b>" + ok.length + "</b> / <b>" + DC.length + "</b>" + (done.length === DC.length ? (ok.length === DC.length ? " · 세 질문을 모두 몸에 익혔다" : " · 틀린 문항의 해설을 다시 읽어 보자") : "");
+  }
+  $("dc").addEventListener("answered", dcTally);
+
+  /* =============================================================== 종합 퀴즈 */
+  const QS = [...document.querySelectorAll("#fq .quiz-q")];
+  const QN = QS.length;
+  $("fq-total").textContent = QN;
+  const RANKS = [
+    [0, "다시 첫 장부터", "용어집에서 낯선 말을 먼저 찾고, 틀린 장을 차례로 다시 읽어 보자."],
+    [8, "헤드라인을 읽기 시작한 단계", "큰 그림은 잡혔다. 아래 장들의 시뮬레이터를 직접 움직여 보면 숫자가 손에 붙는다."],
+    [12, "표를 먼저 보는 독자", "대부분의 개념을 이해했다. 틀린 장의 계산만 다시 해 보자."],
+    [16, "숫자로 기사를 다시 쓰는 사람", "거의 모든 문제를 맞혔다. 실험실에서 충격을 섞어 볼 차례다."],
+    [20, "만점", "책 전체를 꿰뚫었다. 이제 남은 것은 매달 같은 표를 보는 습관이다."],
+  ];
+  function tally() {
+    const done = QS.filter((q) => q.classList.contains("done"));
+    const ok = done.filter((q) => !q.querySelector("button.opt.wrong"));
+    $("fq-n").textContent = done.length;
+    $("fq-s").textContent = ok.length;
+    $("fq-fill").style.width = (done.length / QN) * 100 + "%";
+    if (done.length === QN) showResult(ok.length);
+  }
+  function showResult(s) {
+    let rank = RANKS[0];
+    RANKS.forEach((r) => { if (s >= r[0]) rank = r; });
+    $("fq-title").textContent = rank[1];
+    $("fq-big").innerHTML = s + "<small> / " + QN + "</small>";
+    $("fq-msg").textContent = "정답률 " + Math.round((s / QN) * 100) + "% · " + rank[2];
+    $("fq-dots").innerHTML = QS.map((q, i) => {
+      const good = !q.querySelector("button.opt.wrong"), c = CH[q.dataset.ch];
+      return `<a class="${good ? "ok" : "bad"}" href="#fq-q${i + 1}" title="${Number(c.num)}장 ${esc(c.title)}">${i + 1}</a>`;
+    }).join("");
+    const miss = {};
+    QS.forEach((q) => { if (q.querySelector("button.opt.wrong")) miss[q.dataset.ch] = (miss[q.dataset.ch] || 0) + 1; });
+    const weak = EB.CHAPTERS.filter((c) => miss[c.slug]);
+    $("fq-weak").innerHTML = weak.length
+      ? weak.map((c) => `<li><a href="${c.slug}.html">${Number(c.num)}장 ${esc(c.title)}</a><span>${esc(c.desc)}</span></li>`).join("")
+      : `<li><span>모든 문제를 맞혔다. <a href="lab.html">14장 실험실</a>에서 충격과 금리를 섞어 보자.</span></li>`;
+    $("fq-result").hidden = false;
+  }
+  QS.forEach((q, i) => { q.id = "fq-q" + (i + 1); });
+  $("fq").addEventListener("answered", tally);
+  $("fq-retry").addEventListener("click", () => {
+    QS.forEach((q) => {
+      q.classList.remove("done");
+      q.querySelectorAll("button.opt").forEach((b) => { b.disabled = false; b.classList.remove("right", "wrong"); });
+    });
+    $("fq-result").hidden = true;
+    tally();
+    $("quiz").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  tally();
+})();
+
 </script>
 </body>
 </html>

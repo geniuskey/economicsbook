@@ -273,7 +273,7 @@
         <div class="stat"><span class="k">새 균형(승수)</span><span class="v" id="sm-o-m">—</span></div>
         <div class="stat"><span class="k">주기 · 감쇠</span><span class="v" id="sm-o-c">—</span></div>
       </div>
-      <div class="sim-note">해볼 것: ① 점을 왼쪽 아래(c 0.5, v 0.2) 근처로 끈다. 소득이 출렁임 없이 새 균형으로 올라간다. 승수만 있는 세계다. ② 점을 c 0.8, v 1 근처로 옮긴다. 소득이 새 균형을 넘어섰다가 내려오고 다시 오르며 점점 잦아든다. 아무도 경기를 흔들지 않았는데 한 번의 충격이 몇 차례의 정점과 저점을 만든다. ③ 점을 v 1.5 위로 올린다(c 0.8이면 cv > 1). 물결이 회마다 커지며 그래프 밖으로 터져 나간다. 기업이 판매 변화에 과하게 반응하면 경제가 스스로 불안정해진다. 평면 오른쪽 위 구석은 출렁임 없이 끝없이 커지는 영역이다. (모형: 새뮤얼슨(1939). 정부 지출 G = 1에서 1.1로 한 번 늘리고 유지. 한 기는 분기쯤으로 읽는다. 실제 경제에는 이 밖에도 금리·재고·기대가 있다.)</div>
+      <div class="sim-note">해볼 것: ① 점을 왼쪽 위(c 0.8, v 0.1) 근처로 끈다. 소득이 출렁임 없이 새 균형으로 올라간다. 가속도가 거의 없어 승수만 남은 세계다. ② 점을 c 0.8, v 1 근처로 옮긴다. 소득이 새 균형을 넘어섰다가 내려오고 다시 오르며 점점 잦아든다. 아무도 경기를 흔들지 않았는데 한 번의 충격이 몇 차례의 정점과 저점을 만든다. ③ 점을 v 1.5 위로 올린다(c 0.8이면 cv > 1). 물결이 회마다 커지며 그래프 밖으로 터져 나간다. 기업이 판매 변화에 과하게 반응하면 경제가 스스로 불안정해진다. 평면 오른쪽 위 구석은 출렁임 없이 끝없이 커지는 영역이다. (모형: 새뮤얼슨(1939). 정부 지출 G = 1에서 1.1로 한 번 늘리고 유지. 한 기는 분기쯤으로 읽는다. 실제 경제에는 이 밖에도 금리·재고·기대가 있다.)</div>
     </div>
 
     <p>평면의 네 영역은 수학이 정한다. 차분방정식의 특성근이 복소수이면 물결이 생기고(\(c(1+v)^2 < 4v\)), 근의 크기가 1보다 작으면 잦아든다(\(cv < 1\)). 이 모형이 알려 주는 것은 두 가지다. 하나, 경제가 출렁이는 데 외부의 흔들림이 계속 필요하지 않다. 소비와 투자가 서로를 밀고 당기는 구조 자체가 물결을 만든다. 둘, 그 구조가 조금만 달라져도(기업이 판매 변화에 더 민감해지면) 잦아들던 물결이 커지는 물결로 바뀐다. 실제 경제에서 끝없이 커지는 폭발이 보이지 않는 것은 설비 용량, 실업자 수, 그리고 정책 같은 천장과 바닥이 있기 때문이다.</p>
@@ -290,21 +290,20 @@
         <rect x="40" y="150" width="190" height="120" class="f-bad-soft"/>
         <line x1="40" y1="150" x2="420" y2="150" class="s-axis"/>
         <line x1="230" y1="30" x2="230" y2="270" class="s-axis"/>
-        <line x1="70" y1="250" x2="390" y2="50" class="s-dash"/>
+        <line x1="110" y1="225" x2="350" y2="75" class="s-dash"/>
         <path d="M150 228C220 262 320 240 345 190C370 140 350 90 300 70C240 46 160 60 130 100C105 135 110 200 150 228" class="s-acc" fill="none" stroke-width="2.4" marker-end="url(#cy-ar3)"/>
-        <text x="325" y="252" text-anchor="middle" class="lbl-b">회복</text>
-        <text x="325" y="268" text-anchor="middle" class="lbl-dim">출하↑ 재고↓</text>
-        <text x="380" y="58" text-anchor="middle" class="lbl-b">확장</text>
-        <text x="380" y="74" text-anchor="middle" class="lbl-dim">출하↑ 재고↑</text>
+        <text x="416" y="246" text-anchor="end" class="lbl-b">회복</text>
+        <text x="416" y="262" text-anchor="end" class="lbl-dim">출하↑ 재고↓</text>
+        <text x="416" y="50" text-anchor="end" class="lbl-b">확장</text>
+        <text x="416" y="66" text-anchor="end" class="lbl-dim">출하↑ 재고↑</text>
         <text x="90" y="52" text-anchor="middle" class="lbl-b">둔화</text>
         <text x="90" y="68" text-anchor="middle" class="lbl-dim">출하↓ 재고↑</text>
         <text x="90" y="240" text-anchor="middle" class="lbl-b">조정</text>
         <text x="90" y="256" text-anchor="middle" class="lbl-dim">출하↓ 재고↓</text>
-        <text x="420" y="166" text-anchor="end" class="lbl-dim">출하 증가율 →</text>
+        <text x="418" y="166" text-anchor="end" class="lbl-dim">출하 →</text>
         <text x="236" y="24" class="lbl-dim">↑ 재고 증가율</text>
-        <text x="392" y="44" text-anchor="end" class="lbl-dim">45°선</text>
       </svg>
-      <figcaption><b>그림 3. 재고순환도.</b> 가로축은 출하(판매) 증가율, 세로축은 재고 증가율이다. 경기가 돌면 점이 반시계 방향으로 돈다. 회복기에는 팔리는 만큼 재고가 줄고, 확장기에는 재고를 다시 쌓고, 둔화기에는 안 팔린 재고가 쌓이고, 조정기에는 재고를 털어 낸다. 출하 증가율이 재고 증가율보다 높은 45°선 아래쪽은 경기 개선 쪽이다. 선행지수의 재고순환지표(출하 증가율 − 재고 증가율)가 이것이다. 모양은 설명용이다.</figcaption>
+      <figcaption><b>그림 3. 재고순환도.</b> 가로축은 출하(판매) 증가율, 세로축은 재고 증가율이다. 경기가 돌면 점이 반시계 방향으로 돈다. 회복기에는 팔리는 만큼 재고가 줄고, 확장기에는 재고를 다시 쌓고, 둔화기에는 안 팔린 재고가 쌓이고, 조정기에는 재고를 털어 낸다. 점선은 45°선이며, 출하 증가율이 재고 증가율보다 높은 점선 아래쪽이 경기 개선 쪽이다. 가로축 화살표는 출하 증가율이다. 선행지수의 재고순환지표(출하 증가율 − 재고 증가율)가 이것이다. 모양은 설명용이다.</figcaption>
     </figure>
 
     <p>반도체처럼 재고의 출렁임이 큰 산업이 수출의 큰 몫을 차지하는 한국에서는 이 재고 순환이 경기 전체를 흔든다. 반도체 경기의 "재고 조정"과 "재고 소진"이라는 말이 경제면 머리기사에 오르는 이유다. 반도체 수출이 경상수지와 성장률을 함께 움직이는 이야기는 <a href="trade.html">11장</a>에서 이어진다.</p>
@@ -319,7 +318,7 @@
       <div class="sim-body side">
         <div class="sim-view"><canvas id="bd-cv"></canvas><span class="hint">세로선을 끌거나 재생한다</span></div>
         <div class="sim-controls">
-          <label class="ctrl"><span>수요 충격 <output id="bd-s-out"></output></span><input type="range" id="bd-s" min="-5" max="5" step="0.5" value="-3"></label>
+          <label class="ctrl"><span>수요 충격 <output id="bd-s-out"></output></span><input type="range" id="bd-s" min="-4" max="4" step="0.5" value="-2"></label>
           <label class="ctrl"><span>한계소비성향 c <output id="bd-c-out"></output></span><input type="range" id="bd-c" min="0.5" max="0.95" step="0.01" value="0.8"></label>
           <label class="ctrl"><span>가속도 v(투자·재고의 민감도) <output id="bd-v-out"></output></span><input type="range" id="bd-v" min="0" max="2" step="0.05" value="1"></label>
           <label class="ctrl"><span>정책 대응 강도 <output id="bd-k-out"></output></span><input type="range" id="bd-k" min="0" max="1" step="0.05" value="0"></label>
@@ -335,7 +334,7 @@
         <div class="stat"><span class="k">선행지수가 앞선 평균</span><span class="v" id="bd-o-l">—</span></div>
         <div class="stat"><span class="k">2분기 연속 마이너스</span><span class="v" id="bd-o-r">—</span></div>
       </div>
-      <div class="sim-note">해볼 것: ① 기본값(충격 −3%, c 0.8, v 1, 정책 0)으로 '10년 재생'을 누른다. 한 번의 충격이 3~4년 주기의 물결을 몇 번 만들고 잦아든다. 주황 선의 삼각형이 파란 선보다 한두 분기 먼저 찍힌다. 수축 국면마다 전기비가 마이너스인지 세어 본다. ② 가속도 v를 1.3 이상으로 올린다. 물결이 잦아들지 않고 커진다. 정책 대응 강도를 0.4쯤 올리면 같은 v에서도 다시 잦아든다. 정책은 물결의 크기뿐 아니라 경제가 스스로 안정되는지를 바꾼다. ③ '작은 충격이 계속 온다'를 켠다. 큰 충격 없이도 크기와 길이가 제각각인 순환이 끝없이 이어진다. 실제 경기 순환이 규칙적이지 않은 이유이고, 선행지수의 거짓 신호도 여기서 생긴다. (모형: 산출 갭 x를 새뮤얼슨식 2계 차분방정식 x(t) = [c(1+v)x(t−1) − cv·x(t−2) + 충격] ÷ (1 + 정책 강도)로 굴린다. 잠재성장률 연 2%(분기 0.5%)는 한국은행 추정 수준을 빌린 교육용 가정. 선행지수 = 갭 + 2.5 × 갭의 변화. 정책은 갭에 비례해 반대로 미는 재정·통화 대응을 한 덩어리로 본 것이다. 전망이 아니다.)</div>
+      <div class="sim-note">해볼 것: ① 기본값(충격 −2%, c 0.8, v 1, 정책 0)으로 '10년 재생'을 누른다. 한 번의 충격이 3년 남짓 주기의 물결을 몇 번 만들고 잦아든다. 주황 선의 삼각형이 파란 선보다 두 분기쯤 먼저 찍힌다. 충격 직후에는 전기비가 두 분기 연속 마이너스지만, 그 뒤의 수축 국면들은 갭이 줄어드는데도 전기비가 거의 마이너스로 내려가지 않는다. ② 가속도 v를 1.3 이상으로 올린다. 물결이 잦아들지 않고 커진다. 정책 대응 강도를 0.4쯤 올리면 같은 v에서도 다시 잦아든다. 정책은 물결의 크기뿐 아니라 경제가 스스로 안정되는지를 바꾼다. ③ '작은 충격이 계속 온다'를 켠다. 큰 충격 없이도 크기와 길이가 제각각인 순환이 끝없이 이어진다. 실제 경기 순환이 규칙적이지 않은 이유이고, 선행지수의 거짓 신호도 여기서 생긴다. (모형: 산출 갭 x를 새뮤얼슨식 2계 차분방정식 x(t) = [c(1+v)x(t−1) − cv·x(t−2) + 충격] ÷ (1 + 정책 강도)로 굴린다. 잠재성장률 연 2%(분기 0.5%)는 한국은행 추정 수준을 빌린 교육용 가정. 선행지수 = 갭 + 2.5 × 갭의 변화. 정책은 갭에 비례해 반대로 미는 재정·통화 대응을 한 덩어리로 본 것이다. 전망이 아니다.)</div>
     </div>
 
     <p>판을 돌려 보면 이 장에서 본 것들이 한꺼번에 나타난다. 수축 국면의 일부만 실제 마이너스 성장으로 나타나고(잠재성장률이 높을수록 더 그렇다), 선행지수는 판매의 변화에 반응하므로 정점과 저점을 조금 먼저 찍는다. 승수와 가속도는 한 번의 충격을 여러 번의 물결로 늘리고, 그 계수가 크면 물결이 스스로 커진다. 정책 대응은 물결을 눌러 주지만 공짜는 아니다. 실제 정책은 갭을 늦게 알아채고(통계가 늦게 나오고 수정된다), 효과도 늦게 나타난다(<a href="transmission.html">9장</a>). 늦게 밀면 오히려 물결을 키울 수 있다는 것이 정책 시차를 둘러싼 오래된 논쟁이다.</p>
@@ -617,7 +616,7 @@
     var cv = EB.canvas("#sm-cv", function (ctx, w, h) {
       var Pl = EB.palette(), narrow = w < 560;
       var pw = narrow ? w - 64 : Math.min(260, w * 0.38), ph = narrow ? 190 : h - 64;
-      var pbox = narrow ? { x: 48, y: h - ph - 36, w: pw, h: ph } : { x: w - pw - 16, y: 18, w: pw, h: ph };
+      var pbox = narrow ? { x: 48, y: h - ph - 36, w: pw, h: ph } : { x: w - pw - 16, y: 34, w: pw, h: ph - 16 };
       var lbox = narrow ? { x: 48, y: 18, w: w - 64, h: h - ph - 100 } : { x: 48, y: 18, w: w - pw - 110, h: h - 64 };
       // 경로 그래프
       var p = path(c, v), Y = p.Y, lo = Math.min(p.Y0, p.Y1), hi = Math.max(p.Y0, p.Y1);
@@ -649,12 +648,12 @@
       [0, 1, 2, 3, 4].forEach(function (t) { ctx.fillText(t, X(t), pbox.y + pbox.h + 14); });
       ctx.textAlign = "right"; [0, 0.5, 1].forEach(function (t) { ctx.fillText(t, pbox.x - 5, Yp(t) + 4); });
       ctx.font = EB.font(11); ctx.textAlign = "center"; ctx.fillText("가속도 v", pbox.x + pbox.w / 2, pbox.y + pbox.h + 28);
-      ctx.save(); ctx.translate(pbox.x - 30, pbox.y + pbox.h / 2); ctx.rotate(-Math.PI / 2); ctx.fillText("한계소비성향 c", 0, 0); ctx.restore();
+      ctx.save(); ctx.translate(pbox.x - 34, pbox.y + pbox.h / 2); ctx.rotate(-Math.PI / 2); ctx.fillText("한계소비성향 c", 0, 0); ctx.restore();
       ctx.font = EB.font(10); ctx.textAlign = "left"; ctx.fillStyle = Pl.text;
-      ctx.fillText("수렴", X(0.08), Yp(0.12));
-      ctx.fillText("잦아드는 진동", X(0.55), Yp(0.86));
-      ctx.fillText("커지는 진동", X(1.6), Yp(0.86));
-      ctx.fillText("발산", X(3.2), Yp(0.97) + 4);
+      ctx.fillText("수렴", X(0.06), Yp(0.9));
+      ctx.fillText("잦아드는 진동", X(0.7), Yp(0.4));
+      ctx.fillText("커지는 진동", X(1.9), Yp(0.6));
+      ctx.fillText("발산", X(3.2), Yp(0.92));
       // 점
       ctx.beginPath(); ctx.arc(X(v), Yp(c), 8, 0, Math.PI * 2); ctx.fillStyle = Pl.text; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = Pl.bg; ctx.stroke();
       plane = { box: pbox, V1: V1 };
@@ -690,7 +689,7 @@
       var c = gC(), v = gV(), k = gK(), S = gS(), rnd = EC.gauss(11);
       var x = [0, 0], blown = false;
       for (var t = 2; t <= Q + 1; t++) {
-        var e = (t === 3 ? S : 0) + (nEl.checked ? 0.6 * rnd() : 0);
+        var e = (t === 3 ? S : 0) + (nEl.checked ? 0.3 * rnd() : 0);
         var nx = (c * (1 + v) * x[t - 1] - c * v * x[t - 2] + e) / (1 + k);
         if (Math.abs(nx) > 40) { nx = EB.clamp(nx, -40, 40); blown = true; }
         x.push(nx);
@@ -715,7 +714,7 @@
       var top = { x: 46, y: 26, w: w - 58, h: (h - 56) * 0.64 }, bot = { x: 46, y: top.y + top.h + 22, w: w - 58, h: (h - 56) * 0.36 - 22 };
       var xs = r.x.slice(0, n + 1), ls = r.lead.slice(0, n + 1);
       var ext = Math.max(2, Math.max.apply(null, r.x.map(Math.abs).concat(r.lead.map(Math.abs))) * 1.05);
-      var pk = extrema(r.x, n, 0.05), pl = extrema(r.lead, n, 0.05);
+      var amp = Math.max.apply(null, r.x.map(Math.abs)) * 0.12, pk = extrema(r.x, n, amp), pl = extrema(r.lead, n, amp);
       // 수축 띠: 갭의 정점 → 다음 저점
       var bands = [];
       for (var i = 0; i < pk.length; i++) if (pk[i].type === "P") { var tr = pk.slice(i + 1).find(function (p) { return p.type === "T"; }); bands.push({ x0: pk[i].i, x1: tr ? tr.i : n, color: EB.color("bad-soft") }); }

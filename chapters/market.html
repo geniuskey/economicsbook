@@ -459,11 +459,11 @@
       }
       dot(ctx, k, q0, p0, P.faint, 4.5); dot(ctx, k, q, p, P.text, 6);
       // 손잡이: 각 곡선 위
-      var hq = 82, hd = a - b * hq, hs = c + d * 18;
-      handle(ctx, k.X(hq), k.Y(hd), P.accent); handle(ctx, k.X(18), k.Y(hs), P.accent2);
+      var hq = EB.clamp((a - 22) / b, 2, 98), hd = a - b * hq, hs2 = EB.clamp((22 - c) / d, 2, 98), hs = c + d * hs2;
+      handle(ctx, k.X(hq), k.Y(hd), P.accent); handle(ctx, k.X(hs2), k.Y(hs), P.accent2);
       ctx.font = EB.font(12, false, 700); ctx.textAlign = "left";
       ctx.fillStyle = P.accent; ctx.fillText("D", k.X(hq) + 11, k.Y(hd) + 4);
-      ctx.fillStyle = P.accent2; ctx.fillText("S", k.X(18) + 11, k.Y(hs) + 4);
+      ctx.fillStyle = P.accent2; ctx.fillText("S", k.X(hs2) + 11, k.Y(hs) + 4);
       var dA = a - A0, dC = c - C0, txt;
       if (Math.abs(dA) < 0.5 && Math.abs(dC) < 0.5) txt = "변화 없음";
       else if (Math.abs(dC) < 0.5) txt = "수요 곡선 " + (dA > 0 ? "오른쪽" : "왼쪽") + " 이동 → 공급 곡선 위 이동";
@@ -573,7 +573,7 @@
       EB.stat("st-o-n", f0(nowBefore) + " → " + f0(nowAfter) + " (" + sgn(nowAfter / nowBefore - 1, 0) + ")");
       EB.stat("st-o-l", f0(later) + (lend && R > 0 ? " (평년보다 " + sgn(later / 100 - 1, 0) + ")" : " (평년)"));
       EB.stat("st-o-g", lend ? "빌려준 만큼 나중에 돌아옴" : "방출한 " + R.toFixed(1) + "%만큼 줄어듦");
-    }, { aspect: 0.5, minHeight: 300, maxHeight: 400 });
+    }, { aspect: 0.5, minHeight: 380, maxHeight: 420 });
     function draw() { cv.redraw(); }
   })();
 
@@ -724,11 +724,12 @@
       dot(ctx, k, q, r.pB, P.text, 5.5);
       if (m.tax > 0) dot(ctx, k, q, r.pS, P.accent2, 4.5);
       // 손잡이
-      var hq = 84, hd = m.a - m.b * hq, hs = m.cE + m.d * 14;
-      if (hd > 2 && hd < 98) handle(ctx, k.X(hq), k.Y(hd), P.accent);
-      if (hs > 2 && hs < 98) handle(ctx, k.X(14), k.Y(hs), P.accent2);
+      var hqD = EB.clamp((m.a - 18) / m.b, 2, 98), hqS = EB.clamp((82 - m.cE) / m.d, 2, 98);
+      var hd = m.a - m.b * hqD, hs = m.cE + m.d * hqS;
+      if (hd > 1 && hd < 99) handle(ctx, k.X(hqD), k.Y(hd), P.accent);
+      if (hs > 1 && hs < 99) handle(ctx, k.X(hqS), k.Y(hs), P.accent2);
       ctx.font = EB.font(11); ctx.textAlign = "left";
-      var lg = [["소비자 잉여", "accent-soft"], ["생산자 잉여", "ok-soft"], ["세수", "warn-soft"], ["사중손실", "bad-soft"]], lx = k.box.x + 8, ly = k.box.y + 8;
+      var lg = [["소비자 잉여", "accent-soft"], ["생산자 잉여", "ok-soft"], ["세수", "warn-soft"], ["사중손실", "bad-soft"]], lx = k.box.x + 8, ly = k.box.y + (w < 520 ? 24 : 8);
       lg.forEach(function (l, j) { ctx.fillStyle = EB.color(l[1]); ctx.fillRect(lx + (j % 2) * 84, ly + Math.floor(j / 2) * 15, 10, 10); ctx.fillStyle = P.dim; ctx.fillText(l[0], lx + 14 + (j % 2) * 84, ly + 9 + Math.floor(j / 2) * 15); });
       EB.stat("mk-o-p", f1(r.pB) + " · " + f1(r.pS));
       EB.stat("mk-o-q", f1(q) + (r.short > 0.05 ? ' <span class="bad-t">(' + f1(r.short) + ")</span>" : ""));

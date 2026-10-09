@@ -74,15 +74,15 @@
         <rect x="170" y="24" width="120" height="44" rx="10" class="f-warn-soft"/><text x="230" y="44" text-anchor="middle" class="lbl-b">자산 거품</text><text x="230" y="60" text-anchor="middle" class="lbl-dim">값이 담보가 된다</text>
         <rect x="324" y="24" width="120" height="44" rx="10" class="f-bad-soft"/><text x="384" y="44" text-anchor="middle" class="lbl-b">충격</text><text x="384" y="60" text-anchor="middle" class="lbl-dim">믿음이 깨진다</text>
         <path d="M136 46H170" class="s-line" marker-end="url(#cr-ar)"/><path d="M290 46H324" class="s-line" marker-end="url(#cr-ar)"/>
-        <path d="M120 70C150 96 120 96 150 70" class="s-dash"/>
-        <text x="96" y="100" class="lbl-dim">값이 오르면 더 빌린다</text>
+        <path d="M215 68C195 100 110 100 90 70" class="s-dash" fill="none" marker-end="url(#cr-ar)"/>
+        <text x="152" y="108" text-anchor="middle" class="lbl-dim">값이 오르면 더 빌린다</text>
         <rect x="324" y="130" width="120" height="44" rx="10" class="f-bad-soft"/><text x="384" y="150" text-anchor="middle" class="lbl-b">자산 가격 하락</text><text x="384" y="166" text-anchor="middle" class="lbl-dim">담보 가치 감소</text>
         <rect x="170" y="210" width="120" height="44" rx="10" class="f-bad-soft"/><text x="230" y="230" text-anchor="middle" class="lbl-b">투매</text><text x="230" y="246" text-anchor="middle" class="lbl-dim">빚 갚으려 판다</text>
         <rect x="16" y="130" width="120" height="44" rx="10" class="f-bad-soft"/><text x="76" y="150" text-anchor="middle" class="lbl-b">전염</text><text x="76" y="166" text-anchor="middle" class="lbl-dim">다른 은행·시장</text>
         <g class="s-bad" fill="none" marker-end="url(#cr-ar)">
           <path d="M384 68V130"/><path d="M370 174C350 210 320 228 290 230"/><path d="M170 228C120 222 90 200 80 174"/><path d="M136 150C220 150 260 152 324 152"/>
         </g>
-        <text x="230" y="140" text-anchor="middle" class="lbl-bad">악순환: 내리면 팔고, 팔면 내린다</text>
+        <text x="236" y="186" text-anchor="middle" class="lbl-bad">악순환: 내리면 팔고, 팔면 내린다</text>
         <text x="230" y="288" text-anchor="middle" class="lbl-dim">안전망은 이 고리의 화살표 하나를 끊는 장치다</text>
       </svg>
       <figcaption><b>그림 1. 위기의 해부도.</b> 위쪽 줄은 몇 년에 걸쳐 쌓이고, 아래쪽 고리는 며칠에서 몇 달 사이에 돈다. 값이 오를 때 더 빌리는 되먹임(점선)과 값이 내릴 때 더 파는 되먹임(빨간 고리)이 대칭이다. 이 책이 여러 위기 연구의 공통 구조를 단순하게 다시 그렸다.</figcaption>
@@ -181,8 +181,8 @@
         <div class="sim-view"><canvas id="fs-cv"></canvas></div>
         <div class="sim-controls">
           <label class="ctrl"><span>처음 자산 가격 충격 <output id="fs-s-out"></output></span><input type="range" id="fs-s" min="0" max="15" step="0.5" value="3"></label>
-          <label class="ctrl"><span>지키려는 레버리지 <output id="fs-l-out"></output></span><input type="range" id="fs-l" min="3" max="30" step="1" value="15"></label>
-          <div class="seg" id="fs-d"><button data-value="0.1">시장 깊음</button><button data-value="0.25" class="on">보통</button><button data-value="0.5">시장 얕음</button></div>
+          <label class="ctrl"><span>지키려는 레버리지 <output id="fs-l-out"></output></span><input type="range" id="fs-l" min="3" max="30" step="1" value="10"></label>
+          <div class="seg" id="fs-d"><button data-value="0.05">시장 깊음</button><button data-value="0.12" class="on">보통</button><button data-value="0.25">시장 얕음</button></div>
         </div>
       </div>
       <div class="sim-readout">
@@ -191,7 +191,7 @@
         <div class="stat"><span class="k">팔린 자산(누적)</span><span class="v" id="fs-r-v">—</span></div>
         <div class="stat"><span class="k">남은 자본</span><span class="v" id="fs-r-e">—</span></div>
       </div>
-      <div class="sim-note">해볼 것: ① 기본값에서 3%의 처음 충격이 몇 바퀴 만에 얼마로 커지는지 본다. ② 레버리지를 25배로 올린다. 같은 충격에 매도가 훨씬 커지고 가격이 바닥까지 무너진다. ③ '시장 얕음'을 누른다. 사 줄 사람이 적은 시장(위기 때의 회사채·부동산 채권 시장)에서는 같은 매도가 값을 더 크게 누른다. 반대로 레버리지가 낮으면 충격이 거의 커지지 않는다. (모형: 자산 100, 자본 = 100 ÷ 레버리지. 매 바퀴 줄어든 자본에 맞춰 자산을 팔고, 매도액이 전체 자산의 1%일 때 가격이 '시장 깊이' × 1% 내린다. 교육용 가정이다.)</div>
+      <div class="sim-note">해볼 것: ① 기본값(레버리지 10배)에서 3%의 처음 충격이 몇 바퀴 만에 세 배 넘게 커지는 것을 본다. ② 레버리지를 15배, 25배로 올린다. 매도가 커지고 자본이 바닥나 판이 무너진다. ③ '시장 얕음'을 누른다. 사 줄 사람이 적은 시장(위기 때의 회사채·부동산 채권 시장)에서는 같은 매도가 값을 더 크게 누른다. 반대로 레버리지가 낮으면 충격이 거의 커지지 않는다. (모형: 자산 100, 자본 = 100 ÷ 레버리지. 매 바퀴 줄어든 자본에 맞추는 데 필요한 매도의 절반을 팔고, 매도액이 전체 자산의 1%일 때 가격이 깊음 0.05%, 보통 0.12%, 얕음 0.25% 내린다. 교육용 가정이다.)</div>
     </div>
 
     <p>막대가 바퀴마다 줄어들지 않고 커지면 악순환이다. 2008년 미국의 주택저당증권 시장이 그랬다. 처음 손실은 서브프라임(저신용자 주택담보대출)이라는 작은 시장에서 났지만, 그 증권을 담보로 단기 자금을 빌리던 금융회사들이 담보 가치가 떨어지자 증권을 팔았고, 팔수록 값이 떨어져 멀쩡한 증권까지 값이 무너졌다. 처음 충격의 크기보다 <strong>레버리지와 시장의 깊이</strong>가 위기의 크기를 정한다는 것이 이 그래프의 교훈이다.</p>
@@ -323,9 +323,9 @@
       <div class="sim-body side">
         <div class="sim-view"><canvas id="ct-cv"></canvas><span class="hint">은행을 눌러 개별 손실을 줄 곳을 고른다</span></div>
         <div class="sim-controls">
-          <label class="ctrl"><span>평균 레버리지 <output id="ct-l-out"></output></span><input type="range" id="ct-l" min="5" max="30" step="1" value="16"></label>
+          <label class="ctrl"><span>평균 레버리지 <output id="ct-l-out"></output></span><input type="range" id="ct-l" min="5" max="30" step="1" value="12"></label>
           <label class="ctrl"><span>단기 자금 비중 <output id="ct-s-out"></output></span><input type="range" id="ct-s" min="0" max="60" step="5" value="30"></label>
-          <label class="ctrl"><span>자산 가격 충격 <output id="ct-p-out"></output></span><input type="range" id="ct-p" min="0" max="20" step="0.5" value="4"></label>
+          <label class="ctrl"><span>자산 가격 충격 <output id="ct-p-out"></output></span><input type="range" id="ct-p" min="0" max="20" step="0.5" value="3"></label>
           <label class="check"><input type="checkbox" id="ct-lolr"> 최종대부자</label>
           <label class="check"><input type="checkbox" id="ct-di"> 예금보험</label>
           <label class="check"><input type="checkbox" id="ct-cap"> 자본 규제(레버리지 12.5배 이하)</label>
@@ -338,10 +338,10 @@
         <div class="stat"><span class="k">자산 가격</span><span class="v" id="ct-o-p">—</span></div>
         <div class="stat"><span class="k">헐값 매각 · 중앙은행 대출</span><span class="v" id="ct-o-x">—</span></div>
       </div>
-      <div class="sim-note">해볼 것: ① 기본값에서 은행 하나를 누르고 '충격 주기'. 처음에는 그 은행만 흔들리지만, 몇 바퀴 만에 연결된 은행과 같은 자산을 든 은행이 함께 쓰러진다. ② '최종대부자'만 켜고 다시. 단기 자금이 빠져도 헐값 매각이 없어 가격 하락이 멈추고, 쓰러지는 은행이 크게 준다. 다만 이미 자본이 마이너스인 은행은 살리지 못한다(빌려주는 것이지 손실을 메워 주는 것이 아니다). ③ '자본 규제'를 켠다. 처음부터 레버리지가 낮아 같은 충격을 대부분의 은행이 버틴다. ④ 안전망을 모두 끄고 레버리지 30배, 단기 자금 60%, 충격 10%. 판 전체가 무너진다. (모형: 은행마다 자산 100 중 85는 같은 시장 자산, 15는 다른 은행 세 곳에 5씩 빌려준 돈. 자본비율이 4% 아래로 떨어지면 단기 자금이 빠지고, 예금보험이 없으면 예금의 20%도 빠진다. 빠진 돈만큼 시장 자산을 10% 할인해 팔고, 전체 매도가 시장 자산의 1%일 때 가격이 0.5% 내린다. 쓰러진 은행에 빌려준 돈은 60%를 잃는다. 교육용 가정이며 실제 은행 시스템의 평가가 아니다.)</div>
+      <div class="sim-note">해볼 것: ① 기본값(평균 레버리지 12배, 충격 3%)에서 은행 하나를 누르고 '충격 주기'. 처음에는 그 은행과 자본이 얇은 은행만 흔들리지만, 몇 바퀴 만에 연결된 은행과 같은 자산을 든 은행이 줄지어 쓰러진다. ② '최종대부자'만 켜고 다시. 단기 자금이 빠져도 헐값 매각이 없어 가격 하락이 멈추고, 쓰러지는 은행이 크게 준다. 다만 이미 자본이 마이너스인 은행은 살리지 못한다(빌려주는 것이지 손실을 메워 주는 것이 아니다). ③ '자본 규제'를 켠다. 처음부터 레버리지가 낮아 같은 충격을 대부분의 은행이 버틴다. ④ 안전망을 모두 켜고 충격을 10%로 올린다. 레버리지 12.5배(자본 8%)인 은행이 시장 자산의 10%를 잃으면 자본이 바닥나므로 안전망이 있어도 판이 무너진다. 안전망은 충격의 크기에 한계가 있다. (모형: 은행마다 자산 100 중 91은 같은 시장 자산, 9는 다른 은행 세 곳에 3씩 빌려준 돈. 은행마다 레버리지가 평균의 0.55~1.55배로 다르다. 자본비율이 3% 아래로 떨어지면 단기 자금이 빠지고, 예금보험이 없으면 예금의 10%도 빠진다. 빠진 돈만큼 시장 자산을 5% 할인해 팔고, 전체 매도가 시장 자산의 1%일 때 가격이 0.15% 내린다. 쓰러진 은행에 빌려준 돈은 절반을 잃는다. 교육용 가정이며 실제 은행 시스템의 평가가 아니다.)</div>
     </div>
 
-    <p>판을 여러 번 무너뜨려 보면 위기의 크기를 정하는 것은 처음 충격보다 <strong>구조</strong>라는 것이 보인다. 같은 4%의 충격이 레버리지 10배의 판에서는 잔물결로 끝나고, 25배에 단기 자금이 많은 판에서는 연쇄 붕괴가 된다. 안전망은 저마다 다른 고리를 끊는다. 자본 규제는 충격을 받아낼 쿠션을 두껍게 하고, 예금보험은 예금자의 이탈을 막고, 최종대부자는 헐값 매각과 그것이 다른 은행으로 번지는 길을 막는다. 셋 중 무엇도 혼자서 모든 위기를 막지는 못한다. 그리고 한국이 1997년에 겪었듯 빚이 달러라면, 원화를 찍는 중앙은행만으로는 부족하고 외환보유액과 통화스와프라는 또 하나의 방패가 필요하다.</p>
+    <p>판을 여러 번 무너뜨려 보면 위기의 크기를 정하는 것은 처음 충격보다 <strong>구조</strong>라는 것이 보인다. 같은 3%의 충격이 평균 레버리지 10배의 판에서는 한 은행에서 끝나고, 12배에 단기 자금이 많은 판에서는 연쇄 붕괴가 된다. 안전망은 저마다 다른 고리를 끊는다. 자본 규제는 충격을 받아낼 쿠션을 두껍게 하고, 예금보험은 예금자의 이탈을 막고, 최종대부자는 헐값 매각과 그것이 다른 은행으로 번지는 길을 막는다. 셋 중 무엇도 혼자서 모든 위기를 막지는 못한다. 그리고 한국이 1997년에 겪었듯 빚이 달러라면, 원화를 찍는 중앙은행만으로는 부족하고 외환보유액과 통화스와프라는 또 하나의 방패가 필요하다.</p>
   </section>
 
   <div class="casefile">
@@ -402,11 +402,11 @@
     var cv = EB.canvas("#lev-cv", function (ctx, w, h) {
       var P = EB.palette();
       var L = gL(), loss = gX(), E = 100 / L, E1 = E - loss, A1 = 100 - loss, D = 100 - E;
-      var top = 34, bot = h - 34, unit = (bot - top) / 100;
+      var top = 52, bot = h - 30, unit = (bot - top) / 100;
       var colW = Math.min(120, w * 0.24), x1 = w * 0.27 - colW / 2, x2 = w * 0.67 - colW / 2;
       box = { x: x1, w: colW, top: top, unit: unit };
       ctx.font = EB.font(12, false, 700); ctx.fillStyle = P.text; ctx.textAlign = "center";
-      ctx.fillText("자산", x1 + colW / 2, 20); ctx.fillText("부채 + 자본", x2 + colW / 2, 20);
+      ctx.fillText("자산", x1 + colW / 2, 42); ctx.fillText("부채 + 자본", x2 + colW / 2, 42);
       // 자산 막대
       ctx.fillStyle = P.accent; ctx.globalAlpha = 0.75; ctx.fillRect(x1, top + loss * unit, colW, A1 * unit); ctx.globalAlpha = 1;
       if (loss > 0) { ctx.fillStyle = EB.color("bad-soft"); ctx.fillRect(x1, top, colW, loss * unit); ctx.strokeStyle = P.bad; ctx.setLineDash([4, 3]); ctx.strokeRect(x1, top, colW, loss * unit); ctx.setLineDash([]); }
@@ -488,9 +488,9 @@
     var cv = EB.canvas("#run-cv", function (ctx, w, h) {
       var P = EB.palette();
       if (!st) return;
-      var cols = 12, rows = Math.ceil(N / cols), gx = Math.min(22, (w * 0.6 - 20) / cols), gy = Math.min(22, (h - 50) / rows);
-      layout = { x0: 16 + gx / 2, y0: 30 + gy / 2, gx: gx, gy: gy, cols: cols };
-      ctx.fillStyle = P.dim; ctx.font = EB.font(11.5); ctx.textAlign = "left"; ctx.fillText("예금자 120명", 16, 18);
+      var cols = 12, rows = Math.ceil(N / cols), gx = Math.min(22, (w * 0.6 - 20) / cols), gy = Math.min(22, (h - 70) / rows);
+      layout = { x0: 16 + gx / 2, y0: 50 + gy / 2, gx: gx, gy: gy, cols: cols };
+      ctx.fillStyle = P.dim; ctx.font = EB.font(11.5); ctx.textAlign = "left"; ctx.fillText("예금자 120명", 16, 42);
       var ins = gI() === "1";
       people.forEach(function (p, i) {
         var cx = layout.x0 + (i % cols) * gx, cy = layout.y0 + Math.floor(i / cols) * gy;
@@ -499,8 +499,8 @@
         if (ins && p.ins && !p.out) { ctx.strokeStyle = P.ok; ctx.lineWidth = 1.6; ctx.stroke(); }
       });
       // 은행 금고
-      var bx = w * 0.64, bw = w - bx - 16, by = 30, bh = h - 70, u = bh / 100;
-      ctx.fillStyle = P.text; ctx.font = EB.font(12, false, 700); ctx.textAlign = "center"; ctx.fillText("은행 장부", bx + bw / 2, 18);
+      var bx = w * 0.64, bw = w - bx - 16, by = 50, bh = h - 86, u = bh / 100;
+      ctx.fillStyle = P.text; ctx.font = EB.font(12, false, 700); ctx.textAlign = "center"; ctx.fillText("은행 장부", bx + bw / 2, 42);
       var y = by;
       ctx.strokeStyle = P.border; ctx.strokeRect(bx, by, bw, bh);
       ctx.fillStyle = P.ok; ctx.globalAlpha = 0.8; ctx.fillRect(bx, by + bh - st.cash * u, bw, st.cash * u); ctx.globalAlpha = 1;
@@ -546,7 +546,7 @@
       var L = gL(), k = +gD(), units = 100, p = 1 - gS() / 100, E = 100 / L - 100 * (gS() / 100), rows = [{ n: 0, p: p, E: E, sold: 0 }], cum = 0;
       for (var n = 1; n <= 10; n++) {
         if (E <= 0) { rows.push({ n: n, p: p, E: E, sold: 0 }); continue; }
-        var value = units * p, target = L * E, sell = Math.max(0, value - target);
+        var value = units * p, target = L * E, sell = 0.5 * Math.max(0, value - target);
         if (sell < 0.01) { rows.push({ n: n, p: p, E: E, sold: 0 }); continue; }
         units -= sell / p; cum += sell;
         var p2 = Math.max(0.05, p * (1 - k * sell / 100));
@@ -590,10 +590,10 @@
       var P = EB.palette();
       var debt = gD() * 100, need = debt * (1 - gR() / 100), left = 100 - need;
       var dep = gE() / 100, usd = 30 * (1 + dep), eq = 100 - 50 - usd;
-      var half = w / 2, top = 40, bot = h - 40, maxV = Math.max(140, need + 10), u = (bot - top) / maxV;
+      var half = w / 2, top = 58, bot = h - 40, maxV = Math.max(140, debt + 10), u = (bot - top) / maxV;
       // 왼쪽: 외환보유액 vs 갚아야 할 달러
       ctx.fillStyle = P.text; ctx.font = EB.font(12, false, 700); ctx.textAlign = "center";
-      ctx.fillText("나라의 달러", half / 2, 20);
+      ctx.fillText("나라의 달러", half / 2, 42);
       var bw = Math.min(56, half * 0.28), xa = half / 2 - bw - 6, xb = half / 2 + 6;
       ctx.fillStyle = P.ok; ctx.globalAlpha = 0.75; ctx.fillRect(xa, bot - 100 * u, bw, 100 * u); ctx.globalAlpha = 1;
       ctx.fillStyle = P.bad; ctx.globalAlpha = 0.75; ctx.fillRect(xb, bot - need * u, bw, need * u); ctx.globalAlpha = 1;
@@ -603,10 +603,10 @@
       ctx.fillText("(연장 안 된 몫)", xb + bw / 2, bot + 27);
       ctx.fillStyle = P.text; ctx.font = EB.font(11.5, true, 600);
       ctx.fillText("100", xa + bw / 2, bot - 100 * u - 6); ctx.fillText(need.toFixed(0), xb + bw / 2, bot - need * u - 6);
-      ctx.fillStyle = P.dim; ctx.font = EB.font(10.5); ctx.fillText("점선: 단기 외채 " + debt.toFixed(0), half / 2, top - 8);
+      ctx.fillStyle = P.dim; ctx.font = EB.font(10.5); ctx.fillText("점선: 단기 외채 " + debt.toFixed(0), xb + bw / 2, bot - debt * u - 6);
       // 오른쪽: 기업 장부
-      ctx.fillStyle = P.text; ctx.font = EB.font(12, false, 700); ctx.fillText("달러 빚진 기업(원화 기준)", half + half / 2, 20);
-      var cw = Math.min(64, half * 0.3), x1 = half + half / 2 - cw - 6, x2 = half + half / 2 + 6, U = (bot - top) / 150;
+      ctx.fillStyle = P.text; ctx.font = EB.font(12, false, 700); ctx.fillText("달러 빚진 기업(원화 기준)", half + half / 2, 42);
+      var cw = Math.min(64, half * 0.3), x1 = half + half / 2 - cw - 6, x2 = half + half / 2 + 6, U = (bot - top - 14) / 150;
       ctx.fillStyle = P.accent; ctx.globalAlpha = 0.6; ctx.fillRect(x1, bot - 100 * U, cw, 100 * U); ctx.globalAlpha = 1;
       ctx.fillStyle = P.dim; ctx.globalAlpha = 0.35; ctx.fillRect(x2, bot - 50 * U, cw, 50 * U); ctx.globalAlpha = 1;
       ctx.fillStyle = P.bad; ctx.globalAlpha = 0.75; ctx.fillRect(x2, bot - (50 + usd) * U, cw, usd * U); ctx.globalAlpha = 1;
@@ -621,7 +621,7 @@
       if (usd * U > 14) { ctx.fillStyle = "#fff"; ctx.fillText("달러빚 " + usd.toFixed(0), x2 + cw / 2, bot - (50 + usd / 2) * U + 4); }
       ctx.fillStyle = eq > 0 ? P.accent2 : P.bad; ctx.font = EB.font(11.5, false, 700);
       ctx.fillText(eq > 0 ? "자본 " + eq.toFixed(0) : "자본 잠식 " + eq.toFixed(0), x2 + cw / 2, bot - Math.max(100, 50 + usd) * U - 8);
-      ctx.strokeStyle = P.border; ctx.beginPath(); ctx.moveTo(half, 30); ctx.lineTo(half, h - 10); ctx.stroke();
+      ctx.strokeStyle = P.border; ctx.beginPath(); ctx.moveTo(half, 30); ctx.lineTo(half, h - 10); ctx.stroke(); ctx.textAlign = "center";
       EB.stat("fx-o-n", pc(need / 100, 0));
       EB.stat("fx-o-r", left > 0 ? left.toFixed(0) + " / 100" : '<span class="bad-t">바닥(' + left.toFixed(0) + ")</span>");
       EB.stat("fx-o-e", eq > 0 ? eq.toFixed(1) + " / 20" : '<span class="bad-t">잠식</span>');
@@ -680,13 +680,13 @@
     var gP = EB.range("ct-p", function (v) { return "−" + v.toFixed(1) + "%"; }, reset);
     var cLolr = document.getElementById("ct-lolr"), cDi = document.getElementById("ct-di"), cCap = document.getElementById("ct-cap");
     [cLolr, cDi, cCap].forEach(function (c) { c.addEventListener("change", reset); });
-    var Rm = EB.rng(5), MULT = []; for (var i = 0; i < NB; i++) MULT.push(0.75 + 0.5 * Rm());
+    var Rm = EB.rng(5), MULT = []; for (var i = 0; i < NB; i++) MULT.push(0.55 + 1.0 * Rm());
     function reset() {
       running = false; round = 0; price = 1; soldTotal = 0; cbTotal = 0;
       var Lbar = gL(); banks = [];
       for (var i = 0; i < NB; i++) {
         var L = Lbar * MULT[i]; if (cCap.checked) L = Math.min(L, 12.5);
-        var E = 100 / L, ext = 85, ib = 15, liab = 100 - E - 15, st = liab * gS() / 100;
+        var E = 100 / L, ext = 91, ib = 9, liab = 100 - E - 9, st = liab * gS() / 100;
         banks.push({ E0: E, eq: E, units: ext, ib: ib, st: st, dep: liab - st, ran: false, depRan: false, failed: false, loss: 0, cb: 0 });
       }
       if (cv) cv.redraw();
@@ -705,23 +705,22 @@
         var assets = b.units * price + b.ib;
         if (b.eq <= 0) {
           b.failed = true; changed = true;
-          V += b.units * price * 0.5; b.units *= 0.5;              // 정리 과정에서 자산 절반을 시장에 내놓는다
-          lenders(i).forEach(function (j) { if (!banks[j].failed) banks[j].eq -= 5 * 0.6; });
+          lenders(i).forEach(function (j) { if (!banks[j].failed) banks[j].eq -= 3 * 0.5; });   // 빌려준 3 중 절반을 잃는다
           return;
         }
-        if (b.eq / assets < 0.04) {
+        if (b.eq / assets < 0.03) {
           var out = 0;
           if (!b.ran) { out += b.st; b.ran = true; }
-          if (!cDi.checked && !b.depRan) { out += b.dep * 0.2; b.depRan = true; }
+          if (!cDi.checked && !b.depRan) { out += b.dep * 0.1; b.depRan = true; }
           if (out > 0) {
             changed = true;
             if (cLolr.checked) { b.cb += out; cbTotal += out; }
-            else { var u = out / (price * 0.9); u = Math.min(u, b.units); b.units -= u; b.eq -= u * price * 0.1; V += u * price; soldTotal += u * price; }
+            else { var u = out / (price * 0.95); u = Math.min(u, b.units); b.units -= u; b.eq -= u * price * 0.05; V += u * price; soldTotal += u * price; }
           }
         }
       });
       if (V > 0) {
-        var p2 = Math.max(0.2, price * (1 - 0.5 * V / (85 * NB) * 100 / 100));
+        var p2 = Math.max(0.2, price * (1 - 0.15 * V / (91 * NB)));
         var dp = price - p2; price = p2;
         banks.forEach(function (b) { if (!b.failed) b.eq -= b.units * dp; });
         changed = true;
@@ -751,8 +750,8 @@
       var nf = 0, nw = 0;
       banks.forEach(function (b, i) {
         var p = layout[i], assets = b.units * price + b.ib, ratio = b.eq / Math.max(1, assets);
-        var col = b.failed ? P.bad : ratio < 0.04 ? P.warn : P.ok;
-        if (b.failed) nf++; else if (ratio < 0.04) nw++;
+        var col = b.failed ? P.bad : ratio < 0.03 ? P.warn : P.ok;
+        if (b.failed) nf++; else if (ratio < 0.03) nw++;
         var r = 13 + 5 * Math.min(1, b.E0 / 10);
         ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
         ctx.fillStyle = EB.color("canvas-bg"); ctx.fill();
