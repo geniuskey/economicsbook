@@ -242,7 +242,7 @@
     <h2>연결판: 기준금리를 올리면 대출·주식·집값·환율은</h2>
     <p>이제 다섯 길을 한 판 위에 올린다. 가운데 기준금리에서 출발한 신호가 시간이 흐르며 각 칸으로 번진다. 아래쪽 칸들은 2년 동안 각 숫자가 어떤 길로 움직이는지 작은 그래프로 보여 준다. 마지막 줄은 지우의 가계부다.</p>
 
-    <div class="sim" id="sim-board">
+    <div class="sim" id="sim-ripple">
       <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>기준금리 연결판: 대출·주식·집값·환율·성장·물가</h3></div>
       <div class="sim-body side">
         <div class="sim-view"><canvas id="bd-cv"></canvas><span class="hint">시간 막대를 끌거나 재생한다</span></div>
@@ -529,7 +529,7 @@
     function draw() { cv.redraw(); }
   })();
 
-  /* ---------------- sim-board ---------------- */
+  /* ---------------- sim-ripple (연결판) ---------------- */
   (function () {
     var month = 0, playing = false, box = null, pulse = 0;
     var gD = EB.range("bd-d", function (v) { return (v >= 0 ? "+" : "") + v.toFixed(2) + "%p"; }, draw);
@@ -624,7 +624,7 @@
     document.getElementById("bd-go").addEventListener("click", function () { if (month >= 24) month = 0; playing = true; });
     document.getElementById("bd-re").addEventListener("click", function () { playing = false; month = 0; update(); });
     var acc = 0;
-    EB.loop(document.getElementById("sim-board"), function (dt) {
+    EB.loop(document.getElementById("sim-ripple"), function (dt) {
       pulse += dt * 0.8;
       if (playing) { acc += dt; if (acc > 0.25) { acc = 0; month = Math.min(24, month + 1); if (month >= 24) playing = false; update(); return; } }
       cv.redraw();
