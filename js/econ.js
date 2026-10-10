@@ -374,7 +374,10 @@
       b = b * (1 + o.r) / (1 + o.g) - pb;
       rows.push({ year: t, b });
     }
-    return { rows, steady: o.r === o.g ? Infinity : -(o.pb || 0) * (1 + o.g) / (o.r - o.g) };
+    // A fixed point solves b = ((1+r)/(1+g))*b - pb; it is attracting only for r < g.
+    const pb = typeof o.pb === "function" ? NaN : o.pb || 0;
+    const steady = o.r === o.g ? (pb === 0 ? o.b0 : NaN) : pb * (1 + o.g) / (o.r - o.g);
+    return { rows, steady };
   };
 
   /* ------------------------------------------------------------ 케이스: 지우의 헤드라인 노트 */

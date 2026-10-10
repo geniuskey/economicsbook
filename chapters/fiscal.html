@@ -236,12 +236,12 @@
         <div class="stat"><span class="k">고른 해</span><span class="v" id="dbt-r-y">—</span></div>
         <div class="stat"><span class="k">부채 비율</span><span class="v" id="dbt-r-b">—</span></div>
         <div class="stat"><span class="k">그해 변화: 이자−성장 · 기초수지</span><span class="v" id="dbt-r-d">—</span></div>
-        <div class="stat"><span class="k">수렴점</span><span class="v" id="dbt-r-s">—</span></div>
+        <div class="stat"><span class="k">장기 경로</span><span class="v" id="dbt-r-s">—</span></div>
       </div>
-      <div class="sim-note">해볼 것: ① r = 3%, g = 4%, 기초수지 −1%. 비율이 오르다가 한 점(수렴점 약 104%)으로 다가간다. r &lt; g이면 적자가 계속돼도 비율이 끝없이 오르지는 않는다. ② r을 6%로 올린다. r &gt; g가 되는 순간 수렴점이 사라지고 선이 위로 휘어 올라간다. 빨간 영역에 들어가면 이자 부담이 다시 빚을 낳는 눈덩이다. ③ r = 6%에서 기초수지를 +2%로 올려 본다. 흑자를 내야 겨우 비율이 버틴다. 금리가 성장률보다 높은 나라는 이자를 뺀 살림에서 흑자를 내야 한다. (모형: 이자율·성장률·기초수지가 30년 동안 일정하다고 가정한다. 금리가 부채 비율에 반응하는 효과는 빠져 있다. 교육용이며 전망이 아니다.)</div>
+      <div class="sim-note">해볼 것: ① r = 3%, g = 4%, 기초수지 −1%. 비율이 오르다가 한 점(수렴점 약 104%)으로 다가간다. r &lt; g이면 적자가 계속돼도 비율이 끝없이 오르지는 않는다. ② r을 6%로 올린다. r &gt; g가 되는 순간 수렴점이 사라지고 선이 위로 휘어 올라간다. 빨간 영역은 150% 이상을 구별하는 시각적 표시이며, 눈덩이 효과의 경계는 부채 비율 자체가 아니라 r − g와 기초수지로 정해진다. ③ r = 6%에서 기초수지를 +2%로 올려 본다. 흑자를 내야 겨우 비율이 버틴다. 금리가 성장률보다 높은 나라는 이자를 뺀 살림에서 흑자를 내야 한다. (모형: 이자율·성장률·기초수지가 30년 동안 일정하다고 가정한다. 금리가 부채 비율에 반응하는 효과는 빠져 있다. 흑자로 부채가 0 아래로 내려가면 순자산을 뜻하는 대수적 연장이며 실제 총채무 예측이 아니다. 교육용이며 전망이 아니다.)</div>
     </div>
 
-    <p>선이 위로 휘어 오르는 모양을 기억해 두자. 이자율이 성장률보다 높은데 기초재정수지 적자가 계속되면 부채 비율은 수렴점 없이 오른다. 반대로 \(r &lt; g\)인 나라는 적자를 내도 비율이 어느 수준에서 멈춘다. 그 수준은 \(-pb\,(1+g)/(r-g)\)로 계산된다. 이자율과 성장률의 차이가 작을수록 수렴점은 멀리 있다. 차이가 0.5%p라면 기초수지 −1%의 수렴점은 200%가 넘는다. "r이 g보다 낮으니 괜찮다"는 말이 늘 안심이 되지 않는 이유다.</p>
+    <p>선이 위로 휘어 오르는 모양을 기억해 두자. 이자율이 성장률보다 높은데 기초재정수지 적자가 계속되면 부채 비율은 수렴점 없이 오른다. 반대로 \(r &lt; g\)인 나라는 적자를 내도 비율이 어느 수준에서 멈춘다. 그 수준은 \(pb\,(1+g)/(r-g)\)로 계산된다. 이자율과 성장률의 차이가 작을수록 수렴점은 멀리 있다. 차이가 0.5%p라면 기초수지 −1%의 수렴점은 200%가 넘는다. "r이 g보다 낮으니 괜찮다"는 말이 늘 안심이 되지 않는 이유다.</p>
 
     <p>이제 \(r\)과 \(g\)를 평면 위에 놓는다. 아래 지도의 한 점은 이자율과 성장률의 한 조합이고, 색은 그 조합으로 30년을 굴렸을 때의 부채 비율이다. 점을 끌어 대각선(r = g)을 넘나들어 본다.</p>
 
@@ -511,6 +511,13 @@
     function draw() { cv.redraw(); }
   })();
 
+  function debtSummary(r, g, pb, steady) {
+    if (r < g) return steady < 0 ? "0%를 지나 순자산 쪽으로(단순 모형)" : pc(steady, 0) + "로 수렴";
+    if (r === g) return pb > 0 ? "매년 일정 폭 감소" : pb < 0 ? "매년 일정 폭 증가" : "시작 비율 유지";
+    var change = B0 * (r - g) / (1 + g) - pb;
+    return Math.abs(change) < 1e-12 ? "시작 비율 유지(불안정 균형)" : change < 0 ? "감소·0% 이후 순자산(단순 모형)" : "계속 증가(수렴 없음)";
+  }
+
   /* ---------------- sim-debt ---------------- */
   (function () {
     var yr = 10, box = null, N = 30;
@@ -522,9 +529,11 @@
       var r = gR() / 100, g = gG() / 100, pb = gP() / 100;
       var res = EC.debtPath({ b0: B0, r: r, g: g, pb: pb, years: N }), rows = res.rows;
       var maxB = Math.max.apply(null, rows.map(function (q) { return q.b; }));
+      var minB = Math.min.apply(null, rows.map(function (q) { return q.b; }));
       var yTop = maxB > 1.6 ? 3 : maxB > 1.1 ? 1.6 : 1.1;
+      var yBottom = minB < 0 ? Math.floor(minB * 10) / 10 : 0;
       var c = EB.chart(ctx, { x: 52, y: 14, w: w - 66, h: h - 50 }, {
-        x: [2025, 2025 + N], y: [0, yTop], xTicks: [2025, 2030, 2035, 2040, 2045, 2050, 2055], xFmt: function (v) { return "" + v; }, yFmt: function (v) { return Math.round(v * 100) + "%"; },
+        x: [2025, 2025 + N], y: [yBottom, yTop], xTicks: [2025, 2030, 2035, 2040, 2045, 2050, 2055], xFmt: function (v) { return "" + v; }, yFmt: function (v) { return Math.round(v * 100) + "%"; },
         bands: [],
         series: [{ data: rows.map(function (q) { return [2025 + q.year, Math.min(q.b, yTop * 1.2)]; }), color: r > g && pb < 0 ? P.bad : P.accent, width: 2.8 }],
         hlines: [{ y: B0, color: P.faint, label: "2025년 49.0%" }].concat(r < g && isFinite(res.steady) && res.steady > 0 && res.steady < yTop ? [{ y: res.steady, color: P.ok, label: "수렴점 " + Math.round(res.steady * 100) + "%" }] : []),
@@ -533,7 +542,7 @@
       // 위험 영역 표시
       if (yTop >= 1.6) {
         ctx.fillStyle = EB.color("bad-soft"); var yy = c.Y(1.5); ctx.fillRect(c.box.x, c.box.y, c.box.w, Math.max(0, yy - c.box.y));
-        ctx.fillStyle = P.bad; ctx.font = EB.font(11); ctx.textAlign = "left"; ctx.fillText("150% 위: 이자가 이자를 낳는 구간", c.box.x + 8, c.box.y + 14);
+        ctx.fillStyle = P.bad; ctx.font = EB.font(11); ctx.textAlign = "left"; ctx.fillText("150% 이상: 표시용 구간", c.box.x + 8, c.box.y + 14);
       }
       var x = c.X(2025 + yr);
       ctx.save(); ctx.strokeStyle = P.text; ctx.globalAlpha = 0.55; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(x, c.box.y); ctx.lineTo(x, c.box.y + c.box.h); ctx.stroke(); ctx.restore();
@@ -544,7 +553,7 @@
       EB.stat("dbt-r-y", (2025 + yr) + "년");
       EB.stat("dbt-r-b", cur.b > 9.99 ? "1,000% 넘음" : pc(cur.b));
       EB.stat("dbt-r-d", yr ? spp(snow) + " · " + spp(-pb) : "—");
-      EB.stat("dbt-r-s", r < g ? (res.steady <= 0 ? "부채가 줄어 0 쪽으로" : pc(res.steady, 0)) : pb > 0 && r > g && B0 * (r - g) / (1 + g) < pb ? "줄어든다(흑자가 이김)" : "없음(끝없이 오른다)");
+      EB.stat("dbt-r-s", debtSummary(r, g, pb, res.steady));
     }, { aspect: 0.6, minHeight: 270, maxHeight: 400 });
     EB.drag(cv.canvas, { move: function (x) { if (!box) return; yr = EB.clamp(Math.round(EB.map(x, box.box.x, box.box.x + box.box.w, 0, N)), 0, N); cv.redraw(); } });
     function draw() { cv.redraw(); }
